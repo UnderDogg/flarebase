@@ -3,21 +3,21 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Repositories\invoice\InvoiceRepositoryContract;
+use App\Services\invoice\InvoiceServiceContract;
 
 class InvoiceHeaderComposer
 {
     /**
      * The invoice repository implementation.
      *
-     * @var invoiceRepository
+     * @var invoiceService
      */
     protected $invoices;
 
     /**
      * Create a new profile composer.
      *
-     * @param  invoiceRepository  $invoices
+     * @param  invoiceService $invoices
      * @return void
      */
     public function __construct(InvoiceRepositoryContract $invoices)
@@ -28,15 +28,14 @@ class InvoiceHeaderComposer
     /**
      * Bind data to the view.
      *
-     * @param  View  $view
+     * @param  View $view
      * @return void
      */
     public function compose(View $view)
     {
         $invoices = $this->invoices->find($view->getData()['invoice']['id']);
 
-        $client = $invoices->clients->first();
-        
-        $view->with('client', $client);
+        $relation = $invoices->relations->first();
+        $view->with('relation', $relation);
     }
 }

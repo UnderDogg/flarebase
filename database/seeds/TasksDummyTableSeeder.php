@@ -12,8 +12,8 @@ class TasksDummyTableSeeder extends Seeder
      */
     public function run()
     {
-     factory(App\Models\Tasks::class, 175)->create()->each(function($c){
-           
-          });
+        factory(App\Models\Tasks::class, 1750)->create()->each(function ($c) {
+
+        });
     }
 }

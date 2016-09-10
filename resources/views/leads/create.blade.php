@@ -21,9 +21,9 @@
 
 <div class="form-inline">
 <div class="form-group col-lg-3 removeleft">
-    {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-    {!! Form::select('status', array(
-    '1' => 'Contact Client', '2' => 'Completed'), null, ['class' => 'form-control'] )
+    {!! Form::label('status_id', 'Status:', ['class' => 'control-label']) !!}
+    {!! Form::select('status_id', array(
+    '1' => 'Contact Relation', '2' => 'Completed'), null, ['class' => 'form-control'] )
  !!}
  </div>
  <div class="form-group col-lg-4 removeleft">
@@ -39,15 +39,15 @@
 
    
     <div class="form-group">
-{!! Form::label('fk_user_id_assign', ' Assign User:', ['class' => 'control-label']) !!}
-{!! Form::select('fk_user_id_assign', $users, null, ['class' => 'form-control']) !!}
+{!! Form::label('assigned_to_staff_id', ' Assign User:', ['class' => 'control-label']) !!}
+{!! Form::select('assigned_to_staff_id', $users, null, ['class' => 'form-control']) !!}
 </div>
  <div class="form-group">
- @if(Request::get('client') != "")
- {!! Form::hidden('fk_client_id', Request::get('client')) !!}
+ @if(Request::get('relation') != "")
+ {!! Form::hidden('fk_relation_id', Request::get('relation')) !!}
  @else
-{!! Form::label('fk_client_id', 'Assign Client:', ['class' => 'control-label']) !!}
-{!! Form::select('fk_client_id', $clients, null, ['class' => 'form-control']) !!}
+{!! Form::label('fk_relation_id', 'Assign Relation:', ['class' => 'control-label']) !!}
+{!! Form::select('fk_relation_id', $relations, null, ['class' => 'form-control']) !!}
 @endif
 </div>
 
@@ -57,7 +57,7 @@
 
 </div>
 
-{!! Form::submit('Create New Task', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Create New Ticket', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
 

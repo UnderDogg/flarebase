@@ -15,7 +15,6 @@ class PermissionsTableSeeder extends Seeder
         /**
          * User Permissions
          */
-        
         $createUser = new Permissions;
         $createUser->display_name = 'Create user';
         $createUser->name = 'user-create';
@@ -34,49 +33,41 @@ class PermissionsTableSeeder extends Seeder
         $deleteUser->description = 'Permission to update delete';
         $deleteUser->save();
 
-
-         /**
-         * Client Permissions
+        /**
+         * Relation Permissions
          */
-        
-        $createClient = new Permissions;
-        $createClient->display_name = 'Create client';
-        $createClient->name = 'client-create';
-        $createClient->description = 'Permission to create client';
-        $createClient->save();
-
-        $updateClient = new Permissions;
-        $updateClient->display_name = 'Update client';
-        $updateClient->name = 'client-update';
-        $updateClient->description = 'Permission to update client';
-        $updateClient->save();
-
-        $deleteClient = new Permissions;
-        $deleteClient->display_name = 'Delete client';
-        $deleteClient->name = 'client-delete';
-        $deleteClient->description = 'Permission to delete client';
-        $deleteClient->save();
-
-         /**
-         * Tasks Permissions
+        $createRelation = new Permissions;
+        $createRelation->display_name = 'Create relation';
+        $createRelation->name = 'relation-create';
+        $createRelation->description = 'Permission to create relation';
+        $createRelation->save();
+        $updateRelation = new Permissions;
+        $updateRelation->display_name = 'Update relation';
+        $updateRelation->name = 'relation-update';
+        $updateRelation->description = 'Permission to update relation';
+        $updateRelation->save();
+        $deleteRelation = new Permissions;
+        $deleteRelation->display_name = 'Delete relation';
+        $deleteRelation->name = 'relation-delete';
+        $deleteRelation->description = 'Permission to delete relation';
+        $deleteRelation->save();
+        /**
+         * Tickets Permissions
          */
-        
-        $createTask = new Permissions;
-        $createTask->display_name = 'Create task';
-        $createTask->name = 'task-create';
-        $createTask->description = 'Permission to create task';
-        $createTask->save();
+        $createTicket = new Permissions;
+        $createTicket->display_name = 'Create ticket';
+        $createTicket->name = 'ticket-create';
+        $createTicket->description = 'Permission to create ticket';
+        $createTicket->save();
+        $updateTicket = new Permissions;
+        $updateTicket->display_name = 'Update ticket';
+        $updateTicket->name = 'ticket-update';
+        $updateTicket->description = 'Permission to update ticket';
+        $updateTicket->save();
 
-        $updateTask = new Permissions;
-        $updateTask->display_name = 'Update task';
-        $updateTask->name = 'task-update';
-        $updateTask->description = 'Permission to update task';
-        $updateTask->save();
-
-         /**
+        /**
          * Leads Permissions
          */
-        
         $createLead = new Permissions;
         $createLead->display_name = 'Create lead';
         $createLead->name = 'lead-create';

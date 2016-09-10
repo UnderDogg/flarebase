@@ -44,7 +44,7 @@
 <body>
 <div id="wrapper">
 <div class="navbar navbar-default navbar-top">
-<!--NOTIFICATIONS START-->
+    <!--NOTIFICATIONS (resources views master) START-->
 <div class="dropdown">
   <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
     <i class="glyphicon glyphicon-bell"><span id="notifycount"></span></i>
@@ -70,7 +70,10 @@ function postRead(id) {
 
 
 }
-$(function(){
+
+
+
+/*$(function(){
 
 
  $.get('{{url('/notifications/getall')}}', function(notifications){
@@ -96,7 +99,7 @@ $(function(){
         bell.innerHTML = count;
     })
 
-});
+});*/
     
 
 </script>
@@ -129,8 +132,8 @@ $(function(){
 
 
             
-                <a href="#clients" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tag"></i> Clients </i></a>
-            <div class="collapse" id="clients">
+                <a href="#relations" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tag"></i> Clients </i></a>
+            <div class="collapse" id="relations">
             
                 <a href="{{ route('clients.index')}}" class="list-group-item childlist">All Clients</a>
                  @if(Entrust::can('client-create'))   
@@ -209,14 +212,7 @@ $(function(){
 
             </div>
             </div>
-@if($errors->any())
-    <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    </div>
 
-@endif
 @if(Session::has('flash_message_warning'))
         <div class="notification-warning navbar-fixed-bottom ">
         <div class="notification-icon ion-close-circled"></div>

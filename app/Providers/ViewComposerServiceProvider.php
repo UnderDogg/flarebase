@@ -14,13 +14,13 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            ['users.show'], 'App\Http\ViewComposers\UserHeaderComposer'
+            ['user.show'], 'App\Http\ViewComposers\UserHeaderComposer'
         );
         view()->composer(
-            ['clients.show'], 'App\Http\ViewComposers\ClientHeaderComposer'
+            ['relations.show'], 'App\Http\ViewComposers\RelationHeaderComposer'
         );
         view()->composer(
-            ['tasks.show'], 'App\Http\ViewComposers\TaskHeaderComposer'
+            ['tickets.show'], 'App\Http\ViewComposers\TicketHeaderComposer'
         );
         view()->composer(
             ['invoices.show'], 'App\Http\ViewComposers\InvoiceHeaderComposer'

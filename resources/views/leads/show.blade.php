@@ -13,56 +13,68 @@ $(document).ready(function(){
 <div class="row">
 <div class="col-md-6">   
 
-<h1 class="moveup">{{$leads->clientAssignee->name}} ({{$leads->clientAssignee->company_name}})</h1>
-<!--Client info leftside-->
+      <h1 class="moveup">{{$leads->relationAssignee->name}} ({{$leads->relationAssignee->company_name}})</h1>
+      <!--Relation info leftside-->
 <div class="contactleft">
-@if($leads->clientAssignee->email != "") 
+        @if($leads->relationAssignee->email != "")
 <!--MAIL-->         
-<p> <span class="glyphicon glyphicon-envelope" aria-hidden="true" data-toggle="tooltip" title="Email" data-placement="left" > </span> 
-               <a href="mailto:{{$leads->clientAssignee->email}}" data-toggle="tooltip" data-placement="left" >{{$leads->clientAssignee->email}}</a></p>
+        <p><span class="glyphicon glyphicon-envelope" aria-hidden="true" data-toggle="tooltip" title="Email"
+                 data-placement="left"> </span>
+          <a href="mailto:{{$leads->relationAssignee->email}}" data-toggle="tooltip"
+             data-placement="left">{{$leads->relationAssignee->email}}</a></p>
 @endif
-@if($leads->clientAssignee->primary_number != "") 
+        @if($leads->relationAssignee->primary_number != "")
 <!--Work Phone-->            
-<p> <span class="glyphicon glyphicon-headphones" aria-hidden="true" data-toggle="tooltip" title="Primary number" data-placement="left"> </span> 
-               <a href="tel:{{$leads->clientAssignee->work_number}}">{{$leads->clientAssignee->primary_number}}</a></p>
+        <p><span class="glyphicon glyphicon-headphones" aria-hidden="true" data-toggle="tooltip" title="Primary number"
+                 data-placement="left"> </span>
+          <a href="tel:{{$leads->relationAssignee->work_number}}">{{$leads->relationAssignee->primary_number}}</a></p>
 @endif
-@if($leads->clientAssignee->secondary_number != "")           
+        @if($leads->relationAssignee->secondary_number != "")
 <!--Secondary Phone-->            
-<p> <span class="glyphicon glyphicon-phone" aria-hidden="true" data-toggle="tooltip" title="Secondary number" data-placement="left"> </span> 
-               <a href="tel:{{$leads->clientAssignee->secondary_number}}">{{$leads->clientAssignee->secondary_number}}</a></p>
+        <p><span class="glyphicon glyphicon-phone" aria-hidden="true" data-toggle="tooltip" title="Secondary number"
+                 data-placement="left"> </span>
+          <a
+            href="tel:{{$leads->relationAssignee->secondary_number}}">{{$leads->relationAssignee->secondary_number}}</a>
+        </p>
 @endif
-@if($leads->clientAssignee->address || $leads->clientAssignee->zipcode || $leads->clientAssignee->city != "")            
+        @if($leads->relationAssignee->address || $leads->relationAssignee->zipcode || $leads->relationAssignee->city != "")
 <!--Address-->            
-<p> <span class="glyphicon glyphicon-home" aria-hidden="true" data-toggle="tooltip" title="Address/Zip code/city" data-placement="left"> </span>  {{$leads->clientAssignee->address}} <br />{{$leads->clientAssignee->zipcode}} {{$leads->clientAssignee->city}}
+        <p><span class="glyphicon glyphicon-home" aria-hidden="true" data-toggle="tooltip" title="Address/Zip code/city"
+                 data-placement="left"> </span> {{$leads->relationAssignee->address}}
+          <br/>{{$leads->relationAssignee->zipcode}} {{$leads->relationAssignee->city}}
                 </p>
 @endif
           </div>
 
-<!--Client info leftside END-->
-<!--Client info rightside-->
+      <!--Relation info leftside END-->
+      <!--Relation info rightside-->
  <div class="contactright">
- @if($leads->clientAssignee->company_name != "")
+        @if($leads->relationAssignee->company_name != "")
      <!--Company-->            
-    <p> <span class="glyphicon glyphicon-star" aria-hidden="true" data-toggle="tooltip" title="Company name" data-placement="left"> </span> {{$leads->clientAssignee->company_name}}</p>
+        <p><span class="glyphicon glyphicon-star" aria-hidden="true" data-toggle="tooltip" title="Company name"
+                 data-placement="left"> </span> {{$leads->relationAssignee->company_name}}</p>
 @endif
- @if($leads->clientAssignee->vat != "")
+        @if($leads->relationAssignee->vat != "")
      <!--Company-->            
-    <p> <span class="glyphicon glyphicon-cloud" aria-hidden="true" data-toggle="tooltip" title="VAT number" data-placement="left"> </span> {{$leads->clientAssignee->vat}}</p>
+        <p><span class="glyphicon glyphicon-cloud" aria-hidden="true" data-toggle="tooltip" title="VAT number"
+                 data-placement="left"> </span> {{$leads->relationAssignee->vat}}</p>
 @endif
- @if($leads->clientAssignee->industry != "")
+        @if($leads->relationAssignee->industry != "")
 <!--Industry-->            
-<p> <span class="glyphicon glyphicon-briefcase" aria-hidden="true" data-toggle="tooltip" title="Industry" data-placement="left"> </span> {{$leads->clientAssignee->industry}}</p>
+        <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true" data-toggle="tooltip" title="Industry"
+                 data-placement="left"> </span> {{$leads->relationAssignee->industry}}</p>
 @endif
- @if($leads->clientAssignee->company_type!= "")               
+        @if($leads->relationAssignee->company_type!= "")
 <!--Company Type-->            
-<p> <span class="glyphicon glyphicon-globe" aria-hidden="true" data-toggle="tooltip" title="Company type" data-placement="left"> </span> 
-               {{$leads->clientAssignee->company_type}}</p>
+        <p><span class="glyphicon glyphicon-globe" aria-hidden="true" data-toggle="tooltip" title="Company type"
+                 data-placement="left"> </span>
+          {{$leads->relationAssignee->company_type}}</p>
   @endif             
 
           </div>
 </div>
 
-<!--Client info rightside END-->
+    <!--Relation info rightside END-->
 
 <!--User info-->
 
@@ -97,7 +109,7 @@ $(document).ready(function(){
 
      <div class="row">
         <div class="col-md-9">
-          <div class="taskcase">
+      <div class="ticketcase">
 
           <h3>{{$leads->title}}</h3>
           <hr class="grey">
@@ -109,15 +121,15 @@ $(document).ready(function(){
           @endif</p>
           
 
-              
       </div>
               <?php $i=1 ?>
        
           @foreach($leads->notes as $note)
-          <div class="taskcase" style="margin-top:15px; padding-top:10px;">
+        <div class="ticketcase" style="margin-top:15px; padding-top:10px;">
                   <p  class="smalltext">#{{$i++}}</p>
                   <p>  {{$note->note}}</p>
-                  <p class="smalltext">note by: <a href="{{route('users.show', $note->user->id)}}"> {{$note->user->name}} </a></p>
+          <p class="smalltext">note by: <a href="{{route('staff.show', $note->user->id)}}"> {{$note->user->name}} </a>
+          </p>
                             <p class="smalltext">Created at: 
           {{ date('d F, Y, H:i:s', strtotime($note->created_at))}} 
           @if($note->updated_at != $note->created_at) 
@@ -137,7 +149,7 @@ $(document).ready(function(){
           </div>
           <div class="col-md-3">
           <div class="sidebarheader">
-            <p>Task information</p>
+        <p>Ticket information</p>
              </div>
              <div class="sidebarbox">
             <p>Assigned to:
@@ -147,19 +159,24 @@ $(document).ready(function(){
             @if($leads->days_until_contact < 2)
              <p >Follow up: <span  style="color:red;">{{date('d, F Y, H:i', strTotime($leads->contact_date))}} 
 
-             @if($leads->status == 1) ({!! $leads->days_until_contact !!}) @endif</span> <i class="glyphicon glyphicon-calendar" data-toggle="modal" data-target="#ModalFollowUp"></i></p> <!--Remove days left if lead is completed-->
+              @if($leads->status == 1) ({!! $leads->days_until_contact !!}) @endif</span> <i
+              class="glyphicon glyphicon-calendar" data-toggle="modal" data-target="#ModalFollowUp"></i></p>
+          <!--Remove days left if lead is completed-->
 
              @else
              <p >Follow up: <span style="color:green;">{{date('d, F Y, H:i', strTotime($leads->contact_date))}}
 
-             @if($leads->status == 1) ({!! $leads->days_until_contact !!})<i class="glyphicon glyphicon-calendar" data-toggle="modal" data-target="#ModalFollowUp"></i>@endif</span></p> <!--Remove days left if lead is completed-->
+              @if($leads->status == 1) ({!! $leads->days_until_contact !!})<i class="glyphicon glyphicon-calendar"
+                                                                              data-toggle="modal"
+                                                                              data-target="#ModalFollowUp"></i>@endif</span>
+          </p> <!--Remove days left if lead is completed-->
              @endif
              @if($leads->status == 1)
-                Status: Contact client
+          Status: Contact relation
             @elseif($leads->status == 2)
                 Status: Completed 
           @elseif($leads->status == 3)
-              Satus: Client not Interested
+          Satus: Relation not Interested
              @endif
               
           </div>
@@ -168,7 +185,7 @@ $(document).ready(function(){
          'method' => 'PATCH',
           'url' => ['leads/updateassign', $leads->id],
           ]) !!}
-           {!! Form::select('fk_user_id_assign', $users, null, ['class' => 'form-control ui search selection top right pointing search-select', 'id' => 'search-select']) !!}
+        {!! Form::select('assigned_to_staff_id', $users, null, ['class' => 'form-control ui search selection top right pointing search-select', 'id' => 'search-select']) !!}
           {!! Form::submit('Assign new user', ['class' => 'btn btn-primary form-control closebtn']) !!}
        {!! Form::close() !!}
            {!! Form::model($leads, [
@@ -198,7 +215,8 @@ $(document).ready(function(){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Change Deadline</h4>
       </div>
 

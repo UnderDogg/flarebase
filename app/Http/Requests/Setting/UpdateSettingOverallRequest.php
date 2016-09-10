@@ -24,8 +24,8 @@ class UpdateSettingOverallRequest extends Request
     public function rules()
     {
         return [
-            'task_complete_allowed' => 'required',
-            'task_assign_allowed'   => 'required',
+            'ticket_complete_allowed' => 'required',
+            'ticket_assign_allowed' => 'required',
             'lead_complete_allowed' => 'required',
             'lead_assign_allowed'   => 'required'
         ];

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <table class="table table-bordered" id="users-table">
+  <table class="table table-hover table-bordered table-striped" id="users-table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,6 +21,8 @@ $(function() {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
+      "pageLength": 50,
+      "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         ajax: '{!! route('datatables.data') !!}',
         columns: [
             { data: 'id', name: 'id' },

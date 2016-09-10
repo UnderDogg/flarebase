@@ -12,17 +12,14 @@ class NotificationCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('notification_categories')->delete();
-        
-        \DB::table('notification_categories')->insert(array (
+        \DB::table('notification_categories')->insert(array(
             0 =>
-            array (
-                'id' => 1,
-                'name' => 'task.assign',
-                'text' => '{from.name} assigned a task to you',
-            ),
+                array(
+                    'id' => 1,
+                    'name' => 'ticket.assign',
+                    'text' => '{from.name} assigned a ticket to you',
+                ),
         ));
     }
 }

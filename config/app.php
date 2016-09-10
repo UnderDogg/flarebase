@@ -166,6 +166,24 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
        
+        Caffeinated\Modules\ModulesServiceProvider::class,
+        Caffeinated\Menus\MenusServiceProvider::class,
+        Caffeinated\Themes\ThemesServiceProvider::class,
+
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Cviebrock\EloquentTaggable\ServiceProvider::class,
+
+        'MaddHatter\LaravelFullcalendar\ServiceProvider',
+
+
+
+
+
+
+
+
 
     ],
 
@@ -212,13 +230,28 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+
+
+
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Datatables' => Yajra\Datatables\Datatables::class,
         'Carbon'     => Carbon\Carbon::class,
+
+        'Module' => Caffeinated\Modules\Facades\Module::class,
+        'Menu' => Caffeinated\Menus\Facades\Menu::class,
+        'Theme' => Caffeinated\Themes\Facades\Theme::class,
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        'Calendar' => 'MaddHatter\LaravelFullcalendar\Facades\Calendar',
+
         'Notifynder' => Fenos\Notifynder\Facades\Notifynder::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
+
         'Notifty'    => Illuminate\Support\Facades\Notification::class,
+
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,

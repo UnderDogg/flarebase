@@ -14,9 +14,9 @@ class UsersDummyTableSeeder extends Seeder
      */
     public function run()
     {
-     factory(App\Models\User::class, 5)->create()->each(function($c){
-           
-          });
+        factory(App\Models\User::class, 5)->create()->each(function ($c) {
+
+        });
 
         $createDep = new Department;
         $createDep->id = '2';
@@ -26,7 +26,6 @@ class UsersDummyTableSeeder extends Seeder
         $createDep->id = '3';
         $createDep->name = 'Genius';
         $createDep->save();
-
 
 
         $newrole = new RoleUser;
@@ -57,15 +56,15 @@ class UsersDummyTableSeeder extends Seeder
 
         \DB::table('department_user')->insert([
             ['department_id' => 1,
-            'user_id' => 2],
+                'user_id' => 2],
             ['department_id' => 2,
-            'user_id' => 3],
+                'user_id' => 3],
             ['department_id' => 3,
-            'user_id' => 4],
+                'user_id' => 4],
             ['department_id' => 3,
-            'user_id' => 5],
+                'user_id' => 5],
             ['department_id' => 2,
-            'user_id' => 6]
+                'user_id' => 6]
         ]);
     }
 }

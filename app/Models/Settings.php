@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 class Settings extends Model
 {
     protected $fillable = [
-        'task_complete_allowed',
-        'task_assign_allowed',
+        'ticket_complete_allowed',
+        'ticket_assign_allowed',
         'lead_complete_allowed',
         'lead_assign_allowed'
-        ];
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function tasks()
+
+    public function tickets()
     {
-        return $this->belongsTo(Tasks::class);
+        return $this->belongsTo(Ticket::class);
     }
 }

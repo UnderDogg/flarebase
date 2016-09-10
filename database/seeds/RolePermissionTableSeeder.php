@@ -33,37 +33,31 @@ class RolePermissionTableSeeder extends Seeder
         $deleteUser->permissions_id = '3';
         $deleteUser->timestamps = false;
         $deleteUser->save();
-
-        $createClient = new PermissionRole;
-        $createClient->role_id = '1';
-        $createClient->permissions_id = '4';
-        $createClient->timestamps = false;
-        $createClient->save();
-
-        $updateClient = new PermissionRole;
-        $updateClient->role_id = '1';
-        $updateClient->permissions_id = '5';
-        $updateClient->timestamps = false;
-        $updateClient->save();
-
-        $deleteClient = new PermissionRole;
-        $deleteClient->role_id = '1';
-        $deleteClient->permissions_id = '6';
-        $deleteClient->timestamps = false;
-        $deleteClient->save();
-
-        $createTask = new PermissionRole;
-        $createTask->role_id = '1';
-        $createTask->permissions_id = '7';
-        $createTask->timestamps = false;
-        $createTask->save();
-
-        $updateTask = new PermissionRole;
-        $updateTask->role_id = '1';
-        $updateTask->permissions_id = '8';
-        $updateTask->timestamps = false;
-        $updateTask->save();
-
+        $createRelation = new PermissionRole;
+        $createRelation->role_id = '1';
+        $createRelation->permissions_id = '4';
+        $createRelation->timestamps = false;
+        $createRelation->save();
+        $updateRelation = new PermissionRole;
+        $updateRelation->role_id = '1';
+        $updateRelation->permissions_id = '5';
+        $updateRelation->timestamps = false;
+        $updateRelation->save();
+        $deleteRelation = new PermissionRole;
+        $deleteRelation->role_id = '1';
+        $deleteRelation->permissions_id = '6';
+        $deleteRelation->timestamps = false;
+        $deleteRelation->save();
+        $createTicket = new PermissionRole;
+        $createTicket->role_id = '1';
+        $createTicket->permissions_id = '7';
+        $createTicket->timestamps = false;
+        $createTicket->save();
+        $updateTicket = new PermissionRole;
+        $updateTicket->role_id = '1';
+        $updateTicket->permissions_id = '8';
+        $updateTicket->timestamps = false;
+        $updateTicket->save();
         $createLead = new PermissionRole;
         $createLead->role_id = '1';
         $createLead->permissions_id = '9';

@@ -7,7 +7,7 @@
 
 
 <div class="row">
- <table class="table table-responsive table-hover table_wrapper" id="clients-table">
+    <table class="table table-responsive table-hover table_wrapper" id="relations-table">
         <thead>
             <tr>
             <th></th>
@@ -82,29 +82,29 @@
         ]) !!}
         
          <!-- *********************************************************************
-     *                     Task complete       
+     *                     Ticket complete       
      *********************************************************************-->
          <div class="panel panel-default movedown">
-          <div class="panel-heading">Task completion</div>
+          <div class="panel-heading">Ticket completion</div>
           <div class="panel-body">
 
-            If <b>Allowed</b> only user who are assigned the task &amp; the admin can complete the task. <br />
-            If <b>Not allowed</b> anyone, can complete all tasks.
+            If <b>Allowed</b> only user who are assigned the ticket &amp; the admin can complete the ticket. <br />
+            If <b>Not allowed</b> anyone, can complete all tickets.
           </div>
         </div>
-            {!! Form::select('task_complete_allowed', [1 => 'Allowed', 2 => 'Not Allowed'], $settings->task_complete_allowed, ['class' => 'form-control']) !!}
+            {!! Form::select('ticket_complete_allowed', [1 => 'Allowed', 2 => 'Not Allowed'], $settings->ticket_complete_allowed, ['class' => 'form-control']) !!}
   <!-- *********************************************************************
-     *                     Task assign       
+     *                     Ticket assign       
      *********************************************************************-->
          <div class="panel panel-default movedown">
-          <div class="panel-heading">Task Assigned user</div>
+          <div class="panel-heading">Ticket Assigned user</div>
           <div class="panel-body">
 
-            If <b>Allowed</b> only user who are assigned the task &amp; the admin can assign another user. <br />
+            If <b>Allowed</b> only user who are assigned the ticket &amp; the admin can assign another user. <br />
             If <b>Not allowed</b> anyone, can assign another user.
           </div>
         </div>
-            {!! Form::select('task_assign_allowed', [1 => 'Allowed', 2 => 'Not Allowed'], $settings->task_assign_allowed, ['class' => 'form-control']) !!}
+            {!! Form::select('ticket_assign_allowed', [1 => 'Allowed', 2 => 'Not Allowed'], $settings->ticket_assign_allowed, ['class' => 'form-control']) !!}
   <!-- *********************************************************************
      *                     Lead complete       
      *********************************************************************-->
@@ -113,7 +113,7 @@
           <div class="panel-heading">Lead completion</div>
           <div class="panel-body">
 
-            If <b>Allowed</b> only user who are assigned the task &amp; the admin can complete the Lead. <br />
+            If <b>Allowed</b> only user who are assigned the ticket &amp; the admin can complete the Lead. <br />
             If <b>Not allowed</b> anyone, can complete all Leads.
           </div>
         </div>

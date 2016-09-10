@@ -2,24 +2,24 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Repositories\User\UserRepositoryContract;
+use Modules\Core\Users\UserServiceContract;
 
 class UserHeaderComposer
 {
     /**
      * The User repository implementation.
      *
-     * @var UserRepository
+     * @var UserService
      */
     protected $users;
 
     /**
      * Create a new profile composer.
      *
-     * @param  UserRepository  $users
+     * @param  UserService $users
      * @return void
      */
-    public function __construct(UserRepositoryContract $users)
+    public function __construct(UserServiceContract $users)
     {
         $this->users = $users;
     }
@@ -27,7 +27,7 @@ class UserHeaderComposer
     /**
      * Bind data to the view.
      *
-     * @param  View  $view
+     * @param  View $view
      * @return void
      */
     public function compose(View $view)

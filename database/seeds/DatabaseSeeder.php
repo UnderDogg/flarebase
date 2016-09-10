@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call('AdminTableSeeder');  /*  Creates Admin user in the Staff (and users) table */
         $this->call('UsersTableSeeder');
         $this->call('IndustriesTableSeeder');
         $this->call('DepartmentsTableSeeder');
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call('RolesTablesSeeder');
         $this->call('RolePermissionTableSeeder');
         $this->call('UserRoleTableSeeder');
+        $this->call('StaffRoleTableSeeder');
         $this->call('NotificationCategoriesTableSeeder');
     }
 }

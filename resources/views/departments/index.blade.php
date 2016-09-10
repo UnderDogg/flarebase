@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-                <div class="col-lg-12 currenttask">
+                <div class="col-lg-12 department">
           
-                    <table class="table table-hover">
+    <table class="table table-hover table-bordered table-striped">
          <h3>All Departments</h3>
             <thead>
     <thead>

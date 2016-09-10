@@ -25,11 +25,11 @@ class StoreLeadRequest extends Request
     {
         return [
             'title' => 'required',
-            'note' => 'required',
-            'status' => 'required',
-            'fk_user_id_assign' => 'required',
-            'fk_user_id_created' => '',
-            'fk_client_id' => 'required',
+            'note' => '',
+            'status_id' => 'required',
+            'assigned_to_staff_id' => 'required',
+            'fk_staff_id_created' => '',
+            'fk_relation_id' => 'required',
             'contact_date' => 'required'
         ];
     }

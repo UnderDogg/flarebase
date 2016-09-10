@@ -24,36 +24,36 @@ class AccessServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            \App\Repositories\User\UserRepositoryContract::class,
-            \App\Repositories\User\UserRepository::class
+            \Modules\Core\Services\User\UserServiceContract::class,
+            \Modules\Core\Services\User\UserService::class
         );
         $this->app->bind(
-            \App\Repositories\Role\RoleRepositoryContract::class,
-            \App\Repositories\Role\RoleRepository::class
+            \Modules\Core\Role\RoleRepositoryContract::class,
+            \Modules\Core\Role\RoleRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Department\DepartmentRepositoryContract::class,
-            \App\Repositories\Department\DepartmentRepository::class
+            \App\Services\Department\DepartmentServiceContract::class,
+            \App\Services\Department\DepartmentService::class
         );
         $this->app->bind(
-            \App\Repositories\Setting\SettingRepositoryContract::class,
-            \App\Repositories\Setting\SettingRepository::class
+            \Modules\Core\Setting\SettingRepositoryContract::class,
+            \Modules\Core\Setting\SettingRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Task\TaskRepositoryContract::class,
-            \App\Repositories\Task\TaskRepository::class
+            \Modules\Tickets\Services\Ticket\TicketServiceContract::class,
+            \Modules\Tickets\Ticket\TicketService::class
         );
         $this->app->bind(
-            \App\Repositories\Client\ClientRepositoryContract::class,
-            \App\Repositories\Client\ClientRepository::class
+            \Modules\Relations\Services\Relation\RelationServiceContract::class,
+            \Modules\Relations\Services\Relation\RelationService::class
         );
         $this->app->bind(
-            \App\Repositories\Lead\LeadRepositoryContract::class,
-            \App\Repositories\Lead\LeadRepository::class
+            \Modules\Leads\Services\Lead\LeadServiceContract::class,
+            \Modules\Leads\Services\Lead\LeadService::class
         );
         $this->app->bind(
-            \App\Repositories\Invoice\InvoiceRepositoryContract::class,
-            \App\Repositories\Invoice\InvoiceRepository::class
+            \Modules\Invoices\Services\Invoice\InvoiceServiceContract::class,
+            \Modules\Invoices\Services\Invoice\InvoiceService::class
         );
     }
 }

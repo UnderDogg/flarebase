@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -28,21 +27,27 @@ class Kernel extends HttpKernel
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+            //\App\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\LogLastUserActivity::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            ],
-        'client.create' => [ \App\Http\Middleware\Client\CanClientCreate::class ],
-        'client.update' => [ \App\Http\Middleware\Client\CanClientUpdate::class ],
-        'user.create' => [ \App\Http\Middleware\User\CanUserCreate::class ],
-        'user.update' => [ \App\Http\Middleware\User\CanUserUpdate::class ],
-        'task.create' => [ \App\Http\Middleware\Task\CanTaskCreate::class ],
-        'task.update.status' => [ \App\Http\Middleware\Task\CanTaskUpdateStatus::class ],
-        'task.assigned' => [ \App\Http\Middleware\Task\IsTaskAssigned::class ],
-        'lead.create' => [ \App\Http\Middleware\Lead\CanLeadCreate::class ],
-        'lead.assigned' => [ \App\Http\Middleware\Lead\IsLeadAssigned::class ],
-        'lead.update.status' => [ \App\Http\Middleware\Lead\CanLeadUpdateStatus::class ],
-        'user.is.admin' => [ \App\Http\Middleware\RedirectIfNotAdmin::class ],
+        ],
+
+
+        //'email.create' => [ \App\Http\Middleware\Email\CanEmailCreate::class ],
+        //'relation.create' => [ \App\Http\Middleware\Relation\CanRelationCreate::class ],
+        //'relation.update' => [ \App\Http\Middleware\Relation\CanRelationUpdate::class ],
+        //'user.create' => [\App\Http\Middleware\User\CanUserCreate::class],
+        //'user.update' => [\App\Http\Middleware\User\CanUserUpdate::class],
+        //'ticket.create' => [ \App\Http\Middleware\Ticket\CanTicketCreate::class ],
+        //'ticket.update.status' => [ \App\Http\Middleware\Ticket\CanTicketUpdateStatus::class ],
+        //'ticket.assigned' => [ \App\Http\Middleware\Ticket\IsTicketAssigned::class ],
+        //'lead.create' => [\App\Http\Middleware\Lead\CanLeadCreate::class],
+        //'lead.assigned' => [\App\Http\Middleware\Lead\IsLeadAssigned::class],
+        //'lead.update.status' => [\App\Http\Middleware\Lead\CanLeadUpdateStatus::class],
+        //'user.is.staff' => [\App\Http\Middleware\RedirectIfNotStaff::class],
+
+
+        //'user.is.admin' => [\App\Http\Middleware\RedirectIfNotAdmin::class],
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -57,6 +62,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'admin' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
+        'client' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

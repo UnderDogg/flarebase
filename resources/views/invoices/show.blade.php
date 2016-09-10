@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-  @include('partials.clientheader')
+    @include('partials.relationheader')
 	<div class="col-md-8">
 		  <div class="panel panel-default">
                 <div class="panel-heading panel-header">
@@ -23,7 +23,7 @@
                             </thead>
                             <tbody>
                             <?php $finalPrice = 0;?> 
-                             @foreach($invoice->taskTime as $item)
+                             @foreach($invoice->ticketTime as $item)
                              <?php $totalPrice = $item->time * $item->value ?>
                                 <tr>
                                     <td>{{$item->title}}</td>
@@ -138,7 +138,7 @@
     {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Short Comment about whats done(Will show on Invoice)']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('value', 'Hourly price(DKK):', ['class' => 'control-label']) !!}
+    {!! Form::label('value', 'Hourly price(EUR / $$):', ['class' => 'control-label']) !!}
     {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => '300']) !!}
 </div>
 <div class="form-group">

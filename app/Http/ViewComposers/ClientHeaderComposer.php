@@ -17,7 +17,7 @@ class ClientHeaderComposer
     /**
      * Create a new profile composer.
      *
-     * @param  ClientRepository  $clients
+     * @param  ClientRepository $clients
      * @return void
      */
     public function __construct(ClientRepositoryContract $clients)
@@ -28,7 +28,7 @@ class ClientHeaderComposer
     /**
      * Bind data to the view.
      *
-     * @param  View  $view
+     * @param  View $view
      * @return void
      */
     public function compose(View $view)
