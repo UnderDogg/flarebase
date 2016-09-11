@@ -10,13 +10,24 @@
     <tr>
 
       <th>Name</th>
-      <th>Compeny</th>
+      <th>Company</th>
       <th>Email</th>
       <th>Number</th>
       <th></th>
       <th></th>
     </tr>
     </thead>
+    <tfoot>
+    <tr>
+
+      <th>Name</th>
+      <th>Compeny</th>
+      <th>Email</th>
+      <th>Number</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </tfoot>
   </table>
 
 @stop

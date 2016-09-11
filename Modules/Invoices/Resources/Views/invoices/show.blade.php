@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('core::adminlayouts.adminmaster')
 
 @section('content')
     <div class="row">
@@ -46,8 +46,7 @@
                 </div>
             </div>
             @if(!$invoice->sent)
-                <button type="button" class="btn btn-primary form-control" data-toggle="modal"
-                        data-target="#ModalTimer">
+                <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#ModalTimer">
                     Insert new item
                 </button>
             @endif
@@ -119,8 +118,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Time Managment For This Invoice ({{$invoice->title}})</h4>
                 </div>
 

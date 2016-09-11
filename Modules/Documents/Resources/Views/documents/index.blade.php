@@ -1,11 +1,11 @@
-@extends('layouts.master')
+@extends('core::adminlayouts.adminmaster')
 @section('heading')
   <h1>All Users</h1>
 @stop
 
 @section('content')
 
-  <table class="table table-hover table-bordered table-striped" id="users-table">
+  <table class="table table-hover table-bordered table-striped" id="documents-table">
     <thead>
     <tr>
       <th>Name</th>
@@ -22,12 +22,12 @@
 @push('scripts')
 <script>
   $(function () {
-    $('#users-table').DataTable({
+    $('#documents-table').DataTable({
       processing: true,
       serverSide: true,
       "pageLength": 50,
       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-      ajax: '{!! route('users.data') !!}',
+      ajax: '{!! route('documents.data') !!}',
       columns: [
 
         {data: 'namelink', name: 'name'},

@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('core::adminlayouts.adminmaster')
 
 @section('content')
-  <div class="col-lg-12 currentticket">
+  <div class="col-lg-12 roles">
 
     <table class="table table-hover table-bordered table-striped">
       <h3>All Departments</h3>
@@ -27,17 +27,14 @@
             @if($role->id !== 1)
               {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure?")']); !!}
             @endif
-            {!! Form::close(); !!}</td>
-          </td>
+        {!! Form::close(); !!}</td></td>
         </tr>
       @endforeach
 
       </tbody>
     </table>
 
-    <a href="{{ route('roles.create')}}">
-      <button class="btn btn-success">Add new role</button>
-    </a>
+    <a href="{{ route('roles.create')}}"><button class="btn btn-success">Add new role</button></a>
 
   </div>
 

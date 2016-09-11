@@ -8,7 +8,12 @@ Route::group(['prefix' => '/leads'], function () {
      * LEADS
      */
     Route::resource('leads', 'LeadsController');
-    Route::get('leads', 'LeadsController@index')->name('leads.index');  // Working?
+
+    Route::get('/', [
+        'as' => 'leads.index',
+        'uses' => 'LeadsController@index',
+        //'middleware' => 'can:mailboxes.mailboxes.index'
+    ]);
 
     Route::get('/data', 'LeadsController@anyData')->name('leads.data');
     Route::patch('/updateassign/{id}', 'LeadsController@updateAssign');

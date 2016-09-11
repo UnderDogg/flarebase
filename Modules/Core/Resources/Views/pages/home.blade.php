@@ -1,5 +1,4 @@
-@extends('layouts.master')
-
+@extends('core::adminlayouts.adminmaster')
 @section('heading')
   <h1>Hello world</h1>
 @stop

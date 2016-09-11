@@ -159,9 +159,9 @@ function postRead(id) {
 
            <a href="#leads" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-hourglass"></i> Leads </i></a>
             <div class="collapse" id="leads">
-                <a href="{{ route('leads.index')}}" class="list-group-item childlist">All Leads</a>
+                <a href="#" class="list-group-item childlist">All Leads</a>
                  @if(Entrust::can('lead-create'))   
-                <a href="{{ route('leads.create')}}" class="list-group-item childlist" >New Lead</i></a>
+                <a href="#" class="list-group-item childlist" >New Lead</i></a>
                 @endif
             </div>
             <a href="#departments" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-object-group"></i> Departments </i></a>

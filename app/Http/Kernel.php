@@ -14,6 +14,15 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+
+        //'Illuminate\Cookie\Middleware\EncryptCookies',
+        //'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+        //'Illuminate\Session\Middleware\StartSession',
+        //'Illuminate\View\Middleware\ShareErrorsFromSession',
+        ////'App\Http\Middleware\VerifyCsrfToken',
+        ////'App\Http\Middleware\LanguageMiddleware',
+
+
     ];
 
     /**
@@ -63,10 +72,25 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'admin' => \Illuminate\Auth\Middleware\Authenticate::class,
+
+        //'auth'        => 'App\Http\Middleware\Authenticate',
+        //'auth.basic'  => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+        //'guest'       => 'App\Http\Middleware\RedirectIfAuthenticated',
+
+
+        'roles'       => 'Modules\Core\Http\Middleware\CheckRole',
+        'role.agent'  => 'Modules\Core\Http\Middleware\CheckRoleAgent',
+        'role.user'   => 'Modules\Core\Http\Middleware\CheckRoleUser',
+
+
         'staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
         'client' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        //'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        //'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+
+        //'jwt.auth'    => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+        //'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,

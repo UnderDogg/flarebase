@@ -25,7 +25,7 @@ class GuestController extends Controller
     {
         //$this->PhpMailController = $PhpMailController;
         // checking authentication
-        //$this->middleware('auth');
+        ////$this->middleware('auth');
     }
 
     /**

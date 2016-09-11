@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('core::stafflayouts.staffmaster')
 @section('heading')
-    <h1>All tickets</h1>
+    <h1>All Leads</h1>
 @stop
 
 @section('content')
@@ -28,10 +28,13 @@
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             ajax: '{!! route('leads.data') !!}',
             columns: [
+
                 {data: 'titlelink', name: 'title'},
                 {data: 'fk_staff_id_created', name: 'fk_staff_id_created'},
                 {data: 'contact_date', name: 'contact_date',},
                 {data: 'assigned_to_staff_id', name: 'assigned_to_staff_id'},
+
+
             ]
         });
     });

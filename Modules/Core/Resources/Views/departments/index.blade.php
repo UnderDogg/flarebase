@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('core::adminlayouts.adminmaster')
 
 @section('content')
-  <div class="col-lg-12 currentticket">
+  <div class="col-lg-12 departments">
 
     <table class="table table-hover table-bordered table-striped">
       <h3>All Departments</h3>

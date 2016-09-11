@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('core::stafflayouts.staffmaster')
 @section('heading')
     <h1>All Users</h1>
 @stop

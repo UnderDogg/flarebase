@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('core::adminlayouts.adminmaster')
 @section('heading')
   <script>$('#pagination a').on('click', function (e) {
       e.preventDefault();

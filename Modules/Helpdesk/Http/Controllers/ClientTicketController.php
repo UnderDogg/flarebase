@@ -31,7 +31,7 @@ class ClientTicketController extends Controller
     public function __construct()
     {
         SettingsController::smtp();
-        // $this->middleware('auth');
+        // //$this->middleware('auth');
         // $this->middleware('role.user');
     }
 

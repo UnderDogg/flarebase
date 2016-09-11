@@ -1,48 +1,81 @@
-@extends('layouts.master')
-@section('heading')
-    <h1>All Users</h1>
+@extends('email::maillayouts.mailmaster')
+
+
+@section('Mailboxes')
+    active
 @stop
 
+@section('mailpanel-bar')
+    active
+@stop
+
+@section('Mailboxes')
+    active
+@stop
+
+@section('emails-bar')
+    active
+@stop
+
+@section('emails')
+    class="active"
+    @stop
+
+    @section('HeadInclude')
+    @stop
+            <!-- header -->
+@section('PageHeader')
+    <h1>{{Lang::get('lang.edit_an_email')}}</h1>
+
+    @stop
+            <!-- /header -->
+    <!-- breadcrumbs -->
+@section('breadcrumbs')
+    <ol class="breadcrumb">
+
+    </ol>
+    @stop
+            <!-- /breadcrumbs -->
+    <!-- content -->
 @section('content')
 
-    <table class="table table-hover table-bordered table-striped" id="users-table">
+    <h2>{!! Lang::get('email::lang.mailboxes') !!}</h2><a href="{{route('admin.mailboxes.mailbox.create')}}"
+                                                          class="btn btn-primary pull-right">{{Lang::get('email::lang.create_mailbox')}}</a></h2>
+
+    <table class="table table-hover table-bordered table-striped" id="mailboxes-table">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Work number</th>
-            <th></th>
-            <th></th>
+            <th>Mailbox</th>
+            <th>Email Address</th>
+            <th>Department</th>
+            <th>Actions</th>
         </tr>
         </thead>
+        <tfoot>
+        <tr>
+            <th>Mailbox</th>
+            <th>Email Address</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+        </tfoot>
     </table>
-
 @stop
 
 @push('scripts')
 <script>
     $(function () {
-        $('#users-table').DataTable({
+        $('#mailboxes-table').DataTable({
             processing: true,
             serverSide: true,
             "pageLength": 50,
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            ajax: '{!! route('users.data') !!}',
+            ajax: '{!! route('mailboxes.data') !!}',
             columns: [
-
-                {data: 'namelink', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'work_number', name: 'work_number'},
-                    @if(Entrust::can('user-update'))
-                {
-                    data: 'edit', name: 'edit', orderable: false, searchable: false
-                },
-                    @endif
-                    @if(Entrust::can('user-delete'))
-                {
-                    data: 'delete', name: 'delete', orderable: false, searchable: false
-                },
-                @endif
+                {data: 'mailboxlink', name: 'email_name'},
+                {data: 'mailaddress', name: 'email_address'},
+                {data: 'department', name: 'department_id'},
+                {data: 'actions', name: 'actions', orderable: false, searchable: false},
             ]
         });
     });

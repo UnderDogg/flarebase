@@ -412,7 +412,7 @@
             <li id="bar" @yield(
             'dashboard') ><a href="{{url('/adminpanel/')}}">{!! Lang::get('core::lang.dashboard') !!}</a></li>
             <li id="bar" @yield(
-            'profile') ><a href="{{url('/staff/profile')}}">{!! Lang::get('core::lang.profile') !!}</a></li>
+            'profile') ><a href="{{url('/staff/profile')}}">{!! Lang::get('employees::lang.profile') !!}</a></li>
           </ul>
         </div>
         <div class="tabs-pane @yield('user-bar')" id="tabB">
@@ -440,10 +440,10 @@
             <li id="bar" @yield('assigned')><a href="{{ url('/tickets/assigned') }}" id="load-assigned">{!! Lang::get('tickets::lang.assigned')
               !!}</a></li>
             <li id="bar" @yield('closed')><a href="{{ url('/tickets/closed') }}">{!! Lang::get('tickets::lang.closed') !!}</a></li>
-            <?php //if ($group->can_create_ticket == 1) {?>
+
             <li id="bar" @yield('newticket')><a
                 href="{{ url('/tickets/newticket') }}">{!! Lang::get('tickets::lang.create_ticket') !!}</a></li>
-            <?php //} ?>
+
           </ul>
         </div>
         <div class="tabs-pane @yield('tools-bar')" id="tabD">
@@ -471,7 +471,7 @@
   <section class="content">
     @yield('content')
   </section><!-- /.content -->
-                                <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 </div>
 
 
@@ -558,7 +558,11 @@ $(function() {
 <!-- CK Editor -->
 <!-- // <script src="{{asset("//cdn.ckeditor.com/4.4.3/standard/ckeditor.js")}}"></script> -->
 <script src="{{asset("lb-faveo/plugins/filebrowser/plugin.js")}}"></script>
-
+<script type="text/javascript">
+$.ajaxSetup({
+headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+});
+</script>
 @yield('FooterInclude')
 </body>
 </html>
