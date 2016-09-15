@@ -527,7 +527,9 @@
                             <li id="bar" @yield('ticket')><a href="{{ url('/tickets/') }}">Ticket</a></li>
 
                             <li id="bar" @yield('overdue')><a href="{{ url('/tickets/overdue') }}">Overdue</a></li>
-                            <li id="bar" @yield('assigned')><a href="{{ url('/tickets/assigned') }}" id="load-assigned">{!! Lang::get('tickets::lang.assigned') !!}</a></li>
+                            <li id="bar" @yield('assigned')><a href="{{ url('/tickets/assigned') }}"
+                                                               id="load-assigned">{!! Lang::get('tickets::lang.assigned') !!}</a>
+                            </li>
                             <li id="bar" @yield('closed')><a
                                         href="{{ url('/tickets/closed') }}">{!! Lang::get('tickets::lang.closed') !!}</a>
                             </li>
@@ -576,16 +578,17 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> {!! Config::get('app.version') !!}
         </div>
-      <strong>{!! Lang::get('core::lang.copyright') !!} &copy; {!! date('Y') !!}  <a href="#" target="_blank">company_name</a>.</strong> {!! Lang::get('core::lang.all_rights_reserved') !!}. {!! Lang::get('core::lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a>
+        <strong>{!! Lang::get('core::lang.copyright') !!} &copy; {!! date('Y') !!} <a href="#" target="_blank">company_name</a>.</strong> {!! Lang::get('core::lang.all_rights_reserved') !!}
+        . {!! Lang::get('core::lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a>
     </footer>
 </div><!-- ./wrapper -->
-                    {{-- // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
-<!-- jQuery 2.1.3 -->
+{{-- // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
+        <!-- jQuery 2.1.3 -->
 <script src="{{asset("lb-faveo/js/ajax-jquery.min.js")}}"></script>
-                    
-                    {{-- // <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script> --}}
 
-                    <script src="{{asset("lb-faveo/js/bootstrap-datetimepicker4.7.14.min.js")}}" type="text/javascript"></script>
+{{-- // <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script> --}}
+
+<script src="{{asset("lb-faveo/js/bootstrap-datetimepicker4.7.14.min.js")}}" type="text/javascript"></script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="{{asset("lb-faveo/js/bootstrap.min.js")}}" type="text/javascript"></script>
 <!-- Slimscroll -->
@@ -598,22 +601,23 @@
 {{-- // <script src="{{asset("dist/js/demo.js")}}" type="text/javascript"></script> --}}
         <!-- iCheck -->
 <script src="{{asset("lb-faveo/plugins/iCheck/icheck.min.js")}}" type="text/javascript"></script>
-                    {{-- maskinput --}}
-                    {{-- // <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script> --}}
-                    {{-- jquery ui --}}
-                    <script src="{{asset("lb-faveo/js/jquery.ui.js")}}" type="text/javascript"></script>
+{{-- maskinput --}}
+{{-- // <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script> --}}
+{{-- jquery ui --}}
+<script src="{{asset("lb-faveo/js/jquery.ui.js")}}" type="text/javascript"></script>
 <script src="{{asset("lb-faveo/plugins/datatables/dataTables.bootstrap.js")}}" type="text/javascript"></script>
 <script src="{{asset("lb-faveo/plugins/datatables/jquery.dataTables.js")}}" type="text/javascript"></script>
 <!-- Page Script -->
-<script src="{{asset("lb-faveo/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")}}" type="text/javascript"></script>
-                    {{-- // <script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> --}}
-                    <script type="text/javascript" src="{{asset("lb-faveo/js/jquery.dataTables1.10.10.min.js")}}"></script>
-                    
-                    <script type="text/javascript" src="{{asset("lb-faveo/plugins/datatables/dataTables.bootstrap.js")}}"></script>
-                    <script src="{{asset("lb-faveo/js/jquery.rating.pack.js")}}" type="text/javascript"></script>
+<script src="{{asset("lb-faveo/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")}}"
+        type="text/javascript"></script>
+{{-- // <script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> --}}
+<script type="text/javascript" src="{{asset("lb-faveo/js/jquery.dataTables1.10.10.min.js")}}"></script>
 
-                     <script src="{{asset("lb-faveo/plugins/select2/select2.full.min.js")}}" ></script>
-                      <script src="{{asset("lb-faveo/plugins/moment/moment.js")}}" ></script>
+<script type="text/javascript" src="{{asset("lb-faveo/plugins/datatables/dataTables.bootstrap.js")}}"></script>
+<script src="{{asset("lb-faveo/js/jquery.rating.pack.js")}}" type="text/javascript"></script>
+
+<script src="{{asset("lb-faveo/plugins/select2/select2.full.min.js")}}"></script>
+<script src="{{asset("lb-faveo/plugins/moment/moment.js")}}"></script>
 
 <script>
     $(function () {
@@ -621,30 +625,34 @@
         $("textarea").wysihtml5();
     });
 
-        <script>
-                $(document).ready(function () {
-                    
-                    $('.noti_User').click(function () {
-                        var id = this.id;
-                    var dataString = 'id=' + id;
-                        $.ajax
-                                ({
-                                    type: "POST",
-                                    url: "{{url('mark-read')}}" + "/" + id,
-                                    data: dataString,
-                                    cache: false,
-                                    success: function (html)
-                                    {
-//$(".city").html(html);
-                                    }
-                                });
-                    });
+    $(document).ready(function () {
 
-                });
-        </script>
+        $('.noti_User').click(function () {
+            var id = this.id;
+            var dataString = 'id=' + id;
+            $.ajax
+            ({
+                type: "POST",
+                url: "{{url('mark-read')}}" + "/" + id,
+                data: dataString,
+                cache: false,
+                success: function (html) {
+                    //$(".city").html(html);
+                }
+            });
+        });
+
+    });
+
+
     $(function () {
-        //Enable iCheck plugin for checkboxes
-        //iCheck for checkbox and radio inputs
+
+
+
+
+
+//Enable iCheck plugin for checkboxes
+//iCheck for checkbox and radio inputs
         $('input[type="checkbox"]').iCheck({
             checkboxClass: 'icheckbox_flat-blue',
             radioClass: 'iradio_flat-blue'
@@ -684,21 +692,22 @@
         });
     });
 </script>
-//<script type="text/javascript">
-//     $(document).ready(function() {
-//         $("#content").Editor();
-//     });
-// </script>
+
+
+
 <!-- // <script src="../plugins/jQuery/jQuery-2.1.3.min.js"></script> -->
 <script src="{{asset("lb-faveo/js/tabby.js")}}"></script>
+
 
 <script type="text/javascript">
     $.ajaxSetup({
         headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
     });
 </script>
+
+
 @yield('FooterInclude')
-<!-- /#wrapper -->
+        <!-- /#wrapper -->
 <!-- Bootstrap Core JavaScript -->
 <script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -707,15 +716,10 @@
 <script type="text/javascript" src="{{ URL::asset('js/jasny-bootstrap.min.js') }}"></script>
 
 
-
 /*
 <script src="{{asset("lb-faveo/js/jquery.dataTables1.10.10.min.js")}}" type="text/javascript"></script>
 <script src="{{asset("lb-faveo/plugins/datatables/dataTables.bootstrap.js")}}" type="text/javascript"></script>
 */
-
-
-
-
 
 
 @stack('scripts')
