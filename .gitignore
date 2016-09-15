@@ -5,4 +5,7 @@ Homestead.yaml
 Homestead.json
 .env
 bower_components
+/storage
+composer.lock
+auth.json
 /composer.lock
