@@ -2,7 +2,7 @@
 
 
 @section('Templates')
-    active
+    class="active"
 @stop
 
 @section('dashboard-bar')

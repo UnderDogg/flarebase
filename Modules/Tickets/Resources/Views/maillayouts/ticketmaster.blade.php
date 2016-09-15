@@ -211,7 +211,7 @@
           <div class="col-xs-2" style="width:50%;">
             <a href="{!! url('profile') !!}">
 
-              <img src="#" class="img-circle" alt="User Image"/>
+              <img src="#" class="img-circle" alt="Ticket Master"/>
 
             </a>
           </div>
