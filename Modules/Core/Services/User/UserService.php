@@ -1,20 +1,20 @@
 <?php
 namespace Modules\Core\Services\User;
 
-use App\Models\User;
-use App\Models\Ticket;
-use App\Models\Settings;
+use Modules\Core\Models\User;
+use Modules\Core\Models\Ticket;
+use Modules\Core\Models\Settings;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Gate;
 use Datatables;
 use Carbon;
 use PHPZen\LaravelRbac\Traits\Rbac;
-use App\Models\Role;
+use Modules\Core\Models\Role;
 use Auth;
 use Illuminate\Support\Facades\Input;
-use App\Models\Relation;
-use App\Models\Department;
+use Modules\Core\Models\Relation;
+use Modules\Core\Models\Department;
 use DB;
 
 class UserService implements UserServiceContract

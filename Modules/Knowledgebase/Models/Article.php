@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\kb;
+namespace Modules\Knowledgebase\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;

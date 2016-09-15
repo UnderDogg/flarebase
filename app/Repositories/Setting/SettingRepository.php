@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Setting;
 
-use App\Models\Settings;
+use Modules\Core\Models\Settings;
 
 class SettingRepository implements SettingRepositoryContract
 {

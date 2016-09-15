@@ -17,7 +17,7 @@
     active
 @stop
 
-@section('emails')
+@section('Mailboxes')
     class="active"
     @stop
 
@@ -25,7 +25,7 @@
     @stop
             <!-- header -->
 @section('PageHeader')
-    <h1>{{Lang::get('lang.edit_an_email')}}</h1>
+    <h1>{{Lang::get('email::lang.mailboxes')}}</h1>
 
     @stop
             <!-- /header -->

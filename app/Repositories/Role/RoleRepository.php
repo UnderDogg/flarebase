@@ -1,8 +1,8 @@
 <?php
 namespace App\Repositories\Role;
 
-use App\Models\Role;
-use App\Models\Permissions;
+use Modules\Core\Models\Role;
+use Modules\Core\Models\Permissions;
 
 class RoleRepository implements RoleRepositoryContract
 {

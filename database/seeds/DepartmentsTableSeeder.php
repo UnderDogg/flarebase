@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Department;
+use Modules\Core\Models\Department;
 
 class DepartmentsTableSeeder extends Seeder
 {

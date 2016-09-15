@@ -1,10 +1,13 @@
 <?php
+namespace Modules\Knowledgebase\Models;
+
+
 use Baum\Node;
 
 /**
- * Notificationtype
+ * KbCategory
  */
-class Notificationtype extends Node
+class KbCategory extends Node
 {
 
     /**
@@ -12,7 +15,7 @@ class Notificationtype extends Node
      *
      * @var string
      */
-    protected $table = 'notificationtypes';
+    protected $table = 'kb_categories';
 
     //////////////////////////////////////////////////////////////////////////////
 

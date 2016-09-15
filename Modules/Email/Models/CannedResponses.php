@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\helpdesk\Agent_panel;
+namespace Modules\Email\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class Canned extends Model
 {
     /* define the table name */
 
-    protected $table = 'canned_response';
+    protected $table = 'cannedresponses';
 
     /* Define the fillable fields */
     protected $fillable = ['user_id', 'title', 'message', 'created_at', 'updated_at'];

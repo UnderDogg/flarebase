@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\helpdesk\Workflow;
+namespace Modules\Tickets\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

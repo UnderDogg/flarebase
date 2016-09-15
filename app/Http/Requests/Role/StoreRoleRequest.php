@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Role;
+namespace Modules\Core\Requests\Role;
 
 use App\Http\Requests\Request;
 

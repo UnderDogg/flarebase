@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin\helpdesk;
 // controllers
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\GroupRequest;
-use App\Model\helpdesk\Agent\Department;
+use Modules\Core\Requests\RolesRequest;
+use Modules\Core\Models\Department;
 // models
-use App\Model\helpdesk\Agent\Group_assign_department;
-use App\Model\helpdesk\Agent\Groups;
-use App\User;
+use Modules\Core\Models\Group_assign_department;
+use Modules\Core\Models\Groups;
+use Modules\Core\Models\Staff;
 use Exception;
 // classes
 use Illuminate\Http\Request;
@@ -49,9 +49,9 @@ class GroupController extends Controller
             $groups = $group->get();
             $departments = $department->lists('id');
 
-            return view('themes.default1.admin.helpdesk.agent.groups.index', compact('departments', 'group_assign_department', 'groups'));
+            return view('core::staff.groups.index', compact('departments', 'group_assign_department', 'groups'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -63,9 +63,9 @@ class GroupController extends Controller
     public function create()
     {
         try {
-            return view('themes.default1.admin.helpdesk.agent.groups.create');
+            return view('core::staff.groups.create');
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -103,7 +103,7 @@ class GroupController extends Controller
         try {
             $groups = $group->whereId($id)->first();
 
-            return view('themes.default1.admin.helpdesk.agent.groups.edit', compact('groups'));
+            return view('core::staff.groups.edit', compact('groups'));
         } catch (Exception $e) {
             return redirect('groups')->with('fails', 'Groups can not Create'.'<li>'.$e->errorInfo[2].'</li>');
         }

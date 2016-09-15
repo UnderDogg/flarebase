@@ -1,9 +1,9 @@
 <?php
 namespace Modules\Invoices\Services\Invoice;
 
-use App\Models\Invoice;
-use App\Models\Relations;
-use App\Models\TicketTime;
+use Modules\Core\Models\Invoice;
+use Modules\Core\Models\Relations;
+use Modules\Core\Models\TicketTime;
 
 class InvoiceService implements InvoiceServiceContract
 {

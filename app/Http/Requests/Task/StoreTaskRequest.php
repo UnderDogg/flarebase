@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Task;
+namespace Modules\Core\Requests\Task;
 
 use App\Http\Requests\Request;
 

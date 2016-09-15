@@ -7,7 +7,7 @@ Route::group(['prefix' => '/kbpanel'], function () {
     Route::resource('kbcategories', 'CategoriesController');
     Route::resource('kbarticles', 'ArticlesController');
     Route::resource('kbpages', 'PagesController');
-    Route::resource('kbsettings', 'SettingsController');
+    //Route::resource('kbsettings', 'SettingsController');
 
     Route::get('category/delete/{id}', 'CategoriesController@destroy');
     /*  For the crud of article  */
@@ -15,6 +15,7 @@ Route::group(['prefix' => '/kbpanel'], function () {
     Route::get('article/delete/{id}', 'ArticlesController@destroy');
     /* get settings */
     Route::get('kb/settings', ['as' => 'settings', 'uses' => 'SettingsController@settings']);
+    Route::get('/kbsettings', ['as' => 'kbsettings', 'uses' => 'SettingsController@settings']);
     /* post settings */
     Route::patch('postsettings/{id}', 'SettingsController@postSettings');
 //Route for administrator to access the comment

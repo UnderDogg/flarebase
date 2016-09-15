@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\helpdesk;
+namespace Modules\Core\Http\Controllers;
 
 // controllers
 use App;
@@ -24,7 +24,7 @@ use Validator;
  *
  * @author      Ladybird <info@ladybirdweb.com>
  */
-class LanguageController extends Controller
+class LanguagesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -73,7 +73,7 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return view('themes.default1.admin.helpdesk.language.index');
+        return view('core::languages.index');
     }
 
     /**
@@ -83,7 +83,7 @@ class LanguageController extends Controller
      */
     public function getForm()
     {
-        return view('themes.default1.admin.helpdesk.language.create');
+        return view('core::languages.create');
     }
 
     /**
@@ -194,7 +194,7 @@ class LanguageController extends Controller
                         Session::flash('success', Lang::get('lang.upload-success'));
                         Session::flash('link', 'change-language/'.strtolower(Input::get('iso-code')));
 
-                        return Redirect::route('LanguageController');
+                        return Redirect::route('LanguagesController');
                     }
                 } else {
                     // sending back with error message.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\helpdesk;
+namespace Modules\Core\Requests;
 
 use App\Http\Requests\Request;
 

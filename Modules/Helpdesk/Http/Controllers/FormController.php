@@ -6,8 +6,8 @@ use Modules\Tickets\Http\Controllers\TicketWorkflowController;
 use App\Http\Controllers\Common\SettingsController;
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\ClientRequest;
-use App\Model\helpdesk\Agent\Department;
+use Modules\Core\Requests\ClientRequest;
+use Modules\Core\Models\Department;
 // models
 use Modules\Helpdesk\Models\Form\Fields;
 use Modules\Helpdesk\Models\Help_topic;
@@ -17,7 +17,7 @@ use Modules\Tickets\Models\Ticket_Attachments;
 use Modules\Tickets\Models\Ticket_Source;
 use Modules\Tickets\Models\Ticket_Thread;
 use Modules\Tickets\Models\Ticket;
-use App\User;
+use Modules\Core\Models\Staff;
 use Exception;
 // classes
 use Form;

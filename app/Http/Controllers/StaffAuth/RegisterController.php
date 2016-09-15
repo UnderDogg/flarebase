@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\StaffAuth;
 
-use App\Models\Staff;
+use Modules\Core\Models\Staff;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;

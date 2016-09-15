@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\kb;
+namespace Modules\Core\Requests\kb;
 
 use App\Http\Requests\Request;
 

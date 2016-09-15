@@ -11,9 +11,9 @@ use Modules\Core\Services\Setting\SettingServiceContract;
 use Modules\Email\Models\Mailbox;
 use Modules\Email\Models\MailboxProtocol;
 /*
-use App\Http\Requests\helpdesk\EmailsEditRequest;
-use App\Http\Requests\helpdesk\EmailsRequest;
-use App\Model\helpdesk\Agent\Department;
+use Modules\Core\Requests\EmailsEditRequest;
+use Modules\Core\Requests\EmailsRequest;
+use Modules\Core\Models\Department;
 // model
 use Modules\Email\Models\Mailbox;
 use Modules\Email\Models\Help_topic;

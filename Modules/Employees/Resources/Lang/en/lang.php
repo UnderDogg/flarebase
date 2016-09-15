@@ -116,8 +116,7 @@ return [
     'fetching_protocol' => 'Fetching Protocol',
     'transfer_protocol' => 'Transfer Protocol',
     'from_name' => 'From Name',
-    'add_an_email' => 'Add an Email',
-    'edit_an_email' => 'Edit an Email',
+    'edit_a_mailbox' => 'Edit an Email',
     'disable_for_this_email_address' => 'Disable for this Email address',
     /*
       |--------------------------------------

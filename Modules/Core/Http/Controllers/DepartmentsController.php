@@ -23,7 +23,7 @@ class DepartmentsController extends Controller
 
     public function index()
     {
-        return view('departments.index')
+        return view('core::departments.index')
             ->withDepartment($this->departments->getAllDepartments());
     }
 

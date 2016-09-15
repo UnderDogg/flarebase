@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Modules\Tickets\Models\TicketThread;
 // models
 use App\Model\helpdesk\Ticket\Tickets;
-use App\User;
+use Modules\Core\Models\Staff;
 use Auth;
 // classes
 use Exception;

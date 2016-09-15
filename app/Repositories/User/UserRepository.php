@@ -1,20 +1,20 @@
 <?php
 namespace App\Repositories\User;
 
-use App\Models\User;
-use App\Models\Tasks;
-use App\Models\Settings;
+use Modules\Core\Models\User;
+use Modules\Core\Models\Tasks;
+use Modules\Core\Models\Settings;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Gate;
 use Datatables;
 use Carbon;
 use PHPZen\LaravelRbac\Traits\Rbac;
-use App\Models\Role;
+use Modules\Core\Models\Role;
 use Auth;
 use Illuminate\Support\Facades\Input;
-use App\Models\Client;
-use App\Models\Department;
+use Modules\Core\Models\Client;
+use Modules\Core\Models\Department;
 use DB;
 
 class UserRepository implements UserRepositoryContract

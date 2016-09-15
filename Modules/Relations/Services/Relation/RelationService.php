@@ -1,10 +1,10 @@
 <?php
 namespace Modules\Relations\Services\Relation;
 
-use App\Models\Relation;
-use App\Models\Industry;
-use App\Models\Invoices;
-use App\Models\TicketTime;
+use Modules\Core\Models\Relation;
+use Modules\Core\Models\Industry;
+use Modules\Core\Models\Invoices;
+use Modules\Core\Models\TicketTime;
 
 class RelationService implements RelationServiceContract
 {

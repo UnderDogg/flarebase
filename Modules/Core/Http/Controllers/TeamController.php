@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin\helpdesk;
 // controllers
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\TeamRequest;
-use App\Http\Requests\helpdesk\TeamUpdate;
+use Modules\Core\Requests\TeamRequest;
+use Modules\Core\Requests\TeamUpdate;
 // models
-use App\Model\helpdesk\Agent\Assign_team_agent;
-use App\Model\helpdesk\Agent\Teams;
-use App\User;
+use Modules\Core\Models\Assign_team_agent;
+use Modules\Core\Models\Teams;
+use Modules\Core\Models\Staff;
 // classes
 use DB;
 use Exception;
@@ -49,7 +49,7 @@ class TeamController extends Controller
             $id = $teams->lists('id');
             $assign_team_agent = $assign_team_agent->get();
 
-            return view('themes.default1.admin.helpdesk.agent.teams.index', compact('assign_team_agent', 'teams'));
+            return view('core::staff.teams.index', compact('assign_team_agent', 'teams'));
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->errorInfo[2]);
         }
@@ -67,7 +67,7 @@ class TeamController extends Controller
         try {
             $user = $user->get();
 
-            return view('themes.default1.admin.helpdesk.agent.teams.create', compact('user'));
+            return view('core::staff.teams.create', compact('user'));
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->errorInfo[2]);
         }
@@ -118,7 +118,7 @@ class TeamController extends Controller
             $agent_team = $assign_team_agent->where('team_id', $id)->get();
             $agent_id = $agent_team->lists('agent_id', 'agent_id');
 
-            return view('themes.default1.admin.helpdesk.agent.teams.edit', compact('agent_id', 'user', 'teams', 'allagents'));
+            return view('core::staff.teams.edit', compact('agent_id', 'user', 'teams', 'allagents'));
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->errorInfo[2]);
         }

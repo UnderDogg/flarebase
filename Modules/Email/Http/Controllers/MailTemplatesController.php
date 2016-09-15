@@ -3,16 +3,16 @@
 namespace Modules\Email\Http\Controllers;
 
 // controllers
-use App\Http\Controllers\Common\PhpMailController;
-use App\Http\Controllers\Common\SettingsController;
+use Modules\Core\Http\Controllers\PhpMailController;
+use Modules\Core\Http\Controllers\SettingsController;
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\TemplateRequest;
-use App\Http\Requests\helpdesk\TemplateUdate;
+use Modules\Core\Requests\TemplateRequest;
+use Modules\Core\Requests\TemplateUdate;
 // models
-use App\Model\helpdesk\Email\Emails;
-use App\Model\helpdesk\Email\Template;
-use App\Model\helpdesk\Utility\Languages;
+use Modules\Email\Models\Emails;
+use Modules\Email\Models\MailTemplate;
+use Modules\Core\Models\Language;
 // classes
 use Exception;
 use Illuminate\Http\Request;
@@ -42,50 +42,50 @@ class MailTemplatesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param type Template $template
+     * @param type MailTemplate $template
      *
      * @return type Response
      */
-    public function index(Template $template)
+    public function index(MailTemplate $template)
     {
-        try {
+        //try {
             $templates = $template->get();
 
-            return view('themes.default1.admin.helpdesk.emails.template.index', compact('templates'));
-        } catch (Exception $e) {
-            return view('404');
-        }
+            return view('email::mailtemplates.index', compact('templates'));
+        //} catch (Exception $e) {
+        //    return view('errors.404');
+        //}
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @param type Languages $language
-     * @param type Template  $template
+     * @param type MailTemplate  $template
      *
      * @return type Response
      */
-    public function create(Languages $language, Template $template)
+    public function create(Languages $language, MailTemplate $template)
     {
         try {
             $templates = $template->get();
             $languages = $language->get();
 
-            return view('themes.default1.admin.helpdesk.emails.template.create', compact('languages', 'templates'));
+            return view('core::emails.template.create', compact('languages', 'templates'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param type Template        $template
+     * @param type MailTemplate        $template
      * @param type TemplateRequest $request
      *
      * @return type Response
      */
-    public function store(Template $template, TemplateRequest $request)
+    public function store(MailTemplate $template, TemplateRequest $request)
     {
         try {
             /* Check whether function success or not */
@@ -118,7 +118,7 @@ class MailTemplatesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param type           $id
-     * @param type Template  $template
+     * @param type MailTemplate  $template
      * @param type Languages $language
      *
      * @return type Response
@@ -129,7 +129,7 @@ class MailTemplatesController extends Controller
         $directories = scandir($path);
         $directory = str_replace('/', '-', $path);
 
-        return view('themes.default1.admin.helpdesk.emails.template.listdirectories', compact('directories', 'directory'));
+        return view('core::emails.template.listdirectories', compact('directories', 'directory'));
     }
 
     public function listtemplates($template, $path)
@@ -140,7 +140,7 @@ class MailTemplatesController extends Controller
         $templates = scandir($directory2);
         $directory = str_replace('/', '-', $directory2.'/');
 
-        return view('themes.default1.admin.helpdesk.emails.template.listtemplates', compact('templates', 'directory'));
+        return view('core::emails.template.listtemplates', compact('templates', 'directory'));
     }
 
     public function readtemplate($template, $path)
@@ -150,7 +150,7 @@ class MailTemplatesController extends Controller
         $contents = fread($handle, filesize($directory.$template));
         fclose($handle);
 
-        return view('themes.default1.admin.helpdesk.emails.template.readtemplates', compact('contents', 'template', 'path'));
+        return view('core::emails.template.readtemplates', compact('contents', 'template', 'path'));
     }
 
     public function createtemplate()
@@ -226,15 +226,15 @@ class MailTemplatesController extends Controller
         return \Redirect::back()->with('success', 'You have Successfully Activated this Set');
     }
 
-    public function edit($id, Template $template, Languages $language)
+    public function edit($id, MailTemplate $template, Languages $language)
     {
         try {
             $templates = $template->whereId($id)->first();
             $languages = $language->get();
 
-            return view('themes.default1.admin.helpdesk.emails.template.edit', compact('templates', 'languages'));
+            return view('core::emails.template.edit', compact('templates', 'languages'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -242,12 +242,12 @@ class MailTemplatesController extends Controller
      * Update the specified resource in storage.
      *
      * @param type int           $id
-     * @param type Template      $template
+     * @param type MailTemplate      $template
      * @param type TemplateUdate $request
      *
      * @return type Response
      */
-    public function update($id, Template $template, TemplateUdate $request)
+    public function update($id, MailTemplate $template, TemplateUdate $request)
     {
         try {
             //TODO validation
@@ -270,11 +270,11 @@ class MailTemplatesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param type int      $id
-     * @param type Template $template
+     * @param type MailTemplate $template
      *
      * @return type Response
      */
-    public function destroy($id, Template $template)
+    public function destroy($id, MailTemplate $template)
     {
         try {
             $templates = $template->whereId($id)->first();
@@ -304,9 +304,9 @@ class MailTemplatesController extends Controller
         try {
             $emails = $email->get();
 
-            return view('themes.default1.admin.helpdesk.emails.template.formDiagno', compact('emails'));
+            return view('core::emails.template.formDiagno', compact('emails'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 

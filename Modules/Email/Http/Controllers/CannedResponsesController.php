@@ -5,11 +5,11 @@ namespace Modules\Email\Http\Controllers;
 // controllers
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\CannedRequest;
-use App\Http\Requests\helpdesk\CannedUpdateRequest;
+use Modules\Core\Requests\CannedRequest;
+use Modules\Core\Requests\CannedUpdateRequest;
 // model
 use App\Model\helpdesk\Agent_panel\Canned;
-use App\User;
+use Modules\Core\Models\Staff;
 // classes
 use Exception;
 

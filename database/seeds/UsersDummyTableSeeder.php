@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Department;
-use App\Models\roleUser;
+use Modules\Core\Models\Department;
+use Modules\Core\Models\roleUser;
 
 class UsersDummyTableSeeder extends Seeder
 {

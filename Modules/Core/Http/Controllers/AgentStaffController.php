@@ -6,15 +6,15 @@ namespace App\Http\Controllers\Admin\helpdesk;
 use App\Http\Controllers\Common\PhpMailController;
 use App\Http\Controllers\Controller;
 // request
-use App\Http\Requests\helpdesk\AgentRequest;
-use App\Http\Requests\helpdesk\AgentUpdate;
+use Modules\Core\Requests\Staff\AgentRequest;
+use Modules\Core\Requests\Staff\AgentUpdate;
 // model
-use App\Model\helpdesk\Agent\Assign_team_agent;
-use App\Model\helpdesk\Agent\Department;
-use App\Model\helpdesk\Agent\Groups;
-use App\Model\helpdesk\Agent\Teams;
+use Modules\Core\Models\Assign_team_agent;
+use Modules\Core\Models\Department;
+use Modules\Core\Models\Groups;
+use Modules\Core\Models\Teams;
 use App\Model\helpdesk\Utility\Timezones;
-use App\User;
+use Modules\Core\Models\Staff;
 // classes
 use DB;
 use Exception;
@@ -55,7 +55,7 @@ class AgentController extends Controller
     public function index()
     {
         try {
-            return view('themes.default1.admin.helpdesk.agent.agents.index');
+            return view('core::staff.staff.index');
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->getMessage());
         }
@@ -86,7 +86,7 @@ class AgentController extends Controller
             // list all the teams in a single variable
             $teams = $team->lists('id', 'name');
             // returns to the page with all the variables and their datas
-            return view('themes.default1.admin.helpdesk.agent.agents.create', compact('assign', 'teams', 'agents', 'timezones', 'groups', 'departments', 'team'));
+            return view('core::staff.staff.create', compact('assign', 'teams', 'agents', 'timezones', 'groups', 'departments', 'team'));
         } catch (Exception $e) {
             // returns if try fails with exception meaagse
             return redirect()->back()->with('fails', $e->getMessage());
@@ -164,7 +164,7 @@ class AgentController extends Controller
             $teams = $team->lists('id', 'name');
             $assign = $team_assign_agent->where('agent_id', $id)->lists('team_id');
 
-            return view('themes.default1.admin.helpdesk.agent.agents.edit', compact('teams', 'assign', 'table', 'teams1', 'selectedTeams', 'user', 'timezones', 'groups', 'departments', 'team', 'exp', 'counted'));
+            return view('core::staff.staff.edit', compact('teams', 'assign', 'table', 'teams1', 'selectedTeams', 'user', 'timezones', 'groups', 'departments', 'team', 'exp', 'counted'));
         } catch (Exception $e) {
             return redirect('agents')->with('fail', 'No such file');
         }

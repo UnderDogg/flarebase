@@ -79,7 +79,7 @@
   @yield('HeadInclude')
 
 </head>
-<body class="skin-yellow skin-green fixed">
+<body class="skin-green fixed">
 
 
 <header class="main-header">
@@ -266,7 +266,7 @@
           </a>
           <ul class="treeview-menu">
             <li @yield('mailparser')><a href="{{ url('/adminpanel/mailparser') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailparser') !!}</a></li>
-            <li @yield('mailboxes')><a href="{{ url('/adminpanel/mailboxes') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailboxes') !!}</a></li>
+            <li @yield('mailboxes')><a href="{{ url('/mailpanel/mailboxes') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailboxes') !!}</a></li>
             <li @yield('mailrules')><a href="{{ url('/adminpanel/mailrules') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.mailrules') !!}</a></li>
             <li @yield('mailbans')><a href="{{ url('/adminpanel/mailbanlist') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.mailbans') !!}</a></li>
             <li @yield('mailcatch-all')><a href="{{ url('/adminpanel/mailcatch-all') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailcatch-all') !!}</a></li>

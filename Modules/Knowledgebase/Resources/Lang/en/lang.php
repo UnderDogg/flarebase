@@ -16,5 +16,5 @@ return [
   'kbarticles' => 'Knowledgebase Articles',
   'kbtags' => 'Knowledgebase Tags',
   'kblinks' => 'Knowledgebase Links',
-  'troubleshooter' => 'Knowledgebase Troubleshooter',
+  'troubleshooter' => 'Troubleshooter',
 ];

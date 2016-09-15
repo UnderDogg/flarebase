@@ -169,7 +169,7 @@
          <div class="col-md-2 col-sm-6">
            <div class="settingiconblue">
              <div class="settingdivblue">
-               <a href="{{ url('/adminpanel/departments/manage') }}"><span class="fa-stack fa-2x">
+               <a href="{{ url('/adminpanel/departments/') }}"><span class="fa-stack fa-2x">
                  <i class="fa fa-sitemap fa-stack-1x"></i>
                  </span></a>
              </div>

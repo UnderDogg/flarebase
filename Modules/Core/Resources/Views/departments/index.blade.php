@@ -1,6 +1,7 @@
 @extends('core::adminlayouts.adminmaster')
 
 @section('content')
+
   <div class="col-lg-12 departments">
 
     <table class="table table-hover table-bordered table-striped">

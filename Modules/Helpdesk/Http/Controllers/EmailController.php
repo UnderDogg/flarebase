@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Client\helpdesk;
 // controllers
 use App\Http\Controllers\Controller;
 // models
-use App\Model\helpdesk\Email\Emails;
+use Modules\Email\Models\Emails;
 
 // classes
 

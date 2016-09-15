@@ -1,9 +1,9 @@
 <?php 
 namespace App\Repositories\Invoice;
 
-use App\Models\Invoice;
-use App\Models\Clients;
-use App\Models\TaskTime;
+use Modules\Core\Models\Invoice;
+use Modules\Core\Models\Clients;
+use Modules\Core\Models\TaskTime;
 
 class InvoiceRepository implements InvoiceRepositoryContract
 {

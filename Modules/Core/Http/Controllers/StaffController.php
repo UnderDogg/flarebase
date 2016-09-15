@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Http\Controllers;
+namespace Modules\Core\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -51,13 +51,13 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        return view('core::staff.index');
     }
 
     public function anyData()
     {
         $canUpdateStaff = auth()->user()->can('update-user');
-        $staff = Staff::select(['id', 'name', 'email', 'work_number']);
+        $staff = Staff::select(['id', 'name', 'email']);
         return Datatables::of($staff)
             ->addColumn('namelink', function ($staff) {
                 return '<a href="staff/' . $staff->id . '" ">' . $staff->name . '</a>';
@@ -166,9 +166,9 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        return view('staff.show')
+/*        return view('staff.show')
             ->withStaff($this->staff->find($id))
-            ->withCompanyname($this->settings->getCompanyName());
+            ->withCompanyname($this->settings->getCompanyName());*/
     }
 
     /**

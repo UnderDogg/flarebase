@@ -10,17 +10,14 @@ use Baum\Node;
  */
 class Notificationtype extends Node
 {
-    protected $table = 'notification_types';
-
-    protected $fillable = ['message', 'type', 'icon_class'];
-
-
     /**
      * Table name.
      *
      * @var string
      */
-    protected $table = 'notificationtypes';
+    protected $table = 'notification_types';
+
+    protected $fillable = ['message', 'type', 'icon_class'];
 
     //////////////////////////////////////////////////////////////////////////////
 

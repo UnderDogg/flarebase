@@ -1,8 +1,8 @@
 <?php
 namespace Modules\Core\Services\Role;
 
-use App\Models\Role;
-use App\Models\Permissions;
+use Modules\Core\Models\Role;
+use Modules\Core\Models\Permissions;
 
 class RoleService implements RoleServiceContract
 {

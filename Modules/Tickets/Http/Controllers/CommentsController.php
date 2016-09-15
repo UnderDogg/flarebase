@@ -3,11 +3,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Comment;
+use Modules\Core\Models\Comment;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
-use App\Models\Ticket;
+use Modules\Core\Models\Ticket;
 
 class CommentController extends Controller
 {

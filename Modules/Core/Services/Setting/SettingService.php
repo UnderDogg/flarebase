@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Core\Services\Setting;
 
-use App\Models\Settings;
+use Modules\Core\Models\Settings;
 
 class SettingService implements SettingServiceContract
 {

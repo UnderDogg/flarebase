@@ -30,7 +30,7 @@ class ModuleServiceProvider extends ServiceProvider
 
     private function registerBindings()
     {
-        $this->app->bind('Modules\Employees\Services\Staff\StaffServiceContract', 'Modules\Employees\Services\Mailbox\StaffService');
+        //$this->app->bind('Modules\Employees\Services\Staff\StaffServiceContract', 'Modules\Employees\Services\Mailbox\StaffService');
         // add bindings
     }
 

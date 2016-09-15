@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfilePassword;
 use App\Http\Requests\ProfileRequest;
 // models
-use App\User;
+use Modules\Core\Models\Staff;
 // classes
 use Auth;
 use Exception;

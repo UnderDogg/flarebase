@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model\helpdesk\Settings;
+namespace Modules\Tickets\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ticket extends Model
+class TicketSetting extends Model
 {
     /* Using Ticket table  */
 

@@ -5,20 +5,20 @@ namespace App\Http\Controllers\Admin\helpdesk;
 // controller
 use App\Http\Controllers\Controller;
 // request
-use App\Http\Requests\helpdesk\DepartmentRequest;
-use App\Http\Requests\helpdesk\DepartmentUpdate;
+use Modules\Core\Requests\DepartmentRequest;
+use Modules\Core\Requests\DepartmentUpdate;
 // model
-use App\Model\helpdesk\Agent\Department;
-use App\Model\helpdesk\Agent\Group_assign_department;
-use App\Model\helpdesk\Agent\Groups;
-use App\Model\helpdesk\Agent\Teams;
-use App\Model\helpdesk\Email\Emails;
-use App\Model\helpdesk\Email\Template;
+use Modules\Core\Models\Department;
+use Modules\Core\Models\Group_assign_department;
+use Modules\Core\Models\Groups;
+use Modules\Core\Models\Teams;
+use Modules\Email\Models\Emails;
+use Modules\Email\Models\Template;
 use App\Model\helpdesk\Manage\Help_topic;
 use App\Model\helpdesk\Manage\Sla_plan;
 use App\Model\helpdesk\Settings\System;
 use App\Model\helpdesk\Ticket\Tickets;
-use App\User;
+use Modules\Core\Models\Staff;
 // classes
 use DB;
 use Exception;
@@ -53,9 +53,9 @@ class DepartmentController extends Controller
         try {
             $departments = $department->get();
 
-            return view('themes.default1.admin.helpdesk.agent.departments.index', compact('departments'));
+            return view('core::staff.departments.index', compact('departments'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -82,9 +82,9 @@ class DepartmentController extends Controller
             $department = $department->get();
             $groups = $group->lists('id', 'name');
 
-            return view('themes.default1.admin.helpdesk.agent.departments.create', compact('department', 'templates', 'slas', 'user', 'emails', 'groups'));
+            return view('core::staff.departments.create', compact('department', 'templates', 'slas', 'user', 'emails', 'groups'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -148,9 +148,9 @@ class DepartmentController extends Controller
             $groups = $group->lists('id', 'name');
             $assign = $group_assign_department->where('department_id', $id)->lists('group_id');
 
-            return view('themes.default1.admin.helpdesk.agent.departments.edit', compact('assign', 'team', 'templates', 'departments', 'slas', 'user', 'emails', 'groups'));
+            return view('core::staff.departments.edit', compact('assign', 'team', 'templates', 'departments', 'slas', 'user', 'emails', 'groups'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 

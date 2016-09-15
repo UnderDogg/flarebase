@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Core\Services\Department;
 
-use App\Models\Department;
+use Modules\Core\Models\Department;
 
 class DepartmentService implements DepartmentServiceContract
 {

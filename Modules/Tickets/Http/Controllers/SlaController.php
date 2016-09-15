@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin\helpdesk;
 // controllers
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\SlaRequest;
-use App\Http\Requests\helpdesk\SlaUpdate;
+use Modules\Core\Requests\SlaRequest;
+use Modules\Core\Requests\SlaUpdate;
 // models
 use App\Model\helpdesk\Manage\Sla_plan;
 use App\Model\helpdesk\Settings\Ticket;
@@ -45,7 +45,7 @@ class SlaController extends Controller
             /* Declare a Variable $slas to store all Values From Sla_plan Table */
             $slas = $sla->get();
             /* Listing the values From Sla_plan Table */
-            return view('themes.default1.admin.helpdesk.manage.sla.index', compact('slas'));
+            return view('core::manage.sla.index', compact('slas'));
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->errorInfo[2]);
         }
@@ -60,7 +60,7 @@ class SlaController extends Controller
     {
         try {
             /* Direct to Create Page */
-            return view('themes.default1.admin.helpdesk.manage.sla.create');
+            return view('core::manage.sla.create');
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->errorInfo[2]);
         }
@@ -103,7 +103,7 @@ class SlaController extends Controller
             $slas = $sla->whereId($id)->first();
             $slas->get();
 
-            return view('themes.default1.admin.helpdesk.manage.sla.edit', compact('slas'));
+            return view('core::manage.sla.edit', compact('slas'));
         } catch (Exception $e) {
             return redirect()->back()->with('fails', $e->errorInfo[2]);
         }

@@ -1,13 +1,13 @@
 <?php
 namespace Modules\Tickets\Services\Ticket;
 
-use App\Models\Ticket;
+use Modules\Core\Models\Ticket;
 use Fenos\Notifynder\Notifynder;
 use Carbon;
-use App\Models\Activity;
-use App\Models\TicketTime;
+use Modules\Core\Models\Activity;
+use Modules\Core\Models\TicketTime;
 use Illuminate\Support\Facades\DB;
-use App\Models\Integration;
+use Modules\Core\Models\Integration;
 
 class TicketService implements TicketServiceContract
 {

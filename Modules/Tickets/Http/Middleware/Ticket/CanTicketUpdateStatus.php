@@ -2,8 +2,8 @@
 namespace App\Http\Middleware\Ticket;
 
 use Closure;
-use App\Models\Settings;
-use App\Models\Ticket;
+use Modules\Core\Models\Settings;
+use Modules\Core\Models\Ticket;
 
 class CanTicketUpdateStatus
 {

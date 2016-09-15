@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Session;
 use Modules\Leads\Models\Lead;
-use App\Models\Note;
+use Modules\Core\Models\Note;
 
 class NotesController extends Controller
 {

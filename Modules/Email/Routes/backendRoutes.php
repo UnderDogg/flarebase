@@ -32,7 +32,7 @@ Route::get('readmails', ['as' => 'readmails', 'uses' => 'Agent\helpdesk\MailCont
 
 
 Route::group(['prefix' => '/mailpanel'], function () {
-    Route::resource('mailboxes', 'MailboxesController');
+    //Route::resource('mailboxes', 'MailboxesController');
 
 
 
@@ -42,7 +42,7 @@ Route::group(['prefix' => '/mailpanel'], function () {
         //'middleware' => 'can:mailboxes.mailboxes.index'
     ]);
 
-    Route::group(['prefix' => '/banlist'], function () {
+    Route::group(['prefix' => '/mailbanlist'], function () {
         Route::resource('banlist', 'BanlistController'); // in banlist module, for CRUD
         Route::get('/', [
             'as' => 'admin.mailpanel.mailbanlist.manage',
@@ -112,13 +112,20 @@ Route::group(['prefix' => '/mailpanel'], function () {
 
 
     Route::group(['prefix' => '/mailboxes'], function () {
-        Route::resource('mailboxes', 'MailboxesController');
+        //Route::resource('mailboxes', 'MailboxesController');
 
         Route::get('/', [
             'as' => 'admin.mailboxes.mailboxes.manage',
             'uses' => 'MailboxesController@manage',
             //'middleware' => 'can:mailboxes.mailboxes.index'
         ]);
+
+        Route::get('/manage', [
+            'as' => 'admin.mailboxes.mailboxes.manage',
+            'uses' => 'MailboxesController@manage',
+            //'middleware' => 'can:mailboxes.mailboxes.create'
+        ]);
+
         /*        Route::get('/manage', [
                     'as' => 'admin.mailboxes.mailboxes.manage',
                     'uses' => 'MailboxesController@manage',
@@ -127,7 +134,7 @@ Route::group(['prefix' => '/mailpanel'], function () {
     });
 
     Route::group(['prefix' => '/mailbox'], function () {
-        Route::resource('mailboxes', 'MailboxesController');
+        //Route::resource('mailboxes', 'MailboxesController');
 
         Route::get('/create', [
             'as' => 'admin.mailboxes.mailbox.create',

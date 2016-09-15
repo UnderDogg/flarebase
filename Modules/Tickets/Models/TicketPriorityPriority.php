@@ -12,7 +12,7 @@ class TicketPriority extends Node
      *
      * @var string
      */
-    protected $table = 'ticket_priorities';
+    protected $table = 'ticketpriorities';
 
     //////////////////////////////////////////////////////////////////////////////
 

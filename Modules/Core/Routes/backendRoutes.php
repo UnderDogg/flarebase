@@ -52,19 +52,35 @@ Route::group(['prefix' => '/adminpanel'], function () {
     /* SLACK */
     Route::get('integration/slack', 'IntegrationsController@slack');
 
-    Route::resource('company', 'CompanyController');
-    Route::get('/', ['as' => 'admincompany', 'uses' => 'CompanyController@index']);
+    Route::resource('companies', 'CompaniesController');
+    Route::get('/companies', ['as' => 'admincompany', 'uses' => 'CompanyController@index']);
 
     Route::resource('system', 'SystemController');
-    Route::get('/', ['as' => 'adminsystem', 'uses' => 'SystemController@index']);
+    Route::get('/adminsystem', ['as' => 'adminsystem', 'uses' => 'SystemController@index']);
 
-    Route::resource('language', 'LanguageController');
-    Route::get('/', ['as' => 'adminlanguage', 'uses' => 'LanguageController@index']);
+    //Routes for showing language table and switching language
+    Route::resource('languages', 'LanguagesController');
+    Route::get('/languages', ['as' => 'adminlanguage', 'uses' => 'LanguagesController@index']);
+    Route::get('get-languages', ['as' => 'getAllLanguages', 'uses' => 'LanguagesController@getLanguages']);
+    Route::get('change-language/{lang}', ['as' => 'languages.switch', 'uses' => 'LanguagesController@switchLanguage']);
+    //Route for download language template package
+    Route::get('/download-template', ['as' => 'languages.download', 'uses' => 'LanguagesController@download']);
+    //Routes for language file upload form-----------You may want to use csrf protection for these route--------------
+    Route::post('language/add', 'LanguagesController@postForm');
+    Route::get('language/add', ['as' => 'add-language', 'uses' => 'LanguagesController@getForm']);
+    //Routes for  delete language package
+    Route::get('delete-language/{lang}', ['as' => 'lang.delete', 'uses' => 'LanguagesController@deleteLanguage']);
+
+
+
+
+
 
 
     Route::resource('staff', 'StaffController');
+    Route::get('/staff/manage', ['as' => 'adminstaff', 'uses' => 'StaffController@index']);
     Route::get('staff', ['as' => 'adminstaff', 'uses' => 'StaffController@index']);
-
+    Route::get('staff/data', ['as' => 'staff.data', 'uses' => 'StaffController@anyData']);
 
     /**
      * USERS which means possible logins of the clients

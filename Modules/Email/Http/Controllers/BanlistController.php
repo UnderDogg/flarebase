@@ -5,11 +5,11 @@ namespace Modules\Email\Http\Controllers;
 // controller
 use App\Http\Controllers\Controller;
 // request
-use App\Http\Requests\helpdesk\BanlistRequest;
-use App\Http\Requests\helpdesk\BanRequest;
+use Modules\Core\Requests\BanlistRequest;
+use Modules\Core\Requests\BanRequest;
 // model
-use App\Model\helpdesk\Email\Banlist;
-use App\User;
+use Modules\Email\Models\Banlist;
+use Modules\Core\Models\User;
 //classes
 use Exception;
 
@@ -45,13 +45,12 @@ class BanlistController extends Controller
      */
     public function index()
     {
-        try {
-            $bans = User::where('ban', '=', 1)->get();
-
-            return view('themes.default1.admin.helpdesk.emails.banlist.index', compact('bans'));
-        } catch (Exception $e) {
-            return view('404');
-        }
+        //try {
+            $bans = User::where('isbanned', '=', 1)->get();
+            return view('core::banlist.index', compact('bans'));
+        //} catch (Exception $e) {
+        //    return view('errors.404');
+        //}
     }
 
     /**
@@ -62,9 +61,9 @@ class BanlistController extends Controller
     public function create()
     {
         try {
-            return view('themes.default1.admin.helpdesk.emails.banlist.create');
+            return view('core::emails.banlist.create');
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -116,9 +115,9 @@ class BanlistController extends Controller
         try {
             $bans = $ban->whereId($id)->first();
 
-            return view('themes.default1.admin.helpdesk.emails.banlist.edit', compact('bans'));
+            return view('core::emails.banlist.edit', compact('bans'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 

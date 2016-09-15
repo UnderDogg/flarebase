@@ -35,6 +35,12 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app->bind('Modules\Core\Services\User\UserServiceContract', 'Modules\Core\Services\User\UserService');
         $this->app->bind('Modules\Core\Services\Setting\SettingServiceContract', 'Modules\Core\Services\Setting\SettingService');
 
+        $this->app->bind('Modules\Core\Services\Department\DepartmentServiceContract', 'Modules\Core\Services\Department\DepartmentService');
+
+        $this->app->bind('Modules\Core\Services\Staff\StaffServiceContract', 'Modules\Core\Services\Staff\StaffService');
+
+        $this->app->bind('Modules\Core\Services\Role\RoleServiceContract', 'Modules\Core\Services\Role\RoleService');
+
         /*    $this->app->bind(
           'Modules\Core\Services\User\UserServiceContract',
           function () {

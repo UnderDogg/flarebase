@@ -5,17 +5,17 @@ namespace App\Http\Controllers\Admin\helpdesk;
 // controllers
 use App\Http\Controllers\Controller;
 // requests
-use App\Http\Requests\helpdesk\HelptopicRequest;
-use App\Http\Requests\helpdesk\HelptopicUpdate;
+use Modules\Core\Requests\HelptopicRequest;
+use Modules\Core\Requests\HelptopicUpdate;
 // models
-use App\Model\helpdesk\Agent\Agents;
-use App\Model\helpdesk\Agent\Department;
+use Modules\Core\Models\Agents;
+use Modules\Core\Models\Department;
 use App\Model\helpdesk\Form\Forms;
 use App\Model\helpdesk\Manage\Help_topic;
 use App\Model\helpdesk\Manage\Sla_plan;
 use App\Model\helpdesk\Settings\Ticket;
 use App\Model\helpdesk\Ticket\Ticket_Priority;
-use App\User;
+use Modules\Core\Models\Staff;
 // classes
 use DB;
 use Exception;
@@ -50,9 +50,9 @@ class HelptopicController extends Controller
         try {
             $topics = $topic->get();
 
-            return view('themes.default1.admin.helpdesk.manage.helptopic.index', compact('topics'));
+            return view('core::manage.helptopic.index', compact('topics'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -88,9 +88,9 @@ class HelptopicController extends Controller
             $slas = $sla->get();
             $priority = $priority->get();
 
-            return view('themes.default1.admin.helpdesk.manage.helptopic.create', compact('priority', 'departments', 'topics', 'forms', 'agents', 'slas'));
+            return view('core::manage.helptopic.create', compact('priority', 'departments', 'topics', 'forms', 'agents', 'slas'));
         } catch (Exception $e) {
-            return view('404');
+            return view('errors.404');
         }
     }
 
@@ -149,7 +149,7 @@ class HelptopicController extends Controller
             $slas = $sla->get();
             $priority = $priority->get();
 
-            return view('themes.default1.admin.helpdesk.manage.helptopic.edit', compact('priority', 'departments', 'topics', 'forms', 'agents', 'slas'));
+            return view('core::manage.helptopic.edit', compact('priority', 'departments', 'topics', 'forms', 'agents', 'slas'));
         } catch (Exception $e) {
             return redirect('helptopic')->with('fails', '<li>'.$e->errorInfo[2].'</li>');
         }
