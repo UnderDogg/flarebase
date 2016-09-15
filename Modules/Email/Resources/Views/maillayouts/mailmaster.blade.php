@@ -19,6 +19,7 @@
   <!---    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 
   <!-- Ionicons -->
+    {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
   <link href="{{asset("lb-faveo/css/ionicons.min.css")}}" rel="stylesheet">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
 
@@ -32,10 +33,11 @@
   <!-- iCheck -->
   <link href="{{asset("lb-faveo/plugins/iCheck/flat/blue.css")}}" rel="stylesheet" type="text/css"/>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <link rel="stylesheet" href="{{asset("lb-faveo/css/tabby.css")}}" type="text/css">
+  <link href="{{asset("lb-faveo/css/tabby.css")}}" type="text/css" rel="stylesheet">
+    <link href="{{asset('css/notification-style.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset("lb-faveo/css/jquerysctipttop.css")}}" rel="stylesheet" type="text/css">
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <link rel="stylesheet" href="{{asset("lb-faveo/css/editor.css")}}" type="text/css">
+  <link href="{{asset("lb-faveo/css/editor.css")}}" type="text/css" rel="stylesheet">
   <link href="{{asset("lb-faveo/plugins/filebrowser/plugin.js")}}" rel="stylesheet" type="text/css"/>
   <link type="text/css" href="{{asset("lb-faveo/css/jquery.ui.css")}}" rel="stylesheet">
 
@@ -393,6 +395,7 @@
   </section><!-- /.content -->
 <!-- /.content-wrapper -->
 </div>
+
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
     <b>Version</b> {!! Config::get('app.version') !!}
@@ -426,7 +429,7 @@
                     <script src="{{asset("lb-faveo/plugins/datatables/dataTables.bootstrap.js")}}" type="text/javascript"></script>
                     <script src="{{asset("lb-faveo/plugins/datatables/jquery.dataTables.js")}}" type="text/javascript"></script>
                     <!-- Page Script -->
-                    
+                    <script src="{{asset("lb-faveo/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")}}" type="text/javascript"></script>
                     {{-- // <script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> --}}
                     <script type="text/javascript" src="{{asset("lb-faveo/js/jquery.dataTables1.10.10.min.js")}}"></script>
                     
@@ -435,6 +438,15 @@
 
                      <script src="{{asset("lb-faveo/plugins/select2/select2.full.min.js")}}" ></script>
                       <script src="{{asset("lb-faveo/plugins/moment/moment.js")}}" ></script>
+
+<script>
+    $(function () {
+        //Add text editor
+        $("textarea").wysihtml5();
+    });
+
+<script>
+
 <script>
                 function myFunction() {
 
@@ -491,11 +503,13 @@ $(function() {
         var $this = $(this).find("a > i");
         var glyph = $this.hasClass("glyphicon");
         var fa = $this.hasClass("fa");
+
         //Switch states
         if (glyph) {
             $this.toggleClass("glyphicon-star");
             $this.toggleClass("glyphicon-star-empty");
         }
+
         if (fa) {
             $this.toggleClass("fa-star");
             $this.toggleClass("fa-star-o");
@@ -503,13 +517,14 @@ $(function() {
     });
 });
 </script>
-<script type="text/javascript">
+//<script type="text/javascript">
 //     $(document).ready(function() {
 //         $("#content").Editor();
 //     });
 // </script>
 <!-- // <script src="../plugins/jQuery/jQuery-2.1.3.min.js"></script> -->
 <script src="{{asset("lb-faveo/js/tabby.js")}}"></script>
+
 <script type="text/javascript">
 $.ajaxSetup({
 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }

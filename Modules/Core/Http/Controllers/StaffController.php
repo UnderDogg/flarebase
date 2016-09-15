@@ -56,21 +56,28 @@ class StaffController extends Controller
 
     public function anyData()
     {
-        $canUpdateStaff = auth()->user()->can('update-user');
+        //$canUpdateStaff = auth()->user()->can('update-user');
+        //Auth::guard($guard)->user()->can('update-user');
         $staff = Staff::select(['id', 'name', 'email']);
         return Datatables::of($staff)
-            ->addColumn('namelink', function ($staff) {
-                return '<a href="staff/' . $staff->id . '" ">' . $staff->name . '</a>';
-            })
-            ->add_column('edit', '
-                <a href="{{ route(\'staff.edit\', $id) }}" class="btn btn-success" >Edit</a>')
-            ->add_column('delete', '
-                <form action="{{ route(\'staff.destroy\', $id) }}" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" name="submit" value="Delete" class="btn btn-danger" onClick="return confirm(\'Are you sure?\')"">
 
-            {{csrf_field()}}
-            </form>')
+            ->addColumn('staffnamelink', function ($staff) {
+                return '<a href="adminpanel/staff/' . $staff->id . '" ">' . $staff->name . '</a>';
+            })
+            ->addColumn('staffemaillink', function ($staff) {
+                return '<a href="adminpanel/staff/' . $staff->id . '" ">' . $staff->name . '</a>';
+            })
+
+            ->addColumn('actions', function ($staff) {
+                return '
+                <form action="' . route('staff.destroy', [$staff->id]) .'" method="POST">
+                <div class=\'btn-group\'>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <a href="' . route('staff.edit', [$staff->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
+                    <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-xs" onClick="return confirm(\'Are you sure?\')"">
+                </div>
+                </form>';
+            })
             ->make(true);
     }
 

@@ -66,7 +66,7 @@ class UsersController extends Controller
             ->add_column('delete', '
                 <form action="{{ route(\'users.destroy\', $id) }}" method="POST">
             <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" name="submit" value="Delete" class="btn btn-danger" onClick="return confirm(\'Are you sure?\')"">
+            <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-xs" onClick="return confirm(\'Are you sure?\')"">
 
             {{csrf_field()}}
             </form>')

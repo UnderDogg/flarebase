@@ -1,5 +1,17 @@
 <?php
 
+Route::get('staffdata', [
+    'as' => 'staff.data',
+    'uses' => 'StaffController@anyData',
+    //'middleware' => 'can:mailboxes.mailboxes.index'
+]);
+
+
+
+
+
+
+
 /*
   |=============================================================
   |  View all the Routes
@@ -80,7 +92,9 @@ Route::group(['prefix' => '/adminpanel'], function () {
     Route::resource('staff', 'StaffController');
     Route::get('/staff/manage', ['as' => 'adminstaff', 'uses' => 'StaffController@index']);
     Route::get('staff', ['as' => 'adminstaff', 'uses' => 'StaffController@index']);
-    Route::get('staff/data', ['as' => 'staff.data', 'uses' => 'StaffController@anyData']);
+
+
+
 
     /**
      * USERS which means possible logins of the clients
