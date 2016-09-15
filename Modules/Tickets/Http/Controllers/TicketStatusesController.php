@@ -35,29 +35,38 @@ class TicketStatusesController extends Controller
      */
     public function index()
     {
-        return view('tickets::tickettypes.index');
+        return view('tickets::ticketstatuses.index');
     }
 
     public function anyData()
     {
         //$canUpdateStaff = auth()->user()->can('update-user');
         //Auth::guard($guard)->user()->can('update-user');
-        $tickettypes = TicketType::select(['id', 'ispublic', 'name', 'displayicon', 'departmentid', 'ismaster', 'displayorder']);
-        return Datatables::of($tickettypes)
+        $ticketstatuses = TicketStatus::select(['id', 'name', 'state', 'mode', 'message', 'hasflags', 'statusorder', 'email_user', 'icon_class', 'properties']);
+        return Datatables::of($ticketstatuses)
 
-            ->addColumn('tickettypelink', function ($tickettypes) {
-                return '<a href="ticketspanel/tickettypes/' . $tickettypes->id . '" ">' . $tickettypes->name . '</a>';
+            ->addColumn('ticketstatuslink', function ($ticketstatuses) {
+                return '<a href="ticketspanel/ticketstatuses/' . $ticketstatuses->id . '" ">' . $ticketstatuses->name . '</a>';
             })
-            ->addColumn('tickettypedepartment', function ($tickettypes) {
-                return '<a href="ticketspanel/tickettypes/' . $tickettypes->id . '" ">' . $tickettypes->departmentid . '</a>';
+            ->addColumn('ticketstatusstate', function ($ticketstatuses) {
+                return '<a href="ticketspanel/ticketstatuses/' . $ticketstatuses->id . '" ">' . $ticketstatuses->state . '</a>';
             })
 
-            ->addColumn('actions', function ($tickettypes) {
+            ->addColumn('ticketstatusmode', function ($ticketstatuses) {
+                return '<a href="ticketspanel/ticketstatuses/' . $ticketstatuses->id . '" ">' . $ticketstatuses->mode . '</a>';
+            })
+
+            ->addColumn('ticketstatusflag', function ($ticketstatuses) {
+                return '<a href="ticketspanel/ticketstatuses/' . $ticketstatuses->id . '" ">' . $ticketstatuses->hasflags . '</a>';
+            })
+
+
+            ->addColumn('actions', function ($ticketstatuses) {
                 return '
-                <form action="' . route('tickettypes.destroy', [$tickettypes->id]) .'" method="POST">
+                <form action="' . route('ticketstatuses.destroy', [$ticketstatuses->id]) .'" method="POST">
                 <div class=\'btn-group\'>
                     <input type="hidden" name="_method" value="DELETE">
-                    <a href="' . route('tickettypes.edit', [$tickettypes->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
+                    <a href="' . route('ticketstatuses.edit', [$ticketstatuses->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
                     <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-xs" onClick="return confirm(\'Are you sure?\')"">
                 </div>
                 </form>';

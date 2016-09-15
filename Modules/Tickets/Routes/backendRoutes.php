@@ -3,7 +3,13 @@ use Illuminate\Routing\Router;
 
 
 Route::get('/tickettypesdata', ['as' => 'tickettypes.data', 'uses' => 'TicketTypesController@anyData']);
-Route::get('/ticketprioritiessdata', ['as' => 'ticketpriorities.data', 'uses' => 'TicketPrioritiesController@anyData']);
+Route::get('/ticketprioritiesdata', ['as' => 'ticketpriorities.data', 'uses' => 'TicketPrioritiesController@anyData']);
+Route::get('/ticketstatusesdata', ['as' => 'ticketstatuses.data', 'uses' => 'TicketStatusesController@anyData']);
+Route::get('/tickethelptopicsdata', ['as' => 'tickethelptopics.data', 'uses' => 'TicketHelpTopicsController@anyData']);
+Route::get('/ticketcategoriesdata', ['as' => 'ticketcategories.data', 'uses' => 'TicketCategoriesController@anyData']);
+Route::get('/ticketsourcesdata', ['as' => 'ticketsources.data', 'uses' => 'TicketSourcesController@anyData']);
+Route::get('/ticketlinktypesdata', ['as' => 'ticketlinktypes.data', 'uses' => 'TicketLinkTypesController@anyData']);
+
 
 
 

@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TicketStatus extends Model
 {
-    protected $table = 'ticket_statuses';
+    protected $table = 'ticketstatuses';
     protected $fillable = [
-        'id', 'name', 'state', 'message', 'mode', 'flag', 'sort', 'properties',
+        'id', 'name', 'state', 'mode', 'message', 'hasflags', 'statusorder', 'email_user', 'icon_class', 'properties',
     ];
 }
