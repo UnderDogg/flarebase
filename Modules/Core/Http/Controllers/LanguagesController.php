@@ -60,7 +60,7 @@ class LanguagesController extends Controller
             // dd(Cache::get('language'));
             // dd()
         } else {
-            return Redirect::back()->with('fails', Lang::get('lang.language-error'));
+            return Redirect::back()->with('fails', Lang::get('core::lang.language-error'));
         }
 
         return Redirect::back();
@@ -156,13 +156,13 @@ class LanguagesController extends Controller
             if (in_array(strtolower(Input::get('iso-code')), scandir($path))) {
 
                 //sending back with error message
-                Session::flash('fails', Lang::get('lang.package_exist'));
+                Session::flash('fails', Lang::get('core::lang.package_exist'));
                 Session::flash('link', 'change-language/'.strtolower(Input::get('iso-code')));
 
                 return Redirect::back()->withInput();
             } elseif (!array_key_exists(strtolower(Input::get('iso-code')), Config::get('languages'))) {//Checking Valid ISO code form Languages.php
                 //sending back with error message
-                Session::flash('fails', Lang::get('lang.iso-code-error'));
+                Session::flash('fails', Lang::get('core::lang.iso-code-error'));
 
                 return Redirect::back()->withInput();
             } else {
@@ -184,21 +184,21 @@ class LanguagesController extends Controller
                         //$success2 = File::delete($destinationPath.'/'.$name);
                         if ($success) {
                             //sending back with error message
-                            Session::flash('fails', Lang::get('lang.zipp-error'));
+                            Session::flash('fails', Lang::get('core::lang.zipp-error'));
                             Session::flash('link2', 'http://www.ladybirdweb.com/support/show/how-to-translate-faveo-into-multiple-languages');
 
                             return Redirect::back()->withInput();
                         }
                     } else {
                         // sending back with success message
-                        Session::flash('success', Lang::get('lang.upload-success'));
+                        Session::flash('success', Lang::get('core::lang.upload-success'));
                         Session::flash('link', 'change-language/'.strtolower(Input::get('iso-code')));
 
                         return Redirect::route('LanguagesController');
                     }
                 } else {
                     // sending back with error message.
-                    Session::flash('fails', Lang::get('lang.file-error'));
+                    Session::flash('fails', Lang::get('core::lang.file-error'));
 
                     return Redirect::route('form');
                 }
@@ -230,18 +230,18 @@ class LanguagesController extends Controller
             $success = File::deleteDirectory($deletePath); //remove extracted folder and it's subfolder from lang
             if ($success) {
                 //sending back with success message
-                Session::flash('success', Lang::get('lang.delete-success'));
+                Session::flash('success', Lang::get('core::lang.delete-success'));
 
                 return Redirect::back();
             } else {
                 //sending back with error message
-                Session::flash('fails', Lang::get('lang.lang-doesnot-exist'));
+                Session::flash('fails', Lang::get('core::lang.lang-doesnot-exist'));
 
                 return Redirect::back();
             }
         } else {
             //sending back with error message
-            Session::flash('fails', Lang::get('lang.active-lang-error'));
+            Session::flash('fails', Lang::get('core::lang.active-lang-error'));
 
             return redirect('languages');
         }

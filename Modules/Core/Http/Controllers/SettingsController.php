@@ -347,7 +347,7 @@ class SettingsController extends Controller
                                                     <div class=modal-body>
                                                        <p>Are you Sure ?</p>
                                                         <div class=modal-footer>
-                                                            <button type=button class='btn btn-default pull-left' data-dismiss=modal id=dismis>".\Lang::get('lang.close').'</button>
+                                                            <button type=button class='btn btn-default pull-left' data-dismiss=modal id=dismis>".\Lang::get('core::lang.close').'</button>
                                                             <a href='.url('plugin/delete/'.$model['path'])."><button class='btn btn-danger'>Delete</button></a>
                                                         </div>
 

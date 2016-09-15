@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\helpdesk;
+namespace Modules\Core\Http\Controllers;
 
 // controllers
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Modules\Core\Requests\TeamRequest;
 use Modules\Core\Requests\TeamUpdate;
 // models
-use Modules\Core\Models\Assign_team_agent;
+use Modules\Core\Models\AssignTeamStaff;
 use Modules\Core\Models\Teams;
 use Modules\Core\Models\Staff;
 // classes
@@ -20,7 +20,7 @@ use Exception;
  *
  * @author      Ladybird <info@ladybirdweb.com>
  */
-class TeamController extends Controller
+class TeamsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -37,22 +37,32 @@ class TeamController extends Controller
      * get Index page.
      *
      * @param type Teams             $team
-     * @param type Assign_team_agent $assign_team_agent
+     * @param type Assign_team_agent $assign_team_staff
      *
      * @return type Response
      */
-    public function index(Teams $team, Assign_team_agent $assign_team_agent)
+    public function index(Teams $team, AssignTeamStaff $assign_team_staff)
     {
-        try {
-            $teams = $team->get();
-            /*  find out the Number of Members in the Team */
-            $id = $teams->lists('id');
-            $assign_team_agent = $assign_team_agent->get();
+        $teams = $team->get();
 
-            return view('core::staff.teams.index', compact('assign_team_agent', 'teams'));
-        } catch (Exception $e) {
-            return redirect()->back()->with('fails', $e->errorInfo[2]);
-        }
+        /*  find out the Number of Members in the Team */
+        //$id = $teams->lists('id');
+        $assign_team_staff = $assign_team_staff->get();
+
+    return view('core::teams.index', compact('teams', 'assign_team_staff'));
+
+
+
+    /*try {
+        $teams = $team->get();
+        /*  find out the Number of Members in the Team *    /
+        $id = $teams->lists('id');
+        $assign_team_staff = $assign_team_staff->get();
+
+        return view('core::staff.teams.index', compact('assign_team_staff', 'teams'));
+    } catch (Exception $e) {
+        return redirect()->back()->with('fails', $e->errorInfo[2]);
+    }*/
     }
 
     /**
@@ -105,17 +115,17 @@ class TeamController extends Controller
      *
      * @param type                   $id
      * @param type User              $user
-     * @param type Assign_team_agent $assign_team_agent
+     * @param type Assign_team_agent $assign_team_staff
      * @param type Teams             $team
      *
      * @return type Response
      */
-    public function edit($id, User $user, Assign_team_agent $assign_team_agent, Teams $team)
+    public function edit($id, User $user, Assign_team_agent $assign_team_staff, Teams $team)
     {
         try {
             $user = $user->whereId($id)->first();
             $teams = $team->whereId($id)->first();
-            $agent_team = $assign_team_agent->where('team_id', $id)->get();
+            $agent_team = $assign_team_staff->where('team_id', $id)->get();
             $agent_id = $agent_team->lists('agent_id', 'agent_id');
 
             return view('core::staff.teams.edit', compact('agent_id', 'user', 'teams', 'allagents'));
@@ -165,14 +175,14 @@ class TeamController extends Controller
      *
      * @param type int               $id
      * @param type Teams             $team
-     * @param type Assign_team_agent $assign_team_agent
+     * @param type Assign_team_agent $assign_team_staff
      *
      * @return type Response
      */
-    public function destroy($id, Teams $team, Assign_team_agent $assign_team_agent)
+    public function destroy($id, Teams $team, Assign_team_agent $assign_team_staff)
     {
         try {
-            $assign_team_agent->where('team_id', $id)->delete();
+            $assign_team_staff->where('team_id', $id)->delete();
             $teams = $team->whereId($id)->first();
             $tickets = DB::table('tickets')->where('team_id', '=', $id)->update(['team_id' => null]);
             /* Check whether function success or not */

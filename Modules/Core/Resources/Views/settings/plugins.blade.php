@@ -49,7 +49,7 @@ class="active"
                             </tr>
                         </table>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis">{!! Lang::get('lang.close') !!}</button>
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis">{!! Lang::get('core::lang.close') !!}</button>
                             <input type="submit" class="btn btn-primary pull-right" value="Upload">
                         </div>
                         {!! Form::close() !!}

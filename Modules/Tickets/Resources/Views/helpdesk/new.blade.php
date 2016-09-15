@@ -17,7 +17,7 @@ class="active"
 {!! Form::open(['route'=>'post.newticket','method'=>'post']) !!}
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">{!! Lang::get('lang.create_ticket') !!}</h3>
+        <h3 class="box-title">{!! Lang::get('tickets::lang.create_ticket') !!}</h3>
         <!-- <div class="box-tools pull-right">
             <div class="has-feedback">
                 <input type="text" class="form-control input-sm" placeholder="Search Mail"/>
@@ -68,7 +68,7 @@ class="active"
             </div>
         @endif
         <div class="form-group">
-            <h4><b>{!! Lang::get('lang.user_details') !!}:<b></h4>
+            <h4><b>{!! Lang::get('tickets::lang.user_details') !!}:<b></h4>
                 {{-- <div class="row"> --}}
                     {{-- <div class="col-md-6"> --}}
                             {{-- <div class="has-feedback"> --}}
@@ -83,7 +83,7 @@ class="active"
                 <div class="col-md-4">
                 <!-- email -->
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                        {!! Form::label('email',Lang::get('lang.email')) !!}
+                        {!! Form::label('email',Lang::get('tickets::lang.email')) !!}
                         {!! Form::text('email',null,['class' => 'form-control']) !!}
                     </div>
                 </div>
@@ -91,14 +91,14 @@ class="active"
                 <div class="col-md-4">
                 <!-- full name -->
                     <div class="form-group {{ $errors->has('fullname') ? 'has-error' : '' }}">
-                        {!! Form::label('fullname',Lang::get('lang.full_name')) !!}
+                        {!! Form::label('fullname',Lang::get('tickets::lang.full_name')) !!}
                         {!! Form::text('fullname',null,['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4">
                 <!-- phone -->
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
-                        <label>{!! Lang::get('lang.phone') !!}:</label>
+                        <label>{!! Lang::get('tickets::lang.phone') !!}:</label>
                         {!! Form::input('number','phone',null,['class' => 'form-control']) !!}
                         {!! $errors->first('phone', '<spam class="help-block text-red">:message</spam>') !!}
                     </div>
@@ -115,11 +115,11 @@ class="active"
         </div>
             <!-- ticket options -->
             <div class="form-group">
-                <h4><b>{!! Lang::get('lang.ticket_option') !!}<b></h4>
+                <h4><b>{!! Lang::get('tickets::lang.ticket_option') !!}<b></h4>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>{!! Lang::get('lang.help_topic') !!}:</label>
+                            <label>{!! Lang::get('tickets::lang.help_topic') !!}:</label>
                             <!-- helptopic -->
                                 <?php $helptopic = App\Model\helpdesk\Manage\Help_topic::all();?>
                                     {!! Form::select('helptopic', ['Helptopic'=>$helptopic->lists('topic','id')],null,['class' => 'form-control select']) !!}
@@ -129,7 +129,7 @@ class="active"
                                 <div class="col-md-3">
                                 <!-- sla plan -->
                                     <div class="form-group">
-                                        <label>{!! Lang::get('lang.sla_plan') !!}:</label>
+                                        <label>{!! Lang::get('tickets::lang.sla_plan') !!}:</label>
                                         <?php $sla_plan = App\Model\helpdesk\Manage\Sla_plan::all();?>
                                         {!! Form::select('sla', ['SLA'=>$sla_plan->lists('grace_period','id')],null,['class' => 'form-control select']) !!}
                                         {!! $errors->first('sla', '<spam class="help-block text-red">:message</spam>') !!}
@@ -138,7 +138,7 @@ class="active"
                                 <div class="col-md-3">
                                 <!-- due date -->
                                     <div class="form-group">
-                                        <label>{!! Lang::get('lang.due_date') !!}:</label>
+                                        <label>{!! Lang::get('tickets::lang.due_date') !!}:</label>
                                         {{-- <input type="text" class="form-control" name="duedate" id="datemask"> --}}
                                         {!! Form::text('duedate',null,['class' => 'form-control','id'=>'datemask']) !!}
                                     </div>
@@ -146,8 +146,8 @@ class="active"
                                 <div class="col-md-3">
                                 <!-- assign to -->
                                     <div class="form-group">
-                                        <label>{!! Lang::get('lang.assign_to') !!}:</label>
-                                            <?php $agents = App\User::where('role','!=','user')->get();?>
+                                        <label>{!! Lang::get('tickets::lang.assign_to') !!}:</label>
+                                            <?php $agents = Modules\Core\Models\Staff::where('role','!=','user')->get();?>
 
                                             {!! Form::select('assignto', [''=>'Select an Agent','Agents'=>$agents->lists('first_name','id')],null,['class' => 'form-control select']) !!}
                                     </div>
@@ -156,12 +156,12 @@ class="active"
                             </div>
                                 <!-- ticket details -->
                                 <div class="form-group">
-                                    <h4><b>{!! Lang::get('lang.ticket_detail') !!}<b></h4>
+                                    <h4><b>{!! Lang::get('tickets::lang.ticket_detail') !!}<b></h4>
                                         <!-- subject -->
                                                 <div class="form-group {{ $errors->has('subject') ? 'has-error' : '' }}">
                                                     <div class="row">
                                                         <div class="col-md-1">
-                                                            <label>{!! Lang::get('lang.subject') !!}:</label>
+                                                            <label>{!! Lang::get('tickets::lang.subject') !!}:</label>
                                                         </div>
                                                         <div class="col-md-4">
                                                             {!! Form::text('subject',null,['class' => 'form-control']) !!}
@@ -173,7 +173,7 @@ class="active"
                                                 <!-- details -->
                                                     <div class="row">
                                                         <div class="col-md-1">
-                                                            <label>{!! Lang::get('lang.detail') !!}:</label>
+                                                            <label>{!! Lang::get('tickets::lang.detail') !!}:</label>
                                                         </div>
                                                         <div class="col-md-9">
                                                             {!! Form::textarea('body',null,['class' => 'form-control','id' => 'body', 'style'=>"width:100%; height:150px;"]) !!}
@@ -185,7 +185,7 @@ class="active"
                                                 <!-- priority -->
                                                     <div class="row">
                                                         <div class="col-md-1">
-                                                            <label>{!! Lang::get('lang.priority') !!}:</label>
+                                                            <label>{!! Lang::get('tickets::lang.priority') !!}:</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                         <?php $Priority = App\Model\helpdesk\Ticket\Ticket_Priority::all();?>
@@ -200,7 +200,7 @@ class="active"
                                                     <div class="col-md-1">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="submit" value="{!! Lang::get('lang.create_ticket') !!}" class="btn btn-primary">
+                                                        <input type="submit" value="{!! Lang::get('tickets::lang.create_ticket') !!}" class="btn btn-primary">
                                                     </div>
                                                 </div>
                                             </div>

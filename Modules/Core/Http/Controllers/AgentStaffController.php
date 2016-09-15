@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin\helpdesk;
+namespace Modules\Core\Http\Controllers;
 
 // controller
-use App\Http\Controllers\Common\PhpMailController;
+use Modules\Core\Http\Controllers\PhpMailController;
 use App\Http\Controllers\Controller;
 // request
 use Modules\Core\Requests\Staff\AgentRequest;

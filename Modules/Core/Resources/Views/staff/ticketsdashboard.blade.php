@@ -19,7 +19,7 @@ class="active"
 
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{!! Lang::get('lang.line_chart') !!}</h3>
+                    <h3 class="box-title">{!! Lang::get('core::lang.line_chart') !!}</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                       <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -99,18 +99,18 @@ class="active"
             <hr/>
             <div class="box">
                 <div class="box-header">
-                             <h1>{!! Lang::get('lang.statistics') !!}</h1>
+                             <h1>{!! Lang::get('core::lang.statistics') !!}</h1>
             
                 </div>
                 <div class="box-body">
               <table class="table table-hover" style="overflow:hidden;">
              
                 <tr>
-                <th>{!! Lang::get('lang.department') !!}</th>
-                <th>{!! Lang::get('lang.opened') !!}</th>
-                <th>{!! Lang::get('lang.resolved') !!}</th>
-                <th>{!! Lang::get('lang.closed') !!}</th>
-                <th>{!! Lang::get('lang.deleted') !!}</th>
+                <th>{!! Lang::get('core::lang.department') !!}</th>
+                <th>{!! Lang::get('core::lang.opened') !!}</th>
+                <th>{!! Lang::get('core::lang.resolved') !!}</th>
+                <th>{!! Lang::get('core::lang.closed') !!}</th>
+                <th>{!! Lang::get('core::lang.deleted') !!}</th>
                 </tr>
 
 <?php $departments = App\Model\helpdesk\Agent\Department::all(); ?>

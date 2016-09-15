@@ -9,7 +9,7 @@
 @section('content')
 <div class="box box-primary">
 <div class="box-header">
-    <h2 class="box-title">{{Lang::get('lang.pages')}}</h2></div>
+    <h2 class="box-title">{{Lang::get('knowledgebase::lang.pages')}}</h2></div>
 <div class="box-body ">
 <!-- check whether success or not -->
 @if(Session::has('success'))
@@ -32,9 +32,9 @@
 <div class="row">
 <div class="col-sm-12">
         {!! Datatable::table()
-            ->addColumn(Lang::get('lang.name'),
-                        Lang::get('lang.created'),
-                        Lang::get('lang.action'))       // these are the column headings to be shown
+            ->addColumn(Lang::get('knowledgebase::lang.name'),
+                        Lang::get('knowledgebase::lang.created'),
+                        Lang::get('knowledgebase::lang.action'))       // these are the column headings to be shown
             ->setUrl(route('api.page'))   // this is the route where data will be retrieved
             ->render() !!}
     </div>

@@ -38,8 +38,8 @@ class="active"
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header">
-                <h3 class="box-title">{{Lang::get('lang.access')}}</h3> <div class="pull-right">
-                {!! Form::submit(Lang::get('lang.save'),['class'=>'btn btn-primary'])!!}
+                <h3 class="box-title">{{Lang::get('core::lang.access')}}</h3> <div class="pull-right">
+                {!! Form::submit(Lang::get('core::lang.save'),['class'=>'btn btn-primary'])!!}
               </div>
             </div>
 
@@ -70,7 +70,7 @@ class="active"
              <div class="row">
                <div class="col-md-4">
                <div class="form-group">
-                {!! Form::label('password_expire',Lang::get('lang.expiration_policy')) !!}
+                {!! Form::label('password_expire',Lang::get('core::lang.expiration_policy')) !!}
 				{!!Form::select('password_expire',['1 month','2 month','3 month'],null,['class' => 'form-control select']) !!}
 
 			</div>
@@ -81,7 +81,7 @@ class="active"
 		<!-- Reset Token Expiration: TEXT- minutes    -->
 			<div class="col-md-4">
              <div class="form-group">
-				{!! Form::label('reset_ticket_expire',Lang::get('lang.reset_token_expiration')) !!}
+				{!! Form::label('reset_ticket_expire',Lang::get('core::lang.reset_token_expiration')) !!}
 				{!! Form::text('reset_ticket_expire',$accesses->reset_ticket_expire,['class' => 'form-control']) !!}
 
 			</div>
@@ -100,7 +100,7 @@ class="active"
 
 			<div class="col-md-4">
 			    <div class="form-group">
-				{!! Form::label('agent_session',Lang::get('lang.agent_session_timeout')) !!}
+				{!! Form::label('agent_session',Lang::get('core::lang.agent_session_timeout')) !!}
 				{!! Form::text('agent_session',$accesses->agent_session,['class' => 'form-control']) !!}
 
 			</div>
@@ -110,7 +110,7 @@ class="active"
 			<div class="row">
 			<div class="col-md-4">
 				<div class="form-group">
-				{!! Form::label('password_reset',Lang::get('lang.allow_password_resets')) !!}
+				{!! Form::label('password_reset',Lang::get('core::lang.allow_password_resets')) !!}
 				{!! Form::checkbox('password_reset',1) !!}
 
 			</div>
@@ -122,7 +122,7 @@ class="active"
 			<div class="row">
 			<div class="col-md-6">
                 <div class="form-group">
-				{!! Form::label('reg_method',Lang::get('lang.registration_method')) !!}
+				{!! Form::label('reg_method',Lang::get('core::lang.registration_method')) !!}
 				{!!Form::select('reg_method',['public','private','dissabled'],null,['class' => 'form-control select']) !!}
 
 			</div>
@@ -142,7 +142,7 @@ class="active"
 
 			<div class="col-md-6">
                  <div class="form-group">
-				{!! Form::label('user_session',Lang::get('lang.user_session_timeout')) !!}
+				{!! Form::label('user_session',Lang::get('core::lang.user_session_timeout')) !!}
 				{!! Form::text('user_session',$accesses->user_session,['class' => 'form-control']) !!}
 
 			</div>
@@ -154,7 +154,7 @@ class="active"
 			<div class="col-md-4">
 				<div class="form-group">
 				{!! Form::checkbox('bind_agent_ip',1,true) !!} &nbsp;
-				{!! Form::label('bind_agent_ip',Lang::get('lang.bind_agent_session_IP')) !!}
+				{!! Form::label('bind_agent_ip',Lang::get('core::lang.bind_agent_session_IP')) !!}
 
 
 			</div>
@@ -166,7 +166,7 @@ class="active"
 			<div class="col-md-4">
                   <div class="form-group">
                   {!! Form::checkbox('reg_require',1,true,['class' => 'form-control']) !!}&nbsp;
-				{!! Form::label('reg_require',Lang::get('lang.registration_required')) !!}
+				{!! Form::label('reg_require',Lang::get('core::lang.registration_required')) !!}
 
 
 			</div>
@@ -180,7 +180,7 @@ class="active"
 			<div class="col-md-4">
 			<div class="form-group">
 			{!! Form::checkbox('quick_access',1,true) !!}&nbsp;
-				{!! Form::label('quick_access',Lang::get('lang.client_quick_access')) !!}
+				{!! Form::label('quick_access',Lang::get('core::lang.client_quick_access')) !!}
 
 
 			</div>

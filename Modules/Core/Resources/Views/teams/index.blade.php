@@ -32,7 +32,7 @@ class="active"
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h2 class="box-title">{{Lang::get('lang.teams')}}</h2><a href="{{route('teams.create')}}" class="btn btn-primary pull-right">{{Lang::get('lang.create_team')}}</a></div>
+                <h2 class="box-title">{{Lang::get('core::lang.teams')}}</h2><a href="{{route('teams.create')}}" class="btn btn-primary pull-right">{{Lang::get('core::lang.create_team')}}</a></div>
 
             <div class="box-body table-responsive">
 
@@ -58,11 +58,11 @@ class="active"
 
                 <table class="table table-bordered dataTable" style="overflow:hidden;">
                     <tr>
-                        <th>{{Lang::get('lang.name')}}</th>
-                        <th>{{Lang::get('lang.status')}}</th>
-                        <th>{{Lang::get('lang.team_members')}}</th>
-                        <th>{{Lang::get('lang.team_lead')}}</th>
-                        <th>{{Lang::get('lang.action')}}</th>
+                        <th>{{Lang::get('core::lang.name')}}</th>
+                        <th>{{Lang::get('core::lang.status')}}</th>
+                        <th>{{Lang::get('core::lang.team_members')}}</th>
+                        <th>{{Lang::get('core::lang.team_lead')}}</th>
+                        <th>{{Lang::get('core::lang.action')}}</th>
                     </tr>
                     @foreach($teams as $team)
                     <tr>
@@ -78,11 +78,11 @@ class="active"
                             if ($team->team_lead == 0) {
                                 $team_lead = "";
                             } else {
-                                $users = App\User::whereId($team->team_lead)->first();
+                                $users = Modules\Core\Models\Staff::whereId($team->team_lead)->first();
                                 $team_lead = $users->first_name . " " . $users->last_name;
                             }
                             ?>
-                        <td>{{count($assign_team_agent->where('team_id',$team->id))}}</td>
+                        <td>{{count($assign_team_staff->where('team_id',$team->id))}}</td>
                         <td>{{ $team_lead }}</td>
                         <td>
                             {!! Form::open(['route'=>['teams.destroy', $team->id],'method'=>'DELETE']) !!}

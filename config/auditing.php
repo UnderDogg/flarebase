@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'model' => App\User::class,
+    'model' => Modules\Core\Models\Staff::class,
 
     /*
     |--------------------------------------------------------------------------

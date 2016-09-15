@@ -34,8 +34,8 @@ class="active"
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{Lang::get('lang.cron')}}</h3> <div class="pull-right">
-                    {!! Form::submit(Lang::get('lang.save'),['class'=>'btn btn-primary'])!!}
+                <h3 class="box-title">{{Lang::get('core::lang.cron')}}</h3> <div class="pull-right">
+                    {!! Form::submit(Lang::get('core::lang.save'),['class'=>'btn btn-primary'])!!}
                 </div>
             </div>
             <!-- check whether success or not -->
@@ -58,8 +58,8 @@ class="active"
             @endif
             <div class="box-body table-responsive"style="overflow:hidden;">
              <div class="alert  alert-dismissable" style="background: #F3F3F3">
-                <i class="fa  fa-info-circle"></i>&nbsp;{!!Lang::get('lang.crone-url-message')!!}
-                <a href="http://ladybirdweb.com/support/show/cron-job-scheduling" style="color:black" target="blank">{!!Lang::get('lang.click')!!}</a> {!!Lang::get('lang.check-cron-set')!!}
+                <i class="fa  fa-info-circle"></i>&nbsp;{!!Lang::get('core::lang.crone-url-message')!!}
+                <a href="http://ladybirdweb.com/support/show/cron-job-scheduling" style="color:black" target="blank">{!!Lang::get('core::lang.click')!!}</a> {!!Lang::get('core::lang.check-cron-set')!!}
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             </div>
             <div class="col-md-6">
@@ -67,11 +67,11 @@ class="active"
   <!-- Apply any bg-* class to to the icon to color it -->
   <span class="info-box-icon bg-aqua"><i class="fa fa-cloud-download"></i></span>
   <div class="info-box-content">
-   <i class="fa fa-clipboard pull-right" title="{!!Lang::get('lang.click-url-copy')!!}" onclick="copyToClipboard('#p1')"></i>
+   <i class="fa fa-clipboard pull-right" title="{!!Lang::get('core::lang.click-url-copy')!!}" onclick="copyToClipboard('#p1')"></i>
     <div class="col-md-6">
                         <div class="form-group">
-                            {!! Form::label('email_fetching',Lang::get('lang.email_fetch')) !!}<br>
-                            {!! Form::checkbox('email_fetching',1,true) !!}&nbsp;{{Lang::get('lang.fetch_auto-corn')}}
+                            {!! Form::label('email_fetching',Lang::get('core::lang.email_fetch')) !!}<br>
+                            {!! Form::checkbox('email_fetching',1,true) !!}&nbsp;{{Lang::get('core::lang.fetch_auto-corn')}}
                         </div>
                     </div>
     <div class="col-md-12">
@@ -90,11 +90,11 @@ class="active"
   <!-- Apply any bg-* class to to the icon to color it -->
   <span class="info-box-icon bg-aqua"><i class="fa fa-cloud-upload"></i></span>
   <div class="info-box-content">
-   <i class="fa fa-clipboard pull-right" title="{!!Lang::get('lang.click-url-copy')!!}" onclick="copyToClipboard('#p2')"></i>
+   <i class="fa fa-clipboard pull-right" title="{!!Lang::get('core::lang.click-url-copy')!!}" onclick="copyToClipboard('#p2')"></i>
     <div class="col-md-6">
                         <div class="form-group">
-                            {!! Form::label('email_fetching',Lang::get('lang.notification-email')) !!}<br>
-                            {!! Form::checkbox('notification_cron',1,true) !!}&nbsp;{{Lang::get('lang.cron_notification')}}
+                            {!! Form::label('email_fetching',Lang::get('core::lang.notification-email')) !!}<br>
+                            {!! Form::checkbox('notification_cron',1,true) !!}&nbsp;{{Lang::get('core::lang.cron_notification')}}
                         </div>
                     </div>
     <div class="col-md-12">

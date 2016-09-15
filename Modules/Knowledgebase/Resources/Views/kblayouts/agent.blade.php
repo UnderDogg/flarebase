@@ -67,14 +67,14 @@ if ($company != null) {
                     ?>
                     <div class="collapse navbar-collapse" id="navbar-collapse">
                         <ul class="tabs tabs-horizontal nav navbar-nav navbar-left">
-                            <li @yield('Dashboard')><a data-target="#tabA" href="#">{!! Lang::get('lang.dashboard') !!}</a></li>
-                            <li @yield('Users')><a data-target="#tabB" href="#">{!! Lang::get('lang.users') !!}</a></li>
-                            <li @yield('Tickets')><a data-target="#tabC" href="#">{!! Lang::get('lang.tickets') !!}</a></li>
-                            <li @yield('Tools')><a data-target="#tabD" href="#">{!! Lang::get('lang.tools') !!}</a></li>
+                            <li @yield('Dashboard')><a data-target="#tabA" href="#">{!! Lang::get('knowledgebase::lang.dashboard') !!}</a></li>
+                            <li @yield('Users')><a data-target="#tabB" href="#">{!! Lang::get('knowledgebase::lang.users') !!}</a></li>
+                            <li @yield('Tickets')><a data-target="#tabC" href="#">{!! Lang::get('knowledgebase::lang.tickets') !!}</a></li>
+                            <li @yield('Tools')><a data-target="#tabD" href="#">{!! Lang::get('knowledgebase::lang.tools') !!}</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             @if(Auth::user()->role == 'admin')
-                                <li><a href="{{url('admin')}}">{!! Lang::get('lang.admin_panel') !!}</a></li>
+                                <li><a href="{{url('admin')}}">{!! Lang::get('knowledgebase::lang.admin_panel') !!}</a></li>
                             @endif
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
@@ -134,10 +134,10 @@ if ($company != null) {
                                     <!-- Menu Footer-->
                                     <li class="user-footer" style="background-color:#1a2226;">
                                         <div class="pull-left">
-                                            <a href="{{URL::route('profile')}}" class="btn btn-info btn-sm"><b>{!! Lang::get('lang.profile') !!}</b></a>
+                                            <a href="{{URL::route('profile')}}" class="btn btn-info btn-sm"><b>{!! Lang::get('knowledgebase::lang.profile') !!}</b></a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="{{url('auth/logout')}}" class="btn btn-danger btn-sm"><b>{!! Lang::get('lang.sign_out') !!}</b></a>
+                                            <a href="{{url('auth/logout')}}" class="btn btn-danger btn-sm"><b>{!! Lang::get('knowledgebase::lang.sign_out') !!}</b></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -190,7 +190,7 @@ if ($company != null) {
                                     <!-- sidebar menu: : style can be found in sidebar.less -->
                                     <ul id="side-bar" class="sidebar-menu">
                                         @yield('sidebar')
-                                        <li class="header">{!! Lang::get('lang.Tickets') !!}</li>
+                                        <li class="header">{!! Lang::get('knowledgebase::lang.Tickets') !!}</li>
 <?php
 if(Auth::user()->role == 'admin') {
 //$inbox = App\Model\helpdesk\Ticket\Tickets::all();
@@ -236,33 +236,33 @@ if ($i == 0) {
 ?>
                                         <li @yield('inbox')>
                                             <a href="{{ url('/ticket/inbox') }}" id="load-inbox">
-                                                <i class="fa fa-envelope"></i> <span>{!! Lang::get('lang.inbox') !!}</span> <small class="label pull-right bg-green"><?php echo count($tickets); ?></small>                                            </a>
+                                                <i class="fa fa-envelope"></i> <span>{!! Lang::get('knowledgebase::lang.inbox') !!}</span> <small class="label pull-right bg-green"><?php echo count($tickets); ?></small>                                            </a>
                                         </li>
                                         <li @yield('myticket')>
                                              <a href="{{url('ticket/myticket')}}" id="load-myticket">
-                                                <i class="fa fa-user"></i> <span>{!! Lang::get('lang.my_tickets') !!} </span>
+                                                <i class="fa fa-user"></i> <span>{!! Lang::get('knowledgebase::lang.my_tickets') !!} </span>
                                                 <small class="label pull-right bg-green">{{count($myticket) }}</small>
                                             </a>
                                         </li>
                                         <li @yield('unassigned')>
                                             <a href="{{url('unassigned')}}" id="load-unassigned">
-                                                <i class="fa fa-th"></i> <span>{!! Lang::get('lang.unassigned') !!}</span>
+                                                <i class="fa fa-th"></i> <span>{!! Lang::get('knowledgebase::lang.unassigned') !!}</span>
                                                 <small class="label pull-right bg-green">{{count($unassigned)}}</small>
                                             </a>
                                         </li>
                                         <li @yield('overdue')>
                                             <a href="{{url('ticket/overdue')}}" id="load-unassigned">
-                                                <i class="fa fa-calendar-times-o"></i> <span>{!! Lang::get('lang.overdue') !!}</span>
+                                                <i class="fa fa-calendar-times-o"></i> <span>{!! Lang::get('knowledgebase::lang.overdue') !!}</span>
                                                 <small class="label pull-right bg-green">{{$overdue_ticket}}</small>
                                             </a>
                                         </li>
                                         <li @yield('trash')>
                                             <a href="{{url('trash')}}">
-                                                <i class="fa fa-trash-o"></i> <span>{!! Lang::get('lang.trash') !!}</span>
+                                                <i class="fa fa-trash-o"></i> <span>{!! Lang::get('knowledgebase::lang.trash') !!}</span>
                                                 <small class="label pull-right bg-green">{{count($deleted)}}</small>
                                             </a>
                                         </li>
-<li class="header">{!! Lang::get('lang.Departments') !!}</li>
+<li class="header">{!! Lang::get('knowledgebase::lang.Departments') !!}</li>
 <?php
 $depts = App\Model\helpdesk\Agent\Department::all();
 foreach ($depts as $dept) {
@@ -285,9 +285,9 @@ if (Auth::user()->role == 'admin') { ?>
                                                 <i class="fa fa-folder-open"></i> <span>{!! $dept->name !!}</span> <i class="fa fa-angle-left pull-right"></i>
                                             </a>
                                             <ul class="treeview-menu">
-                                                <li><a href="{!! url::route('dept.open.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('lang.open') !!}<small class="label pull-right bg-green">{!! $open !!}</small></a></li>
-                                                <li><a href="{!! url::route('dept.inprogress.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('lang.inprogress') !!}<small class="label pull-right bg-green">{!! $underprocess !!}</small></a></li>
-                                                <li><a href="{!! url::route('dept.closed.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('lang.closed') !!}<small class="label pull-right bg-green">{!! $closed !!}</small></a></li>
+                                                <li><a href="{!! url::route('dept.open.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.open') !!}<small class="label pull-right bg-green">{!! $open !!}</small></a></li>
+                                                <li><a href="{!! url::route('dept.inprogress.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.inprogress') !!}<small class="label pull-right bg-green">{!! $underprocess !!}</small></a></li>
+                                                <li><a href="{!! url::route('dept.closed.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.closed') !!}<small class="label pull-right bg-green">{!! $closed !!}</small></a></li>
                                             </ul>
                                         </li>
 <?php } if (Auth::user()->role == 'agent' && Auth::user()->primary_dpt == $dept->id) { ?>
@@ -296,9 +296,9 @@ if (Auth::user()->role == 'admin') { ?>
                                                 <i class="fa fa-folder-open"></i> <span>{!! $dept->name !!}</span> <i class="fa fa-angle-left pull-right"></i>
                                             </a>
                                             <ul class="treeview-menu">
-                                                <li><a href="{!! url::route('dept.open.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('lang.open') !!}<small class="label pull-right bg-green">{!! $open !!}</small></a></li>
-                                                <li><a href="{!! url::route('dept.inprogress.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('lang.inprogress') !!}<small class="label pull-right bg-green">{!! $underprocess !!}</small></a></li>
-                                                <li><a href="{!! url::route('dept.closed.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('lang.closed') !!}<small class="label pull-right bg-green">{!! $closed !!}</small></a></li>
+                                                <li><a href="{!! url::route('dept.open.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.open') !!}<small class="label pull-right bg-green">{!! $open !!}</small></a></li>
+                                                <li><a href="{!! url::route('dept.inprogress.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.inprogress') !!}<small class="label pull-right bg-green">{!! $underprocess !!}</small></a></li>
+                                                <li><a href="{!! url::route('dept.closed.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.closed') !!}<small class="label pull-right bg-green">{!! $closed !!}</small></a></li>
                                             </ul>
                                         </li>
 <?php } }  ?>
@@ -317,34 +317,34 @@ $group = App\Model\helpdesk\Agent\Groups::where('id', '=', $agent_group)->where(
                                     <div class="tabs-content">
                                         <div class="tabs-pane @yield('dashboard-bar')"  id="tabA">
                                             <ul class="nav navbar-nav">
-                                                <li id="bar" @yield('dashboard') ><a href="{{url('dashboard')}}">{!! Lang::get('lang.dashboard') !!}</a></li>
-                                                <li id="bar" @yield('profile') ><a href="{{url('profile')}}">{!! Lang::get('lang.profile') !!}</a></li>
+                                                <li id="bar" @yield('dashboard') ><a href="{{url('dashboard')}}">{!! Lang::get('knowledgebase::lang.dashboard') !!}</a></li>
+                                                <li id="bar" @yield('profile') ><a href="{{url('profile')}}">{!! Lang::get('knowledgebase::lang.profile') !!}</a></li>
                                             </ul>
                                         </div>
                                         <div class="tabs-pane @yield('user-bar')" id="tabB">
                                             <ul class="nav navbar-nav">
-                                                <li id="bar" @yield('user')><a href="{{ url('user') }}" >{!! Lang::get('lang.user_directory') !!}</a></li></a></li>
-                                                <li id="bar" @yield('organizations')><a href="{{ url('organizations') }}" >{!! Lang::get('lang.organizations') !!}</a></li></a></li>
+                                                <li id="bar" @yield('user')><a href="{{ url('user') }}" >{!! Lang::get('knowledgebase::lang.user_directory') !!}</a></li></a></li>
+                                                <li id="bar" @yield('organizations')><a href="{{ url('organizations') }}" >{!! Lang::get('knowledgebase::lang.organizations') !!}</a></li></a></li>
                                             </ul>
                                         </div>
                                         <div class="tabs-pane @yield('ticket-bar')" id="tabC">
                                             <ul class="nav navbar-nav">
-                                                <li id="bar" @yield('open')><a href="{{ url('/ticket/open') }}" id="load-open">{!! Lang::get('lang.open') !!}</a></li>
-                                                <li id="bar" @yield('answered')><a href="{{ url('/ticket/answered') }}" id="load-answered">{!! Lang::get('lang.answered') !!}</a></li>
-                                                <li id="bar" @yield('myticket')><a href="{{ url('/ticket/myticket') }}" >{!! Lang::get('lang.my_tickets') !!}</a></li>
+                                                <li id="bar" @yield('open')><a href="{{ url('/ticket/open') }}" id="load-open">{!! Lang::get('knowledgebase::lang.open') !!}</a></li>
+                                                <li id="bar" @yield('answered')><a href="{{ url('/ticket/answered') }}" id="load-answered">{!! Lang::get('knowledgebase::lang.answered') !!}</a></li>
+                                                <li id="bar" @yield('myticket')><a href="{{ url('/ticket/myticket') }}" >{!! Lang::get('knowledgebase::lang.my_tickets') !!}</a></li>
                                                 {{-- <li id="bar" @yield('ticket')><a href="{{ url('ticket') }}" >Ticket</a></li> --}}
                                                 {{-- <li id="bar" @yield('overdue')><a href="{{ url('/ticket/overdue') }}" >Overdue</a></li> --}}
-                                                <li id="bar" @yield('assigned')><a href="{{ url('/ticket/assigned') }}" id="load-assigned" >{!! Lang::get('lang.assigned') !!}</a></li>
-                                                <li id="bar" @yield('closed')><a href="{{ url('/ticket/closed') }}" >{!! Lang::get('lang.closed') !!}</a></li>
+                                                <li id="bar" @yield('assigned')><a href="{{ url('/ticket/assigned') }}" id="load-assigned" >{!! Lang::get('knowledgebase::lang.assigned') !!}</a></li>
+                                                <li id="bar" @yield('closed')><a href="{{ url('/ticket/closed') }}" >{!! Lang::get('knowledgebase::lang.closed') !!}</a></li>
                                                 <?php if ($group->can_create_ticket == 1) {?>
-                                                <li id="bar" @yield('newticket')><a href="{{ url('/newticket') }}" >{!! Lang::get('lang.create_ticket') !!}</a></li>
+                                                <li id="bar" @yield('newticket')><a href="{{ url('/newticket') }}" >{!! Lang::get('knowledgebase::lang.create_ticket') !!}</a></li>
                                                 <?php } ?>
                                             </ul>
                                         </div>
                                         <div class="tabs-pane @yield('tools-bar')" id="tabD">
                                             <ul class="nav navbar-nav">
-                                                <li id="bar" @yield('tools')><a href="{{ url('/canned/list') }}" >{!! Lang::get('lang.canned_response') !!}</a></li>
-                                                <li id="bar" @yield('kb')><a href="{{ url('/comment') }}" >{!! Lang::get('lang.knowledge_base') !!}</a></li>
+                                                <li id="bar" @yield('tools')><a href="{{ url('/canned/list') }}" >{!! Lang::get('knowledgebase::lang.canned_response') !!}</a></li>
+                                                <li id="bar" @yield('kb')><a href="{{ url('/comment') }}" >{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -363,7 +363,7 @@ $group = App\Model\helpdesk\Agent\Groups::where('id', '=', $agent_group)->where(
                             <div class="pull-right hidden-xs">
                                 <b>Version</b> {!! Config::get('app.version') !!}
                             </div>
-            <strong>{!! Lang::get('lang.copyright') !!} &copy; {!! date('Y') !!}  <a href="{!! $company->website !!}" target="_blank">{!! $company->company_name !!}</a>.</strong> {!! Lang::get('lang.all_rights_reserved') !!}. {!! Lang::get('lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a>
+            <strong>{!! Lang::get('knowledgebase::lang.copyright') !!} &copy; {!! date('Y') !!}  <a href="{!! $company->website !!}" target="_blank">{!! $company->company_name !!}</a>.</strong> {!! Lang::get('knowledgebase::lang.all_rights_reserved') !!}. {!! Lang::get('knowledgebase::lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a>
                         </footer>
                     </div><!-- ./wrapper -->
                     {{-- // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}

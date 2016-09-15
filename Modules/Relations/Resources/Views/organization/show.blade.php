@@ -19,7 +19,7 @@ class="active"
 {{-- <div><h1 style="margin-top:-10px;margin-bottom:-10px;">Organization Profile</h1></div>
 <a href="{{route('organizations.edit', $orgs->id)}}" class="btn btn-info btn-xs btn-flat"><i class="fa fa-edit" style="color:black;"> </i> Edit</a>
  --}}
-<div class="box-header" style="margin-top:-15px;margin-bottom:-15px;"><h3 class="box-title">{!! Lang::get('lang.organization_profile') !!}</h3><a href="{{route('organizations.edit', $orgs->id)}}" class="btn btn-info btn-sm btn-flat pull-right"><i class="fa fa-edit" style="color:black;"> </i> {!! Lang::get('lang.edit') !!}</a></div>
+<div class="box-header" style="margin-top:-15px;margin-bottom:-15px;"><h3 class="box-title">{!! Lang::get('relations::lang.organization_profile') !!}</h3><a href="{{route('organizations.edit', $orgs->id)}}" class="btn btn-info btn-sm btn-flat pull-right"><i class="fa fa-edit" style="color:black;"> </i> {!! Lang::get('relations::lang.edit') !!}</a></div>
 @stop
 <!-- /header -->
 <!-- breadcrumbs -->
@@ -49,22 +49,22 @@ class="active"
                 <div class="box-footer no-padding">
                     <ul class="nav nav-stacked">
                         @if($orgs->phone)<li><a>
-                        <b>{!! Lang::get('lang.phone') !!}</b>  
+                        <b>{!! Lang::get('relations::lang.phone') !!}</b>
                         <span class="pull-right"> {{$orgs->phone}}</span></a></li>@endif
                         @if($orgs->address)<li><a>
-                        <b>{!! Lang::get('lang.address') !!}</b>  
+                        <b>{!! Lang::get('relations::lang.address') !!}</b>
                         <br/> <center>{!! $orgs->address !!}</center></a></li>@endif
                         @if($orgs->internal_notes)<li><a>
-                        <b>{!! Lang::get('lang.internal_notes') !!}</b>  
+                        <b>{!! Lang::get('relations::lang.internal_notes') !!}</b>
                         <br/> <center>{!! $orgs->internal_notes !!}</center></a></li>@endif
                     </ul>
-                    <button data-toggle="modal" data-target="#assign_head" id="button_select" class="btn btn-primary btn-flat btn-block">{!! Lang::get('lang.select_department_manager') !!}</button>
+                    <button data-toggle="modal" data-target="#assign_head" id="button_select" class="btn btn-primary btn-flat btn-block">{!! Lang::get('relations::lang.select_department_manager') !!}</button>
                 </div>
               </div>
 
               <div id="refresh"> 
               @if($org_hd->head > 0)
-              <?php $users = App\User::where('id','=',$org_hd->head)->first();  ?>
+              <?php $users = Modules\Core\Models\Staff::where('id','=',$org_hd->head)->first();  ?>
               <div class="box box-widget widget-user-2">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-yellow">
@@ -72,12 +72,12 @@ class="active"
                     <img class="img-circle"  src="{{ Gravatar::src( $users->email) }}" alt="User Avatar">
                   </div><!-- /.widget-user-image -->
                   <h3 class="widget-user-username">{!! $users->user_name !!}</h3>
-                  <h5 class="widget-user-desc">{!! Lang::get('lang.organization-s_head') !!}</h5>
+                  <h5 class="widget-user-desc">{!! Lang::get('relations::lang.organization-s_head') !!}</h5>
                 </div>
                 <div class="box-footer no-padding">
                   <ul class="nav nav-stacked">
-                    <li><a href="#">{!! Lang::get('lang.e-mail') !!} <span class="pull-right">{!! $users->email !!}</span></a></li>
-                    <li><a href="#">{!! Lang::get('lang.phone') !!} <span class="pull-right">{!! $users->phone_number !!}</span></a></li>
+                    <li><a href="#">{!! Lang::get('relations::lang.e-mail') !!} <span class="pull-right">{!! $users->email !!}</span></a></li>
+                    <li><a href="#">{!! Lang::get('relations::lang.phone') !!} <span class="pull-right">{!! $users->phone_number !!}</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -94,7 +94,7 @@ class="active"
                 $user_orgs = App\Model\helpdesk\Agent_panel\User_org::where('org_id','=',$orgs->id)->paginate(5);
                 ?>
                 <div class="box-header">
-                    <h3 class="box-title">{!! Lang::get('lang.users_of') !!} {{$orgs->name}}</h3>
+                    <h3 class="box-title">{!! Lang::get('relations::lang.users_of') !!} {{$orgs->name}}</h3>
                     <div class="pull-right" style="margin-top:-25px;margin-bottom:-25px;">
                         <?php echo $user_orgs->setPath('../organizations/'.$orgs->id)->render(); ?>
                     </div>
@@ -104,25 +104,25 @@ class="active"
                 <div class="box-body">
                         <table class="table table-hover table-bordered">
                             <tbody><tr>
-                              <th>{!! Lang::get('lang.name') !!}</th>
-                              <th>{!! Lang::get('lang.email') !!}</th>
-                              <th>{!! Lang::get('lang.phone') !!}</th>
-                              <th>{!! Lang::get('lang.status') !!}</th>
-                              <th>{!! Lang::get('lang.ban') !!}</th>
+                              <th>{!! Lang::get('relations::lang.name') !!}</th>
+                              <th>{!! Lang::get('relations::lang.email') !!}</th>
+                              <th>{!! Lang::get('relations::lang.phone') !!}</th>
+                              <th>{!! Lang::get('relations::lang.status') !!}</th>
+                              <th>{!! Lang::get('relations::lang.ban') !!}</th>
                             </tr>
 
                             @foreach($user_orgs as $user_org)
                             <?php 
-                            $user_detail = App\User::where('id','=',$user_org->user_id)->first();
+                            $user_detail = Modules\Core\Models\Staff::where('id','=',$user_org->user_id)->first();
                              ?>
                             <tr>
                               <td>{!! $user_detail->user_name !!}</td>
                               <td>{!! $user_detail->email !!}</td>
                               <td>{!! $user_detail->phone_number !!}</td>
                                 @if($user_detail->active == 1)
-                                    <td><span class="label label-success">{!! Lang::get('lang.active') !!}</span></td>
+                                    <td><span class="label label-success">{!! Lang::get('relations::lang.active') !!}</span></td>
                                 @elseif($user_detail->active == 0)
-                                    <td><span class="label label-warning">{!! Lang::get('lang.inactive') !!}</span></td>
+                                    <td><span class="label label-warning">{!! Lang::get('relations::lang.inactive') !!}</span></td>
                                 @endif
                               <td>{!! $user_detail->ban !!}</td>
                             </tr>
@@ -145,7 +145,7 @@ class="active"
                 {!! Form::model($orgs->id, ['id'=>'org_head','method' => 'PATCH'] )!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" id="dismiss" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.assign') !!}</h4>
+                    <h4 class="modal-title">{!! Lang::get('relations::lang.assign') !!}</h4>
                 </div>
                 <div id="assign_alert" class="alert alert-success alert-dismissable" style="display:none;">
                     <button id="assign_dismiss" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -161,14 +161,14 @@ class="active"
                         </div>
                     </div>
                     <div id="assign_body">
-                        <p>{!! Lang::get('lang.please_select_an_user') !!}</p>
+                        <p>{!! Lang::get('relations::lang.please_select_an_user') !!}</p>
                         <select id="user" class="form-control" name="user">
 <?php
 $org_heads = App\Model\helpdesk\Agent_panel\User_org::where('org_id','=',$orgs->id)->get();
 ?>
                             <optgroup label="Select Organizations">
                                 @foreach($org_heads as $org_head)
-                                <?php  $user_org_heads = App\User::where('id','=',$org_head->user_id)->first();  ?>
+                                <?php  $user_org_heads = Modules\Core\Models\Staff::where('id','=',$org_head->user_id)->first();  ?>
                                     <option  value="{{$user_org_heads->id}}">{!! $user_org_heads->user_name !!}</option>
                                 @endforeach
                             </optgroup>
@@ -176,8 +176,8 @@ $org_heads = App\Model\helpdesk\Agent_panel\User_org::where('org_id','=',$orgs->
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis4">{!! Lang::get('lang.close') !!}</button>
-                    <button type="submit" class="btn btn-success pull-right" id="submt2">{!! Lang::get('lang.assign') !!}</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis4">{!! Lang::get('relations::lang.close') !!}</button>
+                    <button type="submit" class="btn btn-success pull-right" id="submt2">{!! Lang::get('relations::lang.assign') !!}</button>
                 </div>
                 {!! Form::close()!!}
             </div><!-- /.modal-content -->

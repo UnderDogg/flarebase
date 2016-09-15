@@ -17,7 +17,7 @@
 
         
         
-        $user = App\User::where('id', '=', $tickets->user_id)->first(); ?>
+        $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first(); ?>
         <?php $response = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get(); ?>
         @foreach($response as $last)
         <?php $ResponseDate = $last->created_at; ?>
@@ -44,7 +44,7 @@
         <br/><hr>
         <span class="time-label">
                                 <?php
-    $role = App\User::where('id','=',$conversation->user_id)->first();
+    $role = Modules\Core\Models\Staff::where('id','=',$conversation->user_id)->first();
     ?>
                                 <?php if($conversation->is_internal) { ?>
                                 <i class="fa fa-tag bg-purple" title="Posted by System"></i>

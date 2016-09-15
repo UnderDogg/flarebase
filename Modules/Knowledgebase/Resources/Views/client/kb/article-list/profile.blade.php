@@ -30,7 +30,7 @@
 
                 <div class="content-header">
 
-                    <h4>Profile	{!! Form::submit(Lang::get('lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}</h4>
+                    <h4>Profile	{!! Form::submit(Lang::get('knowledgebase::lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}</h4>
 
                 </div>
 
@@ -56,7 +56,7 @@
 
                     <div class="form-group {{ $errors->has('firstname') ? 'has-error' : '' }}">
                         <!-- first name -->
-                        {!! Form::label('firstname',Lang::get('lang.firstname')) !!}
+                        {!! Form::label('firstname',Lang::get('knowledgebase::lang.firstname')) !!}
                         {!! $errors->first('firstname', '<spam class="help-block">:message</spam>') !!}
                         {!! Form::text('firstname',null,['class' => 'form-control']) !!}
 
@@ -64,7 +64,7 @@
 
                     <div class="form-group {{ $errors->has('lastname') ? 'has-error' : '' }}">
                         <!-- last name -->
-                        {!! Form::label('lastname',Lang::get('lang.lastname')) !!}
+                        {!! Form::label('lastname',Lang::get('knowledgebase::lang.lastname')) !!}
                         {!! $errors->first('lastname', '<spam class="help-block">:message</spam>') !!}
                         {!! Form::text('lastname',null,['class' => 'form-control']) !!}
 
@@ -72,13 +72,13 @@
 
                     <div class="form-group">
                         <!-- gender -->
-                        {!! Form::label('gender',Lang::get('lang.gender')) !!}
+                        {!! Form::label('gender',Lang::get('knowledgebase::lang.gender')) !!}
                         <div class="row">
                             <div class="col-xs-3">
-                                {!! Form::radio('gender','1',true) !!}{{Lang::get('lang.male')}}
+                                {!! Form::radio('gender','1',true) !!}{{Lang::get('knowledgebase::lang.male')}}
                             </div>
                             <div class="col-xs-3">
-                                {!! Form::radio('gender','0') !!}{{Lang::get('lang.female')}}
+                                {!! Form::radio('gender','0') !!}{{Lang::get('knowledgebase::lang.female')}}
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
 
                     <div class="form-group">
                         <!-- email -->
-                        {!! Form::label('email',Lang::get('lang.email')) !!}
+                        {!! Form::label('email',Lang::get('knowledgebase::lang.email')) !!}
                         <div>
                             {{$user->email}}
                         </div>
@@ -95,7 +95,7 @@
 
                     <div class="form-group {{ $errors->has('company') ? 'has-error' : '' }}">
                         <!-- company -->
-                        {!! Form::label('company',Lang::get('lang.company')) !!}
+                        {!! Form::label('company',Lang::get('knowledgebase::lang.company')) !!}
                         {!! $errors->first('company', '<spam class="help-block">:message</spam>') !!}
                         {!! Form::text('company',null,['class' => 'form-control']) !!}
 
@@ -104,7 +104,7 @@
                     <div class="row">
                         <div class="col-xs-3 form-group {{ $errors->has('ext') ? 'has-error' : '' }}">
                             <!-- phone extensionn -->
-                            {!! Form::label('ext',Lang::get('lang.ext')) !!}
+                            {!! Form::label('ext',Lang::get('knowledgebase::lang.ext')) !!}
                             {!! $errors->first('ext', '<spam class="help-block">:message</spam>') !!}
                             {!! Form::text('ext',null,['class' => 'form-control']) !!}
 
@@ -112,7 +112,7 @@
 
                         <div class="col-xs-9 form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
                             <!-- phone number -->
-                            {!! Form::label('phone_number',Lang::get('lang.phone')) !!}
+                            {!! Form::label('phone_number',Lang::get('knowledgebase::lang.phone')) !!}
                             {!! $errors->first('phone_number', '<spam class="help-block">:message</spam>') !!}
                             {!! Form::text('phone_number',null,['class' => 'form-control']) !!}
 
@@ -121,7 +121,7 @@
 
                     <div class="form-group {{ $errors->has('mobile') ? 'has-error' : '' }}">
                         <!-- mobile -->
-                        {!! Form::label('mobile',Lang::get('lang.mobile')) !!}
+                        {!! Form::label('mobile',Lang::get('knowledgebase::lang.mobile')) !!}
                         {!! $errors->first('mobile', '<spam class="help-block">:message</spam>') !!}
                         {!! Form::text('mobile',null,['class' => 'form-control']) !!}
 
@@ -131,7 +131,7 @@
                     <div class="form-group {{ $errors->has('profile_pic') ? 'has-error' : '' }}" >
                         <!-- profile pic -->
                         <div class="btn btn-default btn-file">
-                            {!! Form::label('profile_pic',Lang::get('lang.profilepicture')) !!}
+                            {!! Form::label('profile_pic',Lang::get('knowledgebase::lang.profilepicture')) !!}
                             {!! $errors->first('profile_pic', '<spam class="help-block">:message</spam>') !!}
                             {!! Form::file('profile_pic') !!}
                         </div>
@@ -151,7 +151,7 @@
 
                 <div class="content-header">
 
-                    <h4>Change Password	{!! Form::submit(Lang::get('lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}</h4>
+                    <h4>Change Password	{!! Form::submit(Lang::get('knowledgebase::lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}</h4>
 
                 </div>
 
@@ -175,21 +175,21 @@
                     @endif
                     <!-- old password -->
                     <div class="form-group has-feedback {{ $errors->has('old_password') ? 'has-error' : '' }}">
-                        {!! Form::label('old_password',Lang::get('lang.oldpassword')) !!}
+                        {!! Form::label('old_password',Lang::get('knowledgebase::lang.oldpassword')) !!}
                         {!! Form::password('old_password',['placeholder'=>'Password','class' => 'form-control']) !!}
                         {!! $errors->first('old_password', '<spam class="help-block">:message</spam>') !!}
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <!-- new password -->
                     <div class="form-group has-feedback {{ $errors->has('new_password') ? 'has-error' : '' }}">
-                        {!! Form::label('new_password',Lang::get('lang.newpassword')) !!}
+                        {!! Form::label('new_password',Lang::get('knowledgebase::lang.newpassword')) !!}
                         {!! Form::password('new_password',['placeholder'=>'New Password','class' => 'form-control']) !!}
                         {!! $errors->first('new_password', '<spam class="help-block">:message</spam>') !!}
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <!-- cofirm password -->
                     <div class="form-group has-feedback {{ $errors->has('confirmpassword') ? 'has-error' : '' }}">
-                        {!! Form::label('confirm_password',Lang::get('lang.confirm_password')) !!}
+                        {!! Form::label('confirm_password',Lang::get('knowledgebase::lang.confirm_password')) !!}
                         {!! Form::password('confirm_password',['placeholder'=>'Confirm Password','class' => 'form-control']) !!}
                         {!! $errors->first('confirm_password', '<spam class="help-block">:message</spam>') !!}
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>

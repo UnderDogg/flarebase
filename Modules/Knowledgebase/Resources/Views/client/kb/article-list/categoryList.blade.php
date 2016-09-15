@@ -12,10 +12,10 @@
 <div class="site-hero clearfix">
 
     <ol class="breadcrumb breadcrumb-custom">
-        <li class="text">{!! Lang::get('lang.you_are_here')!!}: </li>
-        <li>{!! Lang::get('lang.home') !!}</li>
-        <li>{!! Lang::get('lang.knowledge_base') !!}</li>
-        <li class="active">{!! Lang::get('lang.category') !!}</li>
+        <li class="text">{!! Lang::get('knowledgebase::lang.you_are_here')!!}: </li>
+        <li>{!! Lang::get('knowledgebase::lang.home') !!}</li>
+        <li>{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</li>
+        <li class="active">{!! Lang::get('knowledgebase::lang.category') !!}</li>
     </ol>
 </div>
 @stop
@@ -25,7 +25,7 @@
 <!-- Start of Page Container -->
 <div class="row home-listing-area">
     <div class="span8">
-        <h2>{!! Lang::get('lang.categories') !!}</h2>
+        <h2>{!! Lang::get('knowledgebase::lang.categories') !!}</h2>
     </div>
 </div>
 
@@ -59,7 +59,7 @@
                             <?php $str = $arti->description ?>
                             <?php $excerpt = App\Http\Controllers\Client\kb\UserController::getExcerpt($str, $startPos = 0, $maxLength = 55) ?>
 
-                            <p>{!!$excerpt!!} <a class="readmore-link" href="{{url('show/'.$arti->slug)}}">{!! Lang::get('lang.read_more') !!}</a></p>
+                            <p>{!!$excerpt!!} <a class="readmore-link" href="{{url('show/'.$arti->slug)}}">{!! Lang::get('knowledgebase::lang.read_more') !!}</a></p>
                     </li>
                     @endforeach
                 <?php }

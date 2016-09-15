@@ -83,7 +83,7 @@ class PageController extends Controller
                         /* add column Actions */
                         /* there are action buttons and modal popup to delete a data column */
                         ->addColumn('Actions', function ($model) {
-                            return '<span  data-toggle="modal" data-target="#deletepage'.$model->id.'"><a href="#" ><button class="btn btn-danger btn-xs"></a> '.\Lang::get('lang.delete').'</button></span>&nbsp;<a href=page/'.$model->slug.'/edit class="btn btn-warning btn-xs">'.\Lang::get('lang.edit').'</a>&nbsp;<a href=pages/'.$model->slug.' class="btn btn-primary btn-xs">'.\Lang::get('lang.view').'</a>
+                            return '<span  data-toggle="modal" data-target="#deletepage'.$model->id.'"><a href="#" ><button class="btn btn-danger btn-xs"></a> '.\Lang::get('knowledgebase::lang.delete').'</button></span>&nbsp;<a href=page/'.$model->slug.'/edit class="btn btn-warning btn-xs">'.\Lang::get('knowledgebase::lang.edit').'</a>&nbsp;<a href=pages/'.$model->slug.' class="btn btn-primary btn-xs">'.\Lang::get('knowledgebase::lang.view').'</a>
 				<div class="modal fade" id="deletepage'.$model->id.'">
         			<div class="modal-dialog">
             			<div class="modal-content">

@@ -3,7 +3,7 @@
 <div class="site-hero clearfix">
 
     <ol class="breadcrumb breadcrumb-custom">
-        <li class="text">{!! Lang::get('lang.you_are_here') !!}: </li>
+        <li class="text">{!! Lang::get('knowledgebase::lang.you_are_here') !!}: </li>
         <li class="active">{{$page->name}}</li>
 
     </ol>

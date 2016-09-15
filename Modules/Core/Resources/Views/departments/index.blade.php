@@ -5,7 +5,7 @@
   <div class="col-lg-12 departments">
 
     <table class="table table-hover table-bordered table-striped">
-      <h3>All Departments</h3>
+      <h3>Allos Departmentos</h3>
       <thead>
       <thead>
       <tr>

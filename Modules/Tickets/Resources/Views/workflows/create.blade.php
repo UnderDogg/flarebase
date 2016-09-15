@@ -17,15 +17,15 @@ class="active"
 
 <!-- header -->
 @section('PageHeader')
-<h1>{!! Lang::get('lang.create_workflow') !!}</h1>
+<h1>{!! Lang::get('tickets::lang.create_workflow') !!}</h1>
 @stop
 <!-- /header -->
 <!-- breadcrumbs -->
 @section('breadcrumbs')
 <ol class="breadcrumb">
-    <li><a href="{!! URL::route('setting') !!}"><i class="fa fa-dashboard"></i> {!! Lang::get('lang.home') !!}</a></li>
-    <li><a href="{!! URL::route('workflow') !!}">{!! Lang::get('lang.ticket_workflow') !!}</a></li>
-    <li class="active"><a href="{!! URL::route('workflow.create') !!}">{!! Lang::get('lang.create_workflow') !!}</a></li>
+    <li><a href="{!! URL::route('setting') !!}"><i class="fa fa-dashboard"></i> {!! Lang::get('tickets::lang.home') !!}</a></li>
+    <li><a href="{!! URL::route('workflow') !!}">{!! Lang::get('tickets::lang.ticket_workflow') !!}</a></li>
+    <li class="active"><a href="{!! URL::route('workflow.create') !!}">{!! Lang::get('tickets::lang.create_workflow') !!}</a></li>
 </ol>
 @stop
 <!-- /breadcrumbs -->
@@ -77,13 +77,13 @@ class="active"
             </div>
             @endif
             <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-                <label for="inputName" class="col-sm-2 control-label">{!! Lang::get('lang.name') !!}</label>
+                <label for="inputName" class="col-sm-2 control-label">{!! Lang::get('tickets::lang.name') !!}</label>
                 <div class="col-sm-6">
                     {!! Form::text('name',null,['class' => 'form-control', 'placeholder' => 'Name', 'id' => 'name']) !!}
                 </div>
             </div>
             <div class="form-group {!! $errors->has('status') ? 'has-error' : '' !!}">
-                <label class="col-sm-2 control-label"> {!! Lang::get('lang.status') !!}</label>
+                <label class="col-sm-2 control-label"> {!! Lang::get('tickets::lang.status') !!}</label>
                 <div class="col-sm-6">
                     <input type="radio" id="inputEmail2" name="status" value="1" >&nbsp;&nbsp;<label class="control-label" for="inputEmail2">Active</label>&nbsp;&nbsp;
                     <input type="radio" id="inputEmail1" name="status" value="0" checked>&nbsp;&nbsp;<label class="control-label" for="inputEmail1">Inactive</label>&nbsp;&nbsp;
@@ -91,14 +91,14 @@ class="active"
             </div>
             <div class="form-group {!! $errors->has('execution_order') ? 'has-error' : '' !!}">
                 <div>
-                    <label for="Exceution" class="col-sm-2 control-label">{!! Lang::get('lang.exceution_order') !!}</label>
+                    <label for="Exceution" class="col-sm-2 control-label">{!! Lang::get('tickets::lang.exceution_order') !!}</label>
                     <div class="col-sm-6">
                         {!! Form::input('number', 'execution_order',null,['class' => 'form-control', 'placeholder' => 'Exceution Order', 'id' => 'execution_order', 'min' => '0']) !!}
                     </div>
                 </div>
             </div>
             <div class="form-group {!! $errors->has('target_channel') ? 'has-error' : '' !!}">
-                <label class="col-sm-2 control-label">{!! Lang::get('lang.target_channel') !!}</label>
+                <label class="col-sm-2 control-label">{!! Lang::get('tickets::lang.target_channel') !!}</label>
                 <div class="col-sm-6">
                     {!! Form::select('target_channel', [''=> '-- Select a Channel --', 'A-0' => 'Any', 'A-1' => 'Web Forms', 'A-4' => 'API Calls', 'A-2' => 'Emails'], null,['class' => 'form-control', 'id' => 'execution_order']) !!}
                 </div>
@@ -110,11 +110,11 @@ class="active"
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#open" data-toggle="tab">{!! Lang::get('lang.workflow_rules') !!}</a>
+                    <li class="active"><a href="#open" data-toggle="tab">{!! Lang::get('tickets::lang.workflow_rules') !!}</a>
                     </li>
-                    <li><a href="#close" data-toggle="tab">{!! Lang::get('lang.workflow_action') !!}</a>
+                    <li><a href="#close" data-toggle="tab">{!! Lang::get('tickets::lang.workflow_action') !!}</a>
                     </li>
-                    <li><a href="#delect" data-toggle="tab">{!! Lang::get('lang.internal_notes') !!}</a>
+                    <li><a href="#delect" data-toggle="tab">{!! Lang::get('tickets::lang.internal_notes') !!}</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -126,10 +126,10 @@ class="active"
                                     <table  class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <td>{!! Lang::get('lang.rules') !!}</td>
-                                                <td>{!! Lang::get('lang.condition') !!}</td>
-                                                <td>{!! Lang::get('lang.statement') !!}</td>
-                                                <td>{!! Lang::get('lang.action') !!}</td>
+                                                <td>{!! Lang::get('tickets::lang.rules') !!}</td>
+                                                <td>{!! Lang::get('tickets::lang.condition') !!}</td>
+                                                <td>{!! Lang::get('tickets::lang.statement') !!}</td>
+                                                <td>{!! Lang::get('tickets::lang.action') !!}</td>
                                             </tr>
                                         </thead>
                                         <tbody class="button1">
@@ -162,7 +162,7 @@ class="active"
                                                 <td style="text-align: center">
                                                     <div class="tools"> 
                                                         <span class="btnRemove1" data-toggle="modal" data-target="#">
-                                                            <a data-toggle="tooltip" data-placement="top" title="{!! Lang::get('lang.delete') !!}" onclick="document.getElementById('firstdata').innerHTML = ''">
+                                                            <a data-toggle="tooltip" data-placement="top" title="{!! Lang::get('tickets::lang.delete') !!}" onclick="document.getElementById('firstdata').innerHTML = ''">
                                                                 <i class="fa fa-trash-o"></i>
                                                             </a>
                                                         </span> 
@@ -173,7 +173,7 @@ class="active"
                                     </table>
                                     <div class="row" style="padding: 10px 15px 0px">
                                         <div class="pull-right" >
-                                            <a class="btn btn-primary btnAdd1">{!! Lang::get('lang.add') !!}</a>
+                                            <a class="btn btn-primary btnAdd1">{!! Lang::get('tickets::lang.add') !!}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +190,9 @@ class="active"
                                 <table  class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <td>{!! Lang::get('lang.condition') !!}</td>
-                                            <td>{!! Lang::get('lang.rules') !!}</td>
-                                            <td>{!! Lang::get('lang.action') !!}</td>
+                                            <td>{!! Lang::get('tickets::lang.condition') !!}</td>
+                                            <td>{!! Lang::get('tickets::lang.rules') !!}</td>
+                                            <td>{!! Lang::get('tickets::lang.action') !!}</td>
                                         </tr>
                                     </thead>
                                     <tbody class="buttons">
@@ -217,7 +217,7 @@ class="active"
                                             <td style="text-align: center">
                                                 <div class="tools"> 
                                                     <span class="btnRemove" data-toggle="modal" data-target="#">
-                                                        <a data-toggle="tooltip" data-placement="top" title="{!! Lang::get('lang.delete') !!}" onclick="document.getElementById('firstdata1').innerHTML = ''">
+                                                        <a data-toggle="tooltip" data-placement="top" title="{!! Lang::get('tickets::lang.delete') !!}" onclick="document.getElementById('firstdata1').innerHTML = ''">
                                                             <i class="fa fa-trash-o"></i>
                                                         </a>
                                                     </span> 
@@ -228,7 +228,7 @@ class="active"
                                 </table>
                                 <div class="row" style="padding: 10px 15px 0px">
                                     <div class="pull-right">
-                                        <a class="btn btn-primary btnAdd">{!! Lang::get('lang.add') !!}</a>                                            
+                                        <a class="btn btn-primary btnAdd">{!! Lang::get('tickets::lang.add') !!}</a>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +247,7 @@ class="active"
                 </div>
                 <!-- /.tab-content -->
                 <div class="box-footer">
-                    <input type="submit" class="btn btn-primary" value="{!! Lang::get('lang.submit') !!}">
+                    <input type="submit" class="btn btn-primary" value="{!! Lang::get('tickets::lang.submit') !!}">
                 </div>
             </div>
             <!-- /.nav-tabs-custom -->

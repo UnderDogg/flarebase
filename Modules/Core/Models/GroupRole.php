@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\helpdesk\Agent;
+namespace Modules\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

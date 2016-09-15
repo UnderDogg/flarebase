@@ -32,8 +32,8 @@ class="active"
 <div class="col-md-12">
 <div class="box box-primary">
 <div class="box-header">
-  <h2 class="box-title">{{Lang::get('lang.template_set')}}</h2>
-<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#createtemp">{{Lang::get('lang.create_template')}}</button> 
+  <h2 class="box-title">{{Lang::get('email::lang.template_set')}}</h2>
+<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#createtemp">{{Lang::get('email::lang.create_template')}}</button>
                                    
                                   <div class="modal fade" id="createtemp">
                                        <div class="modal-dialog">
@@ -41,7 +41,7 @@ class="active"
                                   {!! Form::open(['route'=>'template.createnew']) !!}
                     <div class="modal-header">
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">{{Lang::get('lang.create_template')}}</h4>
+            <h4 class="modal-title">{{Lang::get('email::lang.create_template')}}</h4>
         </div>
                      <div class="modal-body">
                               <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
@@ -89,9 +89,9 @@ class="active"
 
         <table id="example1" class="table table-bordered table-striped">
   <tr>
-    <th width="100px">{{Lang::get('lang.name')}}</th>
-                <th width="100px">{{Lang::get('lang.status')}}</th>
-                <th width="100px">{{Lang::get('lang.action')}}</th>
+    <th width="100px">{{Lang::get('email::lang.name')}}</th>
+                <th width="100px">{{Lang::get('email::lang.status')}}</th>
+                <th width="100px">{{Lang::get('email::lang.action')}}</th>
   </tr>
   <!-- Foreach @var templates as @var template -->
         

@@ -50,7 +50,7 @@ class="active"
 	<div class="box box-primary">
 	<div class="box-header">
 
-	<h4 class="box-title">{{Lang::get('lang.diagnostics')}}</h4>	{!! Form::submit(Lang::get('lang.send'),['class'=>'form-group btn btn-primary pull-right'])!!}
+	<h4 class="box-title">{{Lang::get('email::lang.diagnostics')}}</h4>	{!! Form::submit(Lang::get('email::lang.send'),['class'=>'form-group btn btn-primary pull-right'])!!}
 
 	</div>
 
@@ -58,7 +58,7 @@ class="active"
 
 			<!-- To : define To Address : Text form : Required -->
 		<div class="form-group {{ $errors->has('to') ? 'has-error' : '' }}">
-			{!! Form::label('to',Lang::get('lang.to')) !!}
+			{!! Form::label('to',Lang::get('email::lang.to')) !!}
 			{!! $errors->first('to', '<spam class="help-block">:message</spam>') !!}
 			{!! Form::text('to',null,['class' => 'form-control']) !!}
 		</div>	

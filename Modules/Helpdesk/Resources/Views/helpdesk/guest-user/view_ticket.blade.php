@@ -1,6 +1,6 @@
 @extends('themes.default1.client.layout.client')
-<?php $user = App\User::where('id', '=', $tickets->user_id)->first();?>
-<?php $assignedto = App\User::where('id', '=', $tickets->assigned_to)->first();?>
+<?php $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first();?>
+<?php $assignedto = Modules\Core\Models\Staff::where('id', '=', $tickets->assigned_to)->first();?>
 
 @section('sidebar')
     <li class="header">TICKET INFORMATION</li>
@@ -165,11 +165,11 @@
                         </div>
                         <div class="col-md-6">
                             <?php
-                            $user_phone = App\User::where('mobile', '=', $thread->user_id)->first();
+                            $user_phone = Modules\Core\Models\Staff::where('mobile', '=', $thread->user_id)->first();
 
                             $TicketData = App\Model\Ticket\Ticket_Thread::where('ticket_id', '=', $thread->ticket_id)->max('id');
                             $TicketDatarow = App\Model\Ticket\Ticket_Thread::where('id', '=', $TicketData)->first();
-                            $LastResponse = App\User::where('id', '=', $TicketDatarow->user_id)->first();
+                            $LastResponse = Modules\Core\Models\Staff::where('id', '=', $TicketDatarow->user_id)->first();
                             if ($LastResponse->role == "user") {
                                 $rep = "#F39C12";
                                 $username = $LastResponse->user_name;
@@ -473,7 +473,7 @@
                                     </span> <?php
                                 $data = $ConvDate[0];
                                 }
-                                $role = App\User::where('id', '=', $conversation->user_id)->first();
+                                $role = Modules\Core\Models\Staff::where('id', '=', $conversation->user_id)->first();
                                 ?>
                             </li>
                             <li>
@@ -720,7 +720,7 @@
                     <div class="modal-body">
                         <div class="form-group has-feedback">
                             <!-- <input type="text" class="form-control" id="search" name="search" placeholder="Search Users"\> -->
-                            <?php $users = App\User::where('role', '=', 'user')->get();?>
+                            <?php $users = Modules\Core\Models\Staff::where('role', '=', 'user')->get();?>
                             Add another Owner
                             <select name="SelectOwner" class="form-control">
                                 @foreach($users as $user)
@@ -736,7 +736,7 @@
                         <div class="row">
                             <div class="col-md-2"><span class="glyphicon glyphicon-user fa-5x"></span></div>
                             <div class="col-md-10">
-                                <?php $user = App\User::where('id', '=', $tickets->user_id)->first();?>
+                                <?php $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first();?>
 
                                 <b>User Details</b><br/>
                                 {!! $user->user_name !!}<br/>{!! $user->email !!}<br/>
@@ -772,7 +772,7 @@
                         <p>Whome do you want to assign ticket?</p>
 
                         <select id="asssign" class="form-control" name="user">
-                            <?php $assign = App\User::where('role', '=', 'agent')->get();?>
+                            <?php $assign = Modules\Core\Models\Staff::where('role', '=', 'agent')->get();?>
                             @foreach($assign as $user)
                                 <option value="{{$user->email}}">{{$user->user_name}}</option>
                             @endforeach

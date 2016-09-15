@@ -6,6 +6,13 @@ Route::get('staffdata', [
     //'middleware' => 'can:mailboxes.mailboxes.index'
 ]);
 
+Route::get('teamsdata', [
+    'as' => 'teams.data',
+    'uses' => 'TeamsController@anyData',
+    //'middleware' => 'can:mailboxes.mailboxes.index'
+]);
+
+
 
 
 
@@ -83,15 +90,15 @@ Route::group(['prefix' => '/adminpanel'], function () {
     //Routes for  delete language package
     Route::get('delete-language/{lang}', ['as' => 'lang.delete', 'uses' => 'LanguagesController@deleteLanguage']);
 
-
-
-
-
-
-
     Route::resource('staff', 'StaffController');
     Route::get('/staff/manage', ['as' => 'adminstaff', 'uses' => 'StaffController@index']);
     Route::get('staff', ['as' => 'adminstaff', 'uses' => 'StaffController@index']);
+
+
+
+    Route::resource('teams', 'TeamsController');
+    Route::get('/teams/manage', ['as' => 'adminteams', 'uses' => 'TeamsController@index']);
+    Route::get('teams', ['as' => 'adminteams', 'uses' => 'TeamsController@index']);
 
 
 

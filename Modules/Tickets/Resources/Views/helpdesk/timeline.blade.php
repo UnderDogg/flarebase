@@ -9,42 +9,42 @@ active
 @stop
 
 <?php
-    $user = App\User::where('id', '=', $tickets->user_id)->first();
-    $assignedto = App\User::where('id', '=', $tickets->assigned_to)->first();
+    $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first();
+    $assignedto = Modules\Core\Models\Staff::where('id', '=', $tickets->assigned_to)->first();
     $agent_group = Auth::user()->assign_group;
     $group = App\Model\helpdesk\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 ?>
 
 @section('sidebar')
 
-<li class="header">{!! Lang::get('lang.Ticket_Information') !!} </li>
+<li class="header">{!! Lang::get('tickets::lang.Ticket_Information') !!} </li>
 <li>
     <a href="">
-        <span>{!! Lang::get('lang.Ticket_Id') !!} </span>
+        <span>{!! Lang::get('tickets::lang.Ticket_Id') !!} </span>
         </br><b>#{{$tickets->ticket_number}}</b>
     </a>
 </li>
 <li>
     <a href="{!! URL('user/'.$user->id) !!}">
-        <span>{!! Lang::get('lang.User') !!} </span>
+        <span>{!! Lang::get('tickets::lang.User') !!} </span>
         </br><i class="fa fa-user"></i> <b>{{$user->user_name}}</b>
     </a>
 </li>
 <li >
         @if($tickets->assigned_to > 0)
         <a href="{!! URL('user/'.$tickets->assigned_to) !!}">
-        <span>{!! Lang::get('lang.Assigned_To') !!} </span>
+        <span>{!! Lang::get('tickets::lang.Assigned_To') !!} </span>
         </br> {{$assignedto->first_name}}
         </a>
         @else
         <a href="">
-        <span>{!! Lang::get('lang.Unassigned') !!} </span>
+        <span>{!! Lang::get('tickets::lang.Unassigned') !!} </span>
         </a>
         @endif
 </li>
 
 <li  class="header">
-    {!! Lang::get('lang.ticket_ratings') !!}
+    {!! Lang::get('tickets::lang.ticket_ratings') !!}
 </li>
 <li> 
     <a href="#">
@@ -83,46 +83,46 @@ active
             Event::fire(new \App\Events\TicketBoxHeader($user->id));
 
             if ($group->can_edit_ticket == 1) {?>
-            <button type="button" class="btn btn-default" id="Edit_Ticket" data-toggle="modal" data-target="#Edit"><i class="fa fa-edit" style="color:green;"> </i> {!! Lang::get('lang.edit') !!}</button>
+            <button type="button" class="btn btn-default" id="Edit_Ticket" data-toggle="modal" data-target="#Edit"><i class="fa fa-edit" style="color:green;"> </i> {!! Lang::get('tickets::lang.edit') !!}</button>
             <?php } ?>
 
             <?php if ($group->can_assign_ticket == 1) {?>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#{{$tickets->id}}assign"><i class="fa fa-hand-o-right" style="color:orange;"> </i> {!! Lang::get('lang.assign') !!}</button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#{{$tickets->id}}assign"><i class="fa fa-hand-o-right" style="color:orange;"> </i> {!! Lang::get('tickets::lang.assign') !!}</button>
             <?php } ?>
 
             @if($tickets->assigned_to == Auth::user()->id)
-            <button type="button" id="surrender_button" class="btn btn-default" data-toggle="modal" data-target="#surrender"> <i class="fa fa-arrows-alt" style="color:red;"> </i>  {!! Lang::get('lang.surrender') !!}</button>
+            <button type="button" id="surrender_button" class="btn btn-default" data-toggle="modal" data-target="#surrender"> <i class="fa fa-arrows-alt" style="color:red;"> </i>  {!! Lang::get('tickets::lang.surrender') !!}</button>
             @endif
 
-            <a href="{{url('ticket/print/'.$tickets->id)}}" target="_blank" class="btn btn-primary"><i class="fa fa-print" > </i> {!! Lang::get('lang.generate_pdf') !!}</a>
+            <a href="{{url('ticket/print/'.$tickets->id)}}" target="_blank" class="btn btn-primary"><i class="fa fa-print" > </i> {!! Lang::get('tickets::lang.generate_pdf') !!}</a>
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="d1"><i class="fa fa-exchange" style="color:teal;" id="hidespin"> </i><i class="fa fa-spinner fa-spin" style="color:teal; display:none;" id="spin"></i>
-                    {!! Lang::get('lang.change_status') !!} <span class="caret"></span>
+                    {!! Lang::get('tickets::lang.change_status') !!} <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="open"><a href="#"><i class="fa fa-folder-open-o" style="color:red;"> </i>{!! Lang::get('lang.open') !!}</a></li>
+                    <li id="open"><a href="#"><i class="fa fa-folder-open-o" style="color:red;"> </i>{!! Lang::get('tickets::lang.open') !!}</a></li>
                     <?php if ($group->can_edit_ticket == 1) {?>
-                    <li id="close"><a href="#"><i class="fa fa-check" style="color:green;"> </i>{!! Lang::get('lang.close') !!}</a></li>
+                    <li id="close"><a href="#"><i class="fa fa-check" style="color:green;"> </i>{!! Lang::get('tickets::lang.close') !!}</a></li>
                     <?php } ?>
-                    <li id="resolved"><a href="#"><i class="fa fa-check-circle-o " style="color:green;"> </i>{!! Lang::get('lang.resolved') !!} </a></li>
+                    <li id="resolved"><a href="#"><i class="fa fa-check-circle-o " style="color:green;"> </i>{!! Lang::get('tickets::lang.resolved') !!} </a></li>
                 </ul>
             </div>
             <?php if ($group->can_delete_ticket == 1 || $group->can_ban_email == 1) {?>
             <div id="more-option" class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="d2"><i class="fa fa-cogs" style="color:teal;"> </i>
-                    {!! Lang::get('lang.more') !!} <span class="caret"></span>
+                    {!! Lang::get('tickets::lang.more') !!} <span class="caret"></span>
                 </button>
                 <ul  class="dropdown-menu pull-right">
                     <li data-toggle="modal" data-target="#ChangeOwner"><a href="#"><i class="fa fa-users" style="color:green;"> </i>Change Owner</a></li>
                     @if($tickets->status != 3 && $tickets->status != 2)
-                     <li data-toggle="modal" data-target="#MergeTickets"><a href="#"><i class="fa fa-code-fork" style="color:teal;"> </i>{!! Lang::get('lang.merge-ticket') !!}</a></li>
+                     <li data-toggle="modal" data-target="#MergeTickets"><a href="#"><i class="fa fa-code-fork" style="color:teal;"> </i>{!! Lang::get('tickets::lang.merge-ticket') !!}</a></li>
                      @endif
                     <?php if ($group->can_delete_ticket == 1) {?>
-                    <li id="delete"><a href="#"><i class="fa fa-trash-o" style="color:red;"> </i>{!! Lang::get('lang.delete_ticket') !!}</a></li>
+                    <li id="delete"><a href="#"><i class="fa fa-trash-o" style="color:red;"> </i>{!! Lang::get('tickets::lang.delete_ticket') !!}</a></li>
                     <?php }
     ?>
                     <?php if ($group->can_ban_email == 1) {?>
-                    <li data-toggle="modal" data-target="#banemail"><a href="#"><i class="fa fa-ban" style="color:red;"></i>{!! Lang::get('lang.ban_email') !!}</a></li>
+                    <li data-toggle="modal" data-target="#banemail"><a href="#"><i class="fa fa-ban" style="color:red;"></i>{!! Lang::get('tickets::lang.ban_email') !!}</a></li>
                     <?php }
     ?>          </ul>
             </div>
@@ -160,13 +160,13 @@ $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=',
 $sla = $tickets->sla;
 $SlaPlan = App\Model\helpdesk\Manage\Sla_plan::where('id', '=', $sla)->first();
 ?>
-                                <b>{!! Lang::get('lang.sla_plan') !!}: {{$SlaPlan->grace_period}} </b>
+                                <b>{!! Lang::get('tickets::lang.sla_plan') !!}: {{$SlaPlan->grace_period}} </b>
                             </div>
                             <div class="col-md-3">
-                                <b>{!! Lang::get('lang.created_date') !!}: </b> {{ UTC::usertimezone($tickets->created_at) }}
+                                <b>{!! Lang::get('tickets::lang.created_date') !!}: </b> {{ UTC::usertimezone($tickets->created_at) }}
                             </div>
                             <div class="col-md-3">
-                                <b>{!! Lang::get('lang.due_date') !!}: </b>
+                                <b>{!! Lang::get('tickets::lang.due_date') !!}: </b>
                                 <?php
 $time = $tickets->created_at;
 $time = date_create($time);
@@ -179,7 +179,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                                 @foreach($response as $last)
                                 <?php $ResponseDate = $last->created_at;?>
                                 @endforeach
-                                <b>{!! Lang::get('lang.last_response') !!}: </b> {{ UTC::usertimezone($ResponseDate) }}
+                                <b>{!! Lang::get('tickets::lang.last_response') !!}: </b> {{ UTC::usertimezone($ResponseDate) }}
                             </div>
                         </div>
                     </div>
@@ -195,21 +195,21 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                 <div class="col-md-6">
                     <table class="table table-hover">
                         <div id="refresh">
-                            <tr><td><b>{!! Lang::get('lang.status') !!}:</b></td>       <?php $status = App\Model\helpdesk\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first();?><td title="{{$status->properties}}">{{$status->name}}</td></tr>
-                            <tr><td><b>{!! Lang::get('lang.priority') !!}:</b></td>     <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();?><td title="{{$priority->priority_desc}}">{{$priority->priority_desc}}</td></tr>
-                            <tr><td><b>{!! Lang::get('lang.department') !!}:</b></td>   <?php $dept123 = App\Model\helpdesk\Agent\Department::where('id', '=', $tickets->dept_id)->first();?><td title="{{$dept123->name}}">{{$dept123->name}}</td></tr>
-                            <tr><td><b>{!! Lang::get('lang.email') !!}:</b></td>        <td>{{$user->email}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.status') !!}:</b></td>       <?php $status = App\Model\helpdesk\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first();?><td title="{{$status->properties}}">{{$status->name}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.priority') !!}:</b></td>     <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();?><td title="{{$priority->priority_desc}}">{{$priority->priority_desc}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.department') !!}:</b></td>   <?php $dept123 = App\Model\helpdesk\Agent\Department::where('id', '=', $tickets->dept_id)->first();?><td title="{{$dept123->name}}">{{$dept123->name}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.email') !!}:</b></td>        <td>{{$user->email}}</td></tr>
                             @if($user->ban > 0)  <tr><td style="color:orange;"><i class="fa fa-warning"></i><b>
-                            {!!  Lang::get('lang.this_ticket_is_under_banned_user')!!}</td><td></td></tr>@endif
+                            {!!  Lang::get('tickets::lang.this_ticket_is_under_banned_user')!!}</td><td></td></tr>@endif
                         </div>
                     </table>
                 </div>
                 <div class="col-md-6">
 <?php 
-    $user_phone = App\User::where('mobile','=',$thread->user_id)->first();
+    $user_phone = Modules\Core\Models\Staff::where('mobile','=',$thread->user_id)->first();
     $TicketData = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $thread->ticket_id)->max('id');
                         $TicketDatarow = App\Model\helpdesk\Ticket\Ticket_Thread::where('id', '=', $TicketData)->first();
-                        $LastResponse = App\User::where('id', '=', $TicketDatarow->user_id)->first(); 
+                        $LastResponse = Modules\Core\Models\Staff::where('id', '=', $TicketDatarow->user_id)->first();
                         if($LastResponse->role == "user") {
                             $rep = "#F39C12";
                             $username = $LastResponse->user_name;
@@ -230,10 +230,10 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
 
                             @if($user->phone_number !=null)<tr><td><b>Phone:</b></td>          <td>{{$user->phone_number}}</td></tr>@endif
                             @if($user->mobile !=null)<tr><td><b>Phone:</b></td>          <td>{{$user->ext . $user->phone_number}}</td></tr>@endif
-                            <tr><td><b>{!! Lang::get('lang.source') !!}:</b></td>         <td>{{$ticket_source}}</td></tr>
-                            <tr><td><b>{!! Lang::get('lang.help_topic') !!}:</b></td>     <?php $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id', '=', $tickets->help_topic_id)->first();?><td title="{{$help_topic->topic}}">{{$help_topic->topic}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.source') !!}:</b></td>         <td>{{$ticket_source}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.help_topic') !!}:</b></td>     <?php $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id', '=', $tickets->help_topic_id)->first();?><td title="{{$help_topic->topic}}">{{$help_topic->topic}}</td></tr>
                             <?php Event::fire(new App\Events\TicketDetailTable($TicketData)); ?>
-                            <tr><td><b>{!! Lang::get('lang.last_message') !!}:</b></td>   <td>{{$username}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.last_message') !!}:</b></td>   <td>{{$username}}</td></tr>
                             <?php Event::fire(new App\Events\TicketDetailTable($TicketData)); ?>
                         </div>
                     </table>
@@ -251,8 +251,8 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
     <div class='col-xs-12'>
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#General" data-toggle="tab" style="color:#27C116;" id="aa"><i class="fa fa-reply-all"> </i> {!! Lang::get('lang.reply') !!}</a></li>
-                <li><a href="#Internal" data-toggle="tab" style="color:#0495FF;" id="bb"><i class="fa fa-file-text"> </i> {!! Lang::get('lang.internal_notes') !!}</a></li>
+                <li class="active"><a href="#General" data-toggle="tab" style="color:#27C116;" id="aa"><i class="fa fa-reply-all"> </i> {!! Lang::get('tickets::lang.reply') !!}</a></li>
+                <li><a href="#Internal" data-toggle="tab" style="color:#0495FF;" id="bb"><i class="fa fa-file-text"> </i> {!! Lang::get('tickets::lang.internal_notes') !!}</a></li>
                 <!-- <li><a href="#Reply" data-toggle="tab" style="color:orange;"><i class="fa fa-mail-forward" > </i> Forward</a></li> -->
             </ul>
             <div class="tab-content">
@@ -296,18 +296,18 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                                 <input type="hidden" name="ticket_ID" value="{{$tickets->id}}">
                                 <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                     <div class="col-md-2">
-                                        {!! Form::label('To', Lang::get('lang.to').':') !!}
+                                        {!! Form::label('To', Lang::get('tickets::lang.to').':') !!}
                                     </div>
                                     <div class="col-md-10">
                                         <div id="refreshTo">
                                             {!! Form::text('To',$user->email,['disabled'=>'disabled','id'=>'email','class'=>'form-control','style'=>'width:55%'])!!}
                                             {!! $errors->first('To', '<spam class="help-block text-red">:message</spam>') !!}
-                                            <a href="#" data-toggle="modal" data-target="#addccc"> {!! Lang::get('lang.add_cc') !!} </a>
+                                            <a href="#" data-toggle="modal" data-target="#addccc"> {!! Lang::get('tickets::lang.add_cc') !!} </a>
                                             <div id="recepients">
                                             <?php $Collaborator =  App\Model\helpdesk\Ticket\Ticket_Collaborator::where('ticket_id', '=', $tickets->id)->get(); 
                                             $count_collaborator = count($Collaborator);?>
                                             @if($count_collaborator > 0)
-                                                <a href="#" data-toggle="modal" data-target="#surrender2">({!! $count_collaborator !!}) {!! Lang::get('lang.recepients') !!} </a>
+                                                <a href="#" data-toggle="modal" data-target="#surrender2">({!! $count_collaborator !!}) {!! Lang::get('tickets::lang.recepients') !!} </a>
                                             @endif
                                             </div>
                                         </div>
@@ -319,7 +319,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>{!! Lang::get('lang.response') !!}</label>
+                                    <label>{!! Lang::get('tickets::lang.response') !!}</label>
                                 </div>
                                 <div class="col-md-10">
                                     <select class="form-control" style="width:55%" id="select">
@@ -327,7 +327,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
 <?php 
 $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user()->id)->get();
 ?>                                                  
-                                        <option value="zzz">{!! Lang::get('lang.select_a_canned_response') !!}</option>
+                                        <option value="zzz">{!! Lang::get('tickets::lang.select_a_canned_response') !!}</option>
                                         @foreach($canneds as $canned)
                                             <option value="{!! $canned->id !!}" >{!! $canned->title !!}</option>
                                         @endforeach
@@ -341,7 +341,7 @@ $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user
                             <!-- reply content -->
                                 <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                     <div class="col-md-2">
-                                        {!! Form::label('Reply Content', Lang::get('lang.reply_content').':') !!}
+                                        {!! Form::label('Reply Content', Lang::get('tickets::lang.reply_content').':') !!}
                                     </div>
                                     <div class="col-md-10">
                                         <div id="newtextarea">
@@ -349,8 +349,8 @@ $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user
                                         </div>
                                         {!! $errors->first('reply_content', '<spam class="help-block text-red">:message</spam>') !!}
                                         <br/>
-                                        <div type="file" class="btn btn-default btn-file"><i class="fa fa-paperclip"> </i> {!! Lang::get('lang.attachment') !!}<input type="file" name="attachment[]" multiple/></div><br/>
-                                        {!! Lang::get('lang.max') !!}. 10MB
+                                        <div type="file" class="btn btn-default btn-file"><i class="fa fa-paperclip"> </i> {!! Lang::get('tickets::lang.attachment') !!}<input type="file" name="attachment[]" multiple/></div><br/>
+                                        {!! Lang::get('tickets::lang.max') !!}. 10MB
                                     </div>
                                 </div>
                             </div>
@@ -361,7 +361,7 @@ $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user
                                     <div class="col-md-2"></div>
                                     <div class="col-md-10">
                                         <div id="t5">
-                                            <button id="replybtn" type="submit" class="btn btn-primary"><i class="fa fa-check-square-o" style="color:white;"> </i> {!! Lang::get('lang.update') !!}</button>
+                                            <button id="replybtn" type="submit" class="btn btn-primary"><i class="fa fa-check-square-o" style="color:white;"> </i> {!! Lang::get('tickets::lang.update') !!}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -396,7 +396,7 @@ $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user
                                 <!-- internal note -->
                                     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                         <div class="col-md-2">
-                                            <label>{!! Lang::get('lang.internal_note') !!}:</label>
+                                            <label>{!! Lang::get('tickets::lang.internal_note') !!}:</label>
                                         </div>
                                         <div class="col-md-10">
                                             <div id="newtextarea1">
@@ -412,7 +412,7 @@ $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user
                                     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-10">
-                                            <button type="submit"  class="btn btn-primary"><i class="fa fa-check-square-o" style="color:white;"> </i> {!! Lang::get('lang.update') !!}</button>
+                                            <button type="submit"  class="btn btn-primary"><i class="fa fa-check-square-o" style="color:white;"> </i> {!! Lang::get('tickets::lang.update') !!}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -534,7 +534,7 @@ $ConvDate1 = $conversation->created_at;
                                     </span> <?php
 $data = $ConvDate[0];
     }
-    $role = App\User::where('id','=',$conversation->user_id)->first();
+    $role = Modules\Core\Models\Staff::where('id','=',$conversation->user_id)->first();
     ?>
                             </li>
                             <li>
@@ -750,18 +750,18 @@ $data = $ConvDate[0];
                 {!! Form::model($tickets->id, ['id'=>'form','method' => 'PATCH'] )!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidd en="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.edit') !!} <b>[#{!! $tickets->ticket_number !!}]</b>[{!! $user->user_name !!}]</h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.edit') !!} <b>[#{!! $tickets->ticket_number !!}]</b>[{!! $user->user_name !!}]</h4>
                 </div>
                 <div class="modal-body" id="hide">
                     <div class="form-group">
-                        <label>{!! Lang::get('lang.title') !!}</label>
+                        <label>{!! Lang::get('tickets::lang.title') !!}</label>
                         <input type="text" name="subject" class="form-control" value="{{$thread->title}}" >
                         <spam id="error-subject" style="display:none" class="help-block text-red">This is a required field</spam>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{!! Lang::get('lang.sla_plan') !!}</label>
+                                <label>{!! Lang::get('tickets::lang.sla_plan') !!}</label>
                                 <?php $sla_plans = App\Model\helpdesk\Manage\Sla_plan::all() ?>
                                 <select class="form-control" name="sla_paln">
                                 @foreach($sla_plans as $sla_plan)
@@ -773,7 +773,7 @@ $data = $ConvDate[0];
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{!! Lang::get('lang.help_topic') !!}</label>
+                                <label>{!! Lang::get('tickets::lang.help_topic') !!}</label>
                                 <?php $help_topics = App\Model\helpdesk\Manage\Help_topic::all() ?>
                                 <select class="form-control" name="help_topic">
                                 @foreach($help_topics as $helptopic)
@@ -785,7 +785,7 @@ $data = $ConvDate[0];
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{!! Lang::get('lang.ticket_source') !!}</label>
+                                <label>{!! Lang::get('tickets::lang.ticket_source') !!}</label>
                                 <?php $ticket_sources = App\Model\helpdesk\Ticket\Ticket_source::all() ?>
                                 <select class="form-control" name="ticket_source">
                                 @foreach($ticket_sources as $ticketsource)
@@ -800,7 +800,7 @@ $data = $ConvDate[0];
                         ?>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{!! Lang::get('lang.priority') !!}</label>
+                                <label>{!! Lang::get('tickets::lang.priority') !!}</label>
                                 <?php $ticket_prioritys = App\Model\helpdesk\Ticket\Ticket_Priority::all() ?>
                                 <select class="form-control" name="ticket_priority">
                                 @foreach($ticket_prioritys as $ticket_priority)
@@ -824,8 +824,8 @@ $data = $ConvDate[0];
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis">{!! Lang::get('lang.close') !!}</button>
-                    <input type="submit" class="btn btn-primary pull-right" value="{!! Lang::get('lang.update') !!}">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis">{!! Lang::get('tickets::lang.close') !!}</button>
+                    <input type="submit" class="btn btn-primary pull-right" value="{!! Lang::get('tickets::lang.update') !!}">
                 </div>
                 {!! Form::close() !!}
             </div><!-- /.modal-content -->
@@ -840,15 +840,15 @@ $data = $ConvDate[0];
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.ban_email') !!} </h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.ban_email') !!} </h4>
                 </div>
                 <div class="modal-body">
-                    {!! Lang::get('lang.are_you_sure_to_ban') !!} {!! $user->email !!}
+                    {!! Lang::get('tickets::lang.are_you_sure_to_ban') !!} {!! $user->email !!}
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis2">{!! Lang::get('lang.close') !!}</button>
-                    <button id="ban" type="button" class="btn btn-warning pull-right" >{!! Lang::get('lang.ban_email') !!}</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis2">{!! Lang::get('tickets::lang.close') !!}</button>
+                    <button id="ban" type="button" class="btn btn-warning pull-right" >{!! Lang::get('tickets::lang.ban_email') !!}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -862,12 +862,12 @@ $data = $ConvDate[0];
                 {!! Form::open(['id'=>'form4','method' => 'PATCH'] )!!}
                 <div class="modal-header">
                     <button type="button" class="close" id="close101" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.change_owner_for_ticket') !!} <b>#{!! $tickets->ticket_number !!}</b></h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.change_owner_for_ticket') !!} <b>#{!! $tickets->ticket_number !!}</b></h4>
                 </div>
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#ahah1" data-toggle="tab" style="color:green;" id="aa"><i class="fa fa-users"> </i> {!! Lang::get('lang.search_existing_users') !!}</a></li>
-                        <li><a href="#haha2" data-toggle="tab" style="color:orange;"><i class="fa fa-user-plus" > </i> {!! Lang::get('lang.add_new_user') !!}</a></li>
+                        <li class="active"><a href="#ahah1" data-toggle="tab" style="color:green;" id="aa"><i class="fa fa-users"> </i> {!! Lang::get('tickets::lang.search_existing_users') !!}</a></li>
+                        <li><a href="#haha2" data-toggle="tab" style="color:orange;"><i class="fa fa-user-plus" > </i> {!! Lang::get('tickets::lang.add_new_user') !!}</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="ahah1">
@@ -885,23 +885,23 @@ $data = $ConvDate[0];
                                 </div>
                             </div>
                             <div id="change_body">
-                                <?php $users = App\User::where('role', '=', 'user')->get();?>
+                                <?php $users = Modules\Core\Models\Staff::where('role', '=', 'user')->get();?>
                         
-                                {!! Lang::get('lang.add_another_owner') !!}
+                                {!! Lang::get('tickets::lang.add_another_owner') !!}
 
-                                <input type="text" class="form-control" id="tags2" name="email" placeholder="{!! Lang::get('lang.search_user') !!}"\>
+                                <input type="text" class="form-control" id="tags2" name="email" placeholder="{!! Lang::get('tickets::lang.search_user') !!}"\>
                                 <input type="hidden" name="ticket_id" value="{!! $tickets->id !!}">
                                 <input type="hidden" name="action" value="change-owner">
                                 <div class="row">
                                     <div class="col-md-2"><spam class="glyphicon glyphicon-user fa-5x"></spam></div>
                                     <div id="change-refresh" class="col-md-10">
-                                    <?php $user = App\User::where('id', '=', $tickets->user_id)->first();?>
+                                    <?php $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first();?>
 
-                                        <!-- <b>{!! Lang::get('lang.user_details') !!}User Details</b><br/> -->
+                                        <!-- <b>{!! Lang::get('tickets::lang.user_details') !!}User Details</b><br/> -->
                                         <b>Current owner</b><br/>
                                         {!! $user->user_name !!}<br/>{!! $user->email !!}<br/>
                                         @if($user->phone != null)
-                                            <b>{!! Lang::get('lang.contact_informations') !!}Contact Informations</b><br/>
+                                            <b>{!! Lang::get('tickets::lang.contact_informations') !!}Contact Informations</b><br/>
                                             {!! $user->phone !!}
                                         @endif
                                     </div>
@@ -910,9 +910,9 @@ $data = $ConvDate[0];
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis42">{!! Lang::get('lang.close') !!}</button>
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis42">{!! Lang::get('tickets::lang.close') !!}</button>
                             <!--<input type='checkbox' name='send-mail' class='icheckbox_flat-blue' value='".$ticket->id."'><span disabled class="btn btn-sm">Check to notify user</span></input>-->
-                            <button type="submit" class="btn btn-primary pull-right" id="submt2">{!! Lang::get('lang.update') !!}</button>
+                            <button type="submit" class="btn btn-primary pull-right" id="submt2">{!! Lang::get('tickets::lang.update') !!}</button>
                         </div>
                         {!! Form::close()!!}
                         </div><!--tab-pane active-->
@@ -923,7 +923,7 @@ $data = $ConvDate[0];
                             <div id="message-success422"></div>
                             </div>
                             <div class="modal-body" id="abc">
-                            <h4 class="modal-title pull-left">{!! Lang::get('lang.add_new_user') !!}</h4>            
+                            <h4 class="modal-title pull-left">{!! Lang::get('tickets::lang.add_new_user') !!}</h4>
                             <br/><br/>
                             <div id="here2"></div>
                             {!! Form::model($tickets->id, ['id'=>'change-add-owner','method' => 'PATCH'] )!!} 
@@ -940,11 +940,11 @@ $data = $ConvDate[0];
                                     <br/><br/><br/><br/>
                                 </div>
                                 <div id="add-change-body">
-                                    <input type="text" name="name" class="form-control" placeholder="{!! Lang::get('lang.name') !!}" required>
-                                    <input type="email" name="email" class="form-control" placeholder="{!! Lang::get('lang.e-mail') !!}" required> 
+                                    <input type="text" name="name" class="form-control" placeholder="{!! Lang::get('tickets::lang.name') !!}" required>
+                                    <input type="email" name="email" class="form-control" placeholder="{!! Lang::get('tickets::lang.e-mail') !!}" required>
                                     <input type="hidden" name="ticket_id" value="{!! $tickets->id !!}">
                                     <input type="hidden" name="action" value="change-add-owner">
-                                    <input type="submit" class="btn" value="{!! Lang::get('lang.submit') !!}">
+                                    <input type="submit" class="btn" value="{!! Lang::get('tickets::lang.submit') !!}">
                                 </div>
                             {!! Form::close() !!}
                             </div>
@@ -963,7 +963,7 @@ $data = $ConvDate[0];
                 {!! Form::open(['id'=>'form1','method' => 'PATCH'] )!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.assign') !!}</h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.assign') !!}</h4>
                 </div>
                 <div id="assign_alert" class="alert alert-success alert-dismissable" style="display:none;">
                     <button id="assign_dismiss" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -979,11 +979,11 @@ $data = $ConvDate[0];
                         </div>
                     </div>
                     <div id="assign_body">
-                        <p>{!! Lang::get('lang.whome_do_you_want_to_assign_ticket') !!}?</p>
+                        <p>{!! Lang::get('tickets::lang.whome_do_you_want_to_assign_ticket') !!}?</p>
 
                         <select id="asssign" class="form-control" name="assign_to">
 <?php   
-$assign = App\User::where('role', '!=', 'user')->get();
+$assign = Modules\Core\Models\Staff::where('role', '!=', 'user')->get();
 $count_assign = count($assign);
 $teams = App\Model\helpdesk\Agent\Teams::all();
 $count_teams = count($teams);
@@ -1002,8 +1002,8 @@ $count_teams = count($teams);
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis4">{!! Lang::get('lang.close') !!}</button>
-                    <button type="submit" class="btn btn-success pull-right" id="submt2">{!! Lang::get('lang.assign') !!}</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis4">{!! Lang::get('tickets::lang.close') !!}</button>
+                    <button type="submit" class="btn btn-success pull-right" id="submt2">{!! Lang::get('tickets::lang.assign') !!}</button>
                 </div>
                 {!! Form::close()!!}
             </div><!-- /.modal-content -->
@@ -1017,14 +1017,14 @@ $count_teams = count($teams);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.surrender') !!}</h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.surrender') !!}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{!! Lang::get('lang.are_you_sure_you_want_to_surrender_this_ticket') !!}?</p>
+                    <p>{!! Lang::get('tickets::lang.are_you_sure_you_want_to_surrender_this_ticket') !!}?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis6">{!! Lang::get('lang.close') !!}</button>
-                    <button type="button" class="btn btn-warning pull-right" id="Surrender">{!! Lang::get('lang.surrender') !!}</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis6">{!! Lang::get('tickets::lang.close') !!}</button>
+                    <button type="button" class="btn btn-warning pull-right" id="Surrender">{!! Lang::get('tickets::lang.surrender') !!}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -1036,17 +1036,17 @@ $count_teams = count($teams);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.add_collaborator') !!}</h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.add_collaborator') !!}</h4>
                 </div>
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#ahah" data-toggle="tab" style="color:green;" id="aa"><i class="fa fa-users"> </i> {!! Lang::get('lang.search_existing_users') !!}</a></li>
-                        <li><a href="#haha" data-toggle="tab" style="color:orange;"><i class="fa fa-user-plus" > </i> {!! Lang::get('lang.add_new_user') !!}</a></li>
+                        <li class="active"><a href="#ahah" data-toggle="tab" style="color:green;" id="aa"><i class="fa fa-users"> </i> {!! Lang::get('tickets::lang.search_existing_users') !!}</a></li>
+                        <li><a href="#haha" data-toggle="tab" style="color:orange;"><i class="fa fa-user-plus" > </i> {!! Lang::get('tickets::lang.add_new_user') !!}</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="ahah">
                             <div class="modal-body" id="def">
-                                <div class="callout callout-info" id="hide1234" ><i class="icon fa fa-info"> </i>&nbsp;&nbsp;&nbsp; {!! Lang::get('lang.search_existing_users_or_add_new_users') !!}</div>
+                                <div class="callout callout-info" id="hide1234" ><i class="icon fa fa-info"> </i>&nbsp;&nbsp;&nbsp; {!! Lang::get('tickets::lang.search_existing_users_or_add_new_users') !!}</div>
                                 <div id="show7" style="display:none;">
                                     <div class="row col-md-12">
                                         <div class="col-xs-5">
@@ -1061,15 +1061,15 @@ $count_teams = count($teams);
                                 <div id="here"></div>
                                 {!! Form::model($tickets->id, ['id'=>'search-user','method' => 'PATCH'] )!!}    
                                     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-                                    <input type="text" class="form-control" name="search" id="tags" placeholder="{!! Lang::get('lang.search_by_email') !!}">
+                                    <input type="text" class="form-control" name="search" id="tags" placeholder="{!! Lang::get('tickets::lang.search_by_email') !!}">
                                     <input type="hidden" name="ticket_id" value="{!! $tickets->id !!}">
-                                    <input type="submit" class="btn btn-submit" value="{!! Lang::get('lang.submit') !!}">
+                                    <input type="submit" class="btn btn-submit" value="{!! Lang::get('tickets::lang.submit') !!}">
                                 {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="tab-pane" id="haha">
                             <div class="modal-body" id="abc">
-                            <h4 class="modal-title pull-left">{!! Lang::get('lang.add_new_user') !!}</h4>            
+                            <h4 class="modal-title pull-left">{!! Lang::get('tickets::lang.add_new_user') !!}</h4>
                             <br/><br/>
                             <div id="here2"></div>
                             {!! Form::model($tickets->id, ['id'=>'add-user','method' => 'PATCH'] )!!} 
@@ -1086,10 +1086,10 @@ $count_teams = count($teams);
                                     <br/><br/><br/><br/>
                                 </div>
                                 <div id="hide12345">
-                                    <input type="text" name="name" class="form-control" placeholder="{!! Lang::get('lang.name') !!}" required>
-                                    <input type="text" name="email" class="form-control" placeholder="{!! Lang::get('lang.e-mail') !!}" required> 
+                                    <input type="text" name="name" class="form-control" placeholder="{!! Lang::get('tickets::lang.name') !!}" required>
+                                    <input type="text" name="email" class="form-control" placeholder="{!! Lang::get('tickets::lang.e-mail') !!}" required>
                                     <input type="hidden" name="ticket_id" value="{!! $tickets->id !!}">
-                                    <input type="submit" class="btn" value="{!! Lang::get('lang.submit') !!}">
+                                    <input type="submit" class="btn" value="{!! Lang::get('tickets::lang.submit') !!}">
                                 </div>
                             {!! Form::close() !!}
                             </div>
@@ -1109,12 +1109,12 @@ $count_teams = count($teams);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.list_of_collaborators_of_this_ticket') !!}</h4>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.list_of_collaborators_of_this_ticket') !!}</h4>
                 </div>
                 <div class="modal-body" id="surrender22">
                     @foreach($Collaborator as $ccc)
                     <?php $collab_user_id = $ccc->user_id ;
-                            $collab_user = App\User::where('id','=', $collab_user_id)->first();
+                            $collab_user = Modules\Core\Models\Staff::where('id','=', $collab_user_id)->first();
                     ?>
                     <div id="alert11" class="alert alert-dismissable" style="background-color:#F2F2F2">
                     <meta name="_token" content="{{ csrf_token() }}"/>
@@ -1150,7 +1150,7 @@ $count_teams = count($teams);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" id="merge-close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{!! Lang::get('lang.merge-ticket') !!} </h4>&nbsp;<b>#{!! $tickets->ticket_number !!}</b>
+                    <h4 class="modal-title">{!! Lang::get('tickets::lang.merge-ticket') !!} </h4>&nbsp;<b>#{!! $tickets->ticket_number !!}</b>
                 </div><!-- /.modal-header-->
                 <div class ="modal-body">
                     <div class="row">
@@ -1181,17 +1181,17 @@ $count_teams = count($teams);
                             <div class="row">
                                 <div class="col-md-6">
                                     {!! Form::open(['id'=>'merge-form','method' => 'PATCH'] )!!}
-                                    <label>{!! Lang::get('lang.title') !!}</label>
+                                    <label>{!! Lang::get('tickets::lang.title') !!}</label>
                                     <input type="text" name='title' class="form-control" value="<?php $ticket_data = App\Model\helpdesk\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?>"/>
                                 </div>
                                 <div class="col-md-6">
-                                <label>{!! Lang::get('lang.select-pparent-ticket') !!}</label>
+                                <label>{!! Lang::get('tickets::lang.select-pparent-ticket') !!}</label>
                                     <div id="parent-loader" style="display:none;">
                                         <img src="{{asset("lb-faveo/media/images/gifloader.gif")}}" height="30px" width="30px">
                                     </div>
                                     <div id="parent-body" >
                                         
-                                        <select class="form-control" id="select-merge-parent"  name='p_id' data-placeholder="{!! Lang::get('lang.select_tickets') !!}" style="width: 100%;"><option value="{{$tickets->id}}"><?php $ticket_data = App\Model\helpdesk\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?></option></select>
+                                        <select class="form-control" id="select-merge-parent"  name='p_id' data-placeholder="{!! Lang::get('tickets::lang.select_tickets') !!}" style="width: 100%;"><option value="{{$tickets->id}}"><?php $ticket_data = App\Model\helpdesk\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?></option></select>
                                     </div>
                                 </div>
                             </div>
@@ -1199,8 +1199,8 @@ $count_teams = count($teams);
                             <div class="row">
                                 <div class="col-md-8">
                             
-                                    <label>{!! Lang::get('lang.select_tickets') !!}</label>
-                                    <select class="form-control select2" id="select-merge-tickts" name="t_id[]" multiple="multiple" data-placeholder="{!! Lang::get('lang.select_tickets') !!}" style="width: 100%;">
+                                    <label>{!! Lang::get('tickets::lang.select_tickets') !!}</label>
+                                    <select class="form-control select2" id="select-merge-tickts" name="t_id[]" multiple="multiple" data-placeholder="{!! Lang::get('tickets::lang.select_tickets') !!}" style="width: 100%;">
                                 
                                     </select>
                            
@@ -1208,7 +1208,7 @@ $count_teams = count($teams);
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <label>{!! Lang::get('lang.merge-reason') !!}</label>
+                                    <label>{!! Lang::get('tickets::lang.merge-reason') !!}</label>
                                     <textarea  name="reason" class="form-control"></textarea>
                                 </div>
                           
@@ -1217,8 +1217,8 @@ $count_teams = count($teams);
                     </div><!-- merge-body -->
                 </div><!-- /.modal-body -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis2">{!! Lang::get('lang.close') !!}</button>
-                    <input  type="submit" id="merge-btn" class="btn btn-primary pull-right" value="{!! Lang::get('lang.merge') !!}"></input>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis2">{!! Lang::get('tickets::lang.close') !!}</button>
+                    <input  type="submit" id="merge-btn" class="btn btn-primary pull-right" value="{!! Lang::get('tickets::lang.merge') !!}"></input>
                     {!! Form::close() !!}
                 </div><!-- /.modal-footer -->
             </div><!-- /.modal-content -->
@@ -1540,7 +1540,7 @@ jQuery(document).ready(function() {
                     if(response != 1)
                     {
                         // $("#assign_body").show();
-                         var message = "{{Lang::get('lang.user-not-found')}}";
+                         var message = "{{Lang::get('tickets::lang.user-not-found')}}";
                         $('#change_alert').show();
                         $('#message-success42').html(message);
                         setInterval(function(){$("#change_alert").hide(); },5000);
@@ -1560,7 +1560,7 @@ jQuery(document).ready(function() {
                         $("#refresh3").load("../thread/{{$tickets->id}}  #refresh3");
                         $("#refreshTo").load("../thread/{{$tickets->id}}  #refreshTo");
                         $("#change-refresh").load("../thread/{{$tickets->id}}  #change-refresh");
-                        var message = "{{Lang::get('lang.change-success')}}";
+                        var message = "{{Lang::get('tickets::lang.change-success')}}";
                         $("#alert11").show();
                         $('#message-success1').html(message);
                         setInterval(function(){$("#alert11").hide(); },4000); 
@@ -1593,15 +1593,15 @@ jQuery(document).ready(function() {
                         $("#refresh1").load("../thread/{{$tickets->id}}  #refresh1");
                         $("#refresh3").load("../thread/{{$tickets->id}}  #refresh3");
                         $("#refreshTo").load("../thread/{{$tickets->id}}  #refreshTo");
-                        var message = "{{Lang::get('lang.change-success')}}";
+                        var message = "{{Lang::get('tickets::lang.change-success')}}";
                         $("#alert11").show();
                         $('#message-success1').html(message);
                         setInterval(function(){$("#alert11").hide(); },4000);
                     } else {
                         if(response == 4){ 
-                            var message = "{{Lang::get('lang.user-exists')}}";
+                            var message = "{{Lang::get('tickets::lang.user-exists')}}";
                         } else if(response == 5){
-                            var message = "{{Lang::get('lang.valid-email')}}";
+                            var message = "{{Lang::get('tickets::lang.valid-email')}}";
                         } else {
                             //var message = "Can't process your request. Try after some time.";
                         }
@@ -1816,7 +1816,7 @@ jQuery(document).ready(function() {
                         $("#merge-body-form").hide();
                         $("#merge_loader").hide();
                         $("#merge-btn").attr('disabled', true);
-                       var message = "{{Lang::get('lang.no-tickets-to-merge')}}";
+                       var message = "{{Lang::get('tickets::lang.no-tickets-to-merge')}}";
                         $("#merge-err-alert").show();
                         $('#message-merge-err').html(message);  
 
@@ -1862,7 +1862,7 @@ jQuery(document).ready(function() {
                             $("#merge-body-form").hide();
                             $("#merge_loader").hide();
                             $("#merge-btn").attr('disabled', true);
-                           var message = "{{Lang::get('lang.merge-error')}}";
+                           var message = "{{Lang::get('tickets::lang.merge-error')}}";
                             $("#merge-err-alert").show();
                             $('#message-merge-err').html(message);  
                     
@@ -1873,7 +1873,7 @@ jQuery(document).ready(function() {
                             $("#merge-body-form").hide();
                             $("#merge_loader").hide();
                             $("#merge-btn").attr('disabled', true);
-                            var message = "{{Lang::get('lang.merge-error2')}}";
+                            var message = "{{Lang::get('tickets::lang.merge-error2')}}";
                             $("#merge-err-alert").show();
                             $('#message-merge-err').html(message);
 
@@ -1890,7 +1890,7 @@ jQuery(document).ready(function() {
                             $("#refresh3").load("../thread/{{$tickets->id}}  #refresh3");
                             $("#refreshTo").load("../thread/{{$tickets->id}}  #refreshTo");
                             $("#more-option").load("../thread/{{$tickets->id}}  #more-option");
-                            var message = "{{Lang::get('lang.merge-success')}}";
+                            var message = "{{Lang::get('tickets::lang.merge-success')}}";
                             $("#merge-succ-alert").show();
                             $('#message-merge-succ').html(message);  
 
@@ -1981,15 +1981,15 @@ function lockAjaxCall(locktime){
                 data: $(this).serialize(),
                 success: function(response) {
                     if(response == 0) {
-                       var message = "{{Lang::get('lang.locked-ticket')}}";
+                       var message = "{{Lang::get('tickets::lang.locked-ticket')}}";
                         $("#alert22").show();
                         $('#message-warning2').html(message);
                         $('#replybtn').attr('disabled', true);
                         //setInterval(function(){$("#alert23").hide(); },10000);
                     } else if(response == 2) {
                         // alert(response);
-                        // var message = "{{Lang::get('lang.access-ticket')}}"+locktime/(60*1000)
-                        // +"{{Lang::get('lang.minutes')}}";
+                        // var message = "{{Lang::get('tickets::lang.access-ticket')}}"+locktime/(60*1000)
+                        // +"{{Lang::get('tickets::lang.minutes')}}";
                         $("#alert22").hide();
                         $("#hide2").load("../thread/{{$tickets->id}}  #hide2");
                         $("#refresh").load("../thread/{{$tickets->id}}  #refresh");
@@ -2002,8 +2002,8 @@ function lockAjaxCall(locktime){
                         // setInterval(function(){$("#alert21").hide(); },8000);  
                     } else {
                         // alert(response);
-                        // var message = "{{Lang::get('lang.access-ticket')}}"+locktime/(60*1000)
-                        // +"{{Lang::get('lang.minutes')}}";
+                        // var message = "{{Lang::get('tickets::lang.access-ticket')}}"+locktime/(60*1000)
+                        // +"{{Lang::get('tickets::lang.minutes')}}";
                         $("#alert22").hide();
                         $("#refresh").load("../thread/{{$tickets->id}}  #refresh");
                        // $("#refresh1").load("../thread/{{$tickets->id}}  #refresh1");

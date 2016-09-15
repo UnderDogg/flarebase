@@ -17,7 +17,7 @@ class="active"
 	
 <div class="box box-primary">
 <div class="box-header with-border">
-	<h2 class="box-title">{!! Lang::get('lang.canned_response') !!}</h2><a href="{{route('canned.create')}}" class="btn btn-primary pull-right">{!! Lang::get('lang.create_canned_response') !!}</a></div>
+	<h2 class="box-title">{!! Lang::get('tickets::lang.canned_response') !!}</h2><a href="{{route('canned.create')}}" class="btn btn-primary pull-right">{!! Lang::get('tickets::lang.create_canned_response') !!}</a></div>
 <div class="box-body table-responsive">
 <?php 
 $Canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id', '=', Auth::user()->id)->paginate(20);
@@ -44,8 +44,8 @@ $Canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id', '=', Auth::us
     		<!-- Agent table -->
 				<table class="table table-bordered table-hover" id="example1"  >
 						<tr>
-							<th width="100px">{{Lang::get('lang.name')}}</th>
-							<th width="100px">{{Lang::get('lang.action')}}</th>
+							<th width="100px">{{Lang::get('tickets::lang.name')}}</th>
+							<th width="100px">{{Lang::get('tickets::lang.action')}}</th>
 						</tr>
 						@foreach($Canneds as $Canned)
 							
@@ -53,10 +53,10 @@ $Canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id', '=', Auth::us
 									<td>{{$Canned->title }}</td>
 									<td> 
 									{!! Form::open(['route'=>['canned.destroy', $Canned->id],'method'=>'DELETE']) !!}
-										<a data-toggle="modal" data-target="#view{!! $Canned->id !!}" href="#" class="btn btn-info btn-xs btn-flat">{!! Lang::get('lang.view') !!}</a>
-										<a href="{!! URL::route('canned.edit',$Canned->id) !!}" class="btn btn-primary btn-xs btn-flat">{!! Lang::get('lang.edit') !!}</a>
+										<a data-toggle="modal" data-target="#view{!! $Canned->id !!}" href="#" class="btn btn-info btn-xs btn-flat">{!! Lang::get('tickets::lang.view') !!}</a>
+										<a href="{!! URL::route('canned.edit',$Canned->id) !!}" class="btn btn-primary btn-xs btn-flat">{!! Lang::get('tickets::lang.edit') !!}</a>
 									
-										{!! Form::button('<i class="fa fa-trash" style="color:black;"> </i> '.Lang::get('lang.delete'),
+										{!! Form::button('<i class="fa fa-trash" style="color:black;"> </i> '.Lang::get('tickets::lang.delete'),
 					                        ['type' => 'submit',
 					                        'class'=> 'btn btn-warning btn-xs btn-flat',
 					                        'onclick'=>'return confirm("Are you sure?")'])
@@ -72,13 +72,13 @@ $Canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id', '=', Auth::us
 								            <div class="modal-content">
 								                <div class="modal-header">
 								                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								                    <h4 class="modal-title">{!! Lang::get('lang.surrender') !!}</h4>
+								                    <h4 class="modal-title">{!! Lang::get('tickets::lang.surrender') !!}</h4>
 								                </div>
 								                <div class="modal-body">
 								                    <p><pre>{!! $Canned->message !!}</pre></p>
 								                </div>
 								                <div class="modal-footer">
-								                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis6">{!! Lang::get('lang.close') !!}</button>
+								                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="dismis6">{!! Lang::get('tickets::lang.close') !!}</button>
 								                </div>
 								            </div><!-- /.modal-content -->
 								        </div><!-- /.modal-dialog -->

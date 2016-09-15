@@ -31,7 +31,7 @@ class="active"
 			<div class="box box-primary">
                 <div class="form-group">
                     <div class="box-header">
-                        <h2 class="box-title">{{Lang::get('lang.help_topic')}}</h2><a href="{{route('helptopic.create')}}" class="btn btn-primary pull-right">{{Lang::get('lang.create_help_topic')}}</a></div>
+                        <h2 class="box-title">{{Lang::get('tickets::lang.help_topic')}}</h2><a href="{{route('helptopic.create')}}" class="btn btn-primary pull-right">{{Lang::get('tickets::lang.create_help_topic')}}</a></div>
 				<div class="box-body table-responsive">
 
 				<!-- check whether success or not -->
@@ -57,13 +57,13 @@ class="active"
 	<table class="table table-bordered dataTable" style="overflow:hidden;">
 
 	<tr>
-		<th width="100px">{{Lang::get('lang.topic')}}</th>
-		<th width="100px">{{Lang::get('lang.status')}}</th>
-		<th width="100px">{{Lang::get('lang.type')}}</th>
-		<th width="100px">{{Lang::get('lang.priority')}}</th>
-		<th width="100px">{{Lang::get('lang.department')}}</th>
-		<th width="100px">{{Lang::get('lang.last_updated')}}</th>
-		<th width="100px">{{Lang::get('lang.action')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.topic')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.status')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.type')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.priority')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.department')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.last_updated')}}</th>
+		<th width="100px">{{Lang::get('tickets::lang.action')}}</th>
 	</tr>
 
 	<?php

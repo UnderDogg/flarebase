@@ -29,8 +29,8 @@ class="active"
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{!! Lang::get('lang.ticket_workflow') !!}</h3>
-                <a href="{!! URL::route('workflow.create') !!}" class="btn btn-primary pull-right">{!! Lang::get('lang.create') !!}</a>
+                <h3 class="box-title">{!! Lang::get('tickets::lang.ticket_workflow') !!}</h3>
+                <a href="{!! URL::route('workflow.create') !!}" class="btn btn-primary pull-right">{!! Lang::get('tickets::lang.create') !!}</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -53,14 +53,14 @@ class="active"
                 </div>
                 @endif
                 {!! Datatable::table()
-                ->addColumn(Lang::get('lang.name'),
-                Lang::get('lang.status'),
-                Lang::get('lang.order'),
-                Lang::get('lang.rules'),
-                Lang::get('lang.target_channel'),
-                Lang::get('lang.created'),
-                Lang::get('lang.updated'),
-                Lang::get('lang.action')) // these are the column headings to be shown
+                ->addColumn(Lang::get('tickets::lang.name'),
+                Lang::get('tickets::lang.status'),
+                Lang::get('tickets::lang.order'),
+                Lang::get('tickets::lang.rules'),
+                Lang::get('tickets::lang.target_channel'),
+                Lang::get('tickets::lang.created'),
+                Lang::get('tickets::lang.updated'),
+                Lang::get('tickets::lang.action')) // these are the column headings to be shown
                 ->setUrl(route('workflow.list'))   // this is the route where data will be retrieved
                 ->render() !!}
             </div>

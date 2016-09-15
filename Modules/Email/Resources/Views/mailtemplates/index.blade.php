@@ -32,8 +32,8 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h2 class="box-title">{{Lang::get('lang.templates')}}</h2><a href="{{route('template.create')}}"
-                                                                                 class="btn btn-primary pull-right">{{Lang::get('lang.create_template')}}</a>
+                    <h2 class="box-title">{{Lang::get('email::lang.templates')}}</h2><a href="{{route('template.create')}}"
+                                                                                 class="btn btn-primary pull-right">{{Lang::get('email::lang.create_template')}}</a>
                 </div>
 
                 <div class="box-body table-responsive no-padding">
@@ -61,12 +61,12 @@
 
                         <table class="table table-bordered dataTable" style="overflow:hidden;">
                             <tr>
-                                <th width="100px">{{Lang::get('lang.name')}}</th>
-                                <th width="100px">{{Lang::get('lang.status')}}</th>
-                                <th width="100px">{{Lang::get('lang.in_use')}}</th>
-                                <th width="100px">{{Lang::get('lang.created')}}</th>
-                                <th width="100px">{{Lang::get('lang.last_updated')}}</th>
-                                <th width="100px">{{Lang::get('lang.action')}}</th>
+                                <th width="100px">{{Lang::get('email::lang.name')}}</th>
+                                <th width="100px">{{Lang::get('email::lang.status')}}</th>
+                                <th width="100px">{{Lang::get('email::lang.in_use')}}</th>
+                                <th width="100px">{{Lang::get('email::lang.created')}}</th>
+                                <th width="100px">{{Lang::get('email::lang.last_updated')}}</th>
+                                <th width="100px">{{Lang::get('email::lang.action')}}</th>
                             </tr>
                             <!-- Foreach @var templates as @var template -->
                             @foreach($templates as $template)

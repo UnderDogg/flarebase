@@ -11,37 +11,37 @@
   <li class="header">KNOWLEDGE BASE</li>
   <li class="treeview @yield('category')">
     <a href="#">
-      <i class="fa fa-list-ul"></i> <span>{{Lang::get('lang.category')}}</span>
+      <i class="fa fa-list-ul"></i> <span>{{Lang::get('knowledgebase::lang.category')}}</span>
       <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li @yield('add-category')><a href="{{url('category/create')}}"><i
-            class="fa fa-circle-o"></i> {{Lang::get('lang.addcategory')}}</a></li>
+            class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addcategory')}}</a></li>
       <li @yield('all-category')><a href="{{url('category')}}"><i
-            class="fa fa-circle-o"></i> {{Lang::get('lang.allcategory')}}</a></li>
+            class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.allcategory')}}</a></li>
     </ul>
   </li>
   <li class="treeview @yield('article')">
     <a href="#">
-      <i class="fa fa-edit"></i> <span>{{Lang::get('lang.article')}}</span>
+      <i class="fa fa-edit"></i> <span>{{Lang::get('knowledgebase::lang.article')}}</span>
       <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li @yield('add-article')><a href="{{url('article/create')}}"><i
-            class="fa fa-circle-o"></i> {{Lang::get('lang.addarticle')}}</a></li>
+            class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addarticle')}}</a></li>
       <li @yield('all-article')><a href="{{url('article')}}"><i
-            class="fa fa-circle-o"></i> {{Lang::get('lang.allarticle')}}</a></li>
+            class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.allarticle')}}</a></li>
     </ul>
   </li>
   <li class="treeview @yield('pages')">
     <a href="#">
-      <i class="fa fa-file-text"></i> <span>{{Lang::get('lang.pages')}}</span>
+      <i class="fa fa-file-text"></i> <span>{{Lang::get('knowledgebase::lang.pages')}}</span>
       <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li @yield('add-pages')><a href="{{url('page/create')}}"><i
-            class="fa fa-circle-o"></i> {{Lang::get('lang.addpages')}}</a></li>
-      <li @yield('all-pages')><a href="{{url('page')}}"><i class="fa fa-circle-o"></i> {{Lang::get('lang.allpages')}}
+            class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addpages')}}</a></li>
+      <li @yield('all-pages')><a href="{{url('page')}}"><i class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.allpages')}}
         </a></li>
     </ul>
   </li>
@@ -49,13 +49,13 @@
   <li @yield('comment')>
     <a href="{{url('comment')}}">
       <i class="fa fa-comments-o"></i>
-      <span>{{Lang::get('lang.comments')}}</span>
+      <span>{{Lang::get('knowledgebase::lang.comments')}}</span>
     </a>
   </li>
   <li @yield('settings')>
     <a href="{{url('kb/settings')}}">
       <i class="fa fa-wrench"></i>
-      <span>{{Lang::get('lang.settings')}}</span>
+      <span>{{Lang::get('knowledgebase::lang.settings')}}</span>
     </a>
   </li>
 @stop

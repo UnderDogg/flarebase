@@ -72,14 +72,14 @@
       <div id="navbar" class="navbar-wrapper text-center">
         <nav class="navbar navbar-default site-navigation" role="navigation">
           <ul class="nav navbar-nav navbar-menu">
-            <li @yield('home')><a href="{{url('/')}}">{!! Lang::get('lang.home') !!}</a></li>
+            <li @yield('home')><a href="{{url('/')}}">{!! Lang::get('knowledgebase::lang.home') !!}</a></li>
             @if($system->first()->status == 1)
-              <li @yield('submit')><a href="{{URL::route('form')}}">{!! Lang::get('lang.submit_a_ticket') !!}</a></li>
+              <li @yield('submit')><a href="{{URL::route('form')}}">{!! Lang::get('knowledgebase::lang.submit_a_ticket') !!}</a></li>
             @endif
-            <li @yield('kb')><a href="{!! url('knowledgebase') !!}">{!! Lang::get('lang.knowledge_base') !!}</a>
+            <li @yield('kb')><a href="{!! url('knowledgebase') !!}">{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</a>
               <ul class="dropdown-menu">
-                <li><a href="{{route('category-list')}}">{!! Lang::get('lang.categories') !!}</a></li>
-                <li><a href="{{route('article-list')}}">{!! Lang::get('lang.articles') !!}</a></li>
+                <li><a href="{{route('category-list')}}">{!! Lang::get('knowledgebase::lang.categories') !!}</a></li>
+                <li><a href="{{route('article-list')}}">{!! Lang::get('knowledgebase::lang.articles') !!}</a></li>
               </ul>
             </li>
             <?php $pages = App\Model\kb\Page::where('status', '1')->where('visibility', '1')->get();
@@ -88,10 +88,10 @@
               <li><a href="{{route('pages',$page->slug)}}">{{$page->name}}</a></li>
             @endforeach
             @if(Auth::user())
-              <li @yield('myticket')><a href="{{url('mytickets')}}">{!! Lang::get('lang.my_tickets') !!}</a></li>
+              <li @yield('myticket')><a href="{{url('mytickets')}}">{!! Lang::get('knowledgebase::lang.my_tickets') !!}</a></li>
 
               {{-- <li @yield('contact')><a href="{{route('contact')}}">Contact us</a></li> --}}
-              <li @yield('profile')><a href="#">{!! Lang::get('lang.my_profile') !!}</a>
+              <li @yield('profile')><a href="#">{!! Lang::get('knowledgebase::lang.my_profile') !!}</a>
                 <ul class="dropdown-menu">
                   <li>
                     <div class="banner-wrapper user-menu text-center clearfix">
@@ -104,13 +104,13 @@
                       <div class="banner-content">
                         {{-- <a href="{{url('kb/client-profile')}}" class="btn btn-custom btn-xs">Edit Profile</a> --}}
                         <a href="{{url('auth/logout')}}"
-                           class="btn btn-custom btn-xs">{!! Lang::get('lang.log_out') !!}</a>
+                           class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.log_out') !!}</a>
                       </div>
                       @if(Auth::user())
                         @if(Auth::user()->role != 'user')
                           <div class="banner-content">
                             <a href="{{url('dashboard')}}"
-                               class="btn btn-custom btn-xs">{!! Lang::get('lang.dashboard') !!}</a>
+                               class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.dashboard') !!}</a>
                           </div>
                         @endif
                       @endif
@@ -118,7 +118,7 @@
                         @if(Auth::user()->role == 'user')
                           <div class="banner-content">
                             <a href="{{url('client-profile')}}"
-                               class="btn btn-custom btn-xs">{!! Lang::get('lang.profile') !!}</a>
+                               class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.profile') !!}</a>
                           </div>
                         @endif
                       @endif
@@ -134,7 +134,7 @@
             <li
               <?php if($errors->first('email') || $errors->first('password')){ ?> class="sfHover" <?php } else { ?> <?php } ?> >
               <a href="#" data-toggle="collapse" <?php if($errors->first('email') || $errors->first('password')){
-              } else { ?> class="collapsed" <?php  } ?> data-target="#login-form">{!! Lang::get('lang.login') !!} <i
+              } else { ?> class="collapsed" <?php  } ?> data-target="#login-form">{!! Lang::get('knowledgebase::lang.login') !!} <i
                   class="sub-indicator fa fa-chevron-circle-down fa-fw text-muted"></i></a></li>
           </ul><!-- .navbar-login -->
           <div id="login-form"
@@ -143,31 +143,31 @@
             {!!  Form::open(['action'=>'Auth\AuthController@postLogin', 'method'=>'post']) !!}
             @if(Session::has('errors'))
               <div class="alert alert-danger alert-dismissable">
-                <!-- <i class="fa fa-ban"> </i> <b> {!! Lang::get('lang.alert') !!}! </b> -->
+                <!-- <i class="fa fa-ban"> </i> <b> {!! Lang::get('knowledgebase::lang.alert') !!}! </b> -->
                 <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
                 @if(Session::has('error'))
                   {!! Session::get('error') !!}
                 @else
-                  {!! Lang::get('lang.required-error') !!}
+                  {!! Lang::get('knowledgebase::lang.required-error') !!}
                 @endif
               </div>
             @endif
             <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-              {!! Form::text('email',null,['placeholder'=>Lang::get('lang.e-mail'),'class' => 'form-control']) !!}
+              {!! Form::text('email',null,['placeholder'=>Lang::get('knowledgebase::lang.e-mail'),'class' => 'form-control']) !!}
                 <!-- {!! $errors->first('email', '<spam class="help-block">:message</spam>') !!} -->
               <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
 
             <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-              {!! Form::password('password',['placeholder'=>Lang::get('lang.password'),'class' => 'form-control']) !!}
+              {!! Form::password('password',['placeholder'=>Lang::get('knowledgebase::lang.password'),'class' => 'form-control']) !!}
                 <!-- {!! $errors->first('password', '<spam class="help-block">:message</spam>') !!} -->
               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <ul class="list-unstyled pull-left">
-              <li><a href="{{url('password/email')}}">{!! Lang::get('lang.forgot_password') !!}</a><br></li>
-              <li><a href="{{url('auth/register')}}">{!! Lang::get('lang.create_account') !!}</a></li>
+              <li><a href="{{url('password/email')}}">{!! Lang::get('knowledgebase::lang.forgot_password') !!}</a><br></li>
+              <li><a href="{{url('auth/register')}}">{!! Lang::get('knowledgebase::lang.create_account') !!}</a></li>
             </ul>
-            <button type="submit" class="btn btn-custom pull-right">{!! Lang::get('lang.login') !!}</button>
+            <button type="submit" class="btn btn-custom pull-right">{!! Lang::get('knowledgebase::lang.login') !!}</button>
             {!! Form::close() !!}
           </div><!-- #login-form -->
           @endif
@@ -181,10 +181,10 @@
           <div class="form-inline ">
             <div class="form-group">
               <input type="text" name="s" class="search-field form-control input-lg" title="Enter search term"
-                     placeholder="{!! Lang::get('lang.have_a_question?_type_your_search_term_here') !!}"/>
+                     placeholder="{!! Lang::get('knowledgebase::lang.have_a_question?_type_your_search_term_here') !!}"/>
             </div>
             <button type="submit"
-                    class="search-submit btn btn-custom btn-lg pull-right">{!! Lang::get('lang.search') !!}</button>
+                    class="search-submit btn btn-custom btn-lg pull-right">{!! Lang::get('knowledgebase::lang.search') !!}</button>
           </div>
         </div>
         {!! Form::close() !!}
@@ -299,10 +299,10 @@
       <hr/>
       <div class="row">
         <div class="site-info col-md-6">
-          <p class="text-muted">{!! Lang::get('lang.copyright') !!} &copy; {!! date('Y') !!} <a
+          <p class="text-muted">{!! Lang::get('knowledgebase::lang.copyright') !!} &copy; {!! date('Y') !!} <a
               href="{!! $company->website !!}"
-              target="_blank">{!! $company->company_name !!}</a>. {!! Lang::get('lang.all_rights_reserved') !!}
-            . {!! Lang::get('lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a></p>
+              target="_blank">{!! $company->company_name !!}</a>. {!! Lang::get('knowledgebase::lang.all_rights_reserved') !!}
+            . {!! Lang::get('knowledgebase::lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a></p>
         </div>
         <div class="site-social text-right col-md-6">
           <?php $socials = App\Model\helpdesk\Theme\Widgets::all(); ?>

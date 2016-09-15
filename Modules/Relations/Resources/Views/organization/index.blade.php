@@ -17,7 +17,7 @@ class="active"
 
 <div class="box box-primary">
     <div class="box-header">
-        <h2 class="box-title">{{Lang::get('lang.organization')}}</h2><a href="{{route('organizations.create')}}" class="btn btn-primary pull-right">{{Lang::get('lang.create_organization')}}</a></div>
+        <h2 class="box-title">{{Lang::get('relations::lang.organization')}}</h2><a href="{{route('organizations.create')}}" class="btn btn-primary pull-right">{{Lang::get('relations::lang.create_organization')}}</a></div>
     <div class="box-body">
         <!-- check whether success or not -->
         @if(Session::has('success'))

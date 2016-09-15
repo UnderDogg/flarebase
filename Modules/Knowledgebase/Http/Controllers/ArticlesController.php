@@ -81,7 +81,7 @@ class ArticleController extends Controller
             /* add column action */
             ->addColumn('Actions', function ($model) {
                 /* here are all the action buttons and modal popup to delete articles with confirmations */
-                return '<span  data-toggle="modal" data-target="#deletearticle' . $model->id . '"><a href="#" ><button class="btn btn-danger btn-xs"></a> ' . \Lang::get('lang.delete') . ' </button></span>&nbsp;<a href=article/' . $model->id . '/edit class="btn btn-warning btn-xs">' . \Lang::get('lang.edit') . '</a>&nbsp;<a href=show/' . $model->slug . ' class="btn btn-primary btn-xs">' . \Lang::get('lang.view') . '</a>
+                return '<span  data-toggle="modal" data-target="#deletearticle' . $model->id . '"><a href="#" ><button class="btn btn-danger btn-xs"></a> ' . \Lang::get('knowledgebase::lang.delete') . ' </button></span>&nbsp;<a href=article/' . $model->id . '/edit class="btn btn-warning btn-xs">' . \Lang::get('knowledgebase::lang.edit') . '</a>&nbsp;<a href=show/' . $model->slug . ' class="btn btn-primary btn-xs">' . \Lang::get('knowledgebase::lang.view') . '</a>
 				<div class="modal fade" id="deletearticle' . $model->id . '">
         			<div class="modal-dialog">
             			<div class="modal-content">

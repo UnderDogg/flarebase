@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\helpdesk;
+namespace Modules\Core\Http\Controllers;
 
 /**
  * -----------------------------------------------

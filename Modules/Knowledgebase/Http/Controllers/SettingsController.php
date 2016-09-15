@@ -154,16 +154,16 @@ class SettingsController extends Controller
                         ->addColumn('status', function ($model) {
                             $status = $model->status;
                             if ($status == 1) {
-                                return '<p style="color:blue"">'.\Lang::get('lang.published');
+                                return '<p style="color:blue"">'.\Lang::get('knowledgebase::lang.published');
                             } else {
-                                return '<p style="color:red"">'.\Lang::get('lang.not_published');
+                                return '<p style="color:red"">'.\Lang::get('knowledgebase::lang.not_published');
                             }
                         })
                         ->addColumn('Created', function ($model) {
                             return TicketController::usertimezone(date($model->created_at));
                         })
                         ->addColumn('Actions', function ($model) {
-                            return '<a href=comment/delete/'.$model->id.' class="btn btn-danger btn-xs">'.\Lang::get('lang.delete').'</a>&nbsp;<a href=published/'.$model->id.' class="btn btn-warning btn-xs">'.\Lang::get('lang.publish').'</a>';
+                            return '<a href=comment/delete/'.$model->id.' class="btn btn-danger btn-xs">'.\Lang::get('knowledgebase::lang.delete').'</a>&nbsp;<a href=published/'.$model->id.' class="btn btn-warning btn-xs">'.\Lang::get('knowledgebase::lang.publish').'</a>';
                         })
                         ->make();
     }

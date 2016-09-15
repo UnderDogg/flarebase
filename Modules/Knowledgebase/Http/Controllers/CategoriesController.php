@@ -84,7 +84,7 @@ class CategoryController extends Controller
       /* add column Actions */
       /* there are action buttons and modal popup to delete a data column */
       ->addColumn('Actions', function ($model) {
-        return '<span  data-toggle="modal" data-target="#deletecategory' . $model->slug . '"><a href="#" ><button class="btn btn-danger btn-xs"></a>' . \Lang::get('lang.delete') . '</button></span>&nbsp;<a href=category/' . $model->id . '/edit class="btn btn-warning btn-xs">' . \Lang::get('lang.edit') . '</a>&nbsp;<a href=article-list class="btn btn-primary btn-xs">' . \Lang::get('lang.view') . '</a>
+        return '<span  data-toggle="modal" data-target="#deletecategory' . $model->slug . '"><a href="#" ><button class="btn btn-danger btn-xs"></a>' . \Lang::get('knowledgebase::lang.delete') . '</button></span>&nbsp;<a href=category/' . $model->id . '/edit class="btn btn-warning btn-xs">' . \Lang::get('knowledgebase::lang.edit') . '</a>&nbsp;<a href=article-list class="btn btn-primary btn-xs">' . \Lang::get('knowledgebase::lang.view') . '</a>
 				<div class="modal fade" id="deletecategory' . $model->slug . '">
         			<div class="modal-dialog">
             			<div class="modal-content">

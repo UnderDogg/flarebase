@@ -26,14 +26,14 @@ class="active"
                 {{-- <div class="box box-success"> --}}
                 {{-- <section class="content"> --}}
                 {{-- <div class=" box-header"> --}}
-                <h3><b>{!! Lang::get('lang.user_information') !!}</b>&nbsp;&nbsp;<a href="{{URL::route('agent-profile-edit')}}"><i class="fa fa-fw fa-edit"> </i></a></h3>
+                <h3><b>{!! Lang::get('core::lang.user_information') !!}</b>&nbsp;&nbsp;<a href="{{URL::route('agent-profile-edit')}}"><i class="fa fa-fw fa-edit"> </i></a></h3>
                 {{-- </div> --}}
                 <div class="box-body">
                     <table class="row">
                         @if($user->gender == 1)
-                        <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.gender') !!}:<b></h4></th><td class="col-md-6"><h4>{{ 'Male' }}</h4></td></tr>
+                        <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.gender') !!}:<b></h4></th><td class="col-md-6"><h4>{{ 'Male' }}</h4></td></tr>
                                     @else
-                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.gender') !!}:</b></h4></th><td class="col-md-6"><h4>{{ 'Female' }}</h4></td></tr>
+                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.gender') !!}:</b></h4></th><td class="col-md-6"><h4>{{ 'Female' }}</h4></td></tr>
                                     @endif
                                     <?php
                                     if ($user->primary_dpt) {
@@ -55,11 +55,11 @@ class="active"
                                         $timezone = "";
                                     }
                                     ?>
-                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.department') !!}:</b></h4></th><td class="col-md-6"><h4>{{ $dept }}</h4></td></tr>
-                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.group') !!}:</b></h4></th><td  class="col-md-6"><h4>{{ $grp }}</h4></td></tr>
-                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.company') !!}:</b></h4></th><td  class="col-md-6"> <h4>{{ $user->company }}</h4></td></tr>
-                                    {{-- <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.time_zone') !!}:</b></h4></th><td  class="col-md-6"><h4> {{ $timezone }}</h4></td></tr> --}}
-                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.role') !!}:</b></h4></th><td  class="col-md-6"> <h4>{{ $user->role }}</h4></td></tr>
+                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.department') !!}:</b></h4></th><td class="col-md-6"><h4>{{ $dept }}</h4></td></tr>
+                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.group') !!}:</b></h4></th><td  class="col-md-6"><h4>{{ $grp }}</h4></td></tr>
+                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.company') !!}:</b></h4></th><td  class="col-md-6"> <h4>{{ $user->company }}</h4></td></tr>
+                                    {{-- <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.time_zone') !!}:</b></h4></th><td  class="col-md-6"><h4> {{ $timezone }}</h4></td></tr> --}}
+                                    <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.role') !!}:</b></h4></th><td  class="col-md-6"> <h4>{{ $user->role }}</h4></td></tr>
                                     </table>
                                     </div>
                                     {{-- </section> --}}
@@ -68,12 +68,12 @@ class="active"
                                     <div class="col-md-6">
                                         {{-- <div class="box box-primary"> --}}
                                         {{-- <section class="content"> --}}
-                                        <h3><b>{!! Lang::get('lang.contact_information') !!}</b></h3>
+                                        <h3><b>{!! Lang::get('core::lang.contact_information') !!}</b></h3>
                                         <div class="box-body">
                                             <table>
-                                                <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.email') !!}:</b></h4> </th> <td class="col-md-6"><h4> {{ $user->email }}</h4> </td></tr>
-                                                <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.phone_number') !!}:</b></h4> </th> <td class="col-md-6"><h4> {{ $user->ext }}{{ $user->phone_number }}</h4> </td></tr>
-                                                <tr><th class="col-md-8"><h4><b>{!! Lang::get('lang.mobile') !!}:</b></h4></th><td class="col-md-6"><h4> {{ $user->mobile }}</h4></td></tr>
+                                                <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.email') !!}:</b></h4> </th> <td class="col-md-6"><h4> {{ $user->email }}</h4> </td></tr>
+                                                <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.phone_number') !!}:</b></h4> </th> <td class="col-md-6"><h4> {{ $user->ext }}{{ $user->phone_number }}</h4> </td></tr>
+                                                <tr><th class="col-md-8"><h4><b>{!! Lang::get('core::lang.mobile') !!}:</b></h4></th><td class="col-md-6"><h4> {{ $user->mobile }}</h4></td></tr>
                                             </table>
                                         </div>
                                         {{-- </section> --}}

@@ -45,7 +45,7 @@
 
 
 @section('category')
-<h2 class="section-title h4 clearfix">{!! Lang::get('lang.categories') !!}<small class="pull-right"><i class="fa fa-hdd-o fa-fw"></i></small></h2>
+<h2 class="section-title h4 clearfix">{!! Lang::get('knowledgebase::lang.categories') !!}<small class="pull-right"><i class="fa fa-hdd-o fa-fw"></i></small></h2>
 <ul class="nav nav-pills nav-stacked nav-categories">
 
     @foreach($categorys as $category)

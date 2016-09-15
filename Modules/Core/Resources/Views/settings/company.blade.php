@@ -38,7 +38,7 @@ class="active"
 
 <div class="box box-primary">
 	<div class="box-header">
-        <h4 class="box-title">{{Lang::get('lang.company')}}</h4>{!! Form::submit(Lang::get('lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}
+        <h4 class="box-title">{{Lang::get('core::lang.company')}}</h4>{!! Form::submit(Lang::get('core::lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}
     </div>
 
     <!-- check whether success or not -->
@@ -69,7 +69,7 @@ class="active"
                 <!-- comapny name -->
                 <div class="form-group {{ $errors->has('company_name') ? 'has-error' : '' }}">
 
-                    {!! Form::label('company_name',Lang::get('lang.name')) !!}
+                    {!! Form::label('company_name',Lang::get('core::lang.name')) !!}
 					{!! Form::text('company_name',$companys->company_name,['class' => 'form-control']) !!}
                     {!! $errors->first('company_name', '<spam class="help-block">:message</spam>') !!}
 
@@ -81,7 +81,7 @@ class="active"
                 <!-- website -->
                 <div class="form-group {{ $errors->has('website') ? 'has-error' : '' }}">
 
-                    {!! Form::label('website',Lang::get('lang.website')) !!}
+                    {!! Form::label('website',Lang::get('core::lang.website')) !!}
 			        {!! Form::url('website',$companys->website,['class' => 'form-control']) !!}
                     {!! $errors->first('website', '<spam class="help-block">:message</spam>') !!}
                     
@@ -93,7 +93,7 @@ class="active"
                 <!-- phone -->
                 <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
 
-                    {!! Form::label('phone',Lang::get('lang.phone')) !!}
+                    {!! Form::label('phone',Lang::get('core::lang.phone')) !!}
 			        {!! Form::text('phone',$companys->phone,['class' => 'form-control']) !!}
                     {!! $errors->first('phone', '<spam class="help-block">:message</spam>') !!}
 
@@ -104,7 +104,7 @@ class="active"
                     <!-- comapny address -->
                     <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
 
-                        {!! Form::label('address',Lang::get('lang.address')) !!}
+                        {!! Form::label('address',Lang::get('core::lang.address')) !!}
                         {!! $errors->first('address', '<spam class="help-block">:message</spam>') !!}
                         {!! Form::textarea('address',$companys->address,['class' => 'form-control','size' => '30x5']) !!}
 
@@ -115,7 +115,7 @@ class="active"
                     <!-- landing page -->
 	                {{-- <div class="form-group"> --}}
 
-	  		            {{-- {!! Form::label('landing_page',Lang::get('lang.landing')) !!} --}}
+	  		            {{-- {!! Form::label('landing_page',Lang::get('core::lang.landing')) !!} --}}
 			            {{-- {!!Form::select('landing_page', ['landing page'],null,['class' => 'form-control select']) !!} --}}
 
 		            {{-- </div> --}}
@@ -125,7 +125,7 @@ class="active"
                     <!-- offline page -->
 		            {{-- <div class="form-group"> --}}
 
-				        {{-- {!! Form::label('offline_page',Lang::get('lang.offline')) !!} --}}
+				        {{-- {!! Form::label('offline_page',Lang::get('core::lang.offline')) !!} --}}
 			            {{-- {!!FooterIncluderm::select('offline_page', ['offline page'],null,['class' => 'form-control select']) !!} --}}
 
 			        {{-- </div> --}}
@@ -135,7 +135,7 @@ class="active"
                     <!-- thank page -->
 		         	{{-- <div class="form-group"> --}}
 
-						{{-- {!! Form::label('thank_page',Lang::get('lang.thank')) !!} --}}
+						{{-- {!! Form::label('thank_page',Lang::get('core::lang.thank')) !!} --}}
 						{{-- {!! Form::select('thank_page', ['thank page'],null,['class' => 'form-control select']) !!} --}}
 
 					{{-- </div> --}}
@@ -144,7 +144,7 @@ class="active"
 		       		<div class="col-md-2">
                     <!-- logo -->
                		
-						{!! Form::label('logo',Lang::get('lang.logo')) !!}
+						{!! Form::label('logo',Lang::get('core::lang.logo')) !!}
                         <div class="btn bg-olive btn-file" style="color:blue"> Upload file
 						{!! Form::file('logo') !!}
                         </div>
@@ -160,7 +160,7 @@ class="active"
                     <?php  $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first(); ?>
 
                     @if($companys->logo != null)
-                        <div class="col-md-2 image" data-content="{{Lang::get('lang.click-delete')}}">
+                        <div class="col-md-2 image" data-content="{{Lang::get('core::lang.click-delete')}}">
                             <img src="{{asset('lb-faveo/media/company')}}{{'/'}}{{$company->logo}}" alt="User Image" id="company-logo" width="100px" style="border:1px solid #DCD1D1" />
                         </div>
                     @endif
@@ -193,10 +193,10 @@ class="active"
         $(document).ready(function(){
             $( ".image" ).on( "click", function() {
                 $("#myModal").css("display","block");
-                $("#myModalLabel").html("{!! Lang::get('lang.delete-logo') !!}");
-                $(".yes").html("{!! Lang::get('lang.yes') !!}");
-                $(".no").html("{{Lang::get('lang.cancel')}}");
-                $("#custom-alert-body").html("{{Lang::get('lang.confirm')}}");
+                $("#myModalLabel").html("{!! Lang::get('core::lang.delete-logo') !!}");
+                $(".yes").html("{!! Lang::get('core::lang.yes') !!}");
+                $(".no").html("{{Lang::get('core::lang.cancel')}}");
+                $("#custom-alert-body").html("{{Lang::get('core::lang.confirm')}}");
             });
             $('.no,.closemodal').on("click", function(){
                 $("#myModal").css("display","none");

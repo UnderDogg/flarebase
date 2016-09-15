@@ -33,7 +33,7 @@ class="active"
     <div class="alert alert-warning alert-dismissable">
         <i class="fa fa-info"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! Lang::get('lang.create_a_category') !!}
+        {!! Lang::get('knowledgebase::lang.create_a_category') !!}
     </div>
     @endif
 
@@ -41,31 +41,31 @@ class="active"
         <div class="col-md-8">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h4 class="box-title">{!! Lang::get('lang.addarticle') !!}</h4>
+                    <h4 class="box-title">{!! Lang::get('knowledgebase::lang.addarticle') !!}</h4>
                 </div>
                 <div class="box-body">
                     <div class="row">
 
                         <div class="col-md-6 form-group {{ $errors->has('name') ? 'has-error' : '' }}" >
 
-                            {!! Form::label('name',Lang::get('lang.name')) !!}
+                            {!! Form::label('name',Lang::get('knowledgebase::lang.name')) !!}
                             {!! $errors->first('name', '<spam class="help-block">:message</spam>') !!}
                             {!! Form::text('name',null,['class' => 'form-control']) !!}
                         </div>
 
                         <div class="col-md-6 form-group {{ $errors->has('slug') ? 'has-error' : '' }}" >
 
-                            {!! Form::label('slug',Lang::get('lang.slug')) !!}
+                            {!! Form::label('slug',Lang::get('knowledgebase::lang.slug')) !!}
                             {!! $errors->first('slug', '<spam class="help-block">:message</spam>') !!}
                             {!! Form::text('slug',null,['class' => 'form-control']) !!}
                         </div>
                     </div>
 
                     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                        {!! Form::label('description',Lang::get('lang.description')) !!}
+                        {!! Form::label('description',Lang::get('knowledgebase::lang.description')) !!}
                         {!! $errors->first('description', '<spam class="help-block">:message</spam>') !!}
                         <div class="form-group" style="background-color:white">
-                            {!! Form::textarea('description',null,['class' => 'form-control','id'=>'editor','size' => '128x20','placeholder'=>Lang::get('lang.enter_the_description')]) !!}
+                            {!! Form::textarea('description',null,['class' => 'form-control','id'=>'editor','size' => '128x20','placeholder'=>Lang::get('knowledgebase::lang.enter_the_description')]) !!}
                         </div>
                         <script>
 CKEDITOR.replace('editor', {
@@ -84,25 +84,25 @@ CKEDITOR.replace('editor', {
                 <div class="col-sm-4">
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{Lang::get('lang.publish')}}</h3>
+                            <h3 class="box-title">{{Lang::get('knowledgebase::lang.publish')}}</h3>
                         </div>
                         <div class="box-body">
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
 
-                                {!! Form::label('type',Lang::get('lang.status')) !!}
+                                {!! Form::label('type',Lang::get('knowledgebase::lang.status')) !!}
                                 {!! $errors->first('type', '<spam class="help-block">:message</spam>') !!}
                                 <div class="row">
                                     <div class="col-xs-1">
                                         {!! Form::radio('type','1',true) !!}
                                     </div>
                                     <div class="col-xs-4">
-                                        {{Lang::get('lang.published')}}
+                                        {{Lang::get('knowledgebase::lang.published')}}
                                     </div>
                                     <div class="col-xs-1">
                                         {!! Form::radio('type','0',null) !!}
                                     </div>
                                     <div class="col-xs-4">
-                                        {{Lang::get('lang.draft')}}
+                                        {{Lang::get('knowledgebase::lang.draft')}}
                                     </div>
                                 </div>
                             </div>
@@ -110,14 +110,14 @@ CKEDITOR.replace('editor', {
 
                             <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
 
-                                {!! Form::label('status',Lang::get('lang.visibility')) !!}
+                                {!! Form::label('status',Lang::get('knowledgebase::lang.visibility')) !!}
                                 {!! $errors->first('status', '<spam class="help-block">:message</spam>') !!}
                                 <div class="row">
                                     <div class="col-xs-1">
                                         {!! Form::radio('status','1',true) !!}
                                     </div>
                                     <div class="col-xs-4">  
-                                        {{Lang::get('lang.public')}}
+                                        {{Lang::get('knowledgebase::lang.public')}}
                                     </div>
 
                                     <div class="row">
@@ -125,7 +125,7 @@ CKEDITOR.replace('editor', {
                                             {!! Form::radio('status','0',null) !!}
                                         </div>
                                         <div class="col-xs-4"> 
-                                            {{Lang::get('lang.private')}}
+                                            {{Lang::get('knowledgebase::lang.private')}}
                                         </div>
                                     </div>
 
@@ -172,7 +172,7 @@ CKEDITOR.replace('editor', {
                         <div class="box-footer" style="background-color:#f5f5f5;" >
 
 
-                            {!! Form::submit(Lang::get('lang.publish'),['class'=>'btn btn-primary'])!!}
+                            {!! Form::submit(Lang::get('knowledgebase::lang.publish'),['class'=>'btn btn-primary'])!!}
 
 
                         </div>
@@ -182,7 +182,7 @@ CKEDITOR.replace('editor', {
                             <div class="col-md-4">
                                 <div class="box box-default">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">{{Lang::get('lang.category')}}</h3>
+                                        <h3 class="box-title">{{Lang::get('knowledgebase::lang.category')}}</h3>
                                     </div>
                                     <div class="box-body" style="height:190px; overflow-y:auto;">
 
@@ -207,14 +207,14 @@ CKEDITOR.replace('editor', {
                                     {!! Form::close() !!}
                                     <div class="box-footer" style="background-color:#f5f5f5;">
 
-                                        <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#j">{{Lang::get('lang.addcategory')}}</span>
+                                        <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#j">{{Lang::get('knowledgebase::lang.addcategory')}}</span>
                                         <div class="modal" id="j">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     {!! Form::open(['method'=>'post','action'=>'Agent\kb\CategoryController@store']) !!}
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title">{{Lang::get('lang.addcategory')}}</h4>
+                                                        <h4 class="modal-title">{{Lang::get('knowledgebase::lang.addcategory')}}</h4>
                                                     </div>
                                                     <div class="modal-body">
                                                         @include('themes.default1.agent.kb.category.form')

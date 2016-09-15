@@ -12,9 +12,9 @@
 <div class="site-hero clearfix">
 
     <ol class="breadcrumb breadcrumb-custom">
-        <li class="text">{!! Lang::get('lang.you_are_here') !!}: </li>
-        <li>{!! Lang::get('lang.home') !!}</li>
-        <li class="active">{!! Lang::get('lang.knowledge_base') !!}</li>
+        <li class="text">{!! Lang::get('knowledgebase::lang.you_are_here') !!}: </li>
+        <li>{!! Lang::get('knowledgebase::lang.home') !!}</li>
+        <li class="active">{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</li>
         <li class="active">{!! $category->name !!}</li>
     </ol>
 </div>
@@ -42,7 +42,7 @@
                 <blockquote class="archive-description">
                     <?php $content = trim(preg_replace("/<img[^>]+\>/i", "", $excerpt), " \t.") ?>
                     <p>{!! strip_tags($content) !!}</p>
-                    <a class="readmore-link" href="{{url('show/'.$arti->slug)}}">{!! Lang::get('lang.read_more') !!}</a>
+                    <a class="readmore-link" href="{{url('show/'.$arti->slug)}}">{!! Lang::get('knowledgebase::lang.read_more') !!}</a>
                 </blockquote>	
                 <footer class="entry-footer">
                     <div class="entry-meta text-muted">
@@ -75,7 +75,7 @@
 
 
 @section('category')
-<h2 class="section-title h4 clearfix">{!! Lang::get('lang.categories') !!}<small class="pull-right"><i class="fa fa-hdd-o fa-fw"></i></small></h2>
+<h2 class="section-title h4 clearfix">{!! Lang::get('knowledgebase::lang.categories') !!}<small class="pull-right"><i class="fa fa-hdd-o fa-fw"></i></small></h2>
 <ul class="nav nav-pills nav-stacked nav-categories">
     @foreach($categorys as $category)
 <?php

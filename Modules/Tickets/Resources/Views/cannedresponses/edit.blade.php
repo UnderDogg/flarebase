@@ -23,7 +23,7 @@ class="active"
 	<!-- <section class="content"> -->
 <div class="box box-primary">
 	<div class="box-header">
-	 <h3 class="box-title">{!! Lang::get('lang.edit') !!}</h3>{!! Form::submit(Lang::get('lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}
+	 <h3 class="box-title">{!! Lang::get('tickets::lang.edit') !!}</h3>{!! Form::submit(Lang::get('tickets::lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}
 	</div>
 	<div class="box-body">
 
@@ -31,7 +31,7 @@ class="active"
 	<!-- username -->
 		<div class="col-xs-6 form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 
-			{!! Form::label('title',Lang::get('lang.title')) !!}
+			{!! Form::label('title',Lang::get('tickets::lang.title')) !!}
 			{!! $errors->first('title', '<spam class="help-block">:message</spam>') !!}
 			{!! Form::text('title',null,['class' => 'form-control']) !!}
 
@@ -39,7 +39,7 @@ class="active"
 	<!-- firstname -->
 		<div class="col-xs-12 form-group {{ $errors->has('message') ? 'has-error' : '' }}">
 
-			{!! Form::label('message',Lang::get('lang.message')) !!}
+			{!! Form::label('message',Lang::get('tickets::lang.message')) !!}
 			{!! $errors->first('message', '<spam class="help-block">:message</spam>') !!}
 			{!! Form::textarea('message',null,['class' => 'form-control']) !!}
 

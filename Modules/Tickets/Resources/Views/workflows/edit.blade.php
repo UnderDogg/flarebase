@@ -17,15 +17,15 @@ class="active"
 
 <!-- header -->
 @section('PageHeader')
-<h1>{!! Lang::get('lang.edit_workflow') !!}</h1>
+<h1>{!! Lang::get('tickets::lang.edit_workflow') !!}</h1>
 @stop
 <!-- /header -->
 <!-- breadcrumbs -->
 @section('breadcrumbs')
 <ol class="breadcrumb">
-    <li><a href="{!! URL::route('setting') !!}"><i class="fa fa-dashboard"></i> {!! Lang::get('lang.home') !!}</a></li>
-    <li><a href="{!! URL::route('workflow') !!}">{!! Lang::get('lang.ticket_workflow') !!}</a></li>
-    <li class="active"><a href="{!! URL::route('workflow.edit') !!}">{!! Lang::get('lang.edit_workflow') !!}</a></li>
+    <li><a href="{!! URL::route('setting') !!}"><i class="fa fa-dashboard"></i> {!! Lang::get('tickets::lang.home') !!}</a></li>
+    <li><a href="{!! URL::route('workflow') !!}">{!! Lang::get('tickets::lang.ticket_workflow') !!}</a></li>
+    <li class="active"><a href="{!! URL::route('workflow.edit') !!}">{!! Lang::get('tickets::lang.edit_workflow') !!}</a></li>
 </ol>
 @stop
 <!-- /breadcrumbs -->
@@ -306,7 +306,7 @@ class="active"
                                                     $var .= "</select>";
                                                     echo $var;
                                                 } elseif ($workflow_action->condition == 'agent') {
-                                                    $users = App\User::where('role', '!=', 'user')->where('active', '=', 1)->get();
+                                                    $users = Modules\Core\Models\Staff::where('role', '!=', 'user')->where('active', '=', 1)->get();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($users as $user) {
                                                         if($workflow_action->action == $user->id) { 

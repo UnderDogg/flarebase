@@ -34,8 +34,8 @@ class="active"
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{Lang::get('lang.email')}}</h3> <div class="pull-right">
-                    {!! Form::submit(Lang::get('lang.save'),['class'=>'btn btn-primary'])!!}
+                <h3 class="box-title">{{Lang::get('core::lang.email')}}</h3> <div class="pull-right">
+                    {!! Form::submit(Lang::get('core::lang.save'),['class'=>'btn btn-primary'])!!}
                 </div>
             </div>
             <!-- check whether success or not -->
@@ -62,7 +62,7 @@ class="active"
                     <div class="col-md-12">
                         <div class="col-md-3 no-padding">
                             <div class="form-group {{ $errors->has('sys_email') ? 'has-error' : '' }}">
-                                {!! Form::label('sys_email',Lang::get('lang.default_system_email')) !!}
+                                {!! Form::label('sys_email',Lang::get('core::lang.default_system_email')) !!}
                                 {!! $errors->first('sys_email', '<spam class="help-block">:message</spam>') !!}
                                 {!!Form::select('sys_email', [ 'Select an Email', 'Emails' => $emails1->lists('email_name','id')],null,['class'=>'form-control']) !!}
                             </div>
@@ -76,7 +76,7 @@ class="active"
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            {!! Form::checkbox('all_emails',1,true) !!}&nbsp;{{Lang::get('lang.accept_all_email')}}
+                            {!! Form::checkbox('all_emails',1,true) !!}&nbsp;{{Lang::get('core::lang.accept_all_email')}}
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ class="active"
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            {!! Form::checkbox('email_collaborator',1) !!}&nbsp;{{Lang::get('lang.accept_email_collab')}}
+                            {!! Form::checkbox('email_collaborator',1) !!}&nbsp;{{Lang::get('core::lang.accept_email_collab')}}
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ class="active"
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            {!! Form::checkbox('attachment',1) !!}&nbsp;{{Lang::get('lang.attachments')}}
+                            {!! Form::checkbox('attachment',1) !!}&nbsp;{{Lang::get('core::lang.attachments')}}
                         </div>
                     </div>
                 </div>

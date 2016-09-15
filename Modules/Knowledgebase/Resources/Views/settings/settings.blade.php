@@ -10,12 +10,12 @@
     {!! Form::model($settings,['url' => 'postsettings/'.$settings->id, 'method' => 'PATCH','files'=>true]) !!}
 
             <div class="box-header" style="margin:-5px;margin-top:-25px;">
-                <h3 class="box-title">{{Lang::get('lang.settings')}}</h3>  {!! Form::submit(Lang::get('lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}
+                <h3 class="box-title">{{Lang::get('knowledgebase::lang.settings')}}</h3>  {!! Form::submit(Lang::get('knowledgebase::lang.save'),['class'=>'form-group btn btn-primary pull-right'])!!}
             </div>
               <!-- Custom Tabs -->
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">{{Lang::get('lang.system')}}</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">{{Lang::get('knowledgebase::lang.system')}}</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -41,7 +41,7 @@
         <!-- Name text form Required -->
         <div class="row">
                 <div class="col-md-3 form-group">
-                    {!! Form::label('pagination',Lang::get('lang.numberofelementstodisplay')) !!}
+                    {!! Form::label('pagination',Lang::get('knowledgebase::lang.numberofelementstodisplay')) !!}
                     {!! $errors->first('pagination', '<spam class="help-block">:message</spam>') !!}
                     {!! Form::text('pagination',$settings->pagination,['class' => 'form-control']) !!}
                 </div>

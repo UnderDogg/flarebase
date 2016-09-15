@@ -31,9 +31,9 @@
     
         <ol class="breadcrumb breadcrumb-custom">
 
-            <li>{!! Lang::get('lang.you_are_here') !!}: </li>
-            <li>{!! Lang::get('lang.home') !!}</li>
-            <li>{!! Lang::get('lang.knowledge_base') !!}</li>
+            <li>{!! Lang::get('knowledgebase::lang.you_are_here') !!}: </li>
+            <li>{!! Lang::get('knowledgebase::lang.home') !!}</li>
+            <li>{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</li>
         </ol>
     
 </div>
@@ -79,7 +79,7 @@
                         $len = strlen($str);  
 
                         $excerpt = App\Http\Controllers\Client\kb\UserController::getExcerpt($str, $startPos = 0, $maxLength = 50); ?>
-                            {!! $excerpt !!} <br/><a class="more-link text-center" href="{{url('show/'.$arti->slug)}}" style="color: orange">{!! Lang::get('lang.read_more') !!}</a>
+                            {!! $excerpt !!} <br/><a class="more-link text-center" href="{{url('show/'.$arti->slug)}}" style="color: orange">{!! Lang::get('knowledgebase::lang.read_more') !!}</a>
                         </li>
                         @empty
                         <p>No Articles</p>
@@ -88,7 +88,7 @@
                 </ul>
                 
                
-                <p class="more-link text-center"><a href="{{url('category-list/'.$category->slug)}}" class="btn btn-custom btn-xs">{!! Lang::get('lang.view_all') !!}</a></p>
+                <p class="more-link text-center"><a href="{{url('category-list/'.$category->slug)}}" class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.view_all') !!}</a></p>
             
                 
             </section>
@@ -98,18 +98,18 @@
     </div>
     <section class="section">
         <div class="banner-wrapper banner-horizontal clearfix">
-            <h4 class="banner-title h4">{!! Lang::get('lang.need_more_support') !!}?</h4>
+            <h4 class="banner-title h4">{!! Lang::get('knowledgebase::lang.need_more_support') !!}?</h4>
             <div class="banner-content">
-                <p>{!! Lang::get('lang.if_you_did_not_find_an_answer_please_raise_a_ticket_describing_the_issue') !!}.</p>
+                <p>{!! Lang::get('knowledgebase::lang.if_you_did_not_find_an_answer_please_raise_a_ticket_describing_the_issue') !!}.</p>
             </div>
-            <p><a href="{!! URL::route('form') !!}" class="btn btn-custom">{!! Lang::get('lang.submit_a_ticket') !!}</a></p>
+            <p><a href="{!! URL::route('form') !!}" class="btn btn-custom">{!! Lang::get('knowledgebase::lang.submit_a_ticket') !!}</a></p>
         </div>
     </section>
 </div>
 @stop
 
 @section('category')
-<h2 class="section-title h4 clearfix">{!! Lang::get('lang.categories') !!}<small class="pull-right"><i class="fa fa-hdd-o fa-fw"></i></small></h2>
+<h2 class="section-title h4 clearfix">{!! Lang::get('knowledgebase::lang.categories') !!}<small class="pull-right"><i class="fa fa-hdd-o fa-fw"></i></small></h2>
 <ul class="nav nav-pills nav-stacked nav-categories">
     @foreach($categorys as $category)
 <?php
