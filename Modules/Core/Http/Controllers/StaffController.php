@@ -41,7 +41,7 @@ class StaffController extends Controller
         $this->roles = $roles;
         $this->departments = $departments;
         $this->settings = $settings;
-        $this->middleware('user.create', ['only' => ['create']]);
+        $this->middleware('staff.create', ['only' => ['create']]);
     }
 
     /**

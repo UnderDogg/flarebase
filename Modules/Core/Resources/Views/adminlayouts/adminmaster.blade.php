@@ -287,7 +287,7 @@
                         <li @yield('template')><a href="{{ url('/mailpanel/mailtemplates') }}"><i
                                         class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailtemplates') !!}
                             </a></li>
-                        <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/getmaildiagno') }}"><i
+                        <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/maildiagno/getmaildiagno') }}"><i
                                         class="fa fa-plus"></i>{!! Lang::get('email::lang.maildiagnostics') !!}</a></li>
                         <li @yield('autoresponses')><a href="{{ url('/mailpanel/autoresponses') }}"><i
                                         class="fa fa-plus"></i>{!! Lang::get('email::lang.autoresponses') !!}</a></li>
@@ -317,7 +317,7 @@
                         <li @yield('mailcatch-all')><a href="{{ url('/mailpanel/mailcatch-all') }}"><i
                                         class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailcatch-all') !!}
                             </a></li>
-                        <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/getmaildiagno') }}"><i
+                        <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/maildiagno/getmaildiagno') }}"><i
                                         class="fa fa-plus"></i>{!! Lang::get('email::lang.diagnostics') !!}</a></li>
                     </ul>
                 </li>

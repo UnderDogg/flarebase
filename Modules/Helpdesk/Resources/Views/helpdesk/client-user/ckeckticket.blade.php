@@ -90,7 +90,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                                 <div class="col-md-3"> 
                                                 <?php
                                                 $sla = $tickets->sla;
-                                                $SlaPlan = App\Model\helpdesk\Manage\Sla_plan::where('id','=',1)->first();?>
+                                                $SlaPlan = Modules\Tickets\Models\SlaPlan::where('id','=',1)->first();?>
                                                     <b>{!! Lang::get('helpdesk::lang.sla_plan') !!}: {{$SlaPlan->grace_period}} </b>
                                                 </div>
                                                 <div class="col-md-3"> 
@@ -141,7 +141,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                             </tr>
                                             <tr><td><b>{!! Lang::get('helpdesk::lang.department') !!}:</b></td>
                                         <?php 
-                                        $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id','=',$tickets->help_topic_id)->first();
+                                        $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id','=',$tickets->help_topic_id)->first();
                                         $department = App\Model\helpdesk\Agent\Department::where('id', '=', $help_topic->department)->first();
                                         ?>
                                             <td title="{{ $department->name }}">{!! $department->name !!}</td></tr>
@@ -152,7 +152,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                         <!-- <div class="callout callout-success"> -->
                                         <table class="table table-hover">
                                             <!-- <tr><th></th><th></th></tr> -->
-                                            <tr><td><b>{!! Lang::get('helpdesk::lang.help_topic') !!}:</b></td>     <?php $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id','=',$tickets->help_topic_id)->first();?><td title="{{$help_topic->topic}}">{{$help_topic->topic}}</td></tr>
+                                            <tr><td><b>{!! Lang::get('helpdesk::lang.help_topic') !!}:</b></td>     <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id','=',$tickets->help_topic_id)->first();?><td title="{{$help_topic->topic}}">{{$help_topic->topic}}</td></tr>
                                             <tr><td><b>{!! Lang::get('helpdesk::lang.last_message') !!}:</b></td>   <td>{{ucwords($last->poster)}}</td></tr>
                                         </table>
                                     </div>

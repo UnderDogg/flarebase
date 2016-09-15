@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Model\helpdesk\Utility;
+namespace Modules\Tickets\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ticket_thread extends Model
+class TicketThread extends Model
 {
-    protected $table = 'ticket_thread';
+    protected $table = 'ticketthreads';
     protected $fillable = [
         'id', 'ticket_id', 'ticket_subject', 'ticket_message', 'time', 'poster', 'created_at', 'updated_at',
     ];

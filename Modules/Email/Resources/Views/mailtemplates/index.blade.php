@@ -32,7 +32,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h2 class="box-title">{{Lang::get('email::lang.templates')}}</h2><a href="{{route('template.create')}}"
+                    <h2 class="box-title">{{Lang::get('email::lang.templates')}}</h2><a href="{{route('mailpanel.mailtemplates.create')}}"
                                                                                  class="btn btn-primary pull-right">{{Lang::get('email::lang.create_template')}}</a>
                 </div>
 
@@ -59,7 +59,7 @@
                             </div>
                         @endif
 
-                        <table class="table table-bordered dataTable" style="overflow:hidden;">
+                        <table class="table table-bordered table-striped dataTable" style="overflow:hidden;">
                             <tr>
                                 <th width="100px">{{Lang::get('email::lang.name')}}</th>
                                 <th width="100px">{{Lang::get('email::lang.status')}}</th>

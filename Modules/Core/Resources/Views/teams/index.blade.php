@@ -56,7 +56,7 @@ class="active"
                 </div>
                 @endif
 
-                <table class="table table-bordered dataTable" style="overflow:hidden;">
+                <table class="table table-bordered table-striped dataTable" style="overflow:hidden;">
                     <tr>
                         <th>{{Lang::get('core::lang.name')}}</th>
                         <th>{{Lang::get('core::lang.status')}}</th>

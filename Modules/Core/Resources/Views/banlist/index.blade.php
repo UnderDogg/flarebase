@@ -33,7 +33,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h2 class="box-title">{{Lang::get('core::lang.banlists')}}</h2><a href="{{route('banlist.create')}}"
-                                                                                class="pull-right btn btn-primary">{{Lang::get('core::lang.ban_email')}}</a>
+                                                                                      class="pull-right btn btn-primary">{{Lang::get('core::lang.ban_email')}}</a>
                 </div>
                 <div class="box-body table-responsive">
 
@@ -58,7 +58,7 @@
                                 {{Session::get('fails')}}
                             </div>
                         @endif
-                        <table class="table table-bordered dataTable" style="overflow:hidden;">
+                        <table class="table table-bordered table-striped dataTable" style="overflow:hidden;">
                             <tr>
                                 <th width="100px">{{Lang::get('core::lang.email_address')}}</th>
                                 <th width="100px">{{Lang::get('core::lang.last_updated')}}</th>

@@ -11,9 +11,9 @@ use Modules\Core\Requests\SystemRequest;
 // models
 use Modules\Core\Models\Department;
 use Modules\Email\Models\Emails;
-use Modules\Email\Models\Template;
-use App\Model\helpdesk\Manage\Help_topic;
-use App\Model\helpdesk\Manage\Sla_plan;
+use Modules\Email\Models\MailTemplate;
+use Modules\Tickets\Models\TicketHelpTopic;
+use Modules\Tickets\Models\SlaPlan;
 use App\Model\helpdesk\Settings\Access;
 use App\Model\helpdesk\Settings\Alert;
 use App\Model\helpdesk\Settings\Company;

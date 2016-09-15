@@ -14,6 +14,12 @@ Route::get('teamsdata', [
 
 
 
+Route::get('rolesdata', [
+    'as' => 'roles.data',
+    'uses' => 'RolesController@anyData',
+    //'middleware' => 'can:mailboxes.mailboxes.index'
+]);
+
 
 
 
@@ -101,11 +107,15 @@ Route::group(['prefix' => '/adminpanel'], function () {
     Route::get('teams', ['as' => 'adminteams', 'uses' => 'TeamsController@index']);
 
 
+    Route::group(['prefix' => '/roles'], function () {
+        Route::resource('roles', 'RolesController');
+        Route::get('/manage', [
+            'as' => 'adminroles',
+            'uses' => 'RolesController@manage',
+            //'middleware' => 'can:mailboxes.mailboxes.create'
+        ]);
+    });
 
-
-    /**
-     * USERS which means possible logins of the clients
-     */
     Route::resource('users', 'UsersController');
     Route::get('users/', 'UsersController@index')->name('users.index');
 });

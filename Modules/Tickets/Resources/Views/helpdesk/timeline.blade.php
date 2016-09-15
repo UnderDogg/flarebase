@@ -158,7 +158,7 @@ $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=',
                             <div class="col-md-3">
                                 <?php
 $sla = $tickets->sla;
-$SlaPlan = App\Model\helpdesk\Manage\Sla_plan::where('id', '=', $sla)->first();
+$SlaPlan = Modules\Tickets\Models\SlaPlan::where('id', '=', $sla)->first();
 ?>
                                 <b>{!! Lang::get('tickets::lang.sla_plan') !!}: {{$SlaPlan->grace_period}} </b>
                             </div>
@@ -231,7 +231,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                             @if($user->phone_number !=null)<tr><td><b>Phone:</b></td>          <td>{{$user->phone_number}}</td></tr>@endif
                             @if($user->mobile !=null)<tr><td><b>Phone:</b></td>          <td>{{$user->ext . $user->phone_number}}</td></tr>@endif
                             <tr><td><b>{!! Lang::get('tickets::lang.source') !!}:</b></td>         <td>{{$ticket_source}}</td></tr>
-                            <tr><td><b>{!! Lang::get('tickets::lang.help_topic') !!}:</b></td>     <?php $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id', '=', $tickets->help_topic_id)->first();?><td title="{{$help_topic->topic}}">{{$help_topic->topic}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.help_topic') !!}:</b></td>     <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first();?><td title="{{$help_topic->topic}}">{{$help_topic->topic}}</td></tr>
                             <?php Event::fire(new App\Events\TicketDetailTable($TicketData)); ?>
                             <tr><td><b>{!! Lang::get('tickets::lang.last_message') !!}:</b></td>   <td>{{$username}}</td></tr>
                             <?php Event::fire(new App\Events\TicketDetailTable($TicketData)); ?>
@@ -655,7 +655,7 @@ $data = $ConvDate[0];
                                         @if(isset($ticket_form_datas))
                                                     <div class="box-body col-md-9">
                                                     <br/>
-                                                        <table class="table table-bordered">
+                                                        <table class="table table-bordered table-striped table-hover">
                                                         <tbody>
                                                         @foreach($ticket_form_datas as $ticket_form_data)
                                                             <tr>
@@ -762,7 +762,7 @@ $data = $ConvDate[0];
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{!! Lang::get('tickets::lang.sla_plan') !!}</label>
-                                <?php $sla_plans = App\Model\helpdesk\Manage\Sla_plan::all() ?>
+                                <?php $sla_plans = Modules\Tickets\Models\SlaPlan::all() ?>
                                 <select class="form-control" name="sla_paln">
                                 @foreach($sla_plans as $sla_plan)
                                     <option value="{!! $sla_plan->id !!}" <?php  if($SlaPlan->id == $sla_plan->id){ echo "selected"; } ?> >{!! $sla_plan->grace_period !!}</option>
@@ -774,7 +774,7 @@ $data = $ConvDate[0];
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{!! Lang::get('tickets::lang.help_topic') !!}</label>
-                                <?php $help_topics = App\Model\helpdesk\Manage\Help_topic::all() ?>
+                                <?php $help_topics = Modules\Tickets\Models\TicketHelpTopic::all() ?>
                                 <select class="form-control" name="help_topic">
                                 @foreach($help_topics as $helptopic)
                                     <option value="{!! $helptopic->id !!}" <?php if($help_topic->id == $helptopic->id){echo 'selected';} ?> >{!! $helptopic->topic !!}</option>

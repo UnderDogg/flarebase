@@ -25,8 +25,8 @@
 
         <?php $status = App\Model\helpdesk\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first(); ?>
         <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first(); ?>
-        <?php $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id', '=', $tickets->help_topic_id)->first(); ?>
-        <?php $help_topic = App\Model\helpdesk\Manage\Help_topic::where('id', '=', $tickets->help_topic_id)->first(); ?>
+        <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first(); ?>
+        <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first(); ?>
 <?php $dept = App\Model\helpdesk\Agent\Department::where('id','=',$help_topic->department)->first();   ?>
         <table class="table">    
             <tr><th></th><th></th></tr>

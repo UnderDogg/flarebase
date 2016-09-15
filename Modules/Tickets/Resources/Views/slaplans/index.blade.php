@@ -56,7 +56,7 @@ class="active"
     </div>
     @endif
 
-<table class="table table-bordered dataTable" style="overflow:hidden;">
+<table class="table table-bordered table-striped dataTable" style="overflow:hidden;">
 
 	<tr>
 		<th width="100px">{{Lang::get('tickets::lang.name')}}</th>

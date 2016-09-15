@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Modules\Core\Requests\TemplateRequest;
 use Modules\Core\Requests\TemplateUdate;
 // models
-use Modules\Email\Models\Emails;
+use Modules\Email\Models\Mailbox;
 use Modules\Email\Models\MailTemplate;
 use Modules\Core\Models\Language;
 // classes
@@ -71,7 +71,7 @@ class MailTemplatesController extends Controller
             $templates = $template->get();
             $languages = $language->get();
 
-            return view('core::emails.template.create', compact('languages', 'templates'));
+            return view('emails::mailtemplates.create', compact('languages', 'templates'));
         } catch (Exception $e) {
             return view('errors.404');
         }
@@ -295,19 +295,19 @@ class MailTemplatesController extends Controller
     /**
      * Form for Email connection checking.
      *
-     * @param type Emails $email
+     * @param type Mailboxes $email
      *
      * @return type Response
      */
-    public function formDiagno(Emails $email)
+    public function formDiagno(Mailbox $mailbox)
     {
-        try {
-            $emails = $email->get();
+        //try {
+            $emails = $mailbox->get();
 
-            return view('core::emails.template.formDiagno', compact('emails'));
-        } catch (Exception $e) {
-            return view('errors.404');
-        }
+            return view('email::mailtemplates.formDiagno', compact('emails'));
+        //} catch (Exception $e) {
+        //   return view('errors.404');
+        //}
     }
 
     /**
@@ -319,12 +319,12 @@ class MailTemplatesController extends Controller
      */
     public function postDiagno(Request $request)
     {
-        $email = $request->input('to');
-        if ($email == null) {
+        $mailbox = $request->input('to');
+        if ($mailbox == null) {
             return redirect('getdiagno')->with('fails', 'Please provide E-mail address !');
         }
         // sending mail via php mailer
-        $mail = $this->PhpMailController->sendmail($from = $this->PhpMailController->mailfrom('1', '0'), $to = ['email' => $email], $message = ['subject' => 'Checking the connection', 'scenario' => 'error-report', 'content' => 'Email Received Successfully'], $template_variables = ['system_error' => 'Email Received Successfully']);
+        $mail = $this->PhpMailController->sendmail($from = $this->PhpMailController->mailfrom('1', '0'), $to = ['email' => $mailbox], $message = ['subject' => 'Checking the connection', 'scenario' => 'error-report', 'content' => 'Email Received Successfully'], $template_variables = ['system_error' => 'Email Received Successfully']);
 
         if ($mail == null) {
             return redirect('getdiagno')->with('fails', 'Please check your E-mail settings. Unable to send mails');

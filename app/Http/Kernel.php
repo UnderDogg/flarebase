@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
         //'user.is.staff' => [\App\Http\Middleware\RedirectIfNotStaff::class],
 
 
-        //'user.is.admin' => [\App\Http\Middleware\RedirectIfNotAdmin::class],
+        'user.is.admin' => [\App\Http\Middleware\RedirectIfNotAdmin::class],
         'api' => [
             'throttle:60,1',
             'bindings',

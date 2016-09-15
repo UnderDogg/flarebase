@@ -123,7 +123,7 @@ class="active"
                             <div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <table  class="table table-bordered table-hover">
+                                    <table  class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <td>{!! Lang::get('tickets::lang.rules') !!}</td>
@@ -187,7 +187,7 @@ class="active"
                     <div class="tab-pane" id="close">
                         <div>
                             <div class="box-body">
-                                <table  class="table table-bordered table-hover">
+                                <table  class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <td>{!! Lang::get('tickets::lang.condition') !!}</td>

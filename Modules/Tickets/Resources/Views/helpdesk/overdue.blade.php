@@ -27,7 +27,7 @@ if ($i == 0) {
         } else {
             $j = 0;
             foreach ($overdues as $overdue) {
-                $sla_plan = App\Model\helpdesk\Manage\Sla_plan::where('id', '=', $overdue->sla)->first();
+                $sla_plan = Modules\Tickets\Models\SlaPlan::where('id', '=', $overdue->sla)->first();
 
                 $ovadate = $overdue->created_at;
                 $new_date = date_add($ovadate, date_interval_create_from_date_string($sla_plan->grace_period)).'<br/><br/>';

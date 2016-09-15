@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Modules\Core\Requests\SlaRequest;
 use Modules\Core\Requests\SlaUpdate;
 // models
-use App\Model\helpdesk\Manage\Sla_plan;
+use Modules\Tickets\Models\SlaPlan;
 use App\Model\helpdesk\Settings\Ticket;
 //classes
 use DB;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\helpdesk\Agent_panel;
+namespace Modules\Tickets\ModelsAgent_panel;
 
 use Illuminate\Database\Eloquent\Model;
 

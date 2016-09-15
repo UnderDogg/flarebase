@@ -251,7 +251,7 @@
                 <li @yield('ban')><a href="{{ url('/mailpanel/mailbanlist') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.ban_lists') !!}</a></li>
                 <li @yield('getmail')><a href="{{url('/mailpanel/getmail')}}"><i class="fa fa-at"></i>{!! Lang::get('email::lang.getmail') !!}</a></li>
                 <li @yield('template')><a href="{{ url('/mailpanel/mailtemplates') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailtemplates') !!}</a></li>
-                <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/getmaildiagno') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.maildiagnostics') !!}</a></li>
+                <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/maildiagno/getmaildiagno') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.maildiagnostics') !!}</a></li>
                 <li @yield('autoresponses')><a href="{{ url('/mailpanel/autoresponses') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.autoresponses') !!}</a></li>
                 <li @yield('breaklines')><a href="{{ url('/mailpanel/breaklines') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.breaklines') !!}</a></li>
                 <li @yield('mailrules')><a href="{{ url('/mailpanel/mailrules') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.mailrules') !!}</a></li>

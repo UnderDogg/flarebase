@@ -265,7 +265,7 @@
          <div class="col-md-2 col-sm-6">
            <div class="settingiconblue">
              <div class="settingdivblue">
-               <a href="{{ url('/mailpanel/getmaildiagno') }}"><span class="fa-stack fa-2x">
+               <a href="{{ url('/mailpanel/maildiagno/getmaildiagno') }}"><span class="fa-stack fa-2x">
 
                  <i class="fa fa-plus fa-stack-1x"></i>
                  </span></a>

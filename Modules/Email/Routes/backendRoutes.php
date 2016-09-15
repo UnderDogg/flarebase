@@ -35,7 +35,6 @@ Route::group(['prefix' => '/mailpanel'], function () {
     //Route::resource('mailboxes', 'MailboxesController');
 
 
-
     Route::get('/', [
         'as' => 'admin.mailboxes.mailpanel.index',
         'uses' => 'MailboxesController@maildashboard',
@@ -51,7 +50,23 @@ Route::group(['prefix' => '/mailpanel'], function () {
         ]);
     });
 
+    Route::group(['prefix' => '/maildiagno'], function () {
+        //Route::get('getdiagno', 'Admin\helpdesk\TemplateController@formDiagno'); // for getting form for diagnostic
+        //Route::post('postdiagno', 'Admin\helpdesk\TemplateController@postDiagno'); // for getting form for diagnostic
+        Route::get('/getmaildiagno', [
+            'as' => 'admin.mailpanel.getmaildiagno',
+            'uses' => 'MailTemplatesController@formDiagno',
+            //'middleware' => 'can:mailboxes.mailboxes.index'
+        ]);
 
+        Route::get('/postdiagno', [
+            'as' => 'admin.mailpanel.postmaildiagno',
+            'uses' => 'MailTemplatesController@postDiagno',
+            //'middleware' => 'can:mailboxes.mailboxes.index'
+        ]);
+    });
+
+//getmaildiagno
     Route::group(['prefix' => '/mailtemplates'], function () {
         Route::resource('mailtemplates', 'MailTemplatesController'); // in template module, for CRUD
 
@@ -60,7 +75,15 @@ Route::group(['prefix' => '/mailpanel'], function () {
             'uses' => 'MailTemplatesController@index',
             //'middleware' => 'can:mailboxes.mailboxes.index'
         ]);
+
+        Route::get('/create', [
+            'as' => 'mailpanel.mailtemplates.create',
+            'uses' => 'MailTemplatesController@create',
+            //'middleware' => 'can:mailboxes.mailboxes.index'
+        ]);
+
     });
+
 
     Route::group(['prefix' => '/mailtemplategroups'], function () {
         Route::resource('mailtemplategroups', 'MailTemplateGroupsController'); // in template module, for CRUD
@@ -71,11 +94,6 @@ Route::group(['prefix' => '/mailpanel'], function () {
             //'middleware' => 'can:mailboxes.mailboxes.index'
         ]);
     });
-
-
-
-
-
 
 
     Route::group(['prefix' => '/autoresponses'], function () {
@@ -108,7 +126,6 @@ Route::group(['prefix' => '/mailpanel'], function () {
             //'middleware' => 'can:mailboxes.mailboxes.index'
         ]);
     });
-
 
 
     Route::group(['prefix' => '/mailboxes'], function () {

@@ -73,13 +73,13 @@
                         {!! $errors->first('help_topic', '<span class="help-block">:message</span>') !!}
                         <?php
                         $forms = App\Model\helpdesk\Form\Forms::get();
-                        $helptopic = App\Model\helpdesk\Manage\Help_topic::get();
+                        $helptopic = Modules\Tickets\Models\TicketHelpTopic::get();
                         ?>
                         <select name="helptopic" class="form-control" id="selectid">
                             <?php
                             $system_default_department = App\Model\helpdesk\Settings\System::where('id', '=', 1)->first();
                             if ($system_default_department->department) {
-                                $department_relation_helptopic = App\Model\helpdesk\Manage\Help_topic::where('department', '=', $system_default_department->department)->first();
+                                $department_relation_helptopic = Modules\Tickets\Models\TicketHelpTopic::where('department', '=', $system_default_department->department)->first();
                                 $default_helptopic = $department_relation_helptopic->id;
                             } else {
                                 $default_helptopic = 0;

@@ -121,7 +121,7 @@ class="active"
                         <div class="form-group">
                             <label>{!! Lang::get('tickets::lang.help_topic') !!}:</label>
                             <!-- helptopic -->
-                                <?php $helptopic = App\Model\helpdesk\Manage\Help_topic::all();?>
+                                <?php $helptopic = Modules\Tickets\Models\TicketHelpTopic::all();?>
                                     {!! Form::select('helptopic', ['Helptopic'=>$helptopic->lists('topic','id')],null,['class' => 'form-control select']) !!}
                                         {!! $errors->first('helptopic', '<spam class="help-block text-red">:message</spam>') !!}
                                     </div>
@@ -130,7 +130,7 @@ class="active"
                                 <!-- sla plan -->
                                     <div class="form-group">
                                         <label>{!! Lang::get('tickets::lang.sla_plan') !!}:</label>
-                                        <?php $sla_plan = App\Model\helpdesk\Manage\Sla_plan::all();?>
+                                        <?php $sla_plan = Modules\Tickets\Models\SlaPlan::all();?>
                                         {!! Form::select('sla', ['SLA'=>$sla_plan->lists('grace_period','id')],null,['class' => 'form-control select']) !!}
                                         {!! $errors->first('sla', '<spam class="help-block text-red">:message</spam>') !!}
                                     </div>

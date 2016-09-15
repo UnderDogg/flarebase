@@ -150,7 +150,7 @@ class="active"
                             <div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <table  class="table table-bordered table-hover">
+                                    <table  class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <td>Rules</td>
@@ -220,7 +220,7 @@ class="active"
                     <div class="tab-pane" id="close">
                         <div>
                             <div class="box-body">
-                                <table  class="table table-bordered table-hover">
+                                <table  class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <td>Condition</td>
@@ -280,7 +280,7 @@ class="active"
                                                     $var .= "</select>";
                                                     echo $var;
                                                 } elseif ($workflow_action->condition == 'sla') {
-                                                    $sla_plans = App\Model\helpdesk\Manage\Sla_plan::where('status', '=', 1)->get();
+                                                    $sla_plans = Modules\Tickets\Models\SlaPlan::where('status', '=', 1)->get();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($sla_plans as $sla_plan) {
                                                         if($workflow_action->action == $sla_plan->id) { 
@@ -319,7 +319,7 @@ class="active"
                                                     $var .= "</select>";
                                                     echo $var;
                                                 } elseif ($workflow_action->condition == 'helptopic') {
-                                                    $help_topics = App\Model\helpdesk\Manage\Help_topic::where('status', '=', 1)->get();
+                                                    $help_topics = Modules\Tickets\Models\TicketHelpTopic::where('status', '=', 1)->get();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($help_topics as $help_topic) {
                                                         if($workflow_action->action == $help_topic->id) { 
