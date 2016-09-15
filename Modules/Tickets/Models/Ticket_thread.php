@@ -4,7 +4,7 @@ namespace Modules\Tickets\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TicketThread extends Model
+class TicketLittleThread extends Model
 {
     protected $table = 'ticketthreads';
     protected $fillable = [

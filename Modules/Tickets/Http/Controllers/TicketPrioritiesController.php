@@ -17,9 +17,7 @@ use Modules\Tickets\Models\TicketTime;
 use Datatables;
 use Carbon;
 
-
-
-class TicketTypesController extends Controller
+class TicketPrioritiesController extends Controller
 {
     public function __construct()
     {
@@ -29,7 +27,6 @@ class TicketTypesController extends Controller
     }
 
 
-
     /**
      * Display a listing of the resource.
      *
@@ -37,29 +34,29 @@ class TicketTypesController extends Controller
      */
     public function index()
     {
-        return view('tickets::tickettypes.index');
+        return view('tickets::ticketpriorities.index');
     }
 
     public function anyData()
     {
         //$canUpdateStaff = auth()->user()->can('update-user');
         //Auth::guard($guard)->user()->can('update-user');
-        $tickettypes = TicketType::select(['id', 'ispublic', 'name', 'displayicon', 'departmentid', 'ismaster', 'displayorder']);
-        return Datatables::of($tickettypes)
+        $ticketpriorities = TicketPriority::select(['id', 'priority', 'priority_desc', 'priority_color', 'priority_urgency', 'ispublic']);
+        return Datatables::of($ticketpriorities)
 
-            ->addColumn('tickettypelink', function ($tickettypes) {
-                return '<a href="ticketspanel/tickettypes/' . $tickettypes->id . '" ">' . $tickettypes->name . '</a>';
+            ->addColumn('ticketpriolink', function ($ticketpriorities) {
+                return '<a href="ticketspanel/ticketpriorities/' . $ticketpriorities->id . '" ">' . $ticketpriorities->priority . '</a>';
             })
-            ->addColumn('tickettypedepartment', function ($tickettypes) {
-                return '<a href="ticketspanel/tickettypes/' . $tickettypes->id . '" ">' . $tickettypes->departmentid . '</a>';
+            ->addColumn('ticketpriocolor', function ($ticketpriorities) {
+                return '<a href="ticketspanel/ticketpriorities/' . $ticketpriorities->id . '" ">' . $ticketpriorities->priority_color . '</a>';
             })
 
-            ->addColumn('actions', function ($tickettypes) {
+            ->addColumn('actions', function ($ticketpriorities) {
                 return '
-                <form action="' . route('tickettypes.destroy', [$tickettypes->id]) .'" method="POST">
+                <form action="' . route('ticketpriorities.destroy', [$ticketpriorities->id]) .'" method="POST">
                 <div class=\'btn-group\'>
                     <input type="hidden" name="_method" value="DELETE">
-                    <a href="' . route('tickettypes.edit', [$tickettypes->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
+                    <a href="' . route('ticketpriorities.edit', [$ticketpriorities->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
                     <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-xs" onClick="return confirm(\'Are you sure?\')"">
                 </div>
                 </form>';
@@ -131,4 +128,6 @@ class TicketTypesController extends Controller
     {
         //
     }
+
+
 }

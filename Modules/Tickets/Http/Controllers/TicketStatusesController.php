@@ -17,9 +17,7 @@ use Modules\Tickets\Models\TicketTime;
 use Datatables;
 use Carbon;
 
-
-
-class TicketTypesController extends Controller
+class TicketStatusesController extends Controller
 {
     public function __construct()
     {

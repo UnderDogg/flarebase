@@ -10,7 +10,7 @@ class TicketThread extends Model
 {
     use Sluggable, Taggable;
 
-    protected $table = 'ticket_threads';
+    protected $table = 'ticketthreads';
 
     protected $fillable = [
         'id', 'pid', 'ticket_id', 'staff_id', 'user_id', 'thread_type', 'poster', 'source', 'is_internal', 'title', 'slug', 'body', 'format', 'ip_address', 'created_at', 'updated_at',

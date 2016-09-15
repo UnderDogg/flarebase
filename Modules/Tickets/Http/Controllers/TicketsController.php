@@ -48,10 +48,11 @@ class TicketsController extends Controller
         $this->relations = $relations;
         $this->invoices = $invoices;
         $this->settings = $settings;
-        $this->middleware('ticket.create', ['only' => ['create']]);
-        $this->middleware('ticket.update.status', ['only' => ['updateStatus']]);
-        $this->middleware('ticket.assigned', ['only' => ['updateAssign', 'updateTime']]);
+        //$this->middleware('ticket.create', ['only' => ['create']]);
+        //$this->middleware('ticket.update.status', ['only' => ['updateStatus']]);
+        //$this->middleware('ticket.assigned', ['only' => ['updateAssign', 'updateTime']]);
     }
+
 
     /**
      * Display a listing of the resource.
@@ -65,8 +66,6 @@ class TicketsController extends Controller
 
     public function anyData()
     {
-
-
         $tickets = Ticket::select([
             'id',
             'ticket_number',

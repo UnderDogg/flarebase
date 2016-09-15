@@ -1,6 +1,14 @@
 <?php
 use Illuminate\Routing\Router;
 
+
+Route::get('/tickettypesdata', ['as' => 'tickettypes.data', 'uses' => 'TicketTypesController@anyData']);
+Route::get('/ticketprioritiessdata', ['as' => 'ticketpriorities.data', 'uses' => 'TicketPrioritiesController@anyData']);
+
+
+
+
+
 Route::group(['prefix' => '/ticketspanel'], function () {
     Route::resource('tickets', 'TicketsController');
     Route::get('/', ['as' => 'ticketspanel', 'uses' => 'DashBoardController@ticketsdashboard']);

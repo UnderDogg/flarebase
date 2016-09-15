@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Core\Http\Controllers;
+namespace Modules\Tickets\Http\Controllers;
 
 // controllers
 use App\Http\Controllers\Controller;
 // models
-use Modules\Core\Models\Priority;
-use Modules\Core\Models\Ticket_thread;
+use Modules\Tickets\Models\TicketPriority;
+use Modules\Tickets\Models\TicketThread;
 // classes
 use Exception;
 
@@ -25,17 +25,17 @@ class ThreadController extends Controller
      *
      * @return type Response
      */
-    public function getTickets(Ticket_thread $thread, Priority $priority)
+    public function getTickets(TicketThread $thread, TicketPriority $priority)
     {
-        try {
+        //try {
             /* get the values of Ticket_thread from Ticket_thread Table  */
             $threads = $thread->get();
             /* get the values of priority from Priority Table  */
             $priorities = $priority->get();
             /* Direct to view page */
-            return view('core::tickets.ticket', compact('threads', 'priorities'));
-        } catch (Exception $e) {
-            return view('errors.404');
-        }
+            return view('tickets::tickets.ticket', compact('threads', 'priorities'));
+        //} catch (Exception $e) {
+        //    return view('errors.404');
+        //}
     }
 }

@@ -13,10 +13,18 @@ class DashBoardController extends Controller
         //$this->middleware('staff');
     }
 
-    public function admindashboard()
+    public function ticketsdashboard()
     {
         return view('tickets::tickets.ticketsdashboard');
     }
 
 
+    
+/*
+public function ticketsdashboard()
+{
+return view('tickets::tickets.ticketsdashboard');
+}
+*/    
+   
 }

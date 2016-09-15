@@ -25,7 +25,7 @@ use Exception;
  *
  * @author      Ladybird <info@ladybirdweb.com>
  */
-class HelptopicController extends Controller
+class HelpTopicsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -47,13 +47,13 @@ class HelptopicController extends Controller
      */
     public function index(Help_topic $topic)
     {
-        try {
+        //try {
             $topics = $topic->get();
 
-            return view('core::manage.helptopic.index', compact('topics'));
-        } catch (Exception $e) {
-            return view('errors.404');
-        }
+            return view('tickets::helptopics.index', compact('topics'));
+        //} catch (Exception $e) {
+        //    return view('errors.404');
+        //}
     }
 
     /**
