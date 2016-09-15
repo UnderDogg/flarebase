@@ -3,10 +3,10 @@
 namespace Modules\Core\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Model\helpdesk\Agent\Department;
-use App\Model\helpdesk\Email\Emails;
-use App\Model\helpdesk\Settings\Company;
-use App\Model\helpdesk\Settings\Email;
+use Modules\Core\Models\Agent\Department;
+use Modules\Core\Models\Email\Emails;
+use Modules\Core\Models\Settings\Company;
+use Modules\Core\Models\Settings\Email;
 use App\User;
 use Auth;
 

@@ -547,7 +547,7 @@
                                                 <?php Event::fire(new App\Events\Timeline($conversation, $role, $user)); ?>
                                             @endif
                                             <?php
-                                            $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id', '=', $conversation->id)->get();
+                                            $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id', '=', $conversation->id)->get();
                                             $i = 0;
                                             foreach ($attachments as $attachment) {
                                                 if ($attachment->poster == 'ATTACHMENT') {

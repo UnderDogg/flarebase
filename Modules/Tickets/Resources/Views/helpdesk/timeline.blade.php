@@ -12,7 +12,7 @@ active
     $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first();
     $assignedto = Modules\Core\Models\Staff::where('id', '=', $tickets->assigned_to)->first();
     $agent_group = Auth::user()->assign_group;
-    $group = App\Model\helpdesk\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
+    $group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 ?>
 
 @section('sidebar')
@@ -151,7 +151,7 @@ active
             <section class="content"  >
                 <div class="col-md-12">
                     <?php
-$priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();
+$priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();
 ?>
                     <div class="callout callout-{{$priority->priority_color}}">
                         <div class="row">
@@ -175,7 +175,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
 ?>
                             </div>
                             <div class="col-md-3">
-                                <?php $response = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get();?>
+                                <?php $response = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get();?>
                                 @foreach($response as $last)
                                 <?php $ResponseDate = $last->created_at;?>
                                 @endforeach
@@ -195,9 +195,9 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                 <div class="col-md-6">
                     <table class="table table-hover">
                         <div id="refresh">
-                            <tr><td><b>{!! Lang::get('tickets::lang.status') !!}:</b></td>       <?php $status = App\Model\helpdesk\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first();?><td title="{{$status->properties}}">{{$status->name}}</td></tr>
-                            <tr><td><b>{!! Lang::get('tickets::lang.priority') !!}:</b></td>     <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();?><td title="{{$priority->priority_desc}}">{{$priority->priority_desc}}</td></tr>
-                            <tr><td><b>{!! Lang::get('tickets::lang.department') !!}:</b></td>   <?php $dept123 = App\Model\helpdesk\Agent\Department::where('id', '=', $tickets->dept_id)->first();?><td title="{{$dept123->name}}">{{$dept123->name}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.status') !!}:</b></td>       <?php $status = Modules\Core\Models\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first();?><td title="{{$status->properties}}">{{$status->name}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.priority') !!}:</b></td>     <?php $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();?><td title="{{$priority->priority_desc}}">{{$priority->priority_desc}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.department') !!}:</b></td>   <?php $dept123 = Modules\Core\Models\Agent\Department::where('id', '=', $tickets->dept_id)->first();?><td title="{{$dept123->name}}">{{$dept123->name}}</td></tr>
                             <tr><td><b>{!! Lang::get('tickets::lang.email') !!}:</b></td>        <td>{{$user->email}}</td></tr>
                             @if($user->ban > 0)  <tr><td style="color:orange;"><i class="fa fa-warning"></i><b>
                             {!!  Lang::get('tickets::lang.this_ticket_is_under_banned_user')!!}</td><td></td></tr>@endif
@@ -207,8 +207,8 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                 <div class="col-md-6">
 <?php 
     $user_phone = Modules\Core\Models\Staff::where('mobile','=',$thread->user_id)->first();
-    $TicketData = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $thread->ticket_id)->max('id');
-                        $TicketDatarow = App\Model\helpdesk\Ticket\Ticket_Thread::where('id', '=', $TicketData)->first();
+    $TicketData = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $thread->ticket_id)->max('id');
+                        $TicketDatarow = Modules\Core\Models\Ticket\Ticket_Thread::where('id', '=', $TicketData)->first();
                         $LastResponse = Modules\Core\Models\Staff::where('id', '=', $TicketDatarow->user_id)->first();
                         if($LastResponse->role == "user") {
                             $rep = "#F39C12";
@@ -219,7 +219,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                             }}   
                         if($tickets->source > 0)
                         {
-                            $ticket_source = App\Model\helpdesk\Ticket\Ticket_source::where('id','=',$tickets->source)->first();
+                            $ticket_source = Modules\Core\Models\Ticket\Ticket_source::where('id','=',$tickets->source)->first();
                             $ticket_source = $ticket_source->value;
                         }   
                         else
@@ -304,7 +304,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                                             {!! $errors->first('To', '<spam class="help-block text-red">:message</spam>') !!}
                                             <a href="#" data-toggle="modal" data-target="#addccc"> {!! Lang::get('tickets::lang.add_cc') !!} </a>
                                             <div id="recepients">
-                                            <?php $Collaborator =  App\Model\helpdesk\Ticket\Ticket_Collaborator::where('ticket_id', '=', $tickets->id)->get(); 
+                                            <?php $Collaborator =  Modules\Core\Models\Ticket\Ticket_Collaborator::where('ticket_id', '=', $tickets->id)->get();
                                             $count_collaborator = count($Collaborator);?>
                                             @if($count_collaborator > 0)
                                                 <a href="#" data-toggle="modal" data-target="#surrender2">({!! $count_collaborator !!}) {!! Lang::get('tickets::lang.recepients') !!} </a>
@@ -325,7 +325,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                                     <select class="form-control" style="width:55%" id="select">
                                         
 <?php 
-$canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user()->id)->get();
+$canneds = Modules\Email\Models\CannedResponse::where('user_id','=',Auth::user()->id)->get();
 ?>                                                  
                                         <option value="zzz">{!! Lang::get('tickets::lang.select_a_canned_response') !!}</option>
                                         @foreach($canneds as $canned)
@@ -489,8 +489,8 @@ $canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id','=',Auth::user
         </div>
         <!-- ticket  conversations -->
 <?php
-$conversations = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->orderBy('id', 'DESC')->paginate(10);
-$ij = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->first();
+$conversations = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->orderBy('id', 'DESC')->paginate(10);
+$ij = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->first();
 
 ?>
 
@@ -547,7 +547,7 @@ $data = $ConvDate[0];
                                 <?php } else { ?>
                                     <i class="fa fa-mail-reply-all bg-purple" title="Posted by System"></i>
     <?php } }
-    $attachment = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->first();
+    $attachment = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->first();
     if($attachment == null ) {
         $body = $conversation->body;
     } else {
@@ -556,7 +556,7 @@ $data = $ConvDate[0];
         // header("Content-type: image/jpeg");
         // echo "<img src='".base64_decode($attachment->file)."' style='width:128px;height:128px'/> ";
         $body = $conversation->body;
-        $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->orderBy('id', 'DESC')->get();
+        $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->orderBy('id', 'DESC')->get();
         // $i = 0;
                     foreach($attachments as $attachment)
                     {
@@ -651,7 +651,7 @@ $data = $ConvDate[0];
                                             {!! $body !!}
                                     </div>
                                     @if($conversation->id == $ij->id)
-                                    <?php  $ticket_form_datas = App\Model\helpdesk\Ticket\Ticket_Form_Data::where('ticket_id', '=', $tickets->id)->get();  ?>
+                                    <?php  $ticket_form_datas = Modules\Core\Models\Ticket\Ticket_Form_Data::where('ticket_id', '=', $tickets->id)->get();  ?>
                                         @if(isset($ticket_form_datas))
                                                     <div class="box-body col-md-9">
                                                     <br/>
@@ -673,7 +673,7 @@ $data = $ConvDate[0];
                                     <?php Event::fire(new App\Events\Timeline($conversation,$role,$user)); ?>
                                     @endif
                                         <?php 
-                                        $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->get();
+                                        $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->get();
                                         $i = 0;
                                         foreach($attachments as $attachment) {
                                         if($attachment->poster == 'ATTACHMENT') {
@@ -786,7 +786,7 @@ $data = $ConvDate[0];
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{!! Lang::get('tickets::lang.ticket_source') !!}</label>
-                                <?php $ticket_sources = App\Model\helpdesk\Ticket\Ticket_source::all() ?>
+                                <?php $ticket_sources = Modules\Core\Models\Ticket\Ticket_source::all() ?>
                                 <select class="form-control" name="ticket_source">
                                 @foreach($ticket_sources as $ticketsource)
                                     <option value="{!! $ticketsource->id !!}" <?php  if($tickets->source == $ticketsource->id){echo "selected"; } ?> >{!! $ticketsource->value !!}</option>
@@ -801,7 +801,7 @@ $data = $ConvDate[0];
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{!! Lang::get('tickets::lang.priority') !!}</label>
-                                <?php $ticket_prioritys = App\Model\helpdesk\Ticket\Ticket_Priority::all() ?>
+                                <?php $ticket_prioritys = Modules\Core\Models\Ticket\Ticket_Priority::all() ?>
                                 <select class="form-control" name="ticket_priority">
                                 @foreach($ticket_prioritys as $ticket_priority)
                                    <option value="{!! $ticket_priority->priority_id !!}" <?php if($tickets->priority_id == $ticket_priority->priority_id){echo "selected";} ?> >{!! $ticket_priority->priority_desc !!}</option>
@@ -985,7 +985,7 @@ $data = $ConvDate[0];
 <?php   
 $assign = Modules\Core\Models\Staff::where('role', '!=', 'user')->get();
 $count_assign = count($assign);
-$teams = App\Model\helpdesk\Agent\Teams::all();
+$teams = Modules\Core\Models\Agent\Teams::all();
 $count_teams = count($teams);
 ?>
                             <optgroup label="Teams ( {!! $count_teams !!} )">
@@ -1182,7 +1182,7 @@ $count_teams = count($teams);
                                 <div class="col-md-6">
                                     {!! Form::open(['id'=>'merge-form','method' => 'PATCH'] )!!}
                                     <label>{!! Lang::get('tickets::lang.title') !!}</label>
-                                    <input type="text" name='title' class="form-control" value="<?php $ticket_data = App\Model\helpdesk\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?>"/>
+                                    <input type="text" name='title' class="form-control" value="<?php $ticket_data = Modules\Core\Models\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?>"/>
                                 </div>
                                 <div class="col-md-6">
                                 <label>{!! Lang::get('tickets::lang.select-pparent-ticket') !!}</label>
@@ -1191,7 +1191,7 @@ $count_teams = count($teams);
                                     </div>
                                     <div id="parent-body" >
                                         
-                                        <select class="form-control" id="select-merge-parent"  name='p_id' data-placeholder="{!! Lang::get('tickets::lang.select_tickets') !!}" style="width: 100%;"><option value="{{$tickets->id}}"><?php $ticket_data = App\Model\helpdesk\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?></option></select>
+                                        <select class="form-control" id="select-merge-parent"  name='p_id' data-placeholder="{!! Lang::get('tickets::lang.select_tickets') !!}" style="width: 100%;"><option value="{{$tickets->id}}"><?php $ticket_data = Modules\Core\Models\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?></option></select>
                                     </div>
                                 </div>
                             </div>
@@ -1225,7 +1225,7 @@ $count_teams = count($teams);
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-<?php  $var=App\Model\helpdesk\Settings\Ticket::where('id', '=', 1)->first(); ?>
+<?php  $var=Modules\Core\Models\Settings\Ticket::where('id', '=', 1)->first(); ?>
 
 <!-- scripts used on page -->
 <script type="text/javascript">
@@ -1942,7 +1942,7 @@ $(document).ready(function() {
        // alert();
         var arr = $("#select-merge-tickts").val();
         if(arr == null) {
-            document.getElementById("select-merge-parent").innerHTML = "<option value='{{$tickets->id}}'><?php $ticket_data = App\Model\helpdesk\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?></option>"
+            document.getElementById("select-merge-parent").innerHTML = "<option value='{{$tickets->id}}'><?php $ticket_data = Modules\Core\Models\Ticket\Ticket_Thread::select('title')->where('ticket_id', "=", $tickets->id)->first();    echo $ticket_data->title;?></option>"
         } else {
             $.ajax({
                 type: "GET",

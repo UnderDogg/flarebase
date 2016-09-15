@@ -254,7 +254,7 @@ class="active"
                                                 {
                                                     echo "<input type='hidden' name='action[". $i ."][b]' class='form-control' value='reject'><span text-red>Reject</span>"; 
                                                 } elseif ($workflow_action->condition == 'department') {
-                                                    $departments = App\Model\helpdesk\Agent\Department::all();
+                                                    $departments = Modules\Core\Models\Agent\Department::all();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($departments as $department) {
                                                         if($workflow_action->action == $department->id) { 
@@ -267,7 +267,7 @@ class="active"
                                                     $var .= "</select>";
                                                     echo $var;
                                                 } elseif ($workflow_action->condition == 'priority') {
-                                                    $priorities = App\Model\helpdesk\Ticket\Ticket_Priority::all();
+                                                    $priorities = Modules\Core\Models\Ticket\Ticket_Priority::all();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($priorities as $priority) {
                                                         if($workflow_action->action == $priority->priority_id) { 
@@ -293,7 +293,7 @@ class="active"
                                                     $var .= "</select>";
                                                     echo $var;
                                                 } elseif ($workflow_action->condition == 'team') {
-                                                    $teams = App\Model\helpdesk\Agent\Teams::where('status', '=', 1)->get();
+                                                    $teams = Modules\Core\Models\Agent\Teams::where('status', '=', 1)->get();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($teams as $team) {
                                                         if($workflow_action->action == $team->id) { 
@@ -332,7 +332,7 @@ class="active"
                                                     $var .= "</select>";
                                                     echo $var;
                                                 } elseif ($workflow_action->condition == 'status') {
-                                                    $ticket_status = App\Model\helpdesk\Ticket\Ticket_Status::all();
+                                                    $ticket_status = Modules\Core\Models\Ticket\Ticket_Status::all();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($ticket_status as $status) {
                                                         if($workflow_action->action == $status->id) { 

@@ -145,11 +145,11 @@
                                                                                 <li class="header">TICKETS</li>
 
 <?php
- $inbox = App\Model\helpdesk\Ticket\Tickets::get();
+ $inbox = Modules\Core\Models\Ticket\Tickets::get();
     ?>
-     <?php $myticket = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();?>
-     <?php $unassigned = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '0')->where('status','1')->get();
-            $tickets = App\Model\helpdesk\Ticket\Tickets::where('status','1')->get();
+     <?php $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();?>
+     <?php $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '0')->where('status','1')->get();
+            $tickets = Modules\Core\Models\Ticket\Tickets::where('status','1')->get();
             $i = count($tickets);
      ?>
                                         <li>
@@ -178,7 +178,7 @@
                                         <li>
                                             <a href="{{url('trash')}}">
                                                 <i class="fa fa-trash-o"></i> <span>Trash</span>
-                                                <?php $deleted = App\Model\helpdesk\Ticket\Tickets::where('status', '5')->get();?>
+                                                <?php $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();?>
                                                 <small class="label pull-right bg-green">{{count($deleted)}}</small>
                                             </a>
                                         </li>
@@ -259,7 +259,7 @@
                                     <b>Version</b> 0.1
                                 </div>
                                 <?php  
-                                $company = App\Model\helpdesk\Settings\Company::where('id','=','1')->first();
+                                $company = Modules\Core\Models\Settings\Company::where('id','=','1')->first();
                                 ?>
                                 <strong>Copyright &copy; {!! date('Y') !!}  <a href="{!! $company->website !!}">{!! $company->company_name !!}</a>.</strong> All rights reserved. Powered by <a href="http://www.faveohelpdesk.com/" target="blank">Faveo</a>
                             </footer>

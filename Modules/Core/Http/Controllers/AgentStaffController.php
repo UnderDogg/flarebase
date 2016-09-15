@@ -13,7 +13,7 @@ use Modules\Core\Models\Assign_team_agent;
 use Modules\Core\Models\Department;
 use Modules\Core\Models\Groups;
 use Modules\Core\Models\Teams;
-use App\Model\helpdesk\Utility\Timezones;
+use Modules\Core\Models\Timezones;
 use Modules\Core\Models\Staff;
 // classes
 use DB;

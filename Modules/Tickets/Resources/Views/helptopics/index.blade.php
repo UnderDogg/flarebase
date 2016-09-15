@@ -70,7 +70,7 @@
 
                         <?php
 
-                        $default_helptopic = App\Model\helpdesk\Settings\Ticket::where('id', '=', '1')->first();
+                        $default_helptopic = Modules\Core\Models\Settings\Ticket::where('id', '=', '1')->first();
                         $default_helptopic = $default_helptopic->help_topic;
 
                         ?>
@@ -112,11 +112,11 @@
                                     @endif
                                 </td>
                                 <!-- Priority -->
-                                <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $topic->priority)->first(); ?>
+                                <?php $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id', '=', $topic->priority)->first(); ?>
                                 <td>{!! $priority->priority_desc !!}</td>
                                 <!-- Department -->
                                 @if($topic->department != null)
-                                    <?php $dept = App\Model\helpdesk\Agent\Department::where('id', '=', $topic->department)->first();
+                                    <?php $dept = Modules\Core\Models\Agent\Department::where('id', '=', $topic->department)->first();
                                     $dept = $dept->name; ?>
                                 @elseif($topic->department == null)
                                     <?php   $dept = "";  ?>

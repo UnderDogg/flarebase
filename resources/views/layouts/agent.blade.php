@@ -44,7 +44,7 @@
                 <a href="" class="logo"><b>Faveo </b>HELPDESK</a>
 
                 <?php
-$company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first();
+$company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
 if ($company != null) {
 	?><?php }
 ?>
@@ -155,12 +155,12 @@ if ($company != null) {
                                         <li class="header">TICKETS</li>
 
 <?php
- $inbox = App\Model\helpdesk\Ticket\Tickets::all();
+ $inbox = Modules\Core\Models\Ticket\Tickets::all();
 
 	?>
-     <?php $myticket = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();?>
-     <?php $unassigned = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '0')->where('status','1')->get();
-            $tickets = App\Model\helpdesk\Ticket\Tickets::where('status','1')->get();
+     <?php $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();?>
+     <?php $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '0')->where('status','1')->get();
+            $tickets = Modules\Core\Models\Ticket\Tickets::where('status','1')->get();
             $i = count($tickets);
      ?>
                                         <li>
@@ -189,25 +189,25 @@ if ($company != null) {
                                         <li>
                                             <a href="{{url('trash')}}">
                                                 <i class="fa fa-trash-o"></i> <span>Trash</span>
-                                                <?php $deleted = App\Model\helpdesk\Ticket\Tickets::where('status', '5')->get();?>
+                                                <?php $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();?>
                                                 <small class="label pull-right bg-green">{{count($deleted)}}</small>
                                             </a>
                                         </li>
 <li class="header">DEPARTMENTS</li>
                                         <?php
 
-$depts = App\Model\helpdesk\Agent\Department::all();
+$depts = Modules\Core\Models\Agent\Department::all();
 foreach ($depts as $dept) {
 
-$open = App\Model\helpdesk\Ticket\Tickets::where('status','=','1')->where('dept_id','=',$dept->id)->get();
+$open = Modules\Core\Models\Ticket\Tickets::where('status','=','1')->where('dept_id','=',$dept->id)->get();
 $open = count($open);
 // dd($open);
 
-$closed = App\Model\helpdesk\Ticket\Tickets::where('status','=','2'||'3')->where('dept_id','=',$dept->id)->get();
+$closed = Modules\Core\Models\Ticket\Tickets::where('status','=','2'||'3')->where('dept_id','=',$dept->id)->get();
 $closed = count($closed);
 // dd($closed);
 
-$underprocess = App\Model\helpdesk\Ticket\Tickets::where('status','=','2'||'3')->where('assigned_to','=', '0')->get();
+$underprocess = Modules\Core\Models\Ticket\Tickets::where('status','=','2'||'3')->where('assigned_to','=', '0')->get();
 $underprocess = count($underprocess);
 // dd($underprocess);
 
@@ -256,7 +256,7 @@ $underprocess = count($underprocess);
                         </aside>
 
 <?php $agent_group = Auth::user()->assign_group;
-$group = App\Model\helpdesk\Agent\Groups::where('name', '=', $agent_group)->where('group_status', '=', '1')->first();
+$group = Modules\Core\Models\Agent\Groups::where('name', '=', $agent_group)->where('group_status', '=', '1')->first();
 // dd($group);
 ?>
 

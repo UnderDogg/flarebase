@@ -9,9 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\kb\ProfilePassword;
 use App\Http\Requests\kb\ProfileRequest;
 use App\Http\Requests\kb\SettingsRequests;
-use App\Model\helpdesk\Utility\Date_format;
+use Modules\Core\Models\Utility\Date_format;
 // Model
-use App\Model\helpdesk\Utility\Timezones;
+use Modules\Core\Models\Utility\Timezones;
 use App\Model\kb\Comment;
 use App\Model\kb\Settings;
 use Auth;

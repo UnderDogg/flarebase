@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <?php
-  $title = App\Model\helpdesk\Settings\System::where('id', '=', '1')->first();
+  $title = Modules\Core\Models\Settings\System::where('id', '=', '1')->first();
   if (isset($title->name)) {
     $title_name = $title->name;
   } else {
@@ -48,8 +48,8 @@
     <div class="container" style="">
       <div id="logo" class="site-logo text-center" style="font-size: 30px;">
         <?php
-        $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first();
-        $system = App\Model\helpdesk\Settings\System::where('id', '=', '1')->first();
+        $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
+        $system = Modules\Core\Models\Settings\System::where('id', '=', '1')->first();
         ?>
         @if($system->url)
           <a href="{!! $system->url !!}" rel="home">
@@ -234,10 +234,10 @@
   </div>
   <!-- /.content-wrapper -->
   <?php
-  $footer1 = App\Model\helpdesk\Theme\Widgets::where('name', '=', 'footer1')->first();
-  $footer2 = App\Model\helpdesk\Theme\Widgets::where('name', '=', 'footer2')->first();
-  $footer3 = App\Model\helpdesk\Theme\Widgets::where('name', '=', 'footer3')->first();
-  $footer4 = App\Model\helpdesk\Theme\Widgets::where('name', '=', 'footer4')->first();
+  $footer1 = Modules\Core\Models\Theme\Widgets::where('name', '=', 'footer1')->first();
+  $footer2 = Modules\Core\Models\Theme\Widgets::where('name', '=', 'footer2')->first();
+  $footer3 = Modules\Core\Models\Theme\Widgets::where('name', '=', 'footer3')->first();
+  $footer4 = Modules\Core\Models\Theme\Widgets::where('name', '=', 'footer4')->first();
   ?>
   <footer id="colophon" class="site-footer" role="contentinfo">
     <div class="container">
@@ -305,7 +305,7 @@
             . {!! Lang::get('knowledgebase::lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/" target="_blank">Faveo</a></p>
         </div>
         <div class="site-social text-right col-md-6">
-          <?php $socials = App\Model\helpdesk\Theme\Widgets::all(); ?>
+          <?php $socials = Modules\Core\Models\Theme\Widgets::all(); ?>
           <ul class="list-inline hidden-print">
             @foreach($socials as $social)
               @if($social->name == 'facebook')

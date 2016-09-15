@@ -79,9 +79,10 @@ class Kernel extends HttpKernel
 
 
         'roles'       => 'Modules\Core\Http\Middleware\CheckRole',
-        'role.agent'  => 'Modules\Core\Http\Middleware\CheckRoleAgent',
-        'role.user'   => 'Modules\Core\Http\Middleware\CheckRoleUser',
-
+        //'role.agent'  => 'Modules\Core\Http\Middleware\CheckRoleAgent',
+        //'role.staff'  => 'Modules\Core\Http\Middleware\CheckRoleAgent',
+        //'role.user'   => 'Modules\Core\Http\Middleware\CheckRoleUser',
+        //'role.client'   => 'Modules\Core\Http\Middleware\CheckRoleUser',
 
         'staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
         'client' => \Illuminate\Auth\Middleware\Authenticate::class,

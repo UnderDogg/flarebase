@@ -5,8 +5,8 @@ namespace Modules\Core\Http\Controllers;
 // controllers
 use App\Http\Controllers\Controller;
 // models
-use App\Model\helpdesk\Priority;
-use App\Model\helpdesk\Ticket_thread;
+use Modules\Core\Models\Priority;
+use Modules\Core\Models\Ticket_thread;
 // classes
 use Exception;
 

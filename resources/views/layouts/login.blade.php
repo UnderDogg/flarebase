@@ -22,8 +22,8 @@
     <div class="login-box">
       <div class="login-logo">
         <?php 
-                $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first();
-        $system = App\Model\helpdesk\Settings\System::where('id', '=', '1')->first();
+                $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
+        $system = Modules\Core\Models\Settings\System::where('id', '=', '1')->first();
         ?>
         @if($system->url)
           <a href="{!! $system->url !!}" rel="home">

@@ -16,8 +16,8 @@ use Modules\Email\Models\Emails;
 use Modules\Email\Models\MailTemplate;
 use Modules\Tickets\Models\TicketHelpTopic;
 use Modules\Tickets\Models\SlaPlan;
-use App\Model\helpdesk\Settings\System;
-use App\Model\helpdesk\Ticket\Tickets;
+use Modules\Core\Models\Settings\System;
+use Modules\Core\Models\Ticket\Tickets;
 use Modules\Core\Models\Staff;
 // classes
 use DB;

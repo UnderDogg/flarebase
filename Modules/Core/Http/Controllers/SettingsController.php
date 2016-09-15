@@ -9,9 +9,9 @@ use App\Http\Requests;
 use Modules\Email\Requests\SmtpRequest;
 use Modules\Email\Models\Smtp;
 // models
-use App\Model\helpdesk\Settings\Plugin;
-use App\Model\helpdesk\Theme\Widgets;
-use App\Model\helpdesk\Utility\Version_Check;
+use Modules\Core\Models\Settings\Plugin;
+use Modules\Core\Models\Theme\Widgets;
+use Modules\Core\Models\Utility\Version_Check;
 
 use Modules\Core\Models\Role;
 use Modules\Core\Models\Settings;

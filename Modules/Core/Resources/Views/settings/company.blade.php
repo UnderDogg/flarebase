@@ -157,7 +157,7 @@ class="active"
                         </div>
                     @endif
 
-                    <?php  $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first(); ?>
+                    <?php  $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first(); ?>
 
                     @if($companys->logo != null)
                         <div class="col-md-2 image" data-content="{{Lang::get('core::lang.click-delete')}}">

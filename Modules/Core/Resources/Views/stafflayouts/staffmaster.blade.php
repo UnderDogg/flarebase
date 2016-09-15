@@ -86,7 +86,7 @@
   <a href="http://www.faveohelpdesk.com" class="logo"><img src="{{ asset('lb-faveo/media/images/logo.png') }}"
                                                            width="100px;"></a>
   <?php
-  /*  $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first();
+  /*  $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
     if ($company != null) {
     }*/
   ?>
@@ -243,23 +243,23 @@
 
 
       /*      if (Auth::user()->role == 'admin') {
-              //$inbox = App\Model\helpdesk\Ticket\Tickets::all();
-              $myticket = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
-              $unassigned = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->get();
-              $tickets = App\Model\helpdesk\Ticket\Tickets::where('status', '1')->get();
-              $deleted = App\Model\helpdesk\Ticket\Tickets::where('status', '5')->get();
+              //$inbox = Modules\Core\Models\Ticket\Tickets::all();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
+              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->get();
+              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->get();
+              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();
             } elseif (Auth::user()->role == 'agent') {
-              //$inbox = App\Model\helpdesk\Ticket\Tickets::where('dept_id','',Auth::user()->primary_dpt)->get();
-              $myticket = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
-              $unassigned = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
-              $tickets = App\Model\helpdesk\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
-              $deleted = App\Model\helpdesk\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::user())->get();
+              //$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::user()->primary_dpt)->get();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
+              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
+              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
+              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::user())->get();
             }
             if (Auth::user()->role == 'agent') {
-              $dept = App\Model\helpdesk\Agent\Department::where('id', '=', Auth::user()->primary_dpt)->first();
-              $overdues = App\Model\helpdesk\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
+              $dept = Modules\Core\Models\Agent\Department::where('id', '=', Auth::user()->primary_dpt)->first();
+              $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
             } else {
-              $overdues = App\Model\helpdesk\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
+              $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
             }*/
 
 
@@ -320,13 +320,13 @@
       </li>
       <li class="header">{!! Lang::get('core::lang.departments') !!}</li>
       <?php
-      /*      $depts = App\Model\helpdesk\Agent\Department::all();
+      /*      $depts = Modules\Core\Models\Agent\Department::all();
             foreach ($depts as $dept) {
-            $open = App\Model\helpdesk\Ticket\Tickets::where('status', '=', '1')->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->get();
+            $open = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->get();
             $open = count($open);
-            $underprocess = App\Model\helpdesk\Ticket\Tickets::where('status', '=', '1')->where('assigned_to', '>', 0)->where('dept_id', '=', $dept->id)->get();
+            $underprocess = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('assigned_to', '>', 0)->where('dept_id', '=', $dept->id)->get();
             $underprocess = count($underprocess);
-            $closed = App\Model\helpdesk\Ticket\Tickets::where('status', '=', '2')->where('dept_id', '=', $dept->id)->get();
+            $closed = Modules\Core\Models\Ticket\Tickets::where('status', '=', '2')->where('dept_id', '=', $dept->id)->get();
             $closed = count($closed);
             // $underprocess = 0;
             // foreach ($inbox as $ticket4) {
@@ -364,7 +364,7 @@
   <!-- /.sidebar -->
 </aside>
 <?php //$agent_group = Auth::user()->assign_group;
-//$group = App\Model\helpdesk\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
+//$group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 // dd($group); ?>
 <!-- Right side column. Contains the navbar and content of the page -->
 <div class="content-wrapper">

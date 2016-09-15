@@ -61,9 +61,9 @@
                 </h1>
                 <ul class="fa-ul">
                     <?php foreach ($article_id as $id) {
-                                 //$format = App\Model\helpdesk\Settings\System::where('id','1')->first()->date_time_format;
-                                 $tz = App\Model\helpdesk\Settings\System::where('id','1')->first()->time_zone;
-                                 $tz = \App\Model\helpdesk\Utility\Timezones::where('id',$tz)->first()->name;
+                                 //$format = Modules\Core\Models\Settings\System::where('id','1')->first()->date_time_format;
+                                 $tz = Modules\Core\Models\Settings\System::where('id','1')->first()->time_zone;
+                                 $tz = \Modules\Core\Models\Utility\Timezones::where('id',$tz)->first()->name;
                                  date_default_timezone_set($tz);
                                  $date  = \Carbon\Carbon::now()->toDateTimeString();
                                  //dd($date);

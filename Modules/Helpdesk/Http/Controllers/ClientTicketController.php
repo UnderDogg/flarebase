@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 // requests
 use Modules\Tickets\Models\TicketThread;
 // models
-use App\Model\helpdesk\Ticket\Tickets;
+use Modules\Core\Models\Ticket\Tickets;
 use Modules\Core\Models\Staff;
 use Auth;
 // classes

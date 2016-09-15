@@ -188,7 +188,7 @@ class="active"
                                                             <label>{!! Lang::get('tickets::lang.priority') !!}:</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                        <?php $Priority = App\Model\helpdesk\Ticket\Ticket_Priority::all();?>
+                                                        <?php $Priority = Modules\Core\Models\Ticket\Ticket_Priority::all();?>
                                                             {!! Form::select('priority', ['Priority'=>$Priority->lists('priority_desc','priority_id')],null,['class' => 'form-control select']) !!}
                                                         </div>
                                                     </div>

@@ -12,22 +12,22 @@
 
         <h4>{{$thread->title}}</h4><br/>
 
-<?php   $ticket_source = App\Model\helpdesk\Ticket\Ticket_source::where('id','=',$tickets->source)->first();
+<?php   $ticket_source = Modules\Core\Models\Ticket\Ticket_source::where('id','=',$tickets->source)->first();
         $ticket_source = $ticket_source->value;
 
         
         
         $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first(); ?>
-        <?php $response = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get(); ?>
+        <?php $response = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get(); ?>
         @foreach($response as $last)
         <?php $ResponseDate = $last->created_at; ?>
         @endforeach
 
-        <?php $status = App\Model\helpdesk\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first(); ?>
-        <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first(); ?>
+        <?php $status = Modules\Core\Models\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first(); ?>
+        <?php $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first(); ?>
         <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first(); ?>
         <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first(); ?>
-<?php $dept = App\Model\helpdesk\Agent\Department::where('id','=',$help_topic->department)->first();   ?>
+<?php $dept = Modules\Core\Models\Agent\Department::where('id','=',$help_topic->department)->first();   ?>
         <table class="table">    
             <tr><th></th><th></th></tr>
             <tr><td><b>Status:</b></td>       	<td>{{$status->state}}</td></tr>
@@ -39,7 +39,7 @@
             <tr><td><b>Help Topic:</b></td>     <td>{{$help_topic->topic}}</td></tr>
         </table>
 
-        <?php $conversations = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get(); ?>
+        <?php $conversations = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->get(); ?>
         @foreach($conversations as $conversation)
         <br/><hr>
         <span class="time-label">
@@ -55,7 +55,7 @@
                                 <?php } else { ?>
                                     <i class="fa fa-mail-reply-all bg-purple" title="Posted by System"></i>
     <?php } }
-    $attachment = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->first();
+    $attachment = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->first();
     if($attachment == null ) {
         $body = $conversation->body;
     }
@@ -66,7 +66,7 @@
         // echo "<img src='".base64_decode($attachment->file)."' style='width:128px;height:128px'/> ";
         $body = $conversation->body;
 
-        $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->orderBy('id', 'DESC')->get();
+        $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->orderBy('id', 'DESC')->get();
 
         // $i = 0;
 
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="timeline-footer" >
                                         <?php 
-                                        $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->get();
+                                        $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->get();
                                         $i = 0;
                                         foreach($attachments as $attachment) {
                                         if($attachment->poster == 'ATTACHMENT') {

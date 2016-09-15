@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Timezones extends Model
 {
     public $timestamps = false;
-    protected $table = 'timezone';
+    protected $table = 'timezones';
     protected $fillable = ['name', 'location'];
 }

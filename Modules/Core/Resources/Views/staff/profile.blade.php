@@ -37,19 +37,19 @@ class="active"
                                     @endif
                                     <?php
                                     if ($user->primary_dpt) {
-                                        $dept = App\Model\helpdesk\Agent\Department::where('id', '=', $user->primary_dpt)->first();
+                                        $dept = Modules\Core\Models\Agent\Department::where('id', '=', $user->primary_dpt)->first();
                                         $dept = $dept->name;
                                     } else {
                                         $dept = "";
                                     }
                                     if ($user->assign_group) {
-                                        $grp = App\Model\helpdesk\Agent\Groups::where('id', '=', $user->assign_group)->first();
+                                        $grp = Modules\Core\Models\Agent\Groups::where('id', '=', $user->assign_group)->first();
                                         $grp = $grp->name;
                                     } else {
                                         $grp = "";
                                     }
                                     if ($user->agent_tzone) {
-                                        $timezone = App\Model\helpdesk\Utility\Timezones::where('id', '=', $user->agent_tzone)->first();
+                                        $timezone = Modules\Core\Models\Utility\Timezones::where('id', '=', $user->agent_tzone)->first();
                                         $timezone = $timezone->name;
                                     } else {
                                         $timezone = "";

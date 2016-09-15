@@ -68,7 +68,7 @@ class="active"
 	</tr>
 
 <?php
-$default_sla = App\Model\helpdesk\Settings\Ticket::where('id','=','1')->first();
+$default_sla = Modules\Core\Models\Settings\Ticket::where('id','=','1')->first();
 $default_sla = $default_sla->sla;
 ?>
 

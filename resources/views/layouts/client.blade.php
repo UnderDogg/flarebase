@@ -30,8 +30,8 @@
                 <div class="container">
                 <div id="logo" class="site-logo text-center" style="font-size: 30px;">
                 <?php 
-                $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first();
-				$system = App\Model\helpdesk\Settings\System::where('id', '=', '1')->first();
+                $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
+				$system = Modules\Core\Models\Settings\System::where('id', '=', '1')->first();
 				?>
 				@if($system->url)
 					<a href="{!! $system->url !!}" rel="home">
@@ -162,10 +162,10 @@
 		</div>			
 <!-- /.content-wrapper -->
 <?php 
-$footer = App\Model\helpdesk\Theme\Footer::whereId('1')->first();                            
-$footer2 = App\Model\helpdesk\Theme\Footer2::whereId('1')->first();
-$footer3 = App\Model\helpdesk\Theme\Footer3::whereId('1')->first();
-$footer4 = App\Model\helpdesk\Theme\Footer4::whereId('1')->first();
+$footer = Modules\Core\Models\Theme\Footer::whereId('1')->first();
+$footer2 = Modules\Core\Models\Theme\Footer2::whereId('1')->first();
+$footer3 = Modules\Core\Models\Theme\Footer3::whereId('1')->first();
+$footer4 = Modules\Core\Models\Theme\Footer4::whereId('1')->first();
 ?>
         <footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="container">

@@ -10,11 +10,11 @@ use Modules\Core\Requests\HelptopicUpdate;
 // models
 use Modules\Core\Models\Agents;
 use Modules\Core\Models\Department;
-use App\Model\helpdesk\Form\Forms;
+use Modules\Core\Models\Form\Forms;
 use Modules\Tickets\Models\TicketHelpTopic;
 use Modules\Tickets\Models\SlaPlan;
-use App\Model\helpdesk\Settings\Ticket;
-use App\Model\helpdesk\Ticket\Ticket_Priority;
+use Modules\Core\Models\Settings\Ticket;
+use Modules\Core\Models\Ticket\Ticket_Priority;
 use Modules\Core\Models\Staff;
 // classes
 use DB;

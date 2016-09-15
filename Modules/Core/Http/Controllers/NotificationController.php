@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
-use App\Model\helpdesk\Notification\Notification;
-use App\Model\helpdesk\Notification\UserNotification;
+use Modules\Core\Models\Notification\Notification;
+use Modules\Core\Models\Notification\UserNotification;
 use App\User;
 
 class NotificationController extends Controller

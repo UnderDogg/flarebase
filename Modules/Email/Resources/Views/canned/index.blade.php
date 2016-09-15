@@ -18,12 +18,12 @@
     <div class="box box-primary">
         <div class="box-header with-border">
             <h2 class="box-title">{!! Lang::get('tickets::lang.canned_response') !!}</h2><a
-                    href="{{route('canned.create')}}"
+                    href="{{route('autoresponses.create')}}"
                     class="btn btn-primary pull-right">{!! Lang::get('tickets::lang.create_canned_response') !!}</a>
         </div>
         <div class="box-body table-responsive">
             <?php
-            $Canneds = App\Model\helpdesk\Agent_panel\Canned::where('user_id', '=', Auth::user()->id)->paginate(20);
+            $Canneds = Modules\Email\Models\CannedResponse::where('user_id', '=', Auth::guard('staff')->user()->id)->paginate(20);
             ?>
                     <!-- check whether success or not -->
             {{-- Success message --}}

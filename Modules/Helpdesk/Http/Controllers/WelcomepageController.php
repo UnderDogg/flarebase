@@ -5,7 +5,7 @@ namespace Modules\Helpdesk\Http\Controllers;
 // controllers
 use App\Http\Controllers\Controller;
 // models
-use App\Model\helpdesk\Settings\System;
+use Modules\Core\Models\Settings\System;
 // classes
 use Config;
 use Redirect;

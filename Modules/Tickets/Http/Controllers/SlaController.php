@@ -9,7 +9,7 @@ use Modules\Core\Requests\SlaRequest;
 use Modules\Core\Requests\SlaUpdate;
 // models
 use Modules\Tickets\Models\SlaPlan;
-use App\Model\helpdesk\Settings\Ticket;
+use Modules\Core\Models\Settings\Ticket;
 //classes
 use DB;
 use Exception;

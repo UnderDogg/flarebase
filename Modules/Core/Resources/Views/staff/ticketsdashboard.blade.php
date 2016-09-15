@@ -38,7 +38,7 @@ class="active"
                      
         </div>
         <?php 
-        $start_date = App\Model\helpdesk\Ticket\Tickets::where('id','=','1')->first();
+        $start_date = Modules\Core\Models\Ticket\Tickets::where('id','=','1')->first();
         if($start_date != null) {
             $created_date = $start_date->created_at;
             $created_date = explode(' ', $created_date);
@@ -113,13 +113,13 @@ class="active"
                 <th>{!! Lang::get('core::lang.deleted') !!}</th>
                 </tr>
 
-<?php $departments = App\Model\helpdesk\Agent\Department::all(); ?>
+<?php $departments = Modules\Core\Models\Agent\Department::all(); ?>
 @foreach($departments as $department)
 <?php
-$open = App\Model\helpdesk\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',1)->count(); 
-$resolve = App\Model\helpdesk\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',2)->count(); 
-$close = App\Model\helpdesk\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',3)->count(); 
-$delete = App\Model\helpdesk\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',5)->count(); 
+$open = Modules\Core\Models\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',1)->count();
+$resolve = Modules\Core\Models\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',2)->count();
+$close = Modules\Core\Models\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',3)->count();
+$delete = Modules\Core\Models\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',5)->count();
 ?>
 
                 <tr>

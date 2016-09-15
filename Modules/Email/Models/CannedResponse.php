@@ -4,7 +4,7 @@ namespace Modules\Email\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Canned extends Model
+class CannedResponse extends Model
 {
     /* define the table name */
 

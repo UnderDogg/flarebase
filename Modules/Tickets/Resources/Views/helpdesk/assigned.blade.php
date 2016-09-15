@@ -16,10 +16,10 @@ class="active"
 <?php
     $date_time_format = UTC::getDateTimeFormat();
     if(Auth::user()->role == 'agent') {
-        $dept = App\Model\helpdesk\Agent\Department::where('id','=',Auth::user()->primary_dpt)->first();
-        $tickets = App\Model\helpdesk\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '>', 0)->where('dept_id','=',$dept->id)->orderBy('id', 'DESC')->paginate(20);
+        $dept = Modules\Core\Models\Agent\Department::where('id','=',Auth::user()->primary_dpt)->first();
+        $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '>', 0)->where('dept_id','=',$dept->id)->orderBy('id', 'DESC')->paginate(20);
     } else {
-        $tickets = App\Model\helpdesk\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '>', 0)->orderBy('id', 'DESC')->paginate(20);
+        $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '>', 0)->orderBy('id', 'DESC')->paginate(20);
     }   
 ?>
 <!-- Main content -->

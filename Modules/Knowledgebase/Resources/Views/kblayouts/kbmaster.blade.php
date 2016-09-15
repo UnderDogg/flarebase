@@ -86,7 +86,7 @@
   <a href="http://www.faveohelpdesk.com" class="logo"><img src="{{ asset('lb-faveo/media/images/logo.png') }}"
                                                            width="100px;"></a>
   <?php
-  /*  $company = App\Model\helpdesk\Settings\Company::where('id', '=', '1')->first();
+  /*  $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
     if ($company != null) {
     }*/
   ?>

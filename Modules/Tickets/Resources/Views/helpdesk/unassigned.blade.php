@@ -16,17 +16,17 @@ class="active"
 <?php
     $date_time_format = UTC::getDateTimeFormat();
     if(Auth::user()->role == 'agent') {
-        $dept = App\Model\helpdesk\Agent\Department::where('id','=',Auth::user()->primary_dpt)->first();
-        $tickets = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '=', null)->where('dept_id','=',$dept->id)->where('status','1')->orderBy('id', 'DESC')->paginate(20);
+        $dept = Modules\Core\Models\Agent\Department::where('id','=',Auth::user()->primary_dpt)->first();
+        $tickets = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('dept_id','=',$dept->id)->where('status','1')->orderBy('id', 'DESC')->paginate(20);
     } else {
-        $tickets = App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '=', null)->where('status','1')->orderBy('id', 'DESC')->paginate(20);
+        $tickets = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status','1')->orderBy('id', 'DESC')->paginate(20);
     }
     // dd($tickets);
 ?>
 <!-- Main content -->
 <div class="box box-info">
     <div class="box-header with-border">
-        <?php $counted = count(App\Model\helpdesk\Ticket\Tickets::where('assigned_to', '=', 0)->get());?>
+        <?php $counted = count(Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', 0)->get());?>
         <h3 class="box-title">{!! Lang::get('tickets::lang.unassigned') !!} </h3> <small id="title_refresh"> {!! $tickets->total() !!} {!! Lang::get('tickets::lang.tickets') !!}</small>
     </div><!-- /.box-header -->
     @if(Session::has('success'))

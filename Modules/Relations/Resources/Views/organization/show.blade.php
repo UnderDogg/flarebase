@@ -34,7 +34,7 @@ class="active"
 
 <div class="row">
 
-<?php  $org_hd = App\Model\helpdesk\Agent_panel\Organization::where('id','=',$orgs->id)->first();  ?>
+<?php  $org_hd = Modules\Core\Models\Agent_panel\Organization::where('id','=',$orgs->id)->first();  ?>
 <div id="alert-success" class="alert alert-success alert-dismissable" style="display:none;">
         <i class="fa  fa-check-circle"> </i> <b> Success <span id="get-success"></span></b>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -91,7 +91,7 @@ class="active"
         <div class="col-md-8">
             <div class="box box-primary">
             <?php
-                $user_orgs = App\Model\helpdesk\Agent_panel\User_org::where('org_id','=',$orgs->id)->paginate(5);
+                $user_orgs = Modules\Core\Models\Agent_panel\User_org::where('org_id','=',$orgs->id)->paginate(5);
                 ?>
                 <div class="box-header">
                     <h3 class="box-title">{!! Lang::get('relations::lang.users_of') !!} {{$orgs->name}}</h3>
@@ -164,7 +164,7 @@ class="active"
                         <p>{!! Lang::get('relations::lang.please_select_an_user') !!}</p>
                         <select id="user" class="form-control" name="user">
 <?php
-$org_heads = App\Model\helpdesk\Agent_panel\User_org::where('org_id','=',$orgs->id)->get();
+$org_heads = Modules\Core\Models\Agent_panel\User_org::where('org_id','=',$orgs->id)->get();
 ?>
                             <optgroup label="Select Organizations">
                                 @foreach($org_heads as $org_head)

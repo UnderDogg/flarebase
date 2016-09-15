@@ -16,8 +16,8 @@
 
 @section('content')               
 <?php  
-$tickets = App\Model\helpdesk\Ticket\Tickets::where('id','=',\Crypt::decrypt($id))->first(); 
-$thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt::decrypt($id))->first();
+$tickets = Modules\Core\Models\Ticket\Tickets::where('id','=',\Crypt::decrypt($id))->first();
+$thread = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt::decrypt($id))->first();
 //$user = Modules\Core\Models\Staff::where('id','=',$id1)->first();?>
 
                     <!-- Main content -->
@@ -83,7 +83,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                 <section class="content"  id="refresh" style="margin-bottom:-10px;margin-top:-10px">
                                     <div class="col-md-12"> 
                                         <?php 
-                                        $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id','=',$tickets->priority_id)->first();
+                                        $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id','=',$tickets->priority_id)->first();
                                         ?>
                                         <div class="callout callout-default ">
                                             <div class="row">
@@ -106,7 +106,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                                     ?>
                                                 </div>
                                                 <div class="col-md-3">
-                                                <?php $response = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',$tickets->id)->where('is_internal','=',0)->get();?>
+                                                <?php $response = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id','=',$tickets->id)->where('is_internal','=',0)->get();?>
                                                 @foreach($response as $last)
                                                 <?php $ResponseDate  = $last->created_at; ?>
                                                 @endforeach
@@ -118,7 +118,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                     <div class="col-md-6"> 
                                         <table class="table table-hover">
                                             <!-- <tr><th></th><th></th></tr> -->
-                                            <tr><td><b>{!! Lang::get('helpdesk::lang.status') !!}:</b></td>       <?php $status = App\Model\helpdesk\Ticket\Ticket_Status::where('id','=',$tickets->status)->first();?>
+                                            <tr><td><b>{!! Lang::get('helpdesk::lang.status') !!}:</b></td>       <?php $status = Modules\Core\Models\Ticket\Ticket_Status::where('id','=',$tickets->status)->first();?>
 
                                             @if($status->id == 1)
                                                 <td title="{{$status->properties}}" style="color:orange">{{$status->name}}</td></tr>
@@ -128,7 +128,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                                 <td title="{{$status->properties}}" style="color:green">{{$status->name}}</td></tr>
                                             @endif
 
-                                            <tr><td><b>{!! Lang::get('helpdesk::lang.priority') !!}:</b></td>     <?php $priority = App\Model\helpdesk\Ticket\Ticket_Priority::where('priority_id','=',$tickets->priority_id)->first();?>
+                                            <tr><td><b>{!! Lang::get('helpdesk::lang.priority') !!}:</b></td>     <?php $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id','=',$tickets->priority_id)->first();?>
 
                                             @if($priority->priority_id == 1)
                                                 <td title="{{$priority->priority_desc}}" style="color:green">{{$priority->priority_desc}}</td>
@@ -142,7 +142,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                                             <tr><td><b>{!! Lang::get('helpdesk::lang.department') !!}:</b></td>
                                         <?php 
                                         $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id','=',$tickets->help_topic_id)->first();
-                                        $department = App\Model\helpdesk\Agent\Department::where('id', '=', $help_topic->department)->first();
+                                        $department = Modules\Core\Models\Agent\Department::where('id', '=', $help_topic->department)->first();
                                         ?>
                                             <td title="{{ $department->name }}">{!! $department->name !!}</td></tr>
                                         </table>
@@ -162,7 +162,7 @@ $thread = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt:
                         </div>
                     </div>
 <?php
-$conversations = App\Model\helpdesk\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->where('is_internal', '=', 0)->paginate(10);
+$conversations = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id', '=', $tickets->id)->where('is_internal', '=', 0)->paginate(10);
 foreach ($conversations as $conversation) {
 $ConvDate1 = $conversation->created_at;
     $ConvDate = explode(' ', $ConvDate1);
@@ -177,13 +177,13 @@ $data = $ConvDate[0];
     }
     $role = Modules\Core\Models\Staff::where('id','=',$conversation->user_id)->first();
 
-    $attachment = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->first();
+    $attachment = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->first();
     if($attachment == null ) {
         $body = $conversation->body;
     }
     else {
         $body = $conversation->body;
-        $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->orderBy('id', 'DESC')->get();
+        $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->orderBy('id', 'DESC')->get();
                     foreach($attachments as $attachment)
                     {
                         if($attachment->type == 'pdf')
@@ -274,7 +274,7 @@ $data = $ConvDate[0];
                                             </div><!-- .comment-content -->
                                             <div class="timeline-footer" style="margin-bottom:-5px">
                                         <?php 
-                                        $attachments = App\Model\helpdesk\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->get();
+                                        $attachments = Modules\Core\Models\Ticket\Ticket_attachments::where('thread_id','=',$conversation->id)->get();
                                         $i = 0;
                                         foreach($attachments as $attachment) {
                                         if($attachment->poster == 'ATTACHMENT') {

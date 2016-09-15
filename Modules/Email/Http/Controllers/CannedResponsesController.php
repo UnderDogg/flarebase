@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Modules\Core\Requests\CannedRequest;
 use Modules\Core\Requests\CannedUpdateRequest;
 // model
-use App\Model\helpdesk\Agent_panel\Canned;
+use Modules\Email\Models\Canned;
 use Modules\Core\Models\Staff;
 // classes
 use Exception;
@@ -36,7 +36,7 @@ class CannedController extends Controller
         // checking authentication
         //$this->middleware('auth');
         // checking if role is agent
-        $this->middleware('role.agent');
+        //$this->middleware('role.agent');
     }
 
     /**
@@ -46,7 +46,7 @@ class CannedController extends Controller
      */
     public function index()
     {
-        return view('themes.default1.agent.helpdesk.canned.index');
+        return view('tickets::cannedreponses.index');
     }
 
     /**
@@ -56,7 +56,7 @@ class CannedController extends Controller
      */
     public function create()
     {
-        return view('themes.default1.agent.helpdesk.canned.create');
+        return view('tickets::cannedreponses.create');
     }
 
     /**
@@ -96,7 +96,7 @@ class CannedController extends Controller
         // fetching requested canned response
         $canned = $canned->where('user_id', '=', \Auth::user()->id)->where('id', '=', $id)->first();
 
-        return view('themes.default1.agent.helpdesk.canned.edit', compact('canned'));
+        return view('tickets::cannedreponses.edit', compact('canned'));
     }
 
     /**
