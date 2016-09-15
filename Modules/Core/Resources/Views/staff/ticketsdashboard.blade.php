@@ -113,7 +113,7 @@ class="active"
                 <th>{!! Lang::get('core::lang.deleted') !!}</th>
                 </tr>
 
-<?php $departments = Modules\Core\Models\Agent\Department::all(); ?>
+<?php $departments = Modules\Core\Models\Department::all(); ?>
 @foreach($departments as $department)
 <?php
 $open = Modules\Core\Models\Ticket\Tickets::where('dept_id','=',$department->id)->where('status','=',1)->count();

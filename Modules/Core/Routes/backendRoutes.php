@@ -22,7 +22,7 @@ Route::get('rolesdata', [
 
 
 
-
+Route::get('delete-logo', ['as' => 'delete.logo', 'uses' => 'SettingsController@deleteLogo']); // deleting a logo
 
 
 /*
@@ -70,8 +70,31 @@ Route::group(['prefix' => '/adminpanel'], function () {
     Route::get('dashboard', 'DashBoardController@admindashboard')->name('adminpaneldashboard');
     Route::get('getdiagno', 'TemplateController@formDiagno'); // for getting form for diagnostic
 
-    Route::resource('departments', 'DepartmentsController');
-    Route::get('/', ['as' => 'admindepartments', 'uses' => 'DepartmentsController@index']);
+    Route::group(['prefix' => '/departments'], function () {
+        Route::resource('departments', 'DepartmentsController');
+        Route::get('/manage', [
+            'as' => 'admindepartments',
+            'uses' => 'DepartmentsController@index',
+            //'middleware' => 'can:mailboxes.mailboxes.create'
+        ]);
+    });
+
+
+    Route::group(['prefix' => '/companies'], function () {
+        Route::resource('companies', 'CompaniesController');
+        Route::get('/manage', [
+            'as' => 'admincompanies',
+            'uses' => 'CompaniesController@index',
+            //'middleware' => 'can:mailboxes.mailboxes.create'
+        ]);
+
+        Route::get('getcompany', 'SettingsController@getcompany'); // direct to company setting page
+        Route::patch('postcompany/{id}', 'SettingsController@postcompany'); // Updating the Company table with requests
+
+    });
+
+
+
 
     Route::resource('integrations', 'IntegrationsController');
     /* SLACK */

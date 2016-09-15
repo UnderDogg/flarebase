@@ -4,7 +4,7 @@ namespace Modules\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Responder extends Model
+class AutoResponder extends Model
 {
     /* Using auto_response table  */
 

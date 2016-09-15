@@ -90,7 +90,17 @@ class LoginController extends Controller
     return $this->sendFailedLoginResponse($request);*/
   }
 
-
+  /**
+   * Log the user out of the application.
+   *
+   * @return Response
+   */
+  public function getLogout()
+  {
+    Auth::logout();
+    //$this->auth->logout();
+    return redirect('/guestindex');
+  }
 
   /**
    * Get the guard to be used during authentication.

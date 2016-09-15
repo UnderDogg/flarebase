@@ -259,7 +259,7 @@
                                     <b>Version</b> 0.1
                                 </div>
                                 <?php  
-                                $company = Modules\Core\Models\Settings\Company::where('id','=','1')->first();
+                                $company = Modules\Core\Models\Company::where('id','=','1')->first();
                                 ?>
                                 <strong>Copyright &copy; {!! date('Y') !!}  <a href="{!! $company->website !!}">{!! $company->company_name !!}</a>.</strong> All rights reserved. Powered by <a href="http://www.faveohelpdesk.com/" target="blank">Faveo</a>
                             </footer>

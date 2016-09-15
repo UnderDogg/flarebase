@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Common;
 use App\Http\Controllers\Controller;
 use Modules\Core\Models\Notification\Notification;
 use Modules\Core\Models\Notification\UserNotification;
-use App\User;
+use Modules\Core\Models\User;
+use Modules\Core\Models\Staff;
 
 class NotificationController extends Controller
 {

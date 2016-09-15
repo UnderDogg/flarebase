@@ -59,7 +59,7 @@ return [
          *
          * Usage: php artisan datatables:make User
          * Output: App\DataTables\UserDataTable
-         * With Model: App\User (default model)
+         * With Model: Modules\Core\Models\Staff (default model)
          * Export filename: users_timestamp
          */
         'base'  => 'DataTables',

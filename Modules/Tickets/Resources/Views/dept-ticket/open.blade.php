@@ -15,7 +15,7 @@
   @section('content')
   <?php
   $date_time_format = UTC::getDateTimeFormat();
-  $dept = Modules\Core\Models\Agent\Department::where('name', '=', $id)->first();
+  $dept = Modules\Core\Models\Department::where('name', '=', $id)->first();
   if (Auth::user()->role == 'agent') {
     $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->paginate(20);
   } else {

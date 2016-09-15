@@ -1,10 +1,13 @@
 <?php
-namespace Modules\Core\Models;
+namespace Modules\Tickets\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Settings extends Model
 {
+
+    protected $table = 'ticketsettings';
+
     protected $fillable = [
         'ticket_complete_allowed',
         'ticket_assign_allowed',

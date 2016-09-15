@@ -116,7 +116,7 @@
                                 <td>{!! $priority->priority_desc !!}</td>
                                 <!-- Department -->
                                 @if($topic->department != null)
-                                    <?php $dept = Modules\Core\Models\Agent\Department::where('id', '=', $topic->department)->first();
+                                    <?php $dept = Modules\Core\Models\Department::where('id', '=', $topic->department)->first();
                                     $dept = $dept->name; ?>
                                 @elseif($topic->department == null)
                                     <?php   $dept = "";  ?>

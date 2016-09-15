@@ -27,7 +27,7 @@
         <?php $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first(); ?>
         <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first(); ?>
         <?php $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id', '=', $tickets->help_topic_id)->first(); ?>
-<?php $dept = Modules\Core\Models\Agent\Department::where('id','=',$help_topic->department)->first();   ?>
+<?php $dept = Modules\Core\Models\Department::where('id','=',$help_topic->department)->first();   ?>
         <table class="table">    
             <tr><th></th><th></th></tr>
             <tr><td><b>Status:</b></td>       	<td>{{$status->state}}</td></tr>

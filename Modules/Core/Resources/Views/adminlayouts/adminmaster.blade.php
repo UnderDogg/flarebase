@@ -236,7 +236,7 @@
                         <li @yield('settings')><a href="{{url('/adminpanel/settings')}}"><i
                                         class="fa fa-building"></i>{!! Lang::get('core::lang.settingsindex') !!}</a>
                         </li>
-                        <li @yield('company')><a href="{{url('/adminpanel/getcompany')}}"><i
+                        <li @yield('company')><a href="{{url('/adminpanel/companies/getcompany')}}"><i
                                         class="fa fa-building"></i>{!! Lang::get('core::lang.company') !!}</a></li>
                         <li @yield('system')><a href="{{url('/adminpanel/getsystem')}}"><i
                                         class="fa fa-laptop"></i>{!! Lang::get('core::lang.system') !!}</a></li>

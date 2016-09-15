@@ -44,7 +44,7 @@
                 <a href="" class="logo"><b>Faveo </b>HELPDESK</a>
 
                 <?php
-$company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
+$company = Modules\Core\Models\Company::where('id', '=', '1')->first();
 if ($company != null) {
 	?><?php }
 ?>
@@ -196,7 +196,7 @@ if ($company != null) {
 <li class="header">DEPARTMENTS</li>
                                         <?php
 
-$depts = Modules\Core\Models\Agent\Department::all();
+$depts = Modules\Core\Models\Department::all();
 foreach ($depts as $dept) {
 
 $open = Modules\Core\Models\Ticket\Tickets::where('status','=','1')->where('dept_id','=',$dept->id)->get();

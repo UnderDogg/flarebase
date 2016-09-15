@@ -142,7 +142,7 @@ $thread = Modules\Core\Models\Ticket\Ticket_Thread::where('ticket_id','=',\Crypt
                                             <tr><td><b>{!! Lang::get('helpdesk::lang.department') !!}:</b></td>
                                         <?php 
                                         $help_topic = Modules\Tickets\Models\TicketHelpTopic::where('id','=',$tickets->help_topic_id)->first();
-                                        $department = Modules\Core\Models\Agent\Department::where('id', '=', $help_topic->department)->first();
+                                        $department = Modules\Core\Models\Department::where('id', '=', $help_topic->department)->first();
                                         ?>
                                             <td title="{{ $department->name }}">{!! $department->name !!}</td></tr>
                                         </table>

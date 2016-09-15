@@ -17,7 +17,7 @@ use Modules\Core\Models\Department;
 // model
 use Modules\Email\Models\Mailbox;
 use Modules\Email\Models\Help_topic;
-use Modules\Core\Models\Settings\Email;
+use Modules\Email\Models\Mailbox;
 use Modules\Email\Models\TicketPriority;
 
 */

@@ -254,7 +254,7 @@ class="active"
                                                 {
                                                     echo "<input type='hidden' name='action[". $i ."][b]' class='form-control' value='reject'><span text-red>Reject</span>"; 
                                                 } elseif ($workflow_action->condition == 'department') {
-                                                    $departments = Modules\Core\Models\Agent\Department::all();
+                                                    $departments = Modules\Core\Models\Department::all();
                                                     $var = "<select name='action[". $i ."][b]' class='form-control' required>";
                                                     foreach ($departments as $department) {
                                                         if($workflow_action->action == $department->id) { 

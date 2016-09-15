@@ -86,7 +86,7 @@
   <a href="http://www.faveohelpdesk.com" class="logo"><img src="{{ asset('lb-faveo/media/images/logo.png') }}"
                                                            width="100px;"></a>
   <?php
-  /*  $company = Modules\Core\Models\Settings\Company::where('id', '=', '1')->first();
+  /*  $company = Modules\Core\Models\Company::where('id', '=', '1')->first();
     if ($company != null) {
     }*/
   ?>
@@ -256,7 +256,7 @@
               $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::user())->get();
             }
             if (Auth::user()->role == 'agent') {
-              $dept = Modules\Core\Models\Agent\Department::where('id', '=', Auth::user()->primary_dpt)->first();
+              $dept = Modules\Core\Models\Department::where('id', '=', Auth::user()->primary_dpt)->first();
               $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
             } else {
               $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
@@ -320,7 +320,7 @@
       </li>
       <li class="header">{!! Lang::get('core::lang.departments') !!}</li>
       <?php
-      /*      $depts = Modules\Core\Models\Agent\Department::all();
+      /*      $depts = Modules\Core\Models\Department::all();
             foreach ($depts as $dept) {
             $open = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->get();
             $open = count($open);

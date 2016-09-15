@@ -3,11 +3,11 @@
 namespace Modules\Core\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Modules\Core\Models\Agent\Department;
-use Modules\Core\Models\Email\Emails;
-use Modules\Core\Models\Settings\Company;
-use Modules\Core\Models\Settings\Email;
-use App\User;
+use Modules\Core\Models\Department;
+use Modules\Email\Models\Mailbox;
+use Modules\Core\Models\Company;
+use Modules\Core\Models\User;
+use Modules\Core\Models\Staff;
 use Auth;
 
 class PhpMailController extends Controller

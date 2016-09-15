@@ -10,10 +10,10 @@ return [
 
     /**
      * If you have a different user model
-     * please specific it here, this option is not
+     * please specify it here, this option is not
      * considerate if using notifynder as polymorphic
      */
-    'model' => 'App\User',
+    'model' => 'Modules\Core\Models\Staff',
 
     /**
      * Do you want have notifynder that work polymorphically?

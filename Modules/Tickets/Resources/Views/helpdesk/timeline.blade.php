@@ -197,7 +197,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                         <div id="refresh">
                             <tr><td><b>{!! Lang::get('tickets::lang.status') !!}:</b></td>       <?php $status = Modules\Core\Models\Ticket\Ticket_Status::where('id', '=', $tickets->status)->first();?><td title="{{$status->properties}}">{{$status->name}}</td></tr>
                             <tr><td><b>{!! Lang::get('tickets::lang.priority') !!}:</b></td>     <?php $priority = Modules\Core\Models\Ticket\Ticket_Priority::where('priority_id', '=', $tickets->priority_id)->first();?><td title="{{$priority->priority_desc}}">{{$priority->priority_desc}}</td></tr>
-                            <tr><td><b>{!! Lang::get('tickets::lang.department') !!}:</b></td>   <?php $dept123 = Modules\Core\Models\Agent\Department::where('id', '=', $tickets->dept_id)->first();?><td title="{{$dept123->name}}">{{$dept123->name}}</td></tr>
+                            <tr><td><b>{!! Lang::get('tickets::lang.department') !!}:</b></td>   <?php $dept123 = Modules\Core\Models\Department::where('id', '=', $tickets->dept_id)->first();?><td title="{{$dept123->name}}">{{$dept123->name}}</td></tr>
                             <tr><td><b>{!! Lang::get('tickets::lang.email') !!}:</b></td>        <td>{{$user->email}}</td></tr>
                             @if($user->ban > 0)  <tr><td style="color:orange;"><i class="fa fa-warning"></i><b>
                             {!!  Lang::get('tickets::lang.this_ticket_is_under_banned_user')!!}</td><td></td></tr>@endif

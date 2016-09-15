@@ -37,7 +37,7 @@ class="active"
                                     @endif
                                     <?php
                                     if ($user->primary_dpt) {
-                                        $dept = Modules\Core\Models\Agent\Department::where('id', '=', $user->primary_dpt)->first();
+                                        $dept = Modules\Core\Models\Department::where('id', '=', $user->primary_dpt)->first();
                                         $dept = $dept->name;
                                     } else {
                                         $dept = "";
