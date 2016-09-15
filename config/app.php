@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Los_Angeles',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'SomeRandomString'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -232,6 +232,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
 
+    //'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
+    //'Purify' => 'Stevebauman\Purify\Facades\Purify',
 
 
         'Form'      => Collective\Html\FormFacade::class,
