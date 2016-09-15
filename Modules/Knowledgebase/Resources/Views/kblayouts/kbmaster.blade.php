@@ -332,18 +332,14 @@
       <div class="tabs-content">
         <div class="tabs-pane @yield('dashboard-bar')" id="tabA">
           <ul class="nav navbar-nav">
-            <li id="bar" @yield(
-            'dashboard') ><a href="{{url('/adminpanel/')}}">{!! Lang::get('core::lang.dashboard') !!}</a></li>
-            <li id="bar" @yield(
-            'profile') ><a href="{{url('/staff/profile')}}">{!! Lang::get('employees::lang.profile') !!}</a></li>
+            <li id="bar" @yield('dashboard') ><a href="{{url('/adminpanel/')}}">{!! Lang::get('core::lang.dashboard') !!}</a></li>
+            <li id="bar" @yield('profile') ><a href="{{url('/staff/profile')}}">{!! Lang::get('employees::lang.profile') !!}</a></li>
           </ul>
         </div>
         <div class="tabs-pane @yield('user-bar')" id="tabB">
           <ul class="nav navbar-nav">
-            <li id="bar" @yield(
-            'user')><a href="{{ url('/adminpanel/users/manage') }}">{!! Lang::get('core::lang.user_directory') !!}</a></li></a></li>
-            <li id="bar" @yield(
-            'relations')><a href="{{ url('/relationspanel/') }}">{!! Lang::get('relations::lang.relations')
+            <li id="bar" @yield('user')><a href="{{ url('/adminpanel/users/manage') }}">{!! Lang::get('core::lang.user_directory') !!}</a></li></a></li>
+            <li id="bar" @yield('relations')><a href="{{ url('/relationspanel/') }}">{!! Lang::get('relations::lang.relations')
               !!}</a></li></a></li>
           </ul>
         </div>
@@ -351,8 +347,7 @@
           <ul class="nav navbar-nav">
             <li id="bar" @yield(
             'open')><a href="{{ url('/tickets/open') }}" id="load-open">{!! Lang::get('tickets::lang.open') !!}</a></li>
-            <li id="bar" @yield(
-            'answered')><a href="{{ url('/tickets/answered') }}" id="load-answered">{!! Lang::get('tickets::lang.answered')
+            <li id="bar" @yield('answered')><a href="{{ url('/tickets/answered') }}" id="load-answered">{!! Lang::get('tickets::lang.answered')
               !!}</a></li>
             <li id="bar" @yield(
             'myticket')><a href="{{ url('/tickets/mytickets') }}">{!! Lang::get('tickets::lang.my_tickets') !!}</a></li>

@@ -1,6 +1,6 @@
-@extends('tickets::ticketlayouts.ticketmaster')
+@extends('tickets::maillayouts.ticketmaster')
 
-@section('Tickets')
+@section('Templates')
     active
 @stop
 
@@ -8,7 +8,7 @@
     active
 @stop
 
-@section('Tickets')
+@section('profile')
     class="active"
 @stop
 
