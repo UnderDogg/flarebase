@@ -1,17 +1,28 @@
 <?php
-
 namespace Modules\Email\Http\Controllers;
 
-// controller
+use App\Http\Requests;
+
+// controllers
 use App\Http\Controllers\Controller;
-// request
+
+// requests
 use Modules\Core\Requests\BanlistRequest;
 use Modules\Core\Requests\BanRequest;
-// model
+
+// models
 use Modules\Email\Models\Banlist;
 use Modules\Core\Models\User;
+
 //classes
+use Illuminate\Http\Request;
+use Session;
 use Exception;
+use Gate;
+use Datatables;
+use Carbon;
+use PHPZen\LaravelRbac\Traits\Rbac;
+use Illuminate\Support\Facades\Input;
 
 /**
  * BanlistController
@@ -47,11 +58,47 @@ class BanlistController extends Controller
     {
         //try {
             $bans = User::where('isbanned', '=', 1)->get();
-            return view('core::banlist.index', compact('bans'));
+            return view('email::banlist.index', compact('bans'));
         //} catch (Exception $e) {
         //    return view('errors.404');
         //}
     }
+
+
+
+
+
+    public function anyData()
+    {
+        //$canUpdateStaff = auth()->user()->can('update-user');
+        //Auth::guard($guard)->user()->can('update-user');
+        $breaklines = BreakLine::select(['id', 'breakline', 'isregexp', 'sortorder', 'updated_at']);
+        return Datatables::of($breaklines)
+
+            ->addColumn('breakline', function ($breaklines) {
+                return '<a href="/mailpanel/breaklines/' . $breaklines->id . '" ">' . $breaklines->breakline . '</a>';
+            })
+            ->addColumn('lastupdate', function ($breaklines) {
+                return '<a href="/mailpanel/breaklines/' . $breaklines->id . '" ">' . $breaklines->updated_at . '</a>';
+            })
+
+            ->addColumn('actions', function ($breaklines) {
+                return '
+                <form action="' . route('breaklines.destroy', [$breaklines->id]) .'" method="POST">
+                <div class=\'btn-group\'>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <a href="' . route('breaklines.edit', [$breaklines->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
+                    <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-xs" onClick="return confirm(\'Are you sure?\')"">
+                </div>
+                </form>';
+            })
+            ->make(true);
+    }
+
+
+
+
+
 
     /**
      * Show the form for creating a banned user.

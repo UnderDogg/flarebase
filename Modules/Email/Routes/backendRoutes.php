@@ -6,6 +6,24 @@ Route::get('mailboxesdata', [
     'uses' => 'MailboxesController@anyData',
     //'middleware' => 'can:mailboxes.mailboxes.index'
 ]);
+
+Route::get('breaklinesdata', [
+    'as' => 'breaklines.data',
+    'uses' => 'BreakLinesController@anyData',
+    //'middleware' => 'can:mailboxes.mailboxes.index'
+]);
+
+Route::get('mailrulesdata', [
+    'as' => 'mailrules.data',
+    'uses' => 'MailRulesController@anyData',
+    //'middleware' => 'can:mailboxes.mailboxes.index'
+]);
+
+
+
+
+
+
 Route::post('validating-email-settings', ['as' => 'validating.email.settings', 'uses' => 'Admin\helpdesk\EmailsController@validatingEmailSettings']); // route to check email input validation
 Route::post('validating-email-settings-on-update/{id}', ['as' => 'validating.email.settings.update', 'uses' => 'Admin\helpdesk\EmailsController@validatingEmailSettingsUpdate']); // route to check email input validation
 

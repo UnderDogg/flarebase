@@ -1,4 +1,4 @@
-@extends('themes.default1.agent.layout.agent')
+@extends('email::maillayouts.mailmaster')
 
 @section('Tools')
     class="active"
@@ -23,7 +23,8 @@
         </div>
         <div class="box-body table-responsive">
             <?php
-            $Canneds = Modules\Email\Models\CannedResponse::where('user_id', '=', Auth::guard('staff')->user()->id)->paginate(20);
+            //$Canneds = Modules\Email\Models\CannedResponse::where('user_id', '=', Auth::guard('staff')->user()->id)->paginate(20);
+                    $Canneds = array();
             ?>
                     <!-- check whether success or not -->
             {{-- Success message --}}
@@ -50,8 +51,8 @@
                         <th width="100px">{{Lang::get('tickets::lang.name')}}</th>
                         <th width="100px">{{Lang::get('tickets::lang.action')}}</th>
                     </tr>
-                    @foreach($Canneds as $Canned)
 
+                    @forelse($Canneds as $Canned)
                         <tr>
                             <td>{{$Canned->title }}</td>
                             <td>
@@ -93,7 +94,9 @@
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
 
-                    @endforeach
+                    @empty
+                        <td colspan="4"> Nothing </td>
+                    @endforelse
                 </table>
         </div>
     </div>

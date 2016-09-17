@@ -2,19 +2,28 @@
 namespace Modules\Core\Http\Controllers;
 
 use App\Http\Requests;
+
+
+
+// controller
 use App\Http\Controllers\Controller;
+// requests
+use Modules\Core\Http\Requests\Staff\UpdateStaffRequest;
+use Modules\Core\Http\Requests\Staff\StoreStaffRequest;
+// models
+use Modules\Models\Relation;
 use Modules\Core\Models\User;
 use Modules\Core\Models\Staff;
 use Modules\Tickets\Models\Ticket;
 use Illuminate\Http\Request;
+use Exception;
 use Gate;
 use Datatables;
 use Carbon;
 use PHPZen\LaravelRbac\Traits\Rbac;
 use Illuminate\Support\Facades\Input;
-use Modules\Models\Relation;
-use Modules\Core\Http\Requests\Staff\UpdateStaffRequest;
-use Modules\Core\Http\Requests\Staff\StoreStaffRequest;
+
+
 use Modules\Core\Services\Staff\StaffServiceContract;
 use Modules\Core\Services\User\UserServiceContract;
 use Modules\Core\Services\Role\RoleServiceContract;

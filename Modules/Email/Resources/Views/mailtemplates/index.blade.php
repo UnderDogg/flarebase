@@ -1,23 +1,27 @@
 @extends('email::maillayouts.mailmaster')
 
 @section('Mailboxes')
-    active
-@stop
-
-@section('emails-bar')
-    active
-@stop
-
-@section('template')
     class="active"
-    @stop
+@stop
 
-    @section('HeadInclude')
-    @stop
-            <!-- header -->
-    @section('PageHeader')
+@section('templates-bar')
+    active
+@stop
 
-    @stop
+
+
+@section('mailtemplate')
+    class="active"
+@stop
+
+
+
+@section('HeadInclude')
+@stop
+        <!-- header -->
+@section('PageHeader')
+
+@stop
             <!-- /header -->
     <!-- breadcrumbs -->
 @section('breadcrumbs')

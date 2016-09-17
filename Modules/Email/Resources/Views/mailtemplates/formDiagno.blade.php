@@ -1,7 +1,7 @@
-@extends('core::adminlayouts.adminmaster')
+@extends('email::maillayouts.mailmaster')
 
 @section('Mailboxes')
-    active
+    class="active"
 @stop
 
 @section('emails-bar')

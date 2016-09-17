@@ -1,16 +1,21 @@
-@extends('core::adminlayouts.adminmaster')
+@extends('email::maillayouts.mailmaster')
 
-@section('Mailboxes')
-    active
+
+@section('Dashboard')
+    class="active"
 @stop
 
-@section('emails-bar')
+@section('dashboard-bar')
     active
 @stop
 
 @section('ban')
     class="active"
 @stop
+
+
+
+
 
     @section('HeadInclude')
     @stop
