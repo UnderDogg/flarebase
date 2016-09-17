@@ -112,8 +112,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="{{url('/staffpanel')}}">Staff Panel</a></li>
-        <li><a href="{{url('/adminpanel')}}">Admin Panel</a></li>
+          <li><a href="{{url('/kbpanel')}}">Kb Panel</a></li>
+          <li><a href="{{url('/ticketspanel')}}">Tickets Panel</a></li>
+          <li><a href="{{url('/staffpanel')}}">Staff Panel</a></li>
+          <li><a href="{{url('/adminpanel')}}">Admin Panel</a></li>
 
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown notifications-menu">

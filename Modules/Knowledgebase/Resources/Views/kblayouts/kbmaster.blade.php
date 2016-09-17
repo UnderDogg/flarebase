@@ -104,14 +104,16 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="tabs tabs-horizontal nav navbar-nav navbar-left">
         <li @yield('Dashboard')><a data-target="#tabA" href="#">dashboard</a></li>
-        <li @yield('Templates')><a data-target="#tabB" href="#">templates</a></li>
-        <li @yield('Mailboxes')><a data-target="#tabC" href="#">mailboxes</a></li>
-        <li @yield('Cron Jobs')><a data-target="#tabD" href="#">cronjobs</a></li>
+        <li @yield('KbCategories')><a data-target="#tabB" href="#">Categories</a></li>
+        <li @yield('Articles')><a data-target="#tabC" href="#">Articles</a></li>
+        <li @yield('Pages')><a data-target="#tabD" href="#">Pages</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="{{url('/staffpanel')}}">Staff Panel</a></li>
-        <li><a href="{{url('/adminpanel')}}">Admin Panel</a></li>
+          <li><a href="{{url('/mailpanel')}}">Mail Panel</a></li>
+          <li><a href="{{url('/ticketspanel')}}">Tickets Panel</a></li>
+          <li><a href="{{url('/staffpanel')}}">Staff Panel</a></li>
+          <li><a href="{{url('/adminpanel')}}">Admin Panel</a></li>
 
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown notifications-menu">

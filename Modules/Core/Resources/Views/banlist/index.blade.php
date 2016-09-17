@@ -10,7 +10,7 @@
 
 @section('ban')
     class="active"
-    @stop
+@stop
 
     @section('HeadInclude')
     @stop

@@ -1,10 +1,7 @@
 @extends('knowledgebase::kblayouts.kbmaster')
-{{-- @extends('knowledgebase::kblayouts.sidebar') --}}
+@extends('knowledgebase::kblayouts.sidebar')
 
-
-
-
-@section('Dashboard')
+@section('KbCategories')
     active
 @stop
 
@@ -12,9 +9,10 @@
     active
 @stop
 
-@section('Dashboard')
+@section('KbCategories')
     class="active"
 @stop
+
 
 @section('HeadInclude')
 @stop
