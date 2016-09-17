@@ -66,18 +66,47 @@ class TicketsController extends Controller
 
     public function anyData()
     {
+
+/*
+`id`,
+`ticket_number`,
+`subject`,
+`relation_id`,
+`assigned_to`,
+`mailbox_id`,
+`dept_id`,
+`team_id`,
+`ticketstatus_id`,
+`priority_id`,
+`slaplan_id`,
+`tickettype_id`,
+`helptopic_id`,
+`ticketsource_id`,
+`hasflags`,
+`flagtype`,
+`hashtml`,
+`escalationrule_id`,
+`autocloserule_id`,
+`is_overdue`,
+`duedate`,
+`is_transferred`,
+`transferred_at`,
+`isreopened`,
+`reopened_at`,
+`is_answered`,
+`is_deleted`,
+`is_closed`,
+`closed_at`,
+`last_message_at`,
+`last_response_at`,
+`lastreplier_id`,
+`created_at`,
+`updated_at`
+ **/
+
         $tickets = Ticket::select([
-            'id',
-            'ticket_number',
-            'subject',
-            'priority_id',
-            'fk_relation_id',
-            'assigned_to_staff_id',
-            'transferred_at',
-            'created_at',
-            'reopened_at',
-            'deadline'
-        ])->orderBy('deadline', 'desc');
+            'id', 'ticket_number', 'subject', 'priority_id', 'relation_id', 'assigned_to', 'transferred_at', 'created_at', 'reopened_at', 'deadline_at'
+        ])->orderBy('deadline_at', 'desc');
         return Datatables::of($tickets)
             ->addColumn('ticketnumber', function ($tickets) {
                 return '<a href="/tickets/ticket/' . $tickets->id . '" ">' . $tickets->ticket_number . '</a>';
@@ -85,21 +114,21 @@ class TicketsController extends Controller
             ->addColumn('ticketsubjectlink', function ($tickets) {
                 return '<a href="/tickets/ticket/' . $tickets->id . '" ">' . $tickets->subject . '</a>';
             })
-            ->addColumn('fk_relation_id', function ($tickets) {
+            ->addColumn('relation_id', function ($tickets) {
                 return '<a href="/relations/relation/' . $tickets->fk_relation_id . '" ">' . $tickets->relationAssignee->company_name . '</a>';
             })
             ->addColumn('priority_id', function ($tickets) {
-                return '<a href="tickets/priority/' . $tickets->priority_id . '" ">' . $tickets->priority_id . '</a>';
+                return '<a href="/tickets/priority/' . $tickets->priority_id . '" ">' . $tickets->priority_id . '</a>';
             })
             ->editColumn('created_at', function ($tickets) {
                 return $tickets->created_at ? with(new Carbon($tickets->created_at))
                     ->format('d/m/Y') : '';
             })
             ->editColumn('deadline', function ($tickets) {
-                return $tickets->created_at ? with(new Carbon($tickets->deadline))
+                return $tickets->created_at ? with(new Carbon($tickets->deadline_at))
                     ->format('d/m/Y') : '';
             })
-            ->editColumn('assigned_to_staff_id', function ($tickets) {
+            ->editColumn('assigned_to', function ($tickets) {
                 return $tickets->assignee->name;
             })->make(true);
     }

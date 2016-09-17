@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mail Master Layout</title>
+  <title>Tickets Master Layout</title>
 
 
   <meta name="_token" content="{!! csrf_token() !!}"/>
@@ -243,83 +243,124 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul id="side-bar" class="sidebar-menu">
       @yield('sidebar')
-      <li class="header">{!! Lang::get('email::lang.email') !!}</li>
-       <li class="treeview @yield('Mailboxes')">
-            <a href="#">
-                <i class="fa fa-envelope-o"></i>
-                <span>{!! Lang::get('email::lang.mailboxes') !!}</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li @yield('mailboxes')><a href="{{ url('/mailpanel/mailboxes/manage') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailboxes') !!}</a></li>
-                <li @yield('ban')><a href="{{ url('/mailpanel/mailbanlist') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.ban_lists') !!}</a></li>
-                <li @yield('getmail')><a href="{{url('/mailpanel/getmail')}}"><i class="fa fa-at"></i>{!! Lang::get('email::lang.getmail') !!}</a></li>
-                <li @yield('template')><a href="{{ url('/mailpanel/mailtemplates') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailtemplates') !!}</a></li>
-                <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/maildiagno/getmaildiagno') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.maildiagnostics') !!}</a></li>
-                <li @yield('autoresponses')><a href="{{ url('/mailpanel/autoresponses') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.autoresponses') !!}</a></li>
-                <li @yield('breaklines')><a href="{{ url('/mailpanel/breaklines') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.breaklines') !!}</a></li>
-                <li @yield('mailrules')><a href="{{ url('/mailpanel/mailrules') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.mailrules') !!}</a></li>
-            </ul>
-        </li>
-
-        <li class="treeview @yield('MailParser')">
-          <a href="#">
-            <i class="fa fa-envelope-o"></i>
-            <span>{!! Lang::get('email::lang.mailparser') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('mailparser')><a href="{{ url('/adminpanel/mailparser') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailparser') !!}</a></li>
-            <li @yield('mailboxes')><a href="{{ url('/mailpanel/mailboxes') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailboxes') !!}</a></li>
-            <li @yield('mailrules')><a href="{{ url('/adminpanel/mailrules') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.mailrules') !!}</a></li>
-            <li @yield('mailbans')><a href="{{ url('/adminpanel/mailbanlist') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.mailbans') !!}</a></li>
-            <li @yield('mailcatch-all')><a href="{{ url('/adminpanel/mailcatch-all') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailcatch-all') !!}</a></li>
-            <li @yield('maildiagnostics')><a href="{{ url('/adminpanel/getmaildiagno') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.diagnostics') !!}</a></li>
-          </ul>
-        </li>
+      <li class="header">{!! Lang::get('tickets::lang.tickets') !!}</li>
+      <?php
 
 
-        <li class="treeview @yield('MailTemplates')">
-          <a href="#">
-            <i class="fa fa-envelope-o"></i>
-            <span>{!! Lang::get('email::lang.mailtemplates') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('mailtemplategroups')><a href="{{ url('/adminpanel/mailtemplategroups') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailtemplategroups') !!}</a></li>
-            <li @yield('mailtemplates')><a href="{{ url('/adminpanel/mailtemplates') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailtemplates') !!}</a></li>
-            <li @yield('maillogos')><a href="{{ url('/adminpanel/maillogos') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.maillogos') !!}</a></li>
-            <li @yield('templateimport')><a href="{{ url('/adminpanel/templateimport') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.templateimport') !!}</a></li>
-          </ul>
-        </li>
+      /*      if (Auth::user()->role == 'admin') {
+              //$inbox = Modules\Core\Models\Ticket\Tickets::all();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
+              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->get();
+              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->get();
+              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();
+            } elseif (Auth::user()->role == 'agent') {
+              //$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::user()->primary_dpt)->get();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
+              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
+              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
+              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::user())->get();
+            }
+            if (Auth::user()->role == 'agent') {
+              $dept = Modules\Core\Models\Department::where('id', '=', Auth::user()->primary_dpt)->first();
+              $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
+            } else {
+              $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
+            }*/
 
-        <li class="treeview @yield('Logs')">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>{!! Lang::get('core::lang.logs') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('errorlogs')><a href="{{ url('/adminpanel/errorlogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.errorlogs') !!}</a></li>
-            <li @yield('joblogs')><a href="{{ url('/adminpanel/joblogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.joblogs') !!}</a></li>
-            <li @yield('activitylogs')><a href="{{ url('/adminpanel/activitylogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.activitylogs') !!}</a></li>
-            <li @yield('loginlogs')><a href="{{ url('/adminpanel/loginlogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.loginlogs') !!}</a></li>
-          </ul>
-        </li>
 
-        <li class="treeview @yield('Cron')">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>{!! Lang::get('core::lang.cron') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('cron')><a href="{{ url('/adminpanel/cronjobs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.cronjobs') !!}</a></li>
-            <li @yield('cron')><a href="{{url('/adminpanel/job-scheduler')}}"><i class="fa fa-hourglass"></i>{!! Lang::get('core::lang.cron') !!}</a></li>
-            <li @yield('joblogs')><a href="{{ url('/adminpanel/joblogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.joblogs') !!}</a></li>
-          </ul>
-        </li>
 
+      /*      $i = count($overdues);
+            if ($i == 0) {
+              $overdue_ticket = 0;
+            } else {
+              $j = 0;
+              foreach ($overdues as $overdue) {
+                $sla_plan = Modules\Tickets\Models\SlaPlan::where('id', '=', $overdue->sla)->first();
+                $ovadate = $overdue->created_at;
+                $new_date = date_add($ovadate, date_interval_create_from_date_string($sla_plan->grace_period)) . '<br/><br/>';
+                if (date('Y-m-d H:i:s') > $new_date) {
+                  $j++;
+                  //$value[] = $overdue;
+                }
+              }
+              // dd(count($value));
+              if ($j > 0) {
+                $overdue_ticket = $j;
+              } else {
+                $overdue_ticket = 0;
+              }
+            }*/
+
+
+      ?>
+      <li @yield('inbox')>
+        <a href="{/ticket/inbox" id="load-inbox">
+          <i class="fa fa-envelope"></i> <span>{!! Lang::get('tickets::lang.inbox') !!}</span>
+          <small class="label pull-right bg-green">count($tickets)</small>
+        </a>
+      </li>
+      <li @yield('myticket')>
+        <a href="/ticket/myticket" id="load-myticket">
+          <i class="fa fa-user"></i> <span>{!! Lang::get('tickets::lang.my_tickets') !!} </span>
+          <small class="label pull-right bg-green">count($myticket)</small>
+        </a>
+      </li>
+      <li @yield('unassigned')>
+        <a href="/unassigned/" id="load-unassigned">
+          <i class="fa fa-th"></i> <span>{!! Lang::get('tickets::lang.unassigned') !!}</span>
+          <small class="label pull-right bg-green">count($unassigned)</small>
+        </a>
+      </li>
+      <li @yield('overdue')>
+        <a href="/ticket/overdue/" id="load-unassigned">
+          <i class="fa fa-calendar-times-o"></i> <span>{!! Lang::get('tickets::lang.overdue') !!}</span>
+          <small class="label pull-right bg-green">$overdue_ticket</small>
+        </a>
+      </li>
+      <li @yield('trash')>
+        <a href="/ticket/trash/">
+          <i class="fa fa-trash-o"></i> <span>{!! Lang::get('tickets::lang.trash') !!}</span>
+          <small class="label pull-right bg-green">count($deleted)</small>
+        </a>
+      </li>
+      <li class="header">{!! Lang::get('core::lang.departments') !!}</li>
+      <?php
+      /*      $depts = Modules\Core\Models\Department::all();
+            foreach ($depts as $dept) {
+            $open = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->get();
+            $open = count($open);
+            $underprocess = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('assigned_to', '>', 0)->where('dept_id', '=', $dept->id)->get();
+            $underprocess = count($underprocess);
+            $closed = Modules\Core\Models\Ticket\Tickets::where('status', '=', '2')->where('dept_id', '=', $dept->id)->get();
+            $closed = count($closed);
+            // $underprocess = 0;
+            // foreach ($inbox as $ticket4) {
+            //  if ($ticket4->assigned_to == null) {
+            //  } else {
+            //      $underprocess++;
+            //  }
+            // }
+            if (Auth::user()->role == 'admin') {*/
+      ?>
+
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-folder-open"></i> <span>$dept->name</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{!! url::route('dept.open.ticket','Support') !!}"><i
+                class="fa fa-circle-o"></i>{!! Lang::get('tickets::lang.open') !!}
+              <small class="label pull-right bg-green">$open</small>
+            </a></li>
+          <li><a href="{!! url::route('dept.inprogress.ticket','Support') !!}"><i
+                class="fa fa-circle-o"></i>{!! Lang::get('tickets::lang.inprogress') !!}
+              <small class="label pull-right bg-green">$underprocess</small>
+            </a></li>
+          <li><a href="{!! url::route('dept.closed.ticket','Support') !!}"><i
+                class="fa fa-circle-o"></i>{!! Lang::get('tickets::lang.closed') !!}
+              <small class="label pull-right bg-green">$closed</small>
+            </a></li>
         </ul>
       </li>
 
@@ -328,6 +369,10 @@
   <!-- /.sidebar -->
 </aside>
 
+
+<?php //$agent_group = Auth::user()->assign_group;
+//$group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
+// dd($group); ?>
 <!-- Right side column. Contains the navbar and content of the page -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -337,17 +382,17 @@
         <div class="tabs-pane @yield('dashboard-bar')" id="tabA">
           <ul class="nav navbar-nav">
             <li id="bar" @yield(
-            'dashboard') ><a href="{{url('/adminpanel/')}}">{!! Lang::get('core::lang.dashboard') !!}</a></li>
+            'dashboard') ><a href="{{url('dashboard')}}">{!! Lang::get('core::lang.dashboard') !!}</a></li>
             <li id="bar" @yield(
-            'profile') ><a href="{{url('/staff/profile')}}">{!! Lang::get('employees::lang.profile') !!}</a></li>
+            'profile') ><a href="{{url('profile')}}">{!! Lang::get('employees::lang.profile') !!}</a></li>
           </ul>
         </div>
         <div class="tabs-pane @yield('user-bar')" id="tabB">
           <ul class="nav navbar-nav">
             <li id="bar" @yield(
-            'user')><a href="{{ url('/adminpanel/users/manage') }}">{!! Lang::get('core::lang.user_directory') !!}</a></li></a></li>
+            'user')><a href="{{ url('user') }}">{!! Lang::get('core::lang.user_directory') !!}</a></li></a></li>
             <li id="bar" @yield(
-            'relations')><a href="{{ url('/relationspanel/') }}">{!! Lang::get('relations::lang.relations')
+            'relations')><a href="{{ url('relations') }}">{!! Lang::get('relations::lang.relations')
               !!}</a></li></a></li>
           </ul>
         </div>
@@ -356,32 +401,35 @@
             <li id="bar" @yield(
             'open')><a href="{{ url('/tickets/open') }}" id="load-open">{!! Lang::get('tickets::lang.open') !!}</a></li>
             <li id="bar" @yield(
-            'answered')><a href="{{ url('/tickets/answered') }}" id="load-answered">{!! Lang::get('tickets::lang.answered')
+            'answered')><a href="{{ url('/ticket/answered') }}" id="load-answered">{!! Lang::get('tickets::lang.answered')
               !!}</a></li>
             <li id="bar" @yield(
-            'myticket')><a href="{{ url('/tickets/mytickets') }}">{!! Lang::get('tickets::lang.my_tickets') !!}</a></li>
-
-            <li id="bar" @yield('ticket')><a href="{{ url('/tickets/') }}">Ticket</a></li>
-            <li id="bar" @yield('overdue')><a href="{{ url('/tickets/overdue') }}">Overdue</a></li>
-            <li id="bar" @yield('assigned')><a href="{{ url('/tickets/assigned') }}" id="load-assigned">{!! Lang::get('tickets::lang.assigned')
+            'myticket')><a href="{{ url('/ticket/myticket') }}">{!! Lang::get('tickets::lang.my_tickets') !!}</a></li>
+            {{--
+            <li id="bar" @yield(
+            'ticket')><a href="{{ url('ticket') }}">Ticket</a></li> --}}
+            {{--
+            <li id="bar" @yield(
+            'overdue')><a href="{{ url('/ticket/overdue') }}">Overdue</a></li> --}}
+            <li id="bar" @yield(
+            'assigned')><a href="{{ url('/ticket/assigned') }}" id="load-assigned">{!! Lang::get('tickets::lang.assigned')
               !!}</a></li>
-            <li id="bar" @yield('closed')><a href="{{ url('/tickets/closed') }}">{!! Lang::get('tickets::lang.closed') !!}</a></li>
-            <li id="bar" @yield('newticket')><a
-                href="{{ url('/tickets/newticket') }}">{!! Lang::get('tickets::lang.create_ticket') !!}</a></li>
+            <li id="bar" @yield(
+            'closed')><a href="{{ url('/ticket/closed') }}">{!! Lang::get('tickets::lang.closed') !!}</a></li>
+            <?php //if ($group->can_create_ticket == 1) {?>
+            <li id="bar" @yield(
+            'newticket')><a
+              href="{{ url('/newticket') }}">{!! Lang::get('tickets::lang.create_ticket') !!}</a></li>
+            <?php //} ?>
           </ul>
         </div>
         <div class="tabs-pane @yield('tools-bar')" id="tabD">
           <ul class="nav navbar-nav">
-            <li id="bar" @yield('tools')><a
-                href="{{ url('/tickets/canned/list') }}">{!! Lang::get('tickets::lang.canned_response') !!}</a></li>
-            <li id="bar" @yield('kb')><a href="{{ url('/kbpanel/comments') }}">{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</a></li>
-          </ul>
-        </div>
-        <div class="tabs-pane @yield('tools-bar')" id="tabE">
-          <ul class="nav navbar-nav">
-            <li id="bar" @yield('Settings')><a
-              href="{{ url('/adminpanel/settings') }}">{!! Lang::get('core::lang.settings') !!}</a></li>
-            <li id="bar" @yield('kb')><a href="{{ url('/kbpanel') }}">{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</a></li>
+            <li id="bar" @yield(
+            'tools')><a
+              href="{{ url('/canned/list') }}">{!! Lang::get('tickets::lang.canned_response') !!}</a></li>
+            <li id="bar" @yield(
+            'kb')><a href="{{ url('/comment') }}">{!! Lang::get('knowledgebase::lang.knowledge_base') !!}</a></li>
           </ul>
         </div>
       </div>

@@ -14,58 +14,62 @@ class Ticket extends Model
 
     protected $table = 'tickets';
 
-
-    /*
-    `id` int(10) UNSIGNED NOT NULL,
-    `ticket_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-    `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-    `dept_id` int(11) NOT NULL,
-    `team_id` int(11) NOT NULL,
-    `priority_id` int(11) NOT NULL,
-    `status_id` int(11) NOT NULL,
-    `source_id` int(11) NOT NULL,
-    `reported_by_id` int(11) NOT NULL,
-    `updated_by_id` int(11) NOT NULL,
-    `assigned_to_staff_id` int(10) UNSIGNED NOT NULL,
-    `sla_id` int(11) NOT NULL,
-    `help_topic_id` int(11) NOT NULL,
-    `hashtml` tinyint(1) NOT NULL,
-    `isdeleted` tinyint(1) NOT NULL,
-    `isclosed` tinyint(1) NOT NULL,
-    `isreopened` tinyint(1) NOT NULL,
-    `reopened_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `isanswered` tinyint(1) NOT NULL,
-    `is_transferred` tinyint(1) NOT NULL,
-    `transferred_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-    `closed_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-    `last_message_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-    `last_response_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-    `user_id` int(10) UNSIGNED NOT NULL,
-    `fk_relation_id` int(10) UNSIGNED NOT NULL,
-     **/
-
+/*
+`id`,
+`ticket_number`,
+`subject`,
+`relation_id`,
+`assigned_to`,
+`mailbox_id`,
+`dept_id`,
+`team_id`,
+`ticketstatus_id`,
+`priority_id`,
+`slaplan_id`,
+`tickettype_id`,
+`helptopic_id`,
+`ticketsource_id`,
+`hasflags`,
+`flagtype`,
+`hashtml`,
+`escalationrule_id`,
+`autocloserule_id`,
+`is_overdue`,
+`duedate`,
+`is_transferred`,
+`transferred_at`,
+`isreopened`,
+`reopened_at`,
+`is_answered`,
+`is_deleted`,
+`is_closed`,
+`closed_at`,
+`last_message_at`,
+`last_response_at`,
+`lastreplier_id`,
+`created_at`,
+`updated_at`
+**/
 
     protected $fillable = [
-        'ticket_number',
-        'subject',
-        'deadline'
+        'id', 'ticket_number', 'subject', 'priority_id', 'relation_id', 'assigned_to', 'transferred_at', 'created_at', 'reopened_at', 'deadline_at'
     ];
 
     protected $dates = ['reopened_at', 'deadline', 'transferred_at', 'closed_at', 'last_message_at', 'last_response_at', 'created_at', 'updated_at'];
 
     public function assignee()
     {
-        return $this->belongsTo(Staff::class, 'assigned_to_staff_id');
+        return $this->belongsTo(Staff::class, 'assigned_to');
     }
 
     public function relationAssignee()
     {
-        return $this->belongsTo(Relation::class, 'fk_relation_id');
+        return $this->belongsTo(Relation::class, 'relation_id');
     }
 
     public function ticketCreator()
     {
-        return $this->belongsTo(Staff::class, 'fk_staff_id_created');
+        return $this->belongsTo(Staff::class, 'created_staff_id');
     }
 
     public function thread()

@@ -1,4 +1,17 @@
-@extends('layouts.master')
+@extends('tickets::ticketlayouts.ticketmaster')
+
+@section('Dashboard')
+    class="active"
+@stop
+
+@section('dashboard-bar')
+    active
+@stop
+
+@section('dashboard')
+    class="active"
+@stop
+
 @section('heading')
     <h1>All tickets</h1>
 @stop

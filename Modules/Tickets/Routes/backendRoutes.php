@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Routing\Router;
 
-
+Route::get('/ticketsdata', ['as' => 'tickets.data', 'uses' => 'TicketsController@anyData']);
 Route::get('/tickettypesdata', ['as' => 'tickettypes.data', 'uses' => 'TicketTypesController@anyData']);
 Route::get('/ticketprioritiesdata', ['as' => 'ticketpriorities.data', 'uses' => 'TicketPrioritiesController@anyData']);
 Route::get('/ticketstatusesdata', ['as' => 'ticketstatuses.data', 'uses' => 'TicketStatusesController@anyData']);
@@ -17,7 +17,7 @@ Route::get('/ticketlinktypesdata', ['as' => 'ticketlinktypes.data', 'uses' => 'T
 
 Route::group(['prefix' => '/ticketspanel'], function () {
     Route::resource('tickets', 'TicketsController');
-    Route::get('/', ['as' => 'ticketspanel', 'uses' => 'DashBoardController@ticketsdashboard']);
+    Route::get('/', ['as' => 'ticketspanel', 'uses' => 'TicketsDashBoardController@ticketsdashboard']);
 
 
     Route::resource('ticketsettings', 'TicketSettingsController');
@@ -43,7 +43,6 @@ Route::group(['prefix' => '/tickets'], function () {
     /**
      * TICKETS
      */
-    Route::get('/data', ['as' => 'tickets.data', 'uses' => 'TicketsController@anyData']);
     Route::patch('/updatestatus/{id}', 'TicketsController@updateStatus');
     Route::patch('/updateassign/{id}', 'TicketsController@updateAssign');
     Route::post('/updatetime/{id}', 'TicketsController@updateTime');

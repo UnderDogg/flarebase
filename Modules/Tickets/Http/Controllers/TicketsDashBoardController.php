@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class DashBoardController extends Controller
+class TicketsDashBoardController extends Controller
 {
     public function __construct()
     {
