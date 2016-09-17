@@ -12,8 +12,8 @@ use App\Http\Requests\kb\SettingsRequests;
 use Modules\Core\Models\Utility\Date_format;
 // Model
 use Modules\Core\Models\Utility\Timezones;
-use App\Model\kb\Comment;
-use App\Model\kb\Settings;
+use Modules\Knowledgebase\Models\Comment;
+use Modules\Knowledgebase\Models\Settings;
 use Auth;
 // Classes
 use Config;

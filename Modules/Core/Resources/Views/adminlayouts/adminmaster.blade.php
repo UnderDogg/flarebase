@@ -455,18 +455,18 @@
                     </a>
                     <ul class="treeview-menu">
                         <li @yield('kbsettings')><a href="{{ url('/kbpanel/kbsettings') }}"><i
-                                        class="fa fa-user "></i>{!! Lang::get('knowledgebase::lang.kbsettings') !!}</a>
+                                        class="fa fa-user "></i>{!! Lang::get('knowledgebase::lang.settings') !!}</a>
                         </li>
                         <li @yield('kbcategories')><a href="{{ url('/kbpanel/kbcategories') }}"><i
-                                        class="fa fa-sitemap"></i>{!! Lang::get('knowledgebase::lang.kbcategories') !!}
+                                        class="fa fa-sitemap"></i>{!! Lang::get('knowledgebase::lang.category') !!}
                             </a></li>
                         <li @yield('kbarticles')><a href="{{ url('/kbpanel/kbarticles') }}"><i
-                                        class="fa fa-users"></i>{!! Lang::get('knowledgebase::lang.kbarticles') !!}</a>
+                                        class="fa fa-users"></i>{!! Lang::get('knowledgebase::lang.articles') !!}</a>
                         </li>
                         <li @yield('kbtags')><a href="{{ url('/kbpanel/kbtags') }}"><i
-                                        class="fa fa-users"></i>{!! Lang::get('knowledgebase::lang.kbtags') !!}</a></li>
+                                        class="fa fa-users"></i>{!! Lang::get('knowledgebase::lang.tags') !!}</a></li>
                         <li @yield('kblinks')><a href="{{ url('/kbpanel/kblinks') }}"><i
-                                        class="fa fa-users"></i>{!! Lang::get('knowledgebase::lang.kblinks') !!}</a>
+                                        class="fa fa-users"></i>{!! Lang::get('knowledgebase::lang.articlelinks') !!}</a>
                         </li>
                     </ul>
                 </li>

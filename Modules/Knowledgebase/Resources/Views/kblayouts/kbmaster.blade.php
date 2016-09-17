@@ -79,7 +79,7 @@
   @yield('HeadInclude')
 
 </head>
-<body class="skin-yellow skin-green fixed">
+<body class="skin-green fixed">
 
 
 <header class="main-header">
@@ -200,32 +200,6 @@
 <aside class="main-sidebar">
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
-    <div class="user-panel">
-      @if (trim($__env->yieldContent('profileimg')))
-        <h1>@yield('profileimg')</h1>
-      @else
-        <div class="row">
-          <div class="col-xs-3"></div>
-          <div class="col-xs-2" style="width:50%;">
-            <a href="{!! url('profile') !!}">
-
-              <img src="#" class="img-circle" alt="User Image"/>
-
-            </a>
-          </div>
-        </div>
-      @endif
-      <div class="info" style="text-align:center;">
-        @if(Auth::user())
-          <p>{{Auth::user()->first_name." ".Auth::user()->last_name}}</p>
-        @endif
-        @if(Auth::user() && Auth::user()->active==1)
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        @else
-          <a href="#"><i class="fa fa-circle"></i> Offline</a>
-        @endif
-      </div>
-    </div>
     <!-- search form -->
     {{-- <form action="#" method="get" class="sidebar-form"> --}}
     {{-- <div class="input-group"> --}}
@@ -239,86 +213,6 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul id="side-bar" class="sidebar-menu">
       @yield('sidebar')
-      <li class="header">{!! Lang::get('email::lang.email') !!}</li>
-       <li class="treeview @yield('Mailboxes')">
-            <a href="#">
-                <i class="fa fa-envelope-o"></i>
-                <span>{!! Lang::get('email::lang.mailboxes') !!}</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li @yield('mailboxes')><a href="{{ url('/mailpanel/mailboxes/manage') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailboxes') !!}</a></li>
-                <li @yield('ban')><a href="{{ url('/mailpanel/mailbanlist') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.ban_lists') !!}</a></li>
-                <li @yield('getmail')><a href="{{url('/mailpanel/getmail')}}"><i class="fa fa-at"></i>{!! Lang::get('email::lang.getmail') !!}</a></li>
-                <li @yield('template')><a href="{{ url('/mailpanel/mailtemplates') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailtemplates') !!}</a></li>
-                <li @yield('maildiagnostics')><a href="{{ url('/mailpanel/maildiagno/getmaildiagno') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.maildiagnostics') !!}</a></li>
-                <li @yield('autoresponses')><a href="{{ url('/mailpanel/autoresponses') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.autoresponses') !!}</a></li>
-                <li @yield('breaklines')><a href="{{ url('/mailpanel/breaklines') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.breaklines') !!}</a></li>
-                <li @yield('mailrules')><a href="{{ url('/mailpanel/mailrules') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.mailrules') !!}</a></li>
-            </ul>
-        </li>
-
-        <li class="treeview @yield('MailParser')">
-          <a href="#">
-            <i class="fa fa-envelope-o"></i>
-            <span>{!! Lang::get('email::lang.mailparser') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('mailparser')><a href="{{ url('/adminpanel/mailparser') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailparser') !!}</a></li>
-            <li @yield('mailboxes')><a href="{{ url('/mailpanel/mailboxes') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailboxes') !!}</a></li>
-            <li @yield('mailrules')><a href="{{ url('/adminpanel/mailrules') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.mailrules') !!}</a></li>
-            <li @yield('mailbans')><a href="{{ url('/adminpanel/mailbanlist') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.mailbans') !!}</a></li>
-            <li @yield('mailcatch-all')><a href="{{ url('/adminpanel/mailcatch-all') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailcatch-all') !!}</a></li>
-            <li @yield('maildiagnostics')><a href="{{ url('/adminpanel/getmaildiagno') }}"><i class="fa fa-plus"></i>{!! Lang::get('email::lang.diagnostics') !!}</a></li>
-          </ul>
-        </li>
-
-
-        <li class="treeview @yield('MailTemplates')">
-          <a href="#">
-            <i class="fa fa-envelope-o"></i>
-            <span>{!! Lang::get('email::lang.mailtemplates') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('mailtemplategroups')><a href="{{ url('/adminpanel/mailtemplategroups') }}"><i class="fa fa-envelope"></i>{!! Lang::get('email::lang.mailtemplategroups') !!}</a></li>
-            <li @yield('mailtemplates')><a href="{{ url('/adminpanel/mailtemplates') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.mailtemplates') !!}</a></li>
-            <li @yield('maillogos')><a href="{{ url('/adminpanel/maillogos') }}"><i class="fa fa-ban"></i>{!! Lang::get('email::lang.maillogos') !!}</a></li>
-            <li @yield('templateimport')><a href="{{ url('/adminpanel/templateimport') }}"><i class="fa fa-mail-forward"></i>{!! Lang::get('email::lang.templateimport') !!}</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview @yield('Logs')">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>{!! Lang::get('core::lang.logs') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('errorlogs')><a href="{{ url('/adminpanel/errorlogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.errorlogs') !!}</a></li>
-            <li @yield('joblogs')><a href="{{ url('/adminpanel/joblogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.joblogs') !!}</a></li>
-            <li @yield('activitylogs')><a href="{{ url('/adminpanel/activitylogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.activitylogs') !!}</a></li>
-            <li @yield('loginlogs')><a href="{{ url('/adminpanel/loginlogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.loginlogs') !!}</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview @yield('Cron')">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>{!! Lang::get('core::lang.cron') !!}</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li @yield('cron')><a href="{{ url('/adminpanel/cronjobs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.cronjobs') !!}</a></li>
-            <li @yield('cron')><a href="{{url('/adminpanel/job-scheduler')}}"><i class="fa fa-hourglass"></i>{!! Lang::get('core::lang.cron') !!}</a></li>
-            <li @yield('joblogs')><a href="{{ url('/adminpanel/joblogs') }}"><i class="fa fa-list-alt"></i> {!! Lang::get('core::lang.joblogs') !!}</a></li>
-          </ul>
-        </li>
-
-        </ul>
-      </li>
-
     </ul>
   </section>
   <!-- /.sidebar -->

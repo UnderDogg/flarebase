@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 // request
 use App\Http\Requests\kb\PageRequest;
 use App\Http\Requests\kb\PageUpdate;
-use App\Model\kb\Page;
+use Modules\Knowledgebase\Models\Page;
 // Model
 use Datatable;
 // classes

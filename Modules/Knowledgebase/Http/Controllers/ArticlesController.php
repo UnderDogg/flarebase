@@ -9,11 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\kb\ArticleRequest;
 use App\Http\Requests\kb\ArticleUpdate;
 // Models
-use App\Model\kb\Article;
-use App\Model\kb\Category;
-use App\Model\kb\Comment;
-use App\Model\kb\Relationship;
-use App\Model\kb\Settings;
+use Modules\Knowledgebase\Models\Article;
+use Modules\Knowledgebase\Models\Category;
+use Modules\Knowledgebase\Models\Comment;
+use Modules\Knowledgebase\Models\Relationship;
+use Modules\Knowledgebase\Models\Settings;
 // Classes
 use Auth;
 use Chumper\Datatable\Table;

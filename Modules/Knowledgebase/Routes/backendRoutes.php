@@ -1,6 +1,14 @@
 <?php
 use Illuminate\Routing\Router;
 
+Route::get('kbcategoriesdata', [
+    'as' => 'kbcategories.data',
+    'uses' => 'CategoriesController@anyData',
+    //'middleware' => 'can:mailboxes.mailboxes.index'
+]);
+
+
+
 Route::group(['prefix' => '/kbpanel'], function () {
 
     Route::resource('knowledgebase', 'KnowledgeBaseController');
@@ -9,9 +17,11 @@ Route::group(['prefix' => '/kbpanel'], function () {
     Route::resource('kbpages', 'PagesController');
     //Route::resource('kbsettings', 'SettingsController');
 
-    Route::get('category/delete/{id}', 'CategoriesController@destroy');
-    /*  For the crud of article  */
+    //Route::get('category/delete/{id}', ['as' => 'category.destroy', 'uses' => 'CategoriesController@destroy']);
+    Route::get('category/delete/{id}', ['as' => 'category.destroy', 'uses' => 'CategoriesController@destroy']);
+    Route::get('category/edit/{id}', ['as' => 'category.edit', 'uses' => 'CategoriesController@edit']);
 
+    /*  For the crud of article  */
     Route::get('article/delete/{id}', 'ArticlesController@destroy');
     /* get settings */
     Route::get('kb/settings', ['as' => 'settings', 'uses' => 'SettingsController@settings']);
