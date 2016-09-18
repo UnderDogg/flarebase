@@ -489,21 +489,9 @@
                      <script src="{{asset("lb-faveo/plugins/select2/select2.full.min.js")}}" ></script>
                       <script src="{{asset("lb-faveo/plugins/moment/moment.js")}}" ></script>
 
-<script>
-    $(function () {
-        //Add text editor
-        $("textarea").wysihtml5();
-    });
 
-<script>
 
-<script>
-                function myFunction() {
 
-                    document.getElementById("count").innerHTML = "0";
-
-                }
-        </script>
         <script>
                 $(document).ready(function () {
                     

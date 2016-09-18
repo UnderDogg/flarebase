@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Http\Controllers;
+namespace Modules\Tickets\Http\Controllers;
 
 // controllers
 use App\Http\Controllers\Controller;
@@ -11,15 +11,23 @@ use Modules\Core\Requests\SlaUpdate;
 use Modules\Tickets\Models\SlaPlan;
 use Modules\Core\Models\Settings\Ticket;
 //classes
+use Illuminate\Http\Request;
+use Gate;
 use DB;
 use Exception;
+use Datatables;
+use Carbon;
+
+
+
+
 
 /**
  * SlaController.
  *
  * @author      Ladybird <info@ladybirdweb.com>
  */
-class SlaController extends Controller
+class SlaPlansController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -35,21 +43,67 @@ class SlaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param type Sla_plan $sla
+     * @param type SlaPlan $sla
      *
      * @return type Response
      */
-    public function index(Sla_plan $sla)
+    public function index(SlaPlan $sla)
     {
-        try {
-            /* Declare a Variable $slas to store all Values From Sla_plan Table */
-            $slas = $sla->get();
-            /* Listing the values From Sla_plan Table */
-            return view('core::manage.sla.index', compact('slas'));
-        } catch (Exception $e) {
-            return redirect()->back()->with('fails', $e->errorInfo[2]);
-        }
+        //try {
+            /* Declare a Variable $slas to store all Values From SlaPlan Table */
+            //$slas = $sla->get();
+            /* Listing the values From SlaPlan Table */
+            //compact('slas')
+            return view('tickets::slaplans.index');
+        //} catch (Exception $e) {
+        //    return redirect()->back()->with('fails', $e->errorInfo[2]);
+        //}
     }
+
+    public function anyData()
+    {
+/*
+{data: 'slaplanname', name: 'ticket_number'},
+{data: 'slaplanstatus', name: 'subject'},
+{data: 'grace_period', name: 'grace_period'},
+{data: 'created_at', name: 'created_at'},
+{data: 'last_updated', name: 'updated_at'},
+{data: 'action', name: 'assigned_to'},
+ **/
+
+
+        $slaplans = SlaPlan::select([
+            'id', 'name', 'grace_period', 'admin_note', 'status', 'transient', 'ticket_overdue'
+        ])->orderBy('ticket_overdue', 'desc');
+        return Datatables::of($slaplans)
+            ->addColumn('slaplanname', function ($slaplans) {
+                return '<a href="/ticketspanel/slaplans/' . $slaplans->id . '" ">' . $slaplans->name . '</a>';
+            })
+            ->addColumn('slaplanstatus', function ($slaplans) {
+                return '<a href="/ticketspanel/slaplans/' . $slaplans->id . '" ">' . $slaplans->status . '</a>';
+            })
+            ->addColumn('grace_period', function ($slaplans) {
+                return '<a href="/ticketspanel/slaplans/' . $slaplans->id . '" ">' . $slaplans->grace_period . '</a>';
+            })
+            ->addColumn('actions', function ($slaplans) {
+                return '
+                <form action="' . route('slaplans.destroy', [$slaplans->id]) .'" method="POST">
+                <div class=\'btn-group\'>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <a href="' . route('slaplans.edit', [$slaplans->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
+                    <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-xs" onClick="return confirm(\'Are you sure?\')"">
+                </div>
+                </form>';
+            })
+
+            ->make(true);
+    }
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,15 +123,15 @@ class SlaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param type Sla_plan   $sla
+     * @param type SlaPlan   $sla
      * @param type SlaRequest $request
      *
      * @return type Response
      */
-    public function store(Sla_plan $sla, SlaRequest $request)
+    public function store(SlaPlan $sla, SlaRequest $request)
     {
         try {
-            /* Fill the request values to Sla_plan Table  */
+            /* Fill the request values to SlaPlan Table  */
             /* Check whether function success or not */
             $sla->fill($request->input())->save();
             /* redirect to Index page with Success Message */
@@ -92,11 +146,11 @@ class SlaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param type int      $id
-     * @param type Sla_plan $sla
+     * @param type SlaPlan $sla
      *
      * @return type Response
      */
-    public function edit($id, Sla_plan $sla)
+    public function edit($id, SlaPlan $sla)
     {
         try {
             /* Direct to edit page along values of perticular field using Id */
@@ -113,12 +167,12 @@ class SlaController extends Controller
      * Update the specified resource in storage.
      *
      * @param type int       $id
-     * @param type Sla_plan  $sla
+     * @param type SlaPlan  $sla
      * @param type SlaUpdate $request
      *
      * @return type Response
      */
-    public function update($id, Sla_plan $sla, SlaUpdate $request)
+    public function update($id, SlaPlan $sla, SlaUpdate $request)
     {
         try {
             /* Fill values to selected field using Id except Check box */
@@ -142,11 +196,11 @@ class SlaController extends Controller
      * Remove the specified resource from storage.
      *
      * @param type int      $id
-     * @param type Sla_plan $sla
+     * @param type SlaPlan $sla
      *
      * @return type Response
      */
-    public function destroy($id, Sla_plan $sla)
+    public function destroy($id, SlaPlan $sla)
     {
         $default_sla = Ticket::where('id', '=', '1')->first();
         if ($default_sla->sla == $id) {

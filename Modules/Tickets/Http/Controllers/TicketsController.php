@@ -1,27 +1,39 @@
 <?php
 namespace Modules\Tickets\Http\Controllers;
 
-use App\Http\Requests;
+
+
+// controllers
 use App\Http\Controllers\Controller;
+
+// requests
+use Modules\Tickets\Requests\Ticket\StoreTicketRequest;
+use Modules\Tickets\Requests\Ticket\UpdateTimeTicketRequest;
+// models
 use Modules\Tickets\Models\Ticket;
 use Modules\Core\Models\Staff;
 use Modules\Core\Models\User;
 use Modules\Relations\Models\Relation;
-use Illuminate\Http\Request;
-use Gate;
 use Modules\Tickets\Models\TicketTime;
-use Datatables;
-use Carbon;
-use App\Dinero;
-use App\Billy;
-use Modules\Tickets\Requests\Ticket\StoreTicketRequest;
-use Modules\Tickets\Requests\Ticket\UpdateTimeTicketRequest;
+
+// services
 use Modules\Tickets\Services\Ticket\TicketServiceContract;
 use Modules\Core\Services\User\UserServiceContract;
 use Modules\Core\Services\Staff\StaffServiceContract;
 use Modules\Relations\Services\Relation\RelationServiceContract;
 use Modules\Core\Services\Setting\SettingServiceContract;
 use Modules\Invoices\Services\Invoice\InvoiceServiceContract;
+
+//classes
+use Illuminate\Http\Request;
+use Gate;
+use DB;
+use Exception;
+use Datatables;
+use Carbon;
+use App\Dinero;
+use App\Billy;
+
 
 class TicketsController extends Controller
 {
@@ -115,7 +127,7 @@ class TicketsController extends Controller
                 return '<a href="/tickets/ticket/' . $tickets->id . '" ">' . $tickets->subject . '</a>';
             })
             ->addColumn('relation_id', function ($tickets) {
-                return '<a href="/relations/relation/' . $tickets->fk_relation_id . '" ">' . $tickets->relationAssignee->company_name . '</a>';
+                return '<a href="/relations/relation/' . $tickets->relation_id . '" ">' . $tickets->relation_id . '</a>';
             })
             ->addColumn('priority_id', function ($tickets) {
                 return '<a href="/tickets/priority/' . $tickets->priority_id . '" ">' . $tickets->priority_id . '</a>';
@@ -129,7 +141,7 @@ class TicketsController extends Controller
                     ->format('d/m/Y') : '';
             })
             ->editColumn('assigned_to', function ($tickets) {
-                return $tickets->assignee->name;
+                return $tickets->assigned_to;
             })->make(true);
     }
 

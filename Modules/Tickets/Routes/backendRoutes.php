@@ -2,6 +2,7 @@
 use Illuminate\Routing\Router;
 
 Route::get('/ticketsdata', ['as' => 'tickets.data', 'uses' => 'TicketsController@anyData']);
+Route::get('/slaplansdata', ['as' => 'slaplans.data', 'uses' => 'SlaPlansController@anyData']);
 Route::get('/tickettypesdata', ['as' => 'tickettypes.data', 'uses' => 'TicketTypesController@anyData']);
 Route::get('/ticketprioritiesdata', ['as' => 'ticketpriorities.data', 'uses' => 'TicketPrioritiesController@anyData']);
 Route::get('/ticketstatusesdata', ['as' => 'ticketstatuses.data', 'uses' => 'TicketStatusesController@anyData']);

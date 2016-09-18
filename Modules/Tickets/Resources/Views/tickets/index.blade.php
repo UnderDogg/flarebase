@@ -62,11 +62,11 @@
             columns: [
                 {data: 'ticketnumber', name: 'ticket_number'},
                 {data: 'ticketsubjectlink', name: 'subject'},
-                {data: 'fk_relation_id', name: 'fk_relation_id'},
+                {data: 'relation_id', name: 'relation_id'},
                 {data: 'priority_id', name: 'priority_id'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'deadline', name: 'deadline'},
-                {data: 'assigned_to_staff_id', name: 'assigned_to_staff_id'},
+                {data: 'assigned_to', name: 'assigned_to'},
             ]
         });
     });
