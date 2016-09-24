@@ -5,7 +5,7 @@
     class="active"
 @stop
 
-@section('dashboard-bar')
+@section('mailpanel-bar')
     active
 @stop
 

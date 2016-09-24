@@ -24,16 +24,16 @@ Route::get('mailrulesdata', [
 
 
 
-Route::post('validating-email-settings', ['as' => 'validating.email.settings', 'uses' => 'Admin\helpdesk\EmailsController@validatingEmailSettings']); // route to check email input validation
-Route::post('validating-email-settings-on-update/{id}', ['as' => 'validating.email.settings.update', 'uses' => 'Admin\helpdesk\EmailsController@validatingEmailSettingsUpdate']); // route to check email input validation
+Route::post('validating-email-settings', ['as' => 'validating.email.settings', 'uses' => 'MailboxesController@validatingMailboxSettings']); // route to check email input validation
+Route::post('validating-email-settings-on-update/{id}', ['as' => 'validating.email.settings.update', 'uses' => 'MailboxesController@validatingEmailSettingsUpdate']); // route to check email input validation
 
 Route::get('getemail', 'Admin\helpdesk\SettingsController@getemail'); // direct to email setting page
 Route::patch('postemail/{id}', 'Admin\helpdesk\SettingsController@postemail'); // Updating the Email table with requests
 
 
-Route::get('/test', ['as' => 'thr', 'uses' => 'Agent\helpdesk\MailController@fetchdata']); /*  Fetch Emails */
+Route::get('/test', ['as' => 'thr', 'uses' => 'MailController@fetchdata']); /*  Fetch Emails */
 
-Route::get('/email/ban/{id}', ['as' => 'ban.email', 'uses' => 'Agent\helpdesk\TicketController@ban']); /*  Get Ban Email */
+Route::get('/email/ban/{id}', ['as' => 'ban.email', 'uses' => 'TicketController@ban']); /*  Get Ban Email */
 
 
 /*
@@ -43,10 +43,18 @@ Route::get('/email/ban/{id}', ['as' => 'ban.email', 'uses' => 'Agent\helpdesk\Ti
   |	These links are for cron job execution
   |
  */
-Route::get('getMail', ['as' => 'getMail', 'uses' => 'Agent\helpdesk\MailController@getMail']);
+Route::get('getMail', ['as' => 'getMail', 'uses' => 'MailController@getMail']);
 
 
-Route::get('readmails', ['as' => 'readmails', 'uses' => 'Agent\helpdesk\MailController@readmails']);
+Route::get('readmails', ['as' => 'readmails', 'uses' => 'MailController@readmails']);
+
+/*
+  |=============================================================
+  |  /Cron Job links
+  |=============================================================
+  |	These links ^^^ are for cron job execution
+  |
+ */
 
 
 Route::group(['prefix' => '/mailpanel'], function () {
@@ -58,6 +66,18 @@ Route::group(['prefix' => '/mailpanel'], function () {
         'uses' => 'MailboxesController@maildashboard',
         //'middleware' => 'can:mailboxes.mailboxes.index'
     ]);
+
+
+    Route::group(['prefix' => '/inbox'], function () {
+        Route::resource('mailboxes', 'MailboxesController');
+
+        Route::get('/{id}', [
+            'as' => 'admin.mailpanel.mailboxes.inbox',
+            'uses' => 'MailBoxesController@inbox',
+            //'middleware' => 'can:mailboxes.mailboxes.index'
+        ]);
+    });
+
 
     Route::group(['prefix' => '/mailbanlist'], function () {
         Route::resource('banlist', 'BanlistController'); // in banlist module, for CRUD

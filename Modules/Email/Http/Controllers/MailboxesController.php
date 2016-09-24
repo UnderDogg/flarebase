@@ -53,7 +53,7 @@ class MailboxesController extends Controller
         'sending_status', 'sending_host', 'sending_port', 'sending_protocol', 'sending_encryption', 'delete_email',
          **/
 
-        $mailboxes = Mailbox::select(['id', 'email_address', 'email_name', 'department_id', 'priority_id', 'updated_at']);
+        $mailboxes = Mailbox::select(['id', 'email_address', 'email_name', 'mailbox_type', 'department_id', 'priority_id', 'updated_at']);
 
 
         /*
@@ -64,18 +64,22 @@ class MailboxesController extends Controller
 
         return Datatables::of($mailboxes)
             ->addColumn('mailboxlink', function ($mailboxes) {
-                return '<a href="/mailpanel/mailbox/' . $mailboxes->id . '/edit" ">' . $mailboxes->email_name . '</a>';
+                return '<a href="/mailpanel/inbox/' . $mailboxes->id . '">' . $mailboxes->email_name . '</a>';
             })
             ->addColumn('mailaddress', function ($mailboxes) {
                 return $mailboxes->email_address;
             })
+
+            ->addColumn('mailboxtype', function ($mailboxes) {
+                return $mailboxes->mailbox_type;
+            })
+
             ->addColumn('department', function ($mailboxes) {
                 return '<a href="/adminpanel/department/' . $mailboxes->department_id . '/edit" ">' . $mailboxes->department_id . '</a>';
             })
-
             ->addColumn('actions', function ($mailboxes) {
                 return '
-                <form action="' . route('admin.mailboxes.mailbox.destroy', [$mailboxes->id]) .'" method="POST">
+                <form action="' . route('admin.mailboxes.mailbox.destroy', [$mailboxes->id]) . '" method="POST">
                 <div class=\'btn-group\'>
                     <input type="hidden" name="_method" value="DELETE">
                     <a href="' . route('admin.mailboxes.mailbox.edit', [$mailboxes->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
@@ -94,6 +98,17 @@ class MailboxesController extends Controller
         dd(Auth::guard()->user());
         return view('mailboxes.index');
     }
+
+
+
+    public function inbox()
+    {
+        echo "guard staff (mailboxes controller inbox function)";
+        //dd(Auth::guard('staff')->user());
+        dd(Auth::guard()->user());
+        return view('mailboxes.index');
+    }
+
 
 
     public function manage()
@@ -124,6 +139,22 @@ class MailboxesController extends Controller
             return redirect()->back()->with('fails', $e->getMessage());
         }
     }
+
+
+    /**
+     * Check for email input validation.
+     *
+     * @param EmailsRequest $request
+     *
+     * @return int
+     */
+    public function validatingMailboxSettings(Request $request)
+    {
+        $this->storeExchange($request, null);
+        $return = 1;
+        return $return;
+    }
+
 
     /**
      * Check for email input validation.
@@ -203,6 +234,82 @@ class MailboxesController extends Controller
         return $return;
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param type Emails        $email
+     * @param type EmailsRequest $request
+     *
+     * @return type Redirect
+     */
+    public function storeExchange($request, $exchange_check = false)
+    {
+        //        dd($request);
+        $mailbox = new Mailbox();
+
+        try {
+            //            getConnection($request->input('email_name'), $request->input('email_address'), $request->input('email_address'))
+            // saving all the fields to the database
+            //'department', 'priority', 'help_topic',
+            //'fetching_encryption'
+            //'sending_status'
+            //'auto_response'
+            $mailbox->fill($request->except('password', 'fetching_status', 'sending_status', 'department', 'priority', 'help_topic', 'auto_response'));
+
+            if ($request->fetching_status == 'on') {
+                $mailbox->fetching_status = 1;
+            } else {
+                $mailbox->fetching_status = 0;
+            }
+
+            $mailbox->mailbox_type = $request->input('fetching_protocol');
+
+            //if ($request->sending_status == 'on') {
+            //    $mailbox->sending_status = 1;
+            //} else {
+            $mailbox->sending_status = 0;
+            //}
+            //if ($request->auto_response == 'on') {
+            //    $mailbox->auto_response = 1;
+            //} else {
+            $mailbox->auto_response = 0;
+            //}
+
+            // fetching department value
+            $mailbox->department_id = 2;
+            // fetching priority value
+            $mailbox->priority_id = 4;
+            // fetching helptopic value
+            $mailbox->user_name = $request->input('email_address');
+
+            $mailbox->helptopic_id = NULL;
+            // inserting the encrypted value of password
+            $mailbox->password = Crypt::encrypt($request->input('password'));
+
+
+            try {
+                $mailbox->save(); // run save
+            } catch (Exception $e) {
+                dd($e->getMessage());
+            }
+
+            // returns success message for successful email creation
+            //                return redirect('emails')->with('success', 'Email Created sucessfully');
+
+            // } else {
+            //    dd("mailbox did not save");
+            // returns fail message for unsuccessful save execution
+            //                return redirect('emails')->with('fails', 'Email can not Create');
+            //   return 0;
+            //}
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            // returns if try fails
+            //            return redirect()->back()->with('fails', $e->getMessage());
+            return 0;
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -215,11 +322,11 @@ class MailboxesController extends Controller
     public function store($request, $imap_check)
     {
         //        dd($request);
-        $email = new Emails();
+        $email = new Mailbox();
         try {
             //            getConnection($request->input('email_name'), $request->input('email_address'), $request->input('email_address'))
             // saving all the fields to the database
-            if ($email->fill($request->except('password', 'department', 'priority', 'help_topic', 'fetching_status', 'fetching_encryption', 'sending_status', 'auto_response'))->save() == true) {
+            if ($email->fill($request->except('password', 'department_id', 'priority_id', 'helptopic_id', 'fetching_status', 'fetching_encryption', 'sending_status', 'auto_response'))->save() == true) {
                 if ($request->fetching_status == 'on') {
                     $email->fetching_status = 1;
                 } else {
@@ -241,11 +348,11 @@ class MailboxesController extends Controller
                     $email->fetching_encryption = $request->fetching_encryption;
                 }
                 // fetching department value
-                $email->department = $this->departmentValue($request->input('department'));
+                $email->department_id = 2;
                 // fetching priority value
-                $email->priority = $this->priorityValue($request->input('priority'));
+                $email->priority_id = 4;
                 // fetching helptopic value
-                $email->help_topic = $this->helpTopicValue($request->input('help_topic'));
+                $email->helptopic_id = NULL;
                 // inserting the encrypted value of password
                 $email->password = Crypt::encrypt($request->input('password'));
                 $email->save(); // run save

@@ -352,6 +352,21 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="tabs-pane @yield('mailpanel-bar')" id="tabA">
+                    <ul class="nav navbar-nav">
+                        <li id="bar" @yield('dashboard') ><a
+                                    href="{{url('/mailpanel/')}}">{!! Lang::get('email::lang.mailpanel') !!}</a></li>
+                        <li id="bar" @yield('allmailboxes') ><a
+                                    href="{{url('/mailpanel/mailboxes/manage')}}">{!! Lang::get('email::lang.mailboxes') !!}</a>
+                        </li>
+                        <li id="bar" @yield('mailrules') ><a
+                                    href="{{url('/mailpanel/mailrules')}}">{!! Lang::get('email::lang.mailrules') !!}</a>
+                        </li>
+                    </ul>
+                </div>
+
+
                 <div class="tabs-pane @yield('user-bar')" id="tabB">
                     <ul class="nav navbar-nav">
                         <li id="bar" @yield('user')><a

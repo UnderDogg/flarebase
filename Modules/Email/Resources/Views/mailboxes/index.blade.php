@@ -2,24 +2,17 @@
 
 
 @section('Mailboxes')
-    active
+    class="active"
 @stop
 
 @section('mailpanel-bar')
     active
 @stop
 
-@section('Mailboxes')
-    active
-@stop
-
-@section('emails-bar')
-    active
-@stop
-
-@section('Mailboxes')
+@section('allmailboxes')
     class="active"
-    @stop
+@stop
+
 
     @section('HeadInclude')
     @stop
@@ -47,6 +40,7 @@
         <tr>
             <th>Mailbox</th>
             <th>Email Address</th>
+            <th>Mailbox Type</th>
             <th>Department</th>
             <th>Actions</th>
         </tr>
@@ -55,6 +49,7 @@
         <tr>
             <th>Mailbox</th>
             <th>Email Address</th>
+            <th>Mailbox Type</th>
             <th>Department</th>
             <th>Actions</th>
         </tr>
@@ -74,6 +69,7 @@
             columns: [
                 {data: 'mailboxlink', name: 'email_name'},
                 {data: 'mailaddress', name: 'email_address'},
+                {data: 'mailboxtype', name: 'mailbox_type'},
                 {data: 'department', name: 'department_id'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false},
             ]
