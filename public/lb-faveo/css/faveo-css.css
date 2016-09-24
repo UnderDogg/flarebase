@@ -1,3 +1,12 @@
+.nav-stacked > li.active > a,
+.nav-stacked > li.active > a:hover {
+    background-color: #3c8dbc;
+    border-top: 0;
+    border-left-color: #000;
+    color: #ccc;
+}
+
+
 span.stars, span.stars span {
     display: block;
     background: url('../../lb-faveo/media/images/stars.png') 0 -16px repeat-x;

@@ -36,6 +36,11 @@ Route::get('/test', ['as' => 'thr', 'uses' => 'MailController@fetchdata']); /*  
 Route::get('/email/ban/{id}', ['as' => 'ban.email', 'uses' => 'TicketController@ban']); /*  Get Ban Email */
 
 
+
+// in apps/routes.php
+Route::get('/getMail',  ['as' => 'getmail', 'uses' => 'EMailController@getMail']);
+
+
 /*
   |=============================================================
   |  Cron Job links
@@ -43,10 +48,8 @@ Route::get('/email/ban/{id}', ['as' => 'ban.email', 'uses' => 'TicketController@
   |	These links are for cron job execution
   |
  */
-Route::get('getMail', ['as' => 'getMail', 'uses' => 'MailController@getMail']);
-
-
-Route::get('readmails', ['as' => 'readmails', 'uses' => 'MailController@readmails']);
+/*Route::get('getMail', ['as' => 'getMail', 'uses' => 'EMailController@getMail']);
+Route::get('readmails', ['as' => 'readmails', 'uses' => 'EMailController@readmails']);*/
 
 /*
   |=============================================================
@@ -70,10 +73,11 @@ Route::group(['prefix' => '/mailpanel'], function () {
 
     Route::group(['prefix' => '/inbox'], function () {
         Route::resource('mailboxes', 'MailboxesController');
+        Route::resource('emailmessages', 'EMailController');
 
         Route::get('/{id}', [
             'as' => 'admin.mailpanel.mailboxes.inbox',
-            'uses' => 'MailBoxesController@inbox',
+            'uses' => 'EMailController@inbox',
             //'middleware' => 'can:mailboxes.mailboxes.index'
         ]);
     });
