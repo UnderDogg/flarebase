@@ -15,9 +15,9 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li @yield('add-category')><a href="{{url('category/create')}}"><i
+            <li @yield('add-category')><a href="{{url('/kbpanel/kbcategories/create')}}"><i
                             class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addcategory')}}</a></li>
-            <li @yield('all-category')><a href="{{url('category')}}"><i
+            <li @yield('all-category')><a href="{{url('/kbpanel/kbcategories/')}}"><i
                             class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.allcategory')}}</a></li>
         </ul>
     </li>
@@ -27,9 +27,9 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li @yield('add-article')><a href="{{url('article/create')}}"><i
+            <li @yield('add-article')><a href="{{url('/kbpanel/article/create')}}"><i
                             class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addarticle')}}</a></li>
-            <li @yield('all-article')><a href="{{url('article')}}"><i
+            <li @yield('all-article')><a href="{{url('/kbpanel/articles')}}"><i
                             class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.allarticles')}}</a></li>
         </ul>
     </li>
@@ -39,9 +39,9 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li @yield('add-pages')><a href="{{url('page/create')}}"><i
+            <li @yield('add-pages')><a href="{{url('/kbpanel/kbpages/create')}}"><i
                             class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addpage')}}</a></li>
-            <li @yield('all-pages')><a href="{{url('page')}}"><i
+            <li @yield('all-pages')><a href="{{url('/kbpanel/pages')}}"><i
                             class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.allpages')}}
                 </a></li>
         </ul>
@@ -54,21 +54,14 @@
     <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <li @yield('add-tags')><a href="{{url('tag/create')}}"><i
+        <li @yield('add-tags')><a href="{{url('/kbpanel/kbtags/create')}}"><i
                         class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.addtag')}}</a></li>
-        <li @yield('all-tags')><a href="{{url('tags')}}"><i
+        <li @yield('all-tags')><a href="{{url('/kbpanel/kbtags')}}"><i
                         class="fa fa-circle-o"></i> {{Lang::get('knowledgebase::lang.alltags')}}
             </a></li>
     </ul>
     </li>
 
-
-    <li @yield('comment')>
-        <a href="{{url('comment')}}">
-            <i class="fa fa-comments-o"></i>
-            <span>{{Lang::get('knowledgebase::lang.comments')}}</span>
-        </a>
-    </li>
     <li @yield('settings')>
         <a href="{{url('kb/settings')}}">
             <i class="fa fa-wrench"></i>

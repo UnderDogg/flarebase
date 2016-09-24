@@ -25,8 +25,6 @@ class CategoryRequest extends Request
     {
         return [
             'name'        => 'required',
-            'slug'        => 'required|unique:kb_category',
-            'description' => 'required',
         ];
     }
 }

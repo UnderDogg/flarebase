@@ -18,7 +18,7 @@
 @stop
             <!-- header -->
 @section('PageHeader')
-    <h1>{{Lang::get('core::lang.staff')}}</h1>
+    <h1>{{Lang::get('knowledgebase::lang.knowledgebase')}}</h1>
 
     @stop
             <!-- /header -->
@@ -69,9 +69,8 @@
     @endif
 
 
-
-    <h2>{!! Lang::get('core::lang.staff') !!}</h2><a href="{{route('staff.create')}}"
-                                                          class="btn btn-primary pull-right">{{Lang::get('core::lang.create_staffmember')}}</a></h2>
+    <h2>{!! Lang::get('knowledgebase::lang.knowledgebase') !!}</h2><a href="{{route('kbcategories.create')}}"
+                                                          class="btn btn-primary pull-right">{{Lang::get('knowledgebase::lang.create_kbcategory')}}</a></h2>
 
 <div class="row">
     <div class="col-sm-12">
@@ -79,14 +78,14 @@
         <thead>
         <tr>
             <th>Category Name</th>
-            <th>Created</th>
+            <th>Parent</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tfoot>
         <tr>
             <th>Category Name</th>
-            <th>Created</th>
+            <th>Parent</th>
             <th>Actions</th>
         </tr>
         </tfoot>

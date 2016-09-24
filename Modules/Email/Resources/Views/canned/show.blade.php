@@ -1,4 +1,4 @@
-@extends('themes.default1.agent.layout.agent')
+@extends('tickets.ticketlayouts.ticketmaster')
 
 @section('Tools')
 class="active"

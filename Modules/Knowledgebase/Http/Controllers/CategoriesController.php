@@ -61,7 +61,6 @@ class CategoriesController extends Controller
     }
 
 
-
     public function anyData()
     {
         //$canUpdateStaff = auth()->user()->can('update-user');
@@ -69,17 +68,15 @@ class CategoriesController extends Controller
         $categories = KbCategory::select(['id', 'slug', 'name', 'parent_id', 'created_at', 'updated_at'])->with('parent');
 
         return Datatables::of($categories)
-
             ->addColumn('categorynamelink', function ($categories) {
                 return '<a href="/kbpanel/cat/' . $categories->id . '" ">' . $categories->name . '</a>';
             })
             ->addColumn('parentnamelink', function ($categories) {
                 return '<a href="/kbpanel/cat/' . $categories->parent_id . '" ">' . $categories->parent_id . '</a>';
             })
-
             ->addColumn('actions', function ($categories) {
                 return '
-                <form action="' . route('category.destroy', [$categories->id]) .'" method="POST">
+                <form action="' . route('category.destroy', [$categories->id]) . '" method="POST">
                 <div class=\'btn-group\'>
                     <input type="hidden" name="_method" value="DELETE">
                     <a href="' . route('category.edit', [$categories->id]) . '" class=\'btn btn-success btn-xs\'>Edit</a>
@@ -89,11 +86,6 @@ class CategoriesController extends Controller
             })
             ->make(true);
     }
-
-
-
-
-
 
 
     /**
@@ -153,7 +145,7 @@ class CategoriesController extends Controller
         /* get the view page to create new category with all attributes
           of category model */
         //try {
-            return view('knowledgebase::categories.create', compact('category'));
+        return view('knowledgebase::categories.create', compact('category'));
         //} catch (Exception $e) {
         //    return redirect()->back()->with('fails', $e->errorInfo[2]);
         //}
