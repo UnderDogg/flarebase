@@ -11,6 +11,7 @@ return [
       |
      */
     'mailparser' => 'Mailparser',
+    'mailpanel' => 'Mail Panel',
     'getmail' => 'Get All Emails (per Mailbox)',
     'mailtemplates' => 'Mail Templates',
     'maildiagnostics' => 'Mail Diagnostics',

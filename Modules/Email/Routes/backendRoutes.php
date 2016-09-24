@@ -36,10 +36,8 @@ Route::get('/test', ['as' => 'thr', 'uses' => 'MailController@fetchdata']); /*  
 Route::get('/email/ban/{id}', ['as' => 'ban.email', 'uses' => 'TicketController@ban']); /*  Get Ban Email */
 
 
-
-// in apps/routes.php
-Route::get('/getMail',  ['as' => 'getmail', 'uses' => 'EMailController@getMail']);
-
+Route::get('/getMail/{id}',  ['as' => 'getmail', 'uses' => 'EMailController@getMail']);
+Route::get('/connectexchange/{id}',  ['as' => 'connectexchange', 'uses' => 'EMailController@connectexchange']);
 
 /*
   |=============================================================
