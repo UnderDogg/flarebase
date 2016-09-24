@@ -34,7 +34,7 @@
                     <div id="content" class="site-content col-md-12">
                         <div id="corewidgetbox">
                             <div class="widgetrow text-center">
-                                @if(Auth::user())
+                                @if(Auth::guard('staff')->user())
                                 @else
                                     <span onclick="javascript: window.location.href='{{url('/register')}}';">
                   <a href="{{url('/register')}}" class="widgetrowitem defaultwidget"

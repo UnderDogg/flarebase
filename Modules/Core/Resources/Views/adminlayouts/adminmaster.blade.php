@@ -202,10 +202,10 @@
                     </div>
                 </div>
                 <div class="info" style="text-align:center;">
-                    @if(Auth::user())
-                        <p>{!! Auth::user()->first_name !!}{!! " ". Auth::user()->last_name !!}</p>
+                    @if(Auth::guard('staff')->user())
+                        <p>{!! Auth::guard('staff')->user()->first_name !!}{!! " ". Auth::guard('staff')->user()->last_name !!}</p>
                     @endif
-                    @if(Auth::user() && Auth::user()->active==1)
+                    @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->active==1)
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     @else
                         <a href="#"><i class="fa fa-circle"></i> Offline</a>

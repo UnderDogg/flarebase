@@ -63,21 +63,21 @@
                                 @endforeach
                                 <li><a href="{{route('contact')}}">Contact us</a></li>
 
-                            @if(Auth::user())
+                            @if(Auth::guard('staff')->user())
 
 
                             <li><a href="#" >My Profile</a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="banner-wrapper user-menu text-center clearfix">
-                                            @if(Auth::user())
-                                    @if(Auth::user()->profile_pic)
-                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image"/>
+                                            @if(Auth::guard('staff')->user())
+                                    @if(Auth::guard('staff')->user()->profile_pic)
+                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image"/>
                                     @else
-                                        <img src="{{ Gravatar::src(Auth::user()->email) }}" class="img-circle" alt="User Image">
+                                        <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="img-circle" alt="User Image">
                                     @endif
                                     @endif  
-                                            <span class="hidden-xs">{!! Auth::user()->firstname." ".Auth::user()->lastname !!}</span>
+                                            <span class="hidden-xs">{!! Auth::guard('staff')->user()->firstname." ".Auth::guard('staff')->user()->lastname !!}</span>
                                             <div class="banner-content">
                                                 <a href="{{url('client-profile')}}" class="btn btn-custom btn-xs">Edit Profile</a> <a href="{{url('auth/logout')}}" class="btn btn-custom btn-xs">Log out</a>
                                             </div>

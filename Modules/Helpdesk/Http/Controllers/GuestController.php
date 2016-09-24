@@ -35,7 +35,7 @@ class GuestController extends Controller
      */
     public function getProfile()
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         return view('themes.default1.client.helpdesk.profile', compact('user'));
     }
 
@@ -49,7 +49,7 @@ class GuestController extends Controller
      */
     public function postProfile(ProfileRequest $request)
     {
-        $user = User::where('id', '=', Auth::user()->id)->first();
+        $user = User::where('id', '=', Auth::guard('staff')->user()->id)->first();
         $user->gender = $request->get('gender');
         $user->save();
         if ($user->profile_pic == 'avatar5.png' || $user->profile_pic == 'avatar2.png') {
@@ -138,7 +138,7 @@ class GuestController extends Controller
      */
     public function thread(Ticket_Thread $thread, Tickets $tickets, User $user)
     {
-        $user_id = Auth::user()->id;
+        $user_id = Auth::guard('staff')->user()->id;
         //dd($user_id);
         /* get the ticket's id == ticket_id of thread  */
         $tickets = $tickets->where('user_id', '=', $user_id)->first();
@@ -168,7 +168,7 @@ class GuestController extends Controller
      */
     public function postProfilePassword(ProfilePassword $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         //echo $user->password;
         if (Hash::check($request->input('old_password'), $user->getAuthPassword())) {
             $user->password = Hash::make($request->input('new_password'));
@@ -195,7 +195,7 @@ class GuestController extends Controller
     {
         $thread->ticket_id = $request->input('ticket_ID');
         $thread->title = $request->input('To');
-        $thread->user_id = Auth::user()->id;
+        $thread->user_id = Auth::guard('staff')->user()->id;
         $thread->body = $request->input('reply_content');
         $thread->poster = 'user';
         $thread->save();

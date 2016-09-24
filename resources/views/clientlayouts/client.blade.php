@@ -63,15 +63,15 @@
 
           <ul class="nav navbar-nav navbar-login">
 
-            @if(Auth::user())
+            @if(Auth::guard('staff')->user())
               <li><a href="#" class="collapsed" data-toggle="collapse" data-target="#profile-menu">
                   <i class="sub-indicator fa fa-chevron-circle-down fa-fw"></i>My Profile</a>
                 <div id="profile-menu" class="login-form collapse fade clearfix">
 
 
                     <div class="banner-wrapper user-menu text-center clearfix">
-                      @if(Auth::user())
-                      <span class="">{!! Auth::user()->firstname." ".Auth::user()->lastname !!}</span>
+                      @if(Auth::guard('staff')->user())
+                      <span class="">{!! Auth::guard('staff')->user()->firstname." ".Auth::guard('staff')->user()->lastname !!}</span>
                       <div class="banner-content">
                         <a href="{{url('client/profile')}}" class="btn btn-custom btn-xs">Edit Profile</a> <a
                           href="{{url('auth/logout')}}" class="btn btn-custom btn-xs">Log out</a>

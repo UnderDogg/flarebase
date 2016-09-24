@@ -11,7 +11,7 @@ active
 <?php
     $user = Modules\Core\Models\Staff::where('id', '=', $tickets->user_id)->first();
     $assignedto = Modules\Core\Models\Staff::where('id', '=', $tickets->assigned_to)->first();
-    $agent_group = Auth::user()->assign_group;
+    $agent_group = Auth::guard('staff')->user()->assign_group;
     $group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 ?>
 
@@ -90,7 +90,7 @@ active
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#{{$tickets->id}}assign"><i class="fa fa-hand-o-right" style="color:orange;"> </i> {!! Lang::get('tickets::lang.assign') !!}</button>
             <?php } ?>
 
-            @if($tickets->assigned_to == Auth::user()->id)
+            @if($tickets->assigned_to == Auth::guard('staff')->user()->id)
             <button type="button" id="surrender_button" class="btn btn-default" data-toggle="modal" data-target="#surrender"> <i class="fa fa-arrows-alt" style="color:red;"> </i>  {!! Lang::get('tickets::lang.surrender') !!}</button>
             @endif
 
@@ -325,7 +325,7 @@ echo UTC::usertimezone(date_format($time, 'Y-m-d H:i:s'));
                                     <select class="form-control" style="width:55%" id="select">
                                         
 <?php 
-$canneds = Modules\Email\Models\CannedResponse::where('user_id','=',Auth::user()->id)->get();
+$canneds = Modules\Email\Models\CannedResponse::where('user_id','=',Auth::guard('staff')->user()->id)->get();
 ?>                                                  
                                         <option value="zzz">{!! Lang::get('tickets::lang.select_a_canned_response') !!}</option>
                                         @foreach($canneds as $canned)

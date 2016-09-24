@@ -66,7 +66,7 @@ class ClientTicketController extends Controller
             $tickets->reopened = 1;
             $tickets->isanswered = 0;
             $threads = new Ticket_Thread();
-            $threads->user_id = Auth::user()->id;
+            $threads->user_id = Auth::guard('staff')->user()->id;
             $threads->ticket_id = $tickets->id;
             $threads->poster = 'client';
             $threads->body = $comment;

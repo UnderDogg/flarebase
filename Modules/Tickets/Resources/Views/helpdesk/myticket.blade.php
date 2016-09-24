@@ -15,11 +15,11 @@ class="active"
 @section('content')
 <?php
     $date_time_format = UTC::getDateTimeFormat();
-    if(Auth::user()->role == 'agent') {
-        $dept = Modules\Core\Models\Department::where('id','=',Auth::user()->primary_dpt)->first();
-        $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '=', Auth::user()->id)->orderBy('id', 'ASC')->paginate(20);
+    if(Auth::guard('staff')->user()->role == 'agent') {
+        $dept = Modules\Core\Models\Department::where('id','=',Auth::guard('staff')->user()->primary_dpt)->first();
+        $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '=', Auth::guard('staff')->user()->id)->orderBy('id', 'ASC')->paginate(20);
     } else {
-        $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '=', Auth::user()->id)->orderBy('id', 'ASC')->paginate(20);
+        $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('assigned_to', '=', Auth::guard('staff')->user()->id)->orderBy('id', 'ASC')->paginate(20);
     }
 ?>
 <!-- Main content -->

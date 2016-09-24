@@ -356,7 +356,7 @@ $data = $ConvDate[0];
 <?php $id2 = Crypt::decrypt($id); ?>
 <div id="respond" class="comment-respond form-border">
     <h3 id="reply-title" class="comment-reply-title section-title"><i class="line"></i>{!! Lang::get('helpdesk::lang.leave_a_reply') !!}</h3>
-    @if(Auth::user()) 
+    @if(Auth::guard('staff')->user())
         {!! Form::open(['url'=>'post/reply/'.$id2.'#formabc']) !!}
     @else
         {!! Form::open(['url'=>'post-ticket-reply/'.$id.'#formabc']) !!}

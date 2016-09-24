@@ -68,27 +68,27 @@
 
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                @if(Auth::user())
-                                    @if(Auth::user()->profile_pic)
-                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}" class="user-image" alt="User Image"/>
+                                @if(Auth::guard('staff')->user())
+                                    @if(Auth::guard('staff')->user()->profile_pic)
+                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}" class="user-image" alt="User Image"/>
                                     @else
-                                        <img src="{{ Gravatar::src(Auth::user()->email) }}" class="user-image" alt="User Image">
+                                        <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="user-image" alt="User Image">
                                     @endif
                                 @endif          
-                                    <span class="hidden-xs">{!! Auth::user()->firstname." ".Auth::user()->lastname !!}</span>
+                                    <span class="hidden-xs">{!! Auth::guard('staff')->user()->firstname." ".Auth::guard('staff')->user()->lastname !!}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                @if(Auth::user())
-                                    @if(Auth::user()->profile_pic)
-                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image"/>
+                                @if(Auth::guard('staff')->user())
+                                    @if(Auth::guard('staff')->user()->profile_pic)
+                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image"/>
                                     @else
-                                        <img src="{{ Gravatar::src(Auth::user()->email) }}" class="img-circle" alt="User Image">
+                                        <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="img-circle" alt="User Image">
                                     @endif
                                 @endif          
                                         <p>
-                                            <span class="hidden-xs">{!! Auth::user()->firstname." ".Auth::user()->lastname !!}</span>
+                                            <span class="hidden-xs">{!! Auth::guard('staff')->user()->firstname." ".Auth::guard('staff')->user()->lastname !!}</span>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -128,17 +128,17 @@
                     <ul class="sidebar-menu">
                         <div class="user-panel">
                             <div class="pull-left image">
-                                @if(Auth::user() && Auth::user()->profile_pic)
-                                    <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" />
+                                @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->profile_pic)
+                                    <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
                                 @else
-                                    <img src="{{ Gravatar::src(Auth::user()->email) }}" class="img-circle" alt="User Image">
+                                    <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="img-circle" alt="User Image">
                                 @endif
                             </div>
                             <div class="pull-left info">
-                                            @if(Auth::user())
-                                                <p>{!! Auth::user()->firstname !!}{!! " ". Auth::user()->lastname !!}</p>
+                                            @if(Auth::guard('staff')->user())
+                                                <p>{!! Auth::guard('staff')->user()->firstname !!}{!! " ". Auth::guard('staff')->user()->lastname !!}</p>
                                             @endif
-                                            @if(Auth::user() && Auth::user()->active==1)
+                                            @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->active==1)
                                                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                             @else
                                                 <a href="#"><i class="fa fa-circle"></i> Offline</a>

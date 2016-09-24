@@ -17,7 +17,7 @@ class="active"
 <?php
 $date_time_format = UTC::getDateTimeFormat();
 $dept = Modules\Core\Models\Department::where('name', '=', $id)->first();
-if (Auth::user()->role == 'agent') {
+if (Auth::guard('staff')->user()->role == 'agent') {
         
     $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', '1')->where('assigned_to', '>', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->paginate(20);
 } else {

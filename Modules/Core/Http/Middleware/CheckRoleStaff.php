@@ -5,11 +5,11 @@ namespace App\Http\Middleware;
 use Closure;
 
 /**
- * CheckRoleAgent.
+ * CheckRoleStaff.
  *
  * @author      Ladybird <info@ladybirdweb.com>
  */
-class CheckRoleAgent
+class CheckRoleStaff
 {
     /**
      * Handle an incoming request.
@@ -25,6 +25,6 @@ class CheckRoleAgent
             return $next($request);
         }
 
-        return redirect('dashboard')->with('fails', 'You are not Autherised');
+        return redirect('dashboard')->with('fails', 'You are not Authorized');
     }
 }

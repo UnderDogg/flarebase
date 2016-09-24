@@ -21,14 +21,14 @@
             <!-- Main content -->
     <div id="content" class="site-content col-md-12">
         <?php
-        $open = Modules\Tickets\Models\Ticket::where('user_id', '=', Auth::user()->id)
+        $open = Modules\Tickets\Models\Ticket::where('user_id', '=', Auth::guard('staff')->user()->id)
                 ->where('status_id', '=', 1)
                 ->orderBy('id', 'DESC')
                 ->paginate(20);
         ?>
 
         <?php
-        $close = Modules\Tickets\Models\Ticket::where('user_id', '=', Auth::user()->id)
+        $close = Modules\Tickets\Models\Ticket::where('user_id', '=', Auth::guard('staff')->user()->id)
                 ->whereIn('status_id', [99, 3])
                 ->orderBy('id', 'DESC')
                 ->paginate(20);

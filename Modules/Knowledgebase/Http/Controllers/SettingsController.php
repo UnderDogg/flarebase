@@ -213,7 +213,7 @@ class SettingsController extends Controller
     public function getProfile()
     {
         $time = Timezone::all();
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
 
         return view('knowledgebase::staff.kb.settings.profile', compact('user', 'time'));
     }
@@ -227,7 +227,7 @@ class SettingsController extends Controller
      */
     public function postProfile(ProfileRequest $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         $user->gender = $request->input('gender');
         $user->save();
         if (is_null($user->profile_pic)) {
@@ -271,7 +271,7 @@ class SettingsController extends Controller
      */
     public function postProfilePassword($id, ProfilePassword $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         //echo $user->password;
 
         if (Hash::check($request->input('old_password'), $user->getAuthPassword())) {

@@ -40,6 +40,15 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\LogLastUserActivity::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        'staff'  => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            //\App\Http\Middleware\VerifyCsrfToken::class,
+            \App\Http\Middleware\LogLastUserActivity::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
 
 
         //'email.create' => [ \App\Http\Middleware\Email\CanEmailCreate::class ],
@@ -79,8 +88,8 @@ class Kernel extends HttpKernel
 
 
         'roles'       => 'Modules\Core\Http\Middleware\CheckRole',
-        //'role.agent'  => 'Modules\Core\Http\Middleware\CheckRoleAgent',
-        //'role.staff'  => 'Modules\Core\Http\Middleware\CheckRoleAgent',
+        //'role.agent'  => 'Modules\Core\Http\Middleware\CheckRoleStaff',
+        //'role.staff'  => 'Modules\Core\Http\Middleware\CheckRoleStaff',
         //'role.user'   => 'Modules\Core\Http\Middleware\CheckRoleUser',
         //'role.client'   => 'Modules\Core\Http\Middleware\CheckRoleUser',
 

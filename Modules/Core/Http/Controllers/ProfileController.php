@@ -41,7 +41,7 @@ class ProfileController extends Controller
     public function getProfile()
     {
         try {
-            $user = Auth::user();
+            $user = Auth::guard('staff')->user();
             if ($user) {
                 return view('core::user.profile', compact('user'));
             } else {
@@ -60,7 +60,7 @@ class ProfileController extends Controller
     public function getProfileedit()
     {
         try {
-            $user = Auth::user();
+            $user = Auth::guard('staff')->user();
             if ($user) {
                 return view('core::user.profile-edit', compact('user'));
             } else {
@@ -81,7 +81,7 @@ class ProfileController extends Controller
      */
     public function postProfile($id, ProfileRequest $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         $user->gender = $request->input('gender');
         $user->save();
         if ($user->profile_pic == 'avatar5.png' || $user->profile_pic == 'avatar2.png') {
@@ -124,7 +124,7 @@ class ProfileController extends Controller
      */
     public function postProfilePassword($id, User $user, ProfilePassword $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         //echo $user->password;
         if (Hash::check($request->input('old_password'), $user->getAuthPassword())) {
             $user->password = Hash::make($request->input('new_password'));

@@ -290,7 +290,7 @@ class ArticleController extends Controller
      */
     public static function usertimezone($utc)
     {
-        $user = Auth::user();
+        $user = Auth::guard('staff')->user();
         $tz = $user->timezone;
         $set = Settings::whereId('1')->first();
         $format = $set->dateformat;

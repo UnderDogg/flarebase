@@ -73,7 +73,7 @@ if ($company != null) {
                             <li @yield('Tools')><a data-target="#tabD" href="#">{!! Lang::get('knowledgebase::lang.tools') !!}</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            @if(Auth::user()->role == 'admin')
+                            @if(Auth::guard('staff')->user()->role == 'admin')
                                 <li><a href="{{url('admin')}}">{!! Lang::get('knowledgebase::lang.admin_panel') !!}</a></li>
                             @endif
                             <!-- User Account: style can be found in dropdown.less -->
@@ -113,21 +113,21 @@ if ($company != null) {
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                @if(Auth::user())
+                                @if(Auth::guard('staff')->user())
                                     
-                                        <img src="{{Auth::user()->profile_pic}}"class="user-image" alt="User Image"/>
+                                        <img src="{{Auth::guard('staff')->user()->profile_pic}}"class="user-image" alt="User Image"/>
                                     
-                                    <span class="hidden-xs">{{Auth::user()->first_name." ".Auth::user()->last_name}}</span>
+                                    <span class="hidden-xs">{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</span>
                                 @endif          
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header"  style="background-color:#343F44;">
                                         
-                                        <img src="{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" />
+                                        <img src="{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
                                         
                                         <p>
-                                            {{Auth::user()->first_name." ".Auth::user()->last_name}} - {{Auth::user()->role}}
+                                            {{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}} - {{Auth::guard('staff')->user()->role}}
                                             <small></small>
                                         </p>
                                     </li>
@@ -160,17 +160,17 @@ if ($company != null) {
                                         <div class="col-xs-2" style="width:50%;">
                                         <a href="{!! url('profile') !!}">
                                         
-                                                <img src="{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" />
+                                                <img src="{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
                                         
                                         </a>
                                         </div>
                                     </div>
                                     @endif
                                         <div class="info" style="text-align:center;">
-                                            @if(Auth::user())
-                                            <p>{{Auth::user()->first_name." ".Auth::user()->last_name}}</p>
+                                            @if(Auth::guard('staff')->user())
+                                            <p>{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</p>
                                             @endif
-                                            @if(Auth::user() && Auth::user()->active==1)
+                                            @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->active==1)
                                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                             @else
                                             <a href="#"><i class="fa fa-circle"></i> Offline</a>
@@ -192,21 +192,21 @@ if ($company != null) {
                                         @yield('sidebar')
                                         <li class="header">{!! Lang::get('knowledgebase::lang.Tickets') !!}</li>
 <?php
-if(Auth::user()->role == 'admin') {
+if(Auth::guard('staff')->user()->role == 'admin') {
 //$inbox = Modules\Core\Models\Ticket\Tickets::all();
-$myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();
+$myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status','1')->get();
 $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=',null)->where('status', '=', '1')->get();
 $tickets = Modules\Core\Models\Ticket\Tickets::where('status','1')->get();
 $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();
-} elseif(Auth::user()->role == 'agent') {
-//$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::user()->primary_dpt)->get();
-$myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();
-$unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=',null)->where('status', '=', '1')->where('dept_id','=',Auth::user()->primary_dpt)->get();
-$tickets = Modules\Core\Models\Ticket\Tickets::where('status','1')->where('dept_id','=',Auth::user()->primary_dpt)->get();
-$deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id','=',Auth::user())->get();
+} elseif(Auth::guard('staff')->user()->role == 'agent') {
+//$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::guard('staff')->user()->primary_dpt)->get();
+$myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status','1')->get();
+$unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=',null)->where('status', '=', '1')->where('dept_id','=',Auth::guard('staff')->user()->primary_dpt)->get();
+$tickets = Modules\Core\Models\Ticket\Tickets::where('status','1')->where('dept_id','=',Auth::guard('staff')->user()->primary_dpt)->get();
+$deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id','=',Auth::guard('staff')->user())->get();
 }
-if (Auth::user()->role == 'agent') {
-            $dept = Modules\Core\Models\Department::where('id', '=', Auth::user()->primary_dpt)->first();
+if (Auth::guard('staff')->user()->role == 'agent') {
+            $dept = Modules\Core\Models\Department::where('id', '=', Auth::guard('staff')->user()->primary_dpt)->first();
             $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
         } else {
             $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
@@ -279,7 +279,7 @@ $closed = count($closed);
     //      $underprocess++;
     //  }
     // }
-if (Auth::user()->role == 'admin') { ?>
+if (Auth::guard('staff')->user()->role == 'admin') { ?>
                                         <li class="treeview">
                                             <a href="#">
                                                 <i class="fa fa-folder-open"></i> <span>{!! $dept->name !!}</span> <i class="fa fa-angle-left pull-right"></i>
@@ -290,7 +290,7 @@ if (Auth::user()->role == 'admin') { ?>
                                                 <li><a href="{!! url::route('dept.closed.ticket',$dept->name) !!}"><i class="fa fa-circle-o"></i>{!! Lang::get('knowledgebase::lang.closed') !!}<small class="label pull-right bg-green">{!! $closed !!}</small></a></li>
                                             </ul>
                                         </li>
-<?php } if (Auth::user()->role == 'agent' && Auth::user()->primary_dpt == $dept->id) { ?>
+<?php } if (Auth::guard('staff')->user()->role == 'agent' && Auth::guard('staff')->user()->primary_dpt == $dept->id) { ?>
                                         <li class="treeview">
                                             <a href="#">
                                                 <i class="fa fa-folder-open"></i> <span>{!! $dept->name !!}</span> <i class="fa fa-angle-left pull-right"></i>
@@ -306,7 +306,7 @@ if (Auth::user()->role == 'admin') { ?>
                         </section>
                         <!-- /.sidebar -->
                         </aside>
-<?php $agent_group = Auth::user()->assign_group;
+<?php $agent_group = Auth::guard('staff')->user()->assign_group;
 $group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 // dd($group); ?>
                         <!-- Right side column. Contains the navbar and content of the page -->

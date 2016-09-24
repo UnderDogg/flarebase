@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flarepoint CRM</title>
+  <title>Flarepoint StaffPanel</title>
 
 
   <meta name="_token" content="{!! csrf_token() !!}"/>
@@ -155,44 +155,43 @@
 
           </ul>
         </li>
-
+            <?php
+            //dd(Auth::guard('staff')->check());
+            ?>
 
         <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          @if(Auth::guard('staff')->user())
+              
+                  <img src="{{Auth::guard('staff')->user()->profile_pic}}"class="user-image" alt="User Image"/>
+              
+              <span class="hidden-xs">{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</span>
+          @endif
+          </a>
+
+
           <ul class="dropdown-menu">
-            <li class="user-header">
+                                    <!-- User image -->
+            <li class="user-header" style="background-color:#343F44;">
+              <img src="{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
               <p>
                 first_name last_name - role
                 <small></small>
               </p>
             </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer" style="background-color:#1a2226;">
+                                        <div class="pull-left">
+                                            <a href="{{URL::route('staff.profile')}}" class="btn btn-info btn-sm"><b>{!! Lang::get('core::lang.profile') !!}</b></a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="{{url('staff/logout')}}" class="btn btn-danger btn-sm"><b>{!! Lang::get('core::lang.sign_out') !!}</b></a>
+                                        </div>
+                                    </li>
           </ul>
         </li>
 
 
-        <!-- User Account: style can be found in dropdown.less -->
-        {{-- <li class="dropdown user user-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">first_name last_name</span>
-          </a>
-          <ul class="dropdown-menu">
-            <!-- User image -->
-            <li class="user-header" style="background-color:#343F44;">
-              <p>
-                first_name last_name - role
-                <small></small>
-              </p>
-            </li>
-            <!-- Menu Footer-->
-            <li class="user-footer" style="background-color:#1a2226;">
-              <div class="pull-left">
-                <a href="/staff-profile" class="btn btn-info btn-sm"><b>{!! Lang::get('core::lang.profile') !!}</b></a>
-              </div>
-              <div class="pull-right">
-                <a href="/auth/logout/" class="btn btn-danger btn-sm"><b>{!! Lang::get('core::lang.sign_out') !!}</b></a>
-              </div>
-            </li>
-          </ul>
-        </li> --}}
       </ul>
     </div>
 
@@ -202,32 +201,6 @@
 <aside class="main-sidebar">
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
-    <div class="user-panel">
-      @if (trim($__env->yieldContent('profileimg')))
-        <h1>@yield('profileimg')</h1>
-      @else
-        <div class="row">
-          <div class="col-xs-3"></div>
-          <div class="col-xs-2" style="width:50%;">
-            <a href="{!! url('profile') !!}">
-
-              <img src="#" class="img-circle" alt="User Image"/>
-
-            </a>
-          </div>
-        </div>
-      @endif
-      <div class="info" style="text-align:center;">
-        @if(Auth::user())
-          <p>{{Auth::user()->first_name." ".Auth::user()->last_name}}</p>
-        @endif
-        @if(Auth::user() && Auth::user()->active==1)
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        @else
-          <a href="#"><i class="fa fa-circle"></i> Offline</a>
-        @endif
-      </div>
-    </div>
     <!-- search form -->
     {{-- <form action="#" method="get" class="sidebar-form"> --}}
     {{-- <div class="input-group"> --}}
@@ -245,21 +218,21 @@
       <?php
 
 
-      /*      if (Auth::user()->role == 'admin') {
+      /*      if (Auth::guard('staff')->user()->role == 'admin') {
               //$inbox = Modules\Core\Models\Ticket\Tickets::all();
-              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status', '1')->get();
               $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->get();
               $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->get();
               $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();
-            } elseif (Auth::user()->role == 'agent') {
-              //$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::user()->primary_dpt)->get();
-              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
-              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
-              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
-              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::user())->get();
+            } elseif (Auth::guard('staff')->user()->role == 'agent') {
+              //$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::guard('staff')->user()->primary_dpt)->get();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status', '1')->get();
+              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::guard('staff')->user()->primary_dpt)->get();
+              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::guard('staff')->user()->primary_dpt)->get();
+              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::guard('staff')->user())->get();
             }
-            if (Auth::user()->role == 'agent') {
-              $dept = Modules\Core\Models\Department::where('id', '=', Auth::user()->primary_dpt)->first();
+            if (Auth::guard('staff')->user()->role == 'agent') {
+              $dept = Modules\Core\Models\Department::where('id', '=', Auth::guard('staff')->user()->primary_dpt)->first();
               $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
             } else {
               $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
@@ -338,7 +311,7 @@
             //      $underprocess++;
             //  }
             // }
-            if (Auth::user()->role == 'admin') {*/
+            if (Auth::guard('staff')->user()->role == 'admin') {*/
       ?>
 
 
@@ -366,7 +339,7 @@
   </section>
   <!-- /.sidebar -->
 </aside>
-<?php //$agent_group = Auth::user()->assign_group;
+<?php //$agent_group = Auth::guard('staff')->user()->assign_group;
 //$group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 // dd($group); ?>
 <!-- Right side column. Contains the navbar and content of the page -->

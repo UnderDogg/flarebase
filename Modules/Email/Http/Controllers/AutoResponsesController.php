@@ -69,7 +69,7 @@ class AutoResponsesController extends Controller
     public function store(CannedRequest $request, Canned $canned)
     {
         // fetching all the requested inputs
-        $canned->user_id = \Auth::user()->id;
+        $canned->user_id = \Auth::guard('staff')->user()->id;
         $canned->title = $request->input('title');
         $canned->message = $request->input('message');
         try {
@@ -93,7 +93,7 @@ class AutoResponsesController extends Controller
     public function edit($id, Canned $canned)
     {
         // fetching requested canned response
-        $canned = $canned->where('user_id', '=', \Auth::user()->id)->where('id', '=', $id)->first();
+        $canned = $canned->where('user_id', '=', \Auth::guard('staff')->user()->id)->where('id', '=', $id)->first();
 
         return view('tickets::cannedreponses.edit', compact('canned'));
     }
@@ -110,9 +110,9 @@ class AutoResponsesController extends Controller
     public function update($id, CannedUpdateRequest $request, Canned $canned)
     {
         /* select the field where id = $id(request Id) */
-        $canned = $canned->where('id', '=', $id)->where('user_id', '=', \Auth::user()->id)->first();
+        $canned = $canned->where('id', '=', $id)->where('user_id', '=', \Auth::guard('staff')->user()->id)->first();
         // fetching all the requested inputs
-        $canned->user_id = \Auth::user()->id;
+        $canned->user_id = \Auth::guard('staff')->user()->id;
         $canned->title = $request->input('title');
         $canned->message = $request->input('message');
         try {
@@ -161,7 +161,7 @@ class AutoResponsesController extends Controller
         // checking for the canned response with requested value
         if ($id != 'zzz') {
             // fetching canned response
-            $canned = Canned::where('id', '=', $id)->where('user_id', '=', \Auth::user()->id)->first();
+            $canned = Canned::where('id', '=', $id)->where('user_id', '=', \Auth::guard('staff')->user()->id)->first();
             $msg = $canned->message;
         } else {
             $msg = '';

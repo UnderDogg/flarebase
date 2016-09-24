@@ -51,7 +51,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapBackendRoutes()
     {
         Route::group([
-            //'middleware' => 'staff',
+            'middleware' => 'staff',
             'namespace' => $this->namespace,
         ], function ($router) {
             require module_path('tickets', 'Routes/backendRoutes.php');

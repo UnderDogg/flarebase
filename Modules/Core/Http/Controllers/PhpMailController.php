@@ -86,8 +86,8 @@ class PhpMailController extends Controller
             }
 
             // template variables
-            if (Auth::user()) {
-                $agent = Auth::user()->user_name;
+            if (Auth::guard('staff')->user()) {
+                $agent = Auth::guard('staff')->user()->user_name;
             } else {
                 $agent = null;
             }
@@ -322,8 +322,8 @@ class PhpMailController extends Controller
         }
 
         // template variables
-        if (Auth::user()) {
-            $agent = Auth::user()->user_name;
+        if (Auth::guard('staff')->user()) {
+            $agent = Auth::guard('staff')->user()->user_name;
         } else {
             $agent = null;
         }

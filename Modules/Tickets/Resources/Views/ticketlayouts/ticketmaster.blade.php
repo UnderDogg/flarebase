@@ -220,10 +220,10 @@
         </div>
       @endif
       <div class="info" style="text-align:center;">
-        @if(Auth::user())
-          <p>{{Auth::user()->first_name." ".Auth::user()->last_name}}</p>
+        @if(Auth::guard('staff')->user())
+          <p>{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</p>
         @endif
-        @if(Auth::user() && Auth::user()->active==1)
+        @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->active==1)
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         @else
           <a href="#"><i class="fa fa-circle"></i> Offline</a>
@@ -247,21 +247,21 @@
       <?php
 
 
-      /*      if (Auth::user()->role == 'admin') {
+      /*      if (Auth::guard('staff')->user()->role == 'admin') {
               //$inbox = Modules\Core\Models\Ticket\Tickets::all();
-              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status', '1')->get();
               $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->get();
               $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->get();
               $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->get();
-            } elseif (Auth::user()->role == 'agent') {
-              //$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::user()->primary_dpt)->get();
-              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status', '1')->get();
-              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
-              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::user()->primary_dpt)->get();
-              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::user())->get();
+            } elseif (Auth::guard('staff')->user()->role == 'agent') {
+              //$inbox = Modules\Core\Models\Ticket\Tickets::where('dept_id','',Auth::guard('staff')->user()->primary_dpt)->get();
+              $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status', '1')->get();
+              $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '=', null)->where('status', '=', '1')->where('dept_id', '=', Auth::guard('staff')->user()->primary_dpt)->get();
+              $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '1')->where('dept_id', '=', Auth::guard('staff')->user()->primary_dpt)->get();
+              $deleted = Modules\Core\Models\Ticket\Tickets::where('status', '5')->where('dept_id', '=', Auth::guard('staff')->user())->get();
             }
-            if (Auth::user()->role == 'agent') {
-              $dept = Modules\Core\Models\Department::where('id', '=', Auth::user()->primary_dpt)->first();
+            if (Auth::guard('staff')->user()->role == 'agent') {
+              $dept = Modules\Core\Models\Department::where('id', '=', Auth::guard('staff')->user()->primary_dpt)->first();
               $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->where('dept_id', '=', $dept->id)->orderBy('id', 'DESC')->get();
             } else {
               $overdues = Modules\Core\Models\Ticket\Tickets::where('status', '=', 1)->where('isanswered', '=', 0)->orderBy('id', 'DESC')->get();
@@ -340,7 +340,7 @@
             //      $underprocess++;
             //  }
             // }
-            if (Auth::user()->role == 'admin') {*/
+            if (Auth::guard('staff')->user()->role == 'admin') {*/
       ?>
 
 
@@ -370,7 +370,7 @@
 </aside>
 
 
-<?php //$agent_group = Auth::user()->assign_group;
+<?php //$agent_group = Auth::guard('staff')->user()->assign_group;
 //$group = Modules\Core\Models\Agent\Groups::where('id', '=', $agent_group)->where('group_status', '=', '1')->first();
 // dd($group); ?>
 <!-- Right side column. Contains the navbar and content of the page -->

@@ -28,7 +28,7 @@ class NotificationController extends Controller
         $notifications = UserNotification::join('notifications', 'user_notification.notification_id', '=', 'notifications.id')
                 ->join('notification_types', 'notifications.type_id', '=', 'notification_types.id')
                 ->where('user_notification.is_read', '=', '0')
-                ->where('user_notification.user_id', '=', \Auth::user()->id)
+                ->where('user_notification.user_id', '=', \Auth::guard('staff')->user()->id)
                 ->get();
 
         return $notifications;
@@ -56,7 +56,7 @@ class NotificationController extends Controller
 
     public function markRead($id)
     {
-        $markasread = UserNotification::where('notification_id', '=', $id)->where('user_id', '=', \Auth::user()->id)->where('is_read', '=', '0')->get();
+        $markasread = UserNotification::where('notification_id', '=', $id)->where('user_id', '=', \Auth::guard('staff')->user()->id)->where('is_read', '=', '0')->get();
         foreach ($markasread as $mark) {
             $mark->is_read = '1';
             $mark->save();
@@ -74,7 +74,7 @@ class NotificationController extends Controller
 
     public function delete($id)
     {
-        $markasread = UserNotification::where('notification_id', '=', $id)->where('user_id', '=', \Auth::user()->id)->get();
+        $markasread = UserNotification::where('notification_id', '=', $id)->where('user_id', '=', \Auth::guard('staff')->user()->id)->get();
         foreach ($markasread as $mark) {
             $mark->delete();
         }

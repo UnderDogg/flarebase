@@ -1,11 +1,10 @@
 <?php
 /*
- *  NameSpace and MiddleWare (//'middleware' => 'staff', 'namespace' => '\Modules\Core\Http\Controllers') already applied in app / RouteServiceprovicer
+ *  NameSpace and MiddleWare ('middleware' => 'staff', 'namespace' => '\Modules\Core\Http\Controllers') already applied in app / RouteServiceprovicer
  **/
 
-Route::group(['prefix' => '/staffpanel'], function () {
-    Route::get('/', ['as' => 'staffdashboard', 'uses' => 'DashBoardController@staffdashboard']);
-    Route::get('dashboard', 'DashBoardController@staffdashboard')->name('staffpaneldashboard');
+Route::group(['prefix' => '/staff'], function () {
+    Route::get('/profile', ['as' => 'staff.profile', 'uses' => 'StaffController@staffprofile']);
     // append
 });
 

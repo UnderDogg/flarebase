@@ -70,25 +70,25 @@ if ($company != null) {
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                @if(Auth::user())
-                                    @if(Auth::user()->profile_pic)
-                                        <img src="{{asset('lb-faveo/lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}"class="user-image" alt="User Image"/>
+                                @if(Auth::guard('staff')->user())
+                                    @if(Auth::guard('staff')->user()->profile_pic)
+                                        <img src="{{asset('lb-faveo/lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}"class="user-image" alt="User Image"/>
                                     @else
-                                        <img src="{{ Gravatar::src(Auth::user()->email) }}" class="user-image" alt="User Image">
+                                        <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="user-image" alt="User Image">
                                     @endif
-                                    <span class="hidden-xs">{{Auth::user()->first_name." ".Auth::user()->last_name}}</span>
+                                    <span class="hidden-xs">{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</span>
                                 @endif          
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header"  style="background-color:#343F44;">
-                                        @if(Auth::user()->profile_pic)
-                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" />
+                                        @if(Auth::guard('staff')->user()->profile_pic)
+                                        <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
                                         @else                                      
-                                            <img src="{{ Gravatar::src(Auth::user()->email) }}" class="img-circle" alt="User Image">
+                                            <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="img-circle" alt="User Image">
                                         @endif
                                         <p>
-                                            {{Auth::user()->first_name." ".Auth::user()->last_name}} - {{Auth::user()->role}}
+                                            {{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}} - {{Auth::guard('staff')->user()->role}}
                                             <small></small>
                                         </p>
                                     </li>
@@ -119,20 +119,20 @@ if ($company != null) {
                                         <div class="col-xs-3"></div>
 
                                         <div class="col-xs-2" style="width:50%;">
-                                        @if(Auth::user() && Auth::user()->profile_pic)
-                                            <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" />
+                                        @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->profile_pic)
+                                            <img src="{{asset('lb-faveo/dist/img')}}{{'/'}}{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
                                         @else
-                                            <img src="{{ Gravatar::src(Auth::user()->email) }}" class="img-circle" alt="User Image">
+                                            <img src="{{ Gravatar::src(Auth::guard('staff')->user()->email) }}" class="img-circle" alt="User Image">
                                         @endif
 
                                         </div>
                                     </div>
                                     @endif
                                         <div class="info" style="text-align:center;">
-                                            @if(Auth::user())
-                                            <p>{{Auth::user()->first_name." ".Auth::user()->last_name}}</p>
+                                            @if(Auth::guard('staff')->user())
+                                            <p>{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</p>
                                             @endif
-                                            @if(Auth::user() && Auth::user()->active==1)
+                                            @if(Auth::guard('staff')->user() && Auth::guard('staff')->user()->active==1)
                                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                             @else
                                             <a href="#"><i class="fa fa-circle"></i> Offline</a>
@@ -158,7 +158,7 @@ if ($company != null) {
  $inbox = Modules\Core\Models\Ticket\Tickets::all();
 
 	?>
-     <?php $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::user()->id)->where('status','1')->get();?>
+     <?php $myticket = Modules\Core\Models\Ticket\Tickets::where('assigned_to', Auth::guard('staff')->user()->id)->where('status','1')->get();?>
      <?php $unassigned = Modules\Core\Models\Ticket\Tickets::where('assigned_to', '0')->where('status','1')->get();
             $tickets = Modules\Core\Models\Ticket\Tickets::where('status','1')->get();
             $i = count($tickets);
@@ -220,7 +220,7 @@ $underprocess = count($underprocess);
 		}
 	}
 
-	if (Auth::user()->role == 'admin') {
+	if (Auth::guard('staff')->user()->role == 'admin') {
 		?>
                                         <li class="treeview">
                                             <a href="#">
@@ -235,7 +235,7 @@ $underprocess = count($underprocess);
 
                                         <?php
 }
-	if (Auth::user()->role == 'agent' && Auth::user()->primary_dpt == $dept->name) {
+	if (Auth::guard('staff')->user()->role == 'agent' && Auth::guard('staff')->user()->primary_dpt == $dept->name) {
 		?>
                                         <li class="treeview">
                                             <a href="#">
@@ -255,7 +255,7 @@ $underprocess = count($underprocess);
                         <!-- /.sidebar -->
                         </aside>
 
-<?php $agent_group = Auth::user()->assign_group;
+<?php $agent_group = Auth::guard('staff')->user()->assign_group;
 $group = Modules\Core\Models\Agent\Groups::where('name', '=', $agent_group)->where('group_status', '=', '1')->first();
 // dd($group);
 ?>

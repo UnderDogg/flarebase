@@ -13,7 +13,7 @@ class="active"
 @stop
 
 @section('profileimg')
-<img src="{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" width="100%"/>
+<img src="{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" width="100%"/>
 @stop
 
 @section('content')

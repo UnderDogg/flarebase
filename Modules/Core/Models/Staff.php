@@ -36,7 +36,7 @@ class Staff extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function staffRole()
+    public function role()
     {
         return $this->hasOne(RoleStaff::class, 'staff_id', 'id');
     }

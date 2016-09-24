@@ -87,7 +87,7 @@
             @foreach($pages as $page)
               <li><a href="{{route('pages',$page->slug)}}">{{$page->name}}</a></li>
             @endforeach
-            @if(Auth::user())
+            @if(Auth::guard('staff')->user())
               <li @yield('myticket')><a href="{{url('mytickets')}}">{!! Lang::get('knowledgebase::lang.my_tickets') !!}</a></li>
 
               {{-- <li @yield('contact')><a href="{{route('contact')}}">Contact us</a></li> --}}
@@ -96,26 +96,26 @@
                   <li>
                     <div class="banner-wrapper user-menu text-center clearfix">
 
-                      <img src="{{Auth::user()->profile_pic}}" class="img-circle" alt="User Image" height="80"
+                      <img src="{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" height="80"
                            width="80"/>
 
                       <h3
-                        class="banner-title text-info h4">{{Auth::user()->first_name." ".Auth::user()->last_name}}</h3>
+                        class="banner-title text-info h4">{{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}}</h3>
                       <div class="banner-content">
                         {{-- <a href="{{url('kb/client-profile')}}" class="btn btn-custom btn-xs">Edit Profile</a> --}}
                         <a href="{{url('auth/logout')}}"
                            class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.log_out') !!}</a>
                       </div>
-                      @if(Auth::user())
-                        @if(Auth::user()->role != 'user')
+                      @if(Auth::guard('staff')->user())
+                        @if(Auth::guard('staff')->user()->role != 'user')
                           <div class="banner-content">
                             <a href="{{url('dashboard')}}"
                                class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.dashboard') !!}</a>
                           </div>
                         @endif
                       @endif
-                      @if(Auth::user())
-                        @if(Auth::user()->role == 'user')
+                      @if(Auth::guard('staff')->user())
+                        @if(Auth::guard('staff')->user()->role == 'user')
                           <div class="banner-content">
                             <a href="{{url('client-profile')}}"
                                class="btn btn-custom btn-xs">{!! Lang::get('knowledgebase::lang.profile') !!}</a>

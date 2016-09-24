@@ -15,8 +15,8 @@ class="active"
 @section('content')
 <?php
     $date_time_format = UTC::getDateTimeFormat();
-    if(Auth::user()->role == 'agent') {
-        $dept = Modules\Core\Models\Department::where('id','=',Auth::user()->primary_dpt)->first();
+    if(Auth::guard('staff')->user()->role == 'agent') {
+        $dept = Modules\Core\Models\Department::where('id','=',Auth::guard('staff')->user()->primary_dpt)->first();
         $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 5)->where('dept_id','=',$dept->id)->orderBy('id', 'DESC')->paginate(20);
     } else {
         $tickets = Modules\Core\Models\Ticket\Tickets::where('status', '=', 5)->orderBy('id', 'DESC')->paginate(20);

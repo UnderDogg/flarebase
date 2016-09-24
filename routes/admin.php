@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/adminpanel', function () {
-    $users[] = Auth::user();
+    $users[] = Auth::guard('staff')->user();
     $users[] = Auth::guard()->user();
     $users[] = Auth::guard('admin')->user();
 
