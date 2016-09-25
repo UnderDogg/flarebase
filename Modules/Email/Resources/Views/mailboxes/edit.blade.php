@@ -342,7 +342,7 @@
             // Ajax communicating to backend for further Checking/Saving the details
             $.ajax({
                 type: "POST",
-                url: "{!! route('validating.email.settings.update', $mailbox->id ) !!}",
+                url: "{!! route('validating.email.settings.update', [$mailbox->id]) !!}",
                 dataType: "html",
                 data: form_data,
                 headers: {

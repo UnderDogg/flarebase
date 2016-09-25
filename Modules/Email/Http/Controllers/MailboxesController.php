@@ -136,6 +136,21 @@ class MailboxesController extends Controller
      *
      * @return int
      */
+    public function validatingMailboxSettingsUpdate($id, Request $request)
+    {
+        $updateresult = $this->updateExchange($id, $request, null);
+        $return = $updateresult;
+        return $return;
+    }
+
+
+    /**
+     * Check for email input validation.
+     *
+     * @param EmailsRequest $request
+     *
+     * @return int
+     */
     public function validatingMailboxSettings(Request $request)
     {
         $this->storeExchange($request, null);
@@ -452,6 +467,71 @@ class MailboxesController extends Controller
         }
         return $return;
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param type Emails        $email
+     * @param type EmailsRequest $request
+     *
+     * @return type Redirect
+     */
+    public function updateExchange($id, $request, $exchange_check = false)
+    {
+        $mailbox = Mailbox::whereId($id)->first();
+        try {
+            $mailbox->fill($request->except('password', 'department', 'priority', 'help_topic', 'fetching_status', 'sending_status'))->save();
+
+
+            if ($request->fetching_status == 'on') {
+                $mailbox->fetching_status = 1;
+            } else {
+                $mailbox->fetching_status = 0;
+            }
+
+            $mailbox->mailbox_type = $request->input('fetching_protocol');
+
+            //if ($request->sending_status == 'on') {
+            //    $mailbox->sending_status = 1;
+            //} else {
+            $mailbox->sending_status = 0;
+            //}
+            //if ($request->auto_response == 'on') {
+            //    $mailbox->auto_response = 1;
+            //} else {
+            $mailbox->auto_response = 0;
+            //}
+
+            // fetching department value
+            $mailbox->department_id = 2;
+            // fetching priority value
+            $mailbox->priority_id = 4;
+            // fetching helptopic value
+            $mailbox->user_name = $request->input('email_address');
+
+            $mailbox->helptopic_id = NULL;
+            // inserting the encrypted value of password
+            $mailbox->password = Crypt::encrypt($request->input('password'));
+
+
+            try {
+                $mailbox->save(); // run save
+            } catch (Exception $e) {
+                dd($e->getMessage());
+            }
+            $return = 1;
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            // returns if try fails
+            //            return redirect()->back()->with('fails', $e->getMessage());
+            return 0;
+        }
+        return $return;
+    }
+
+
 
     /**
      * Update the specified resource in storage.

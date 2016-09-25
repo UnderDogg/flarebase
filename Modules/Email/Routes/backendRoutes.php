@@ -25,7 +25,7 @@ Route::get('mailrulesdata', [
 
 
 Route::post('validating-email-settings', ['as' => 'validating.email.settings', 'uses' => 'MailboxesController@validatingMailboxSettings']); // route to check email input validation
-Route::post('validating-email-settings-on-update/{id}', ['as' => 'validating.email.settings.update', 'uses' => 'MailboxesController@validatingEmailSettingsUpdate']); // route to check email input validation
+Route::post('validating-email-settings-on-update/{id}', ['as' => 'validating.email.settings.update', 'uses' => 'MailboxesController@validatingMailboxSettingsUpdate']); // route to check email input validation
 
 Route::get('getemail', 'Admin\helpdesk\SettingsController@getemail'); // direct to email setting page
 Route::patch('postemail/{id}', 'Admin\helpdesk\SettingsController@postemail'); // Updating the Email table with requests
