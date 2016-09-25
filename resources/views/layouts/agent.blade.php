@@ -95,7 +95,7 @@ if ($company != null) {
                                     <!-- Menu Footer-->
                                     <li class="user-footer" style="background-color:#1a2226;">
                                         <div class="pull-left">
-                                            <a href="{{URL::route('profile')}}" class="btn btn-info btn-sm"><b>Profile</b></a>
+                                            <a href="{{URL::route('staff.profile')}}" class="btn btn-info btn-sm"><b>Profile</b></a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="{{url('auth/logout')}}" class="btn btn-danger btn-sm"><b>Sign out</b></a>

@@ -5,6 +5,10 @@
 
 Route::group(['prefix' => '/staff'], function () {
     Route::get('/profile', ['as' => 'staff.profile', 'uses' => 'StaffController@staffprofile']);
+
+    //Route::get('profile', ['as' => 'profile', 'uses' => 'Agent\helpdesk\UserController@getProfile']); /*  User profile get  */
+
+
     // append
 });
 
