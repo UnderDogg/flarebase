@@ -30,7 +30,6 @@
     @section('content')
 <!-- open a form -->
     <form id="form">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">{!! Lang::get('emails::lang.email_information_and_settings') !!}</h3>
@@ -195,6 +194,17 @@
     </div>
 
     <button style="display:none" data-toggle="modal" data-target="#loadingpopup" id="click"></button>
+
+
+    <!-- jQuery 2.1.1 -->
+    <script src="/lb-faveo/js/jquery2.1.1.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="/lb-faveo/js/bootstrap.min.js"></script>
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+
+
+
 
     <script type="text/javascript">
         //submit form

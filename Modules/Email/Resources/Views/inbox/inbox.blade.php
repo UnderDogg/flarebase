@@ -18,13 +18,7 @@
     @stop
             <!-- header -->
 @section('PageHeader')
-
-    {{--   {!! route('validating.email.settings') !!} <input type="button" id="chat_btn" onclick="chatPost()" value="Submit Text" disabled> onclick="getMail()" --}}
-
-
-    <h1>{{Lang::get('email::lang.mailboxes')}}<a href="{!! route('connectexchange', [$mailbox->id]) !!}"
-                                                 class="btn btn-primary pull-right">{{Lang::get('email::lang.getmail')}}</a>
-    </h1>
+    <h1>{{Lang::get('email::lang.mailboxes')}}</h1>
 
     @stop
             <!-- /header -->

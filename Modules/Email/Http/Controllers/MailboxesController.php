@@ -289,7 +289,6 @@ class MailboxesController extends Controller
             // inserting the encrypted value of password
             $mailbox->password = Crypt::encrypt($request->input('password'));
 
-
             try {
                 $mailbox->save(); // run save
             } catch (Exception $e) {

@@ -111,7 +111,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
-                                <li class="user-header"  style="background-color:#343F44;">
+                                <li class="user-header" style="background-color:#343F44;">
                                     <img src="{{Auth::guard('staff')->user()->profile_pic}}" class="img-circle" alt="User Image" />
                                     <p>
                                         {{Auth::guard('staff')->user()->first_name." ".Auth::guard('staff')->user()->last_name}} - {{Auth::guard('staff')->user()->role}}
@@ -136,7 +136,7 @@
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+        <section class="sidebar" style="height: auto;">
 
 <ul id="side-bar" class="sidebar-menu">
                 @yield('sidebar')

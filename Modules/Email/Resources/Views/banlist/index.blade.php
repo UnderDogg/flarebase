@@ -6,7 +6,7 @@
 @stop
 
 @section('dashboard-bar')
-    active
+    {{--active --}}
 @stop
 
 @section('ban')
