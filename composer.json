@@ -55,7 +55,8 @@
     "league/html-to-markdown": "^4.2",
     "graham-campbell/markdown": "^6.0",
     "php-ews/php-ews": "dev-master",
-    "garethp/php-ews": "^0.9.0"
+    "garethp/php-ews": "^0.9.0",
+    "messaged/php-mime-mail-parser": "^1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

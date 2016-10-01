@@ -20,9 +20,7 @@
         <link href="{{asset("lb-faveo/css/skins/_all-skins.min.css")}}" rel="stylesheet" type="text/css" />
         <!-- iCheck -->
         <link href="{{asset("lb-faveo/plugins/iCheck/flat/blue.css")}}" rel="stylesheet" type="text/css" />
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <link href="{{asset("lb-faveo/css/tabby.css")}}" rel="stylesheet" type="text/css"/>
-        
+
         <link href="{{asset("lb-faveo/css/jquerysctipttop.css")}}" rel="stylesheet" type="text/css"/>
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
@@ -51,8 +49,17 @@
 
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700, 300' rel='stylesheet' type='text/css'>
         <script src="{{asset("lb-faveo/js/jquery-2.1.4.js")}}" type="text/javascript"></script>
-        
-        <script src="{{asset("lb-faveo/js/jquery2.1.1.min.js")}}" type="text/javascript"></script>
+
+        <!-- and you'll need to include tabby of course! -->
+        <script src="jquery.tabby.min.js"></script>
+
+        <link href="{{asset("lb-faveo/css/tabby.css")}}" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
         @yield('HeadInclude')
 </head>
 
@@ -79,7 +86,7 @@
             </a>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-left">
+            <ul class="tabs tabs-horizontal nav navbar-nav navbar-left">
                 <li @yield('Dashboard')><a data-target="#tabA" href="#">DashBoard</a></li>
                 <li @yield('Users')><a data-target="#tabB" href="#">{!! Lang::get('core::lang.users') !!}</a></li>
                 <li @yield('Tickets')><a data-target="#tabC" href="#">{!! Lang::get('core::lang.tickets') !!}</a></li>
