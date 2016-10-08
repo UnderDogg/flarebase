@@ -37,6 +37,16 @@ return [
     'lang.copyright' => 'CopyRight',
     'all_rights_reserved' => 'All Rights Reserved',
     'powered_by' => 'Powered By',
+    'staffprofile' => 'Profile',
+    'sign_out' => 'Log out',
+    'users' => 'Users',
+    'tickets' => 'Tickets',
+    'tools' => 'Tools',
+
+
+
+
+
 
 
 ];

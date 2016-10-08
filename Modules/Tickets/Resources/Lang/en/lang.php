@@ -29,7 +29,7 @@ return [
   'slaplans' => 'SLA Plans',
   'slaplanschedules' => 'SLA Plan Schedules',
 
-
+    'Ticket-created-successfully' => 'Ticket created successfully',
 
     /*
       |--------------------------------------

@@ -11,14 +11,31 @@ Route::get('/ticketcategoriesdata', ['as' => 'ticketcategories.data', 'uses' => 
 Route::get('/ticketsourcesdata', ['as' => 'ticketsources.data', 'uses' => 'TicketSourcesController@anyData']);
 Route::get('/ticketlinktypesdata', ['as' => 'ticketlinktypes.data', 'uses' => 'TicketLinkTypesController@anyData']);
 
-
-
+Route::get('/ticketinbox', ['as' => 'get.inbox.ticket', 'uses' => 'TicketsController@get_inbox']);  /* Get tickets in datatable */
+Route::patch('/change-owner/{id}', ['as' => 'change.owner.ticket', 'uses' => 'TicketsController@changeOwner']); /* change owner */
+//To merge tickets
+Route::get('/get-merge-tickets/{id}', ['as' => 'get.merge.tickets', 'uses' => 'TicketsController@getMergeTickets']);
+Route::get('/check-merge-ticket/{id}', ['as' => 'check.merge.tickets', 'uses' => 'TicketsController@checkMergeTickets']);
+Route::get('/get-parent-tickets/{id}', ['as' => 'get.parent.ticket', 'uses' => 'TicketsController@getParentTickets']);
+Route::patch('/merge-tickets/{id}', ['as' => 'merge.tickets', 'uses' => 'TicketsController@mergeTickets']);
+//To get department tickets data
+//open tickets of department
+Route::get('/get-open-tickets/{id}', ['as' => 'get.dept.open', 'uses' => 'Tickets2Controller@getOpenTickets']);
+//close tickets of deartment
+Route::get('/get-closed-tickets/{id}', ['as' => 'get.dept.close', 'uses' => 'Tickets2Controller@getCloseTickets']);
+//in progress ticket of department
+Route::get('/get-under-process-tickets/{id}', ['as' => 'get.dept.inprocess', 'uses' => 'Tickets2Controller@getInProcessTickets']);
 
 
 
 Route::group(['prefix' => '/ticketspanel'], function () {
     Route::resource('tickets', 'TicketsController');
     Route::get('/', ['as' => 'ticketspanel', 'uses' => 'TicketsDashBoardController@ticketsdashboard']);
+    Route::get('/inbox', ['as' => 'ticketsinbox', 'uses' => 'TicketsController@inbox_ticket_list']);
+    Route::get('/mytickets', ['as' => 'ticketsmytickets', 'uses' => 'TicketsController@myticket_ticket_list']); /*  Get Tickets Assigned to logged user */
+    Route::get('/unassigned', ['as' => 'ticketsunassigned', 'uses' => 'TicketsController@unassigned']);
+    Route::get('/overdue', ['as' => 'ticketsoverdue', 'uses' => 'TicketsController@overdue_ticket_list']);
+    Route::get('/answered', ['as' => 'ticketsanswered', 'uses' => 'TicketsController@answered_ticket_list']);  /* Get tickets in datatable */
 
 
     Route::resource('ticketsettings', 'TicketSettingsController');

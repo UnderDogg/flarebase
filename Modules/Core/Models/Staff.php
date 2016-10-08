@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Staff extends Authenticatable
+class Stuff extends Authenticatable
 {
 
     /*AuthenticatableContract,
@@ -16,7 +16,7 @@ class Staff extends Authenticatable
       use Authenticatable, Authorizable, CanResetPassword, Messagable;*/
     use Notifiable, EntrustUserTrait;
 
-    protected $table = "staff";
+    protected $table = "stiff";
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +24,7 @@ class Staff extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -33,7 +33,7 @@ class Staff extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'rolemyrole'
     ];
 
     public function role()
