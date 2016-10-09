@@ -170,7 +170,7 @@ class TicketsController extends Controller
      */
     public function inbox_ticket_list()
     {
-        dd(Auth::guard('staff')->user());
+        dd(Auth::guard('staff')->user()->hasRole('staff'));
 
         return view('tickets::ticket.inbox');
     }
@@ -178,7 +178,7 @@ class TicketsController extends Controller
     public function get_inbox()
     {
 
-dd(Auth::guard('staff')->user()->role);
+
 
 
 
